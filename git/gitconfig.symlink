@@ -1,0 +1,22 @@
+[user]
+  name = AUTHOR NAME
+  email = AUTHOR EMAIL
+
+[core]
+  editor = subl -w
+  excludesfile = ~/.gitignore
+
+[color]
+  ui = true
+  diff = auto
+  status = auto
+  branch = auto
+
+[alias]
+  st = status
+  co = checkout
+  com = commit
+  comm = commit -m
+
+[credential]
+  helper = osxkeychain
