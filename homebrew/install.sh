@@ -6,8 +6,7 @@
 # using Homebrew.
 
 # Check for Homebrew
-if test ! $(which brew)
-then
+if test ! $(which brew); then
   echo "  Installing Homebrew."
   ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)" > /tmp/homebrew-install.log
 fi
@@ -16,7 +15,7 @@ fi
 # brew install grc coreutils spark
 
 # Install brew cask to have apps out of the box
-if test $(which brew) then
+if test $(which brew); then
   echo "  Installing brew cask and apps."
   brew tap caskroom/cask > /tmp/tap-cask.log
   brew tap caskroom/versions > /tmp/tap-cask-versions.log
@@ -24,7 +23,7 @@ if test $(which brew) then
 
   while read app; do
     brew cask install $app
-  done < apps
+  done < "`pwd`/homebrew/apps"
   unset app
 fi
 
