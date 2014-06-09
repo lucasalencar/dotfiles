@@ -3,7 +3,7 @@
   email = AUTHOR EMAIL
 
 [core]
-  editor = subl -w
+  editor = mate -w
   excludesfile = ~/.gitignore
 
 [color]
@@ -17,6 +17,7 @@
   co = checkout
   com = commit
   comm = commit -m
+  br = branch
 
 [credential]
   helper = osxkeychain
