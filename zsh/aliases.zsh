@@ -9,5 +9,13 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 alias reload!='. ~/.zshrc'
 
-alias zshconfig="subl ~/.zshrc"
-alias ohmyzsh="subl ~/.oh-my-zsh"
+# Aliases to config files
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
+alias dotfiles="mate ~/.dotfiles"
+
+# Alert when internet is back
+alias wtfimi="until ping -W1 -c1 google.com; do sleep 5; done && say the internet is fucking back"
+
+# Organizing photos from camera
+alias photos="mkdir jpg raw; mv *.JPG jpg/; mv *.CR2 raw/"
