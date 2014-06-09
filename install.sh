@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 
+#
 # Installation process
 
 link_files () {
@@ -10,7 +10,7 @@ link_files () {
 DOTFILES_ROOT="`pwd`"
 
 # Install some essential softwares
-for file in $DOTFILES_ROOT/{homebrew,essentials,zsh,ruby}/install.sh; do
+for file in $DOTFILES_ROOT/{homebrew,zsh,ruby,textmate,osx}/install.sh; do
   $file
 done
 unset file
@@ -21,3 +21,5 @@ do
   dest="$HOME/.`basename \"${source%.*}\"`"
   link_files $source $dest
 done
+
+exit 0
