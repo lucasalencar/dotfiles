@@ -41,6 +41,9 @@ defaults write com.apple.terminal StringEncodings -array 4
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
+# Bring the shutdown button behavior back
+defaults write com.apple.loginwindow PowerButtonSleepsSystem -bool no
+
 # IO
 
 # Trackpad: enable tap to click for this user and for the login screen
