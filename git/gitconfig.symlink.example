@@ -5,6 +5,7 @@
 [core]
   editor = mate -w
   excludesfile = ~/.gitignore
+  push.default simple
 
 [color]
   ui = true
