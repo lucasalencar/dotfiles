@@ -5,7 +5,6 @@
 [core]
   editor = mate -w
   excludesfile = ~/.gitignore
-  push.default simple
 
 [color]
   ui = true
@@ -22,3 +21,6 @@
 
 [credential]
   helper = osxkeychain
+
+[push]
+	default = simple
