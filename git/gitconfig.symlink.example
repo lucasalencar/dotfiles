@@ -15,8 +15,7 @@
 [alias]
   st = status
   co = checkout
-  com = commit
-  comm = commit -m
+  com = commit -m
   br = branch
 
 [credential]
