@@ -64,6 +64,9 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
+# Finder: show all files (hidden inclusive)
+defaults write com.apple.finder AppleShowAllFiles false
+
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
