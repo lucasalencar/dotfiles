@@ -10,7 +10,7 @@ link_files () {
 DOTFILES_ROOT="`pwd`"
 
 # Install some essential softwares
-for file in $DOTFILES_ROOT/{homebrew,zsh,ruby,textmate,osx}/install.sh; do
+for file in $DOTFILES_ROOT/{homebrew,zsh,ruby,textmate,osx,essentials}/install.sh; do
   $file
 done
 unset file
