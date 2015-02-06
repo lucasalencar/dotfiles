@@ -42,7 +42,10 @@ defaults write com.apple.terminal StringEncodings -array 4
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Bring the shutdown button behavior back
-defaults write com.apple.loginwindow PowerButtonSleepsSystem -bool no
+defaults write com.apple.loginwindow PowerButtonSleepsSystem -bool true
+
+# Speeds up the animation when resizing a window
+defaults write -g NSWindowResizeTime -float 0.003
 
 # IO
 
