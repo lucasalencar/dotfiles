@@ -3,6 +3,8 @@
 function help {
 cat <<EOF
 Exports a table from a postgres database to a csv.gz file.
+This is a brother script of imp_pg_table.
+
 Usage: exp_pg_table <DB NAME> <DB USER> <TABLE NAME>
 
 PS: The commands to import back these exports are:

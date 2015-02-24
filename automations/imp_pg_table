@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+function help {
+cat <<EOF
+Imports a table to a postgres database using a csv.gz file.
+This is a brother script of exp_pg_table.
+
+Usage: imp_pg_table <DB NAME> <DB USER> <TABLE SQL> <FILE.CSV.GZ>
+EOF
+}
+
+if [ "$#" -lt 4 ]; then
+  help
+  exit 1
+fi
+
+# Params
+DB=$1
+USER=$2
+TABLE_SQL=$3
+TABLE_DATA=$4
+
+echo "Creating $TABLE_SQL in database $DB."
+psql -U $USER -d $DB < $TABLE_SQL
+
+echo "Importing $TABLE_DATA to database $DB."
+table=`basename $TABLE_DATA .csv.gz`
+gzip -cd $TABLE_DATA | psql -U $USER -d $DB -c "copy $table from stdin csv header;"
