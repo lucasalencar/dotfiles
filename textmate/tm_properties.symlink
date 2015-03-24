@@ -1,4 +1,18 @@
+# Settings
+encoding = UTF-8
+lineEndings = '\n'
+showInvisible = true
 softWrap = true
 softTabs = true
 tabSize = 2
+
 TM_STRIP_WHITESPACE_ON_SAVE = true
+
+# Variables
+TM_GIT = "/usr/local/bin/git"
+TM_RUBY = "/usr/local/opt/rbenv/shims/ruby"
+
+[ text.html.markdown ]
+spellChecking = true
+softTabs = true
+tabSize = 4
