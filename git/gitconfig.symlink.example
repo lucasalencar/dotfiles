@@ -3,7 +3,7 @@
   email = AUTHOR EMAIL
 
 [core]
-  editor = mate -w
+  editor = vim
   excludesfile = ~/.gitignore
 
 [color]

@@ -7,4 +7,4 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.3/bin
 export PATH=$PATH:$DOTFILES_ROOT/automations
 
 # Default editor
-export EDITOR="mate -w"
+export EDITOR="mvim"

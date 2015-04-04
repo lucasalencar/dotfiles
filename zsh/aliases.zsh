@@ -10,9 +10,9 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 alias reload!='. ~/.zshrc'
 
 # Aliases to config files
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
-alias dotfiles="mate ~/.dotfiles"
+alias zshconfig="mvim ~/.zshrc"
+alias ohmyzsh="mvim ~/.oh-my-zsh"
+alias dotfiles="mvim ~/.dotfiles"
 
 # Alert when internet is back
 alias wtfimi="until ping -W1 -c1 google.com; do sleep 5; done && say the internet is fucking back"

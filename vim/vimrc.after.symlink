@@ -1,0 +1,12 @@
+" Default theme configs
+color molokai
+set guifont=Menlo:h14
+
+" Strips white spaces on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Remove scroll bars from macvim
+set guioptions=aAce
+
+" Set default transparency
+set transparency=2
