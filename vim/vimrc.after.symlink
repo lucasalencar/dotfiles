@@ -1,6 +1,8 @@
 " Default theme configs
 color molokai
-set guifont=Menlo:h14
+"set guifont=Menlo:h15
+"set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
 
 " Strips white spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -10,3 +12,36 @@ set guioptions=aAce
 
 " Set default transparency
 set transparency=2
+
+" Default encoding
+set encoding=utf-8
+
+" Unicode symbols for airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+let g:airline_powerline_fonts=1

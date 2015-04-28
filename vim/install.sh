@@ -16,6 +16,11 @@ then
 
   git clone https://github.com/jistr/vim-nerdtree-tabs.git $JANUS_EXTRAS/vim-nerdtree-tabs >> $LOG
   git clone https://github.com/airblade/vim-gitgutter.git $JANUS_EXTRAS/vim-gitgutter >> $LOG
+  git clone https://github.com/bling/vim-airline.git $JANUS_EXTRAS/vim-airline >> $LOG
+
+  git clone https://github.com/powerline/fonts.git $JANUS_EXTRAS/powerline-fonts >> $LOG
+  bash $JANUS_EXTRAS/powerline-fonts/install.sh
+  rm -rf $JANUS_EXTRAS/powerline-fonts
 fi
 
 exit 0
