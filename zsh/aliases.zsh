@@ -2,7 +2,7 @@
 alias la='ls -lAh'
 
 # Get OS X Software Updates, and update installed Ruby gem and Homebrew.
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; sudo gem update'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; sudo gem update'
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"

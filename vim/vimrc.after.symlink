@@ -2,7 +2,7 @@
 color molokai
 "set guifont=Menlo:h15
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
 
 " Strips white spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
