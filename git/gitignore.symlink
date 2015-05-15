@@ -1,4 +1,5 @@
 .svn
+*.log
 
 # OSX
 .DS_Store
