@@ -11,7 +11,13 @@ autocmd BufWritePre * :%s/\s\+$//e
 set guioptions=aAce
 
 " Set default transparency
-set transparency=2
+if has("gui_running")
+  set transparency=3
+
+  " Disable hover tooltips
+  set noballooneval
+  let g:netrw_nobeval = 1
+endif
 
 " Default encoding
 set encoding=utf-8
