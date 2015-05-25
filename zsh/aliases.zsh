@@ -2,7 +2,7 @@
 alias la='ls -lAh'
 
 # Get OS X Software Updates, and update installed Ruby gem and Homebrew.
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; sudo gem update'
+alias update='brew update; brew upgrade --all; brew cleanup; sudo gem update'
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
@@ -21,3 +21,6 @@ alias wtfimi="until ping -W1 -c1 google.com; do sleep 5; done && say the interne
 alias photos="mkdir jpg raw; mv *.JPG jpg/; mv *.CR2 raw/"
 
 alias mklatex="latexmk -quiet -pv -pdf -pdflatex=\"pdflatex --shell-escape %O %S\""
+
+alias be="bundle exec"
+alias bi="bundle install"
