@@ -11,7 +11,7 @@ then
   curl -Lo- https://bit.ly/janus-bootstrap | bash >> $LOG
 
   # Installing additional plugins
-  JANUS_EXTRAS=$HOME/.janus
+  JANUS_EXTRAS="$HOME/.janus"
   mkdir JANUS_EXTRAS
 
   git clone https://github.com/jistr/vim-nerdtree-tabs.git $JANUS_EXTRAS/vim-nerdtree-tabs >> $LOG
