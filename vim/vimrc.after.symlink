@@ -1,7 +1,8 @@
+" Disable VI compatibility
+set nocompatible
+
 " Default theme configs
 color molokai
-"set guifont=Menlo:h15
-"set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
 
 " Strips white spaces on save
@@ -52,4 +53,14 @@ let g:airline_symbols.linenr = ''
 
 let g:airline_powerline_fonts=1
 
+" Disables NERDTree auto open
 let g:nerdtree_tabs_open_on_gui_startup = 0
+
+" Split pane shortcuts
+" New vertical pane, moving to new pane
+nnoremap <leader>w <C-w>v<C-w>l
+" Move through panes
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
