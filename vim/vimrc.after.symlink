@@ -58,7 +58,9 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " Split pane shortcuts
 " New vertical pane, moving to new pane
-nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>v <C-w>v<C-w>l
+" New horizontal pane, moving to new pane
+nnoremap <leader>s <C-w>s<C-w>j
 " Move through panes
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
