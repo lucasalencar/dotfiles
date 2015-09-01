@@ -23,6 +23,12 @@ endif
 " Default encoding
 set encoding=utf-8
 
+" Highlights current line
+set cursorline
+
+" Highlights column 80
+set colorcolumn=80
+
 " Unicode symbols for airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
