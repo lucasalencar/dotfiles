@@ -1,1 +1,9 @@
 git/gitconfig.symlink
+
+# RD specifics
+zsh/rd_aliases.zsh
+automations/block_emkt
+automations/unblock_emkt
+automations/me
+automations/change_account
+automations/creport
