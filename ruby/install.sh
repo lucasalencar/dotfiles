@@ -2,9 +2,10 @@
 
 if test ! $(which rbenv)
 then
+  LOG="/tmp/install-ruby.log"
   echo "  Installing rbenv."
-  brew install rbenv > /tmp/rbenv-install.log
-  brew install ruby-build > /tmp/ruby-build-install.log
+  brew install rbenv > $LOG
+  brew install ruby-build >> $LOG
 fi
 
 exit 0
