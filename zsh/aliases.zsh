@@ -24,3 +24,5 @@ alias mklatex="latexmk -quiet -pv -pdf -pdflatex=\"pdflatex --shell-escape %O %S
 
 alias be="bundle exec"
 alias bi="bundle install"
+
+alias git=hub

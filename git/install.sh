@@ -1,7 +1,8 @@
 #!/bin/sh
 
-echo "  Installing newest git version."
-brew install git > /tmp/git-install.log
-brew install hub >> /tmp/git-install.log
+echo "  Installing git latest version."
+LOG="/tmp/install-git.log"
+brew install git > $LOG
+brew install hub >> $LOG
 
 exit 0
