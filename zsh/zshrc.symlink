@@ -10,7 +10,11 @@ ZSH_THEME="simple"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(terminalapp git github brew brew-cask rbenv gem bundler rake rails heroku)
+plugins=(terminalapp git brew brew-cask rbenv gem bundler rake rails heroku)
+
+# Activate zsh-completions
+plugins+=(zsh-completions)
+autoload -U compinit && compinit
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
