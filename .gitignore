@@ -1,6 +1,7 @@
 git/gitconfig.symlink
 
 # RD specifics
+rd/
 zsh/rd_aliases.zsh
 zsh/rd.zsh
 automations/block_emkt
