@@ -12,6 +12,7 @@ macvim
 atom
 transmission
 skype
+java7
 mplayerx
 subtitles
 openemu
@@ -19,4 +20,5 @@ milkytracker
 omnidisksweeper
 github-desktop
 google-chrome-canary
-java7
+postgres
+pgadmin3
