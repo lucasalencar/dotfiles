@@ -17,6 +17,7 @@ then
   git clone https://github.com/jistr/vim-nerdtree-tabs.git $EXTRAS/vim-nerdtree-tabs >> $LOG
   git clone https://github.com/airblade/vim-gitgutter.git $EXTRAS/vim-gitgutter >> $LOG
   git clone https://github.com/bling/vim-airline.git $EXTRAS/vim-airline >> $LOG
+  git clone https://github.com/jiangmiao/auto-pairs.git $EXTRAS/auto-pairs >> $LOG
 
   # Add powerline fonts
   git clone https://github.com/powerline/fonts.git $EXTRAS/powerline-fonts >> $LOG
