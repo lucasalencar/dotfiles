@@ -15,7 +15,7 @@ fi
 
 # Install homebrew packages
 #brew install grc coreutils spark
-brew install coreutils
+brew install coreutils ag
 
 # Install brew cask to have apps out of the box
 if test $(which brew); then
