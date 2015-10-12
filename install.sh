@@ -10,16 +10,18 @@ link_files () {
 DOTFILES_ROOT="`pwd`"
 
 # Install some essential softwares
-for file in $DOTFILES_ROOT/{homebrew,git,zsh,ruby,python,vim,dev,osx,essentials}/install.sh; do
-  $file
+packages=(homebrew git zsh ruby python vim dev osx essentials)
+for package in "${packages[@]}"; do
+  echo "  Setting up $package package..."
+  $DOTFILES_ROOT/$package/install.sh
+
+  # Link config files
+  for source in `find $DOTFILES_ROOT/$package -maxdepth 2 -name \*.symlink`
+  do
+    dest="$HOME/.`basename \"${source%.*}\"`"
+    link_files $source $dest
+  done
 done
 unset file
-
-# Link config files
-for source in `find $DOTFILES_ROOT -maxdepth 2 -name \*.symlink`
-do
-  dest="$HOME/.`basename \"${source%.*}\"`"
-  link_files $source $dest
-done
 
 exit 0
