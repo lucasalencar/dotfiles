@@ -60,6 +60,9 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
 # Finder
 
 # Set Desktop as the default location for new Finder windows
@@ -106,11 +109,17 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
 # Dock
 
-# Minimize windows into their application’s icon
-defaults write com.apple.dock minimize-to-application -bool true
+# Set the icon size of Dock items to 36 pixels
+defaults write com.apple.dock tilesize -int 80
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
+
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
+
+# Change minimize/maximize window effect
+defaults write com.apple.dock mineffect -string "scale"
 
 # Transmission
 
