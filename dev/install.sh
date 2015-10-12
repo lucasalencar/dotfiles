@@ -7,6 +7,10 @@ then
 
   mkdir -p $HOME/Library/LaunchAgents
 
+  echo '  Setup Postgres.app'
+  brew cask install postgres
+  brew cask install pgadmin3
+
   echo '  Setup mongodb'
   brew install mongodb
   ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
