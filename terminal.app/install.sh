@@ -1,12 +1,14 @@
 #!/bin/sh
 
+THEME="Smyck"
+
 # Change Terminal.app default theme
 osascript <<EOD
 tell application "Terminal"
 	local allOpenedWindows
 	local initialOpenedWindows
 	local windowID
-	set themeName to "Smyck"
+	set themeName to "$THEME"
 	(* Store the IDs of all the open terminal windows. *)
 	set initialOpenedWindows to id of every window
 	(* Open the custom theme so that it gets added to the list
@@ -14,7 +16,7 @@ tell application "Terminal"
 	   additional terminal windows). *)
 	do shell script "open 'terminal.app/" & themeName & ".terminal'"
 	(* Wait a little bit to ensure that the custom theme is added. *)
-	delay 1
+	delay 2
 	(* Set the custom theme as the default terminal theme. *)
 	set default settings to settings set themeName
 	(* Get the IDs of all the currently opened terminal windows. *)
