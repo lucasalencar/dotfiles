@@ -29,6 +29,9 @@ then
   mkdir -p $EXTRAS/smyck/colors/
   cp $EXTRAS/Smyck-Color-Scheme/smyck.vim $EXTRAS/smyck/colors/smyck.vim
   rm -rf $EXTRAS/Smyck-Color-Scheme
+
+  echo '  Installing MacVIM and helpers.'
+  brew cask install macvim seil
 fi
 
 exit 0
