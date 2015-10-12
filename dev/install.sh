@@ -33,5 +33,13 @@ then
   brew install redis
   ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
   launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+
+  echo '  Setup heroku'
+  brew install heroku-toolbelt
+
+  echo '  Install essential tools'
+  # Install homebrew packages
+  #brew install grc coreutils spark
+  brew install coreutils htop ag
 fi
 
