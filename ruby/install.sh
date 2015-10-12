@@ -10,6 +10,8 @@ then
   echo '  Installing latest ruby version.'
   rbenv install 2.2.2
   rbenv global 2.2.2
+
+  gem install bundler
 fi
 
 exit 0
