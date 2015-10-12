@@ -7,6 +7,9 @@ then
 
   mkdir -p $HOME/Library/LaunchAgents
 
+  echo '  Installing atom editor'
+  brew cask install atom
+
   echo '  Setup Postgres.app'
   brew cask install postgres
   brew cask install pgadmin3
