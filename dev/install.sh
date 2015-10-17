@@ -41,5 +41,8 @@ then
   # Install homebrew packages
   #brew install grc coreutils spark
   brew install coreutils htop ag
+
+  echo '  Setup Android Studio'
+  brew cask install android-studio
 fi
 
