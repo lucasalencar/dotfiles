@@ -1,28 +1,41 @@
 # Dotfiles
 
-Initial configuration for my development enviroment.
+Setup clean computers.
 
-Totally based on [Holman's approach](https://github.com/holman/dotfiles).
+Based on some old version of [Holman's approach](https://github.com/holman/dotfiles).
 
-##Setup
+## Using
 
 ### Setup git configuration
 
 1. Copy gitconfig file
 
 ```bash
-cp git/gitconfig.symlink.example git/gitconfig.symlink
+$ cp git/gitconfig.symlink.example git/gitconfig.symlink
 ```
 
 2. Fill it with your information
 
 ```
+[user]
+  name = YOUR FULL NAME HERE
+  email = YOUR EMAIL HERE
 ```
 
-Before running, change git/gitconfig.symlink.example to gitconfig.symlink and fill it with your information.
+### Running scripts
 
-## Using
+For full installation you need to run the root `install.sh`.
 
-To run, just execute install.sh contained on the root folder of the project.
+```bash
+$ ./install.sh
+```
 
-**Be careful: it will override any configuration file existent on your user folder.**
+#### WARNING: `./install.sh` overrides any configuration file existent on your home folder.
+
+You can run individual installations if you want. Check `install.sh` inside subfolders.
+
+```bash
+$ ./git/install.sh # => Git installation
+$ ./homebrew/install.sh # => Homebrew setup and installation
+$ ./ruby/install.sh # => Ruby environment setup
+```
