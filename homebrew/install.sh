@@ -7,20 +7,18 @@
 
 source print_helper
 
-LOG="/tmp/install-homebrew.log"
-
 # Check for Homebrew
 if test ! $(which brew); then
   info 'Installing Homebrew...'
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > $LOG
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Install brew cask to have apps out of the box
 if test $(which brew); then
   info 'Installing brew-cask and GUI apps...'
-  brew tap caskroom/cask >> $LOG
-  brew tap caskroom/versions >> $LOG
-  brew install brew-cask >> $LOG
+  brew tap caskroom/cask
+  brew tap caskroom/versions
+  brew install brew-cask
 
   while read app; do
     brew cask install $app

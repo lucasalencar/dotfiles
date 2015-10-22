@@ -4,10 +4,9 @@ source print_helper
 
 if test ! $(which rbenv)
 then
-  LOG="/tmp/install-ruby.log"
   info "Installing rbenv..."
-  brew install rbenv > $LOG
-  brew install ruby-build >> $LOG
+  brew install rbenv
+  brew install ruby-build
 
   info 'Installing latest ruby version...'
   rbenv install 2.2.2
