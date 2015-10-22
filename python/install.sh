@@ -1,8 +1,10 @@
 #!/bin/sh
 
+source print_helper
+
 if test ! $(which pyenv)
 then
-  echo "  Installing pyenv."
+  info "Installing pyenv..."
   brew install pyenv > /tmp/pyenv-install.log
 fi
 

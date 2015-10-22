@@ -2,17 +2,19 @@
 #
 # Installation process
 
+source print_helper
+
 link_files () {
   ln -sf $1 $2
-  echo "Linked $1 to $2"
+  info "Linked $1 to $2"
 }
 
-DOTFILES_ROOT="`pwd`"
+DOTFILES_ROOT=$(pwd -P)
 
 # Install some essential softwares
 packages=(terminal.app homebrew git zsh ruby python vim dev osx)
 for package in "${packages[@]}"; do
-  echo "  Setting up $package package..."
+  info "Setting up $package package..."
   $DOTFILES_ROOT/$package/install.sh
 
   # Link config files
@@ -23,5 +25,7 @@ for package in "${packages[@]}"; do
   done
 done
 unset file
+
+success 'All done! :D'
 
 exit 0

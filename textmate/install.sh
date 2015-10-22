@@ -1,8 +1,10 @@
 #!/bin/sh
 
+source print_helper
+
 if test $(which brew)
 then
-  echo '  Installing TextMate2.'
+  info 'Installing TextMate2...'
   brew cask install textmate2 > /tmp/install-textmate2.log
 
   BUNDLES="/Users/$USER/Library/Application Support/TextMate/Managed/Bundles"

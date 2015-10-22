@@ -5,17 +5,19 @@
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
 
+source print_helper
+
 LOG="/tmp/install-homebrew.log"
 
 # Check for Homebrew
 if test ! $(which brew); then
-  echo "  Installing Homebrew."
+  info 'Installing Homebrew...'
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > $LOG
 fi
 
 # Install brew cask to have apps out of the box
 if test $(which brew); then
-  echo "  Installing brew-cask and GUI apps."
+  info 'Installing brew-cask and GUI apps...'
   brew tap caskroom/cask >> $LOG
   brew tap caskroom/versions >> $LOG
   brew install brew-cask >> $LOG

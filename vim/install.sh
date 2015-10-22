@@ -1,15 +1,18 @@
 #!/bin/sh
 
+source print_helper
+
 if test $(which brew)
 then
   LOG="/tmp/install-vim.log"
 
-  echo '  Installing and configuring VIM.'
+  info 'Installing and configuring VIM...'
   brew install vim > $LOG
 
   # Installing janus-vim
   if [ ! -d "$HOME/.vim" ]
   then
+    info 'Installing janus distribution...'
     curl -Lo- https://bit.ly/janus-bootstrap | bash >> $LOG
 
     # Installing additional plugins
@@ -33,7 +36,7 @@ then
     rm -rf $EXTRAS/Smyck-Color-Scheme
   fi
 
-  echo '  Installing MacVIM and helpers.'
+  info 'Installing MacVIM and helpers...'
   brew cask install macvim seil
 fi
 

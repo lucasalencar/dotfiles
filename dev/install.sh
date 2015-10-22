@@ -1,48 +1,49 @@
 #!/bin/sh
 
+source print_helper
+
 if test $(which brew)
 then
-  echo '  Installing dev environment...'
+  info 'Installing dev environment...'
   brew install gpgme graphviz phantomjs icu4c
 
   mkdir -p $HOME/Library/LaunchAgents
 
-  echo '  Installing atom editor'
+  info 'Installing Atom'
   brew cask install atom
 
-  echo '  Setup Postgres.app'
+  info 'Setup Postgres.app'
   brew cask install postgres
   brew cask install pgadmin3
 
-  echo '  Setup mongodb'
+  info 'Setup mongodb'
   brew install mongodb
-  ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
-  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+  ln -sfv /usr/local/opt/mongodb/*.plist $HOME/Library/LaunchAgents
+  launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
 
-  echo '  Setup memcached'
+  info 'Setup memcached'
   brew install memcached
-  ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgent
-  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist
+  ln -sfv /usr/local/opt/memcached/*.plist $HOME/Library/LaunchAgent
+  launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.memcached.plist
 
-  echo '  Setup elasticsearch'
+  info 'Setup elasticsearch'
   brew install elasticsearch
-  ln -sfv /usr/local/opt/elasticsearch14/*.plist ~/Library/LaunchAgents
-  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
+  ln -sfv /usr/local/opt/elasticsearch14/*.plist $HOME/Library/LaunchAgents
+  launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
 
-  echo '  Setup redis'
+  info 'Setup redis'
   brew install redis
-  ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
-  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+  ln -sfv /usr/local/opt/redis/*.plist $HOME/Library/LaunchAgents
+  launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.redis.plist
 
-  echo '  Setup heroku'
+  info 'Setup heroku'
   brew install heroku-toolbelt
 
-  echo '  Install essential tools'
-  # Install homebrew packages
-  #brew install grc coreutils spark
+  info 'Install essential tools'
   brew install coreutils htop ag
 
-  echo '  Setup Android Studio'
+  info 'Setup Android Studio'
   brew cask install android-studio
 fi
 
+exit 0
