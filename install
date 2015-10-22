@@ -15,7 +15,7 @@ DOTFILES_ROOT=$(pwd -P)
 packages=(terminal.app homebrew git zsh ruby python vim dev osx)
 for package in "${packages[@]}"; do
   info "Setting up $package package..."
-  $DOTFILES_ROOT/$package/install.sh
+  $DOTFILES_ROOT/$package/install
 
   # Link config files
   for source in `find $DOTFILES_ROOT/$package -maxdepth 2 -name \*.symlink`
