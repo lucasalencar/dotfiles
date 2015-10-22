@@ -10,7 +10,7 @@ link_files () {
 DOTFILES_ROOT="`pwd`"
 
 # Install some essential softwares
-packages=(terminal.app homebrew git zsh ruby python vim dev osx essentials)
+packages=(terminal.app homebrew git zsh ruby python vim dev osx)
 for package in "${packages[@]}"; do
   echo "  Setting up $package package..."
   $DOTFILES_ROOT/$package/install.sh
