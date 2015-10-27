@@ -1,0 +1,47 @@
+# Change prefix key to backtick (`)
+unbind C-b
+set-option -g prefix `
+
+# So we can still use ` when needed
+bind-key C-a set-option -g prefix C-a
+bind-key C-b set-option -g prefix `
+
+# Set a Ctrl-b shortcut for reloading your tmux config
+bind r source-file ~/.tmux.conf
+
+# Set colors
+set-option -g default-terminal "screen-256color"
+
+# Setup status bar
+set -g status-utf8 on
+set-window-option -g status-left " #S "
+set-window-option -g status-left-fg black
+set-window-option -g status-left-bg white
+
+set-window-option -g status-right " %H:%M %d-%b-%y "
+set-window-option -g status-right-fg black
+set-window-option -g status-right-bg white
+
+set-window-option -g window-status-format " #I: #W "
+
+set-window-option -g window-status-current-format " #I: #W "
+set-window-option -g window-status-current-fg green
+set-window-option -g window-status-current-bg black
+
+# Use vim bindings
+setw -g mode-keys vi
+
+# Remap window navigation to vim
+unbind-key j
+bind-key j select-pane -D
+unbind-key k
+bind-key k select-pane -U
+unbind-key h
+bind-key h select-pane -L
+unbind-key l
+bind-key l select-pane -R
+
+# Easy bindings for split
+unbind %
+bind | split-window -h
+bind - split-window -v

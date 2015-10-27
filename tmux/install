@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if which ! $(test tmux)
+then
+  brew install tmux
+fi
