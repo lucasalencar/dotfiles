@@ -43,5 +43,5 @@ bind-key l select-pane -R
 
 # Easy bindings for split
 unbind %
-bind | split-window -h
+bind \ split-window -h
 bind - split-window -v
