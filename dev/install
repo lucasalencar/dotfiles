@@ -40,7 +40,7 @@ then
   brew install heroku-toolbelt
 
   info 'Install essential tools'
-  brew install coreutils htop ag
+  brew install coreutils htop ag gist
 
   info 'Setup Android Studio'
   brew cask install android-studio
