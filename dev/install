@@ -16,6 +16,9 @@ then
   brew cask install postgres
   brew cask install pgadmin3
 
+  info 'Setup brew-services'
+  brew tap homebrew/services
+
   info 'Setup mongodb'
   brew install mongodb
   ln -sfv /usr/local/opt/mongodb/*.plist $HOME/Library/LaunchAgents
