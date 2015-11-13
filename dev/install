@@ -41,6 +41,7 @@ then
 
   info 'Setup heroku'
   brew install heroku-toolbelt
+  heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 
   info 'Install essential tools'
   brew install coreutils htop ag tree
