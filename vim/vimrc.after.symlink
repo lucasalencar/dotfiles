@@ -77,4 +77,4 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 map <leader>j :%!python -m json.tool<CR>
-map <leader>h :noh<CR>
+map <leader>] :noh<CR>
