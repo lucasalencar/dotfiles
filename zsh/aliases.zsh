@@ -20,8 +20,6 @@ alias wtfimi="until ping -W1 -c1 google.com; do sleep 5; done && say the interne
 # Organizing photos from camera
 alias photos="mkdir jpg raw; mv *.JPG jpg/; mv *.CR2 raw/"
 
-alias mklatex="latexmk -quiet -pv -pdf -pdflatex=\"pdflatex --shell-escape %O %S\""
-
 alias be="bundle exec"
 alias bi="bundle install"
 
