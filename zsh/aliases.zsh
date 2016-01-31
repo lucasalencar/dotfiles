@@ -12,7 +12,7 @@ alias reload!='. ~/.zshrc'
 # Aliases to config files
 alias zshconfig="mvim ~/.zshrc"
 alias ohmyzsh="mvim ~/.oh-my-zsh"
-alias dotfiles="mvim ~/.dotfiles"
+alias dotfiles="cd $HOME/.dotfiles; mvim $HOME/.dotfiles"
 
 # Alert when internet is back
 alias wtfimi="until ping -W1 -c1 google.com; do sleep 5; done && say the internet is fucking back"
