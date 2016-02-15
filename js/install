@@ -1,0 +1,14 @@
+#!/bin/sh
+
+source print_helper
+
+if test ! $(which npm)
+then
+  info "Installing npm..."
+  brew install npm
+
+  info "Installing npm packages..."
+  npm install -g jshint
+fi
+
+exit 0
