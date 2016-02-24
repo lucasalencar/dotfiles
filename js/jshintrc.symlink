@@ -33,6 +33,7 @@
     "it": true,
     "beforeEach": true,
     "loadFixtures": true,
-    "expect": true
+    "expect": true,
+    "spyOn": true
   }
 }
