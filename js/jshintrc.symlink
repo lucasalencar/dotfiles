@@ -28,6 +28,7 @@
     "jQuery": true,
     "$": true,
     "window": true,
+    "document": true,
     "describe": true,
     "it": true,
     "beforeEach": true,
