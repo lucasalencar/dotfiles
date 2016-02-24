@@ -27,6 +27,11 @@
   "globals": {
     "jQuery": true,
     "$": true,
-    "window": true
+    "window": true,
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "loadFixtures": true,
+    "expect": true
   }
 }
