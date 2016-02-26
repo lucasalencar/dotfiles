@@ -29,6 +29,7 @@
     "$": true,
     "window": true,
     "document": true,
+    "alert": true,
     "describe": true,
     "it": true,
     "beforeEach": true,
