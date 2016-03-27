@@ -63,6 +63,9 @@ Plug 'itspriddle/ZoomWin'
 Plug 'Shutnik/jshint2.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'junegunn/vim-emoji'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/switch.vim'
 
 " Color schemes
 Plug 'brendonrapp/smyck-vim'
