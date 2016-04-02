@@ -26,4 +26,4 @@ alias bi="bundle install"
 alias git=hub
 
 # Opens TODO file
-alias todo="vim $HOME/todo.md"
+alias todo="vim +VimwikiIndex"
