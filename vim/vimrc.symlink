@@ -521,3 +521,5 @@ nnoremap <C-l> <C-w>l
 
 map <leader>j :%!python -m json.tool<CR>
 map <leader>] :noh<CR>
+
+let g:vimwiki_list =[{'path': "~/Google\ Drive/vimwiki", 'path_html': "~/Google\ Drive/vimwiki/export/html/"}]
