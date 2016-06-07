@@ -27,3 +27,6 @@ alias git=hub
 
 # Opens TODO file
 alias todo="vim +VimwikiIndex"
+
+# Git pull and many other flags
+alias gup="git pull --prune; gbda"
