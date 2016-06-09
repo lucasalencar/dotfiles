@@ -29,4 +29,4 @@ alias git=hub
 alias todo="vim +VimwikiIndex"
 
 # Git pull and many other flags
-alias gup="git pull --prune; gbda"
+alias gupc="git pull --prune; gbda"
