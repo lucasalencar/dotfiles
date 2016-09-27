@@ -12,7 +12,7 @@ link_files () {
 DOTFILES_ROOT=$(pwd -P)
 
 # Install some essential softwares
-packages=(osx terminal.app homebrew git zsh tmux vim ruby python dev js)
+packages=(osx terminal.app homebrew git zsh tmux vim ruby python dev js go)
 for package in "${packages[@]}"; do
   info "Setting up $package package..."
   $DOTFILES_ROOT/$package/install
