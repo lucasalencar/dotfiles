@@ -14,6 +14,8 @@ then
 
   info 'Setup postgresql'
   brew install postgres
+  createuser postgres
+
   brew cask install pgadmin3
 
   info 'Setup brew-services'
