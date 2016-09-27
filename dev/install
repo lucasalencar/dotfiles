@@ -12,8 +12,8 @@ then
   info 'Installing Atom'
   brew cask install atom
 
-  info 'Setup Postgres.app'
-  brew cask install postgres
+  info 'Setup postgresql'
+  brew install postgres
   brew cask install pgadmin3
 
   info 'Setup brew-services'
