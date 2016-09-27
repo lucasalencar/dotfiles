@@ -15,6 +15,7 @@ then
   info 'Setup postgresql'
   brew install postgres
   createuser postgres
+  psql -d postgres -c "ALTER USER postgres WITH SUPERUSER;"
 
   brew cask install pgadmin3
 
