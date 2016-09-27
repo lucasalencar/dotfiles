@@ -26,7 +26,7 @@ then
 
   info 'Setup memcached'
   brew install memcached
-  ln -sfv /usr/local/opt/memcached/*.plist $HOME/Library/LaunchAgent
+  # ln -sfv /usr/local/opt/memcached/*.plist $HOME/Library/LaunchAgent
   launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.memcached.plist
 
   info 'Setup elasticsearch'
