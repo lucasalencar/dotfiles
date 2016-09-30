@@ -11,6 +11,9 @@ then
 
   # Install better zsh-completions
   git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
+
+  # Makes copying and pasting in Terminal.app work again on MacOS Sierra
+  brew install reattach-to-user-namespace
 fi
 
 exit 0
