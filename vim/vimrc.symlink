@@ -20,7 +20,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'easymotion/vim-easymotion'
 Plug 'thinca/vim-visualstar'
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
 Plug 'ervandew/supertab'
@@ -60,10 +60,6 @@ Plug 'Slava/vim-colors-tomorrow'
 Plug 'tpope/vim-vividchalk'
 
 call plug#end()
-
-" Makes copying and pasting work MacOS Sierra
-" https://github.com/tmux/tmux/issues/543#issuecomment-248980734
-set clipboard=unnamed
 
 " ============================================================================
 " Missing Janus configs
