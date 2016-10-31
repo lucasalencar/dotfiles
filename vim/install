@@ -25,7 +25,7 @@ then
   fi
 
   info 'Installing MacVIM and helpers'
-  brew cask install macvim seil
+  brew cask install macvim
 fi
 
 exit 0
