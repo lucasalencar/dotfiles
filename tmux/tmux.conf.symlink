@@ -48,3 +48,6 @@ bind - split-window -v
 
 # Faster scroll
 set -g @scroll-speed-num-lines-per-scroll 5
+
+# Use reattach-to-user-namespace config
+set-option -g default-command "reattach-to-user-namespace -l zsh"
