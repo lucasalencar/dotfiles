@@ -12,10 +12,9 @@ then
   # Install better zsh-completions
   git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
 
-  # Makes copying and pasting in Terminal.app work again on MacOS Sierra
-  # https://github.com/tmux/tmux/issues/543#issuecomment-248980734
-  # https://github.com/tmux/tmux/issues/543
-  brew install reattach-to-user-namespace
+  # Fix zsh-completions after MacOS Sierra update
+  chmod -R 755 /usr/local/share/zsh
+  chown -R root:staff /usr/local/share/zsh
 fi
 
 exit 0
