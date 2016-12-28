@@ -12,6 +12,7 @@ Plug 'mmalecki/vim-node.js'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
 " Plug 'tpope/vim-markdown'
+Plug 'janko-m/vim-test'
 
 " Tools
 
