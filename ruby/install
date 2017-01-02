@@ -12,8 +12,11 @@ then
   rbenv install 2.2.2
   rbenv global 2.2.2
 
-  info 'Installing bundler...'
+  info 'Installing bundler'
   gem install bundler
+
+  info 'Installing ruby checkers'
+  gem install rubocop reek
 fi
 
 exit 0
