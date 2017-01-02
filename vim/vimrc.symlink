@@ -61,11 +61,14 @@ call plug#end()
 ""
 
 if has('vim_starting') && !has('nvim') && &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible " Be iMproved
 endif
 set number            " Show line numbers
 set ruler             " Show line and column number
+set cursorline        " Highlights current line
+set colorcolumn=80    " Highlights column 80
 syntax enable         " Turn on syntax highlighting allowing local overrides
+
 " Neovim disallow changing 'enconding' option after initialization
 " see https://github.com/neovim/neovim/pull/2929 for more details
 if !has('nvim')
@@ -73,19 +76,66 @@ if !has('nvim')
 endif
 
 ""
+"" Appearance
+""
+
+" Default theme configs
+color smyck
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
+
+" Remove scroll bars from macvim
+set guioptions=aAce
+
+if has("gui_running")
+  " Set default transparency
+  set transparency=3
+
+  " Disable hover tooltips
+  set noballooneval
+  let g:netrw_nobeval = 1
+endif
+
+" Unicode symbols for airline
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+let g:airline_powerline_fonts=1
+
+""
 "" Whitespace
 ""
 
-set nowrap                        " don't wrap lines
+set wrap linebreak nolist         " Wraps words when it reaches borders
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
 set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
-
-if exists("g:enable_mvim_shift_arrow")
-  let macvim_hig_shift_movement = 1 " mvim shift-arrow-keys
-endif
+autocmd BufWritePre * :%s/\s\+$//e " Strips white spaces on save
 
 " List chars
 set listchars=""                  " Reset the listchars
@@ -107,10 +157,9 @@ set smartcase   " ... unless they contain at least one capital letter
 
 ""
 "" Wild settings
+""   Used by Ctrl-P for fuzzy finding ignoring some types of files during
+""   search.
 ""
-
-" TODO: Investigate the precise meaning of these settings
-" set wildmode=list:longest,list:full
 
 " Disable output and VCS files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -225,7 +274,7 @@ map <Down> gj
 map <Up> gk
 
 " Toggle hlsearch with <leader>hs
-nmap <leader>hs :set hlsearch! hlsearch?<CR>
+nmap <leader>] :set hlsearch! hlsearch?<CR>
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
@@ -341,13 +390,6 @@ cnoremap <expr> <C-P> getcmdline()[getcmdpos()-2] ==# ' ' ? expand('%:p:h') : "\
 
 if has("statusline") && !&cp
   set laststatus=2  " always show the status bar
-
-  " Start the status line
-  "set statusline=%f\ %m\ %r
-  "set statusline+=Line:%l/%L[%p%%]
-  "set statusline+=Col:%v
-  "set statusline+=Buf:#%n
-  "set statusline+=[%b][0x%B]
 endif
 
 ""
@@ -379,11 +421,6 @@ let g:ctrlp_custom_ignore = {
       \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
       \ }
 
-if has("gui_macvim") && has("gui_running")
-  map <D-t> :CtrlP<CR>
-  imap <D-t> <ESC>:CtrlP<CR>
-endif
-
 " Gist
 if executable("pbcopy")
   " The copy command
@@ -407,6 +444,11 @@ else
   map <leader>/ <plug>NERDCommenterToggle<CR>
 endif
 
+" Disables NERDTree auto open
+let g:nerdtree_tabs_open_on_gui_startup = 0
+" Shortcut toggle for NerdTree
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -416,88 +458,17 @@ let g:syntastic_enable_signs=1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-"let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_check_on_wq = 1
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-" ZoomWin
-map <leader>zw :ZoomWin<CR>
+""
+"" Panels shortcuts
+""
 
-" ============================================================================
-" Personal configs; Besides Janus ones
-" Disable VI compatibility
-set nocompatible
-
-" Default theme configs
-color smyck
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
-
-" Strips white spaces on save
-autocmd BufWritePre * :%s/\s\+$//e
-
-" Remove scroll bars from macvim
-set guioptions=aAce
-
-" Set default transparency
-if has("gui_running")
-  set transparency=3
-
-  " Disable hover tooltips
-  set noballooneval
-  let g:netrw_nobeval = 1
-endif
-
-" Default encoding
-set encoding=utf-8
-
-" Highlights current line
-set cursorline
-
-" Highlights column 80
-set colorcolumn=80
-
-" Wraps words when it reaches window border
-set wrap linebreak nolist
-
-" Unicode symbols for airline
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
-let g:airline_powerline_fonts=1
-
-" Disables NERDTree auto open
-let g:nerdtree_tabs_open_on_gui_startup = 0
-
-" Split pane shortcuts
 " New vertical pane, moving to new pane
 nnoremap <leader>v <C-w>v<C-w>l
 " New horizontal pane, moving to new pane
@@ -508,7 +479,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Formats JSON files
 map <leader>j :%!python -m json.tool<CR>
-map <leader>] :noh<CR>
 
+" Paths for vimwiki files
 let g:vimwiki_list =[{'path': "~/Google\ Drive/vimwiki", 'path_html': "~/Google\ Drive/vimwiki/export/html/"}]
