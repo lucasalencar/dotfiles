@@ -30,3 +30,5 @@ alias todo="vim +VimwikiIndex"
 
 # Git pull and many other flags
 alias gupc="git pull --prune; gbda"
+
+alias nnvim="open -a Neovim --args $(pwd)/"
