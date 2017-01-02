@@ -20,6 +20,7 @@ alias wtfimi="until ping -W1 -c1 google.com; do sleep 5; done && say the interne
 # Organizing photos from camera
 alias photos="mkdir jpg raw; mv *.JPG jpg/; mv *.CR2 raw/"
 
+# Bundle aliases
 alias be="bundle exec"
 alias bi="bundle install"
 
