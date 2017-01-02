@@ -18,7 +18,6 @@ Plug 'janko-m/vim-test'
 
 Plug 'vim-airline/vim-airline'
 Plug 'kien/ctrlp.vim'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'easymotion/vim-easymotion'
 Plug 'thinca/vim-visualstar'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -37,12 +36,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-eunuch'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmhedberg/matchit'
-Plug 'itspriddle/ZoomWin'
-Plug 'skalnik/vim-vroom'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
-Plug 'junegunn/vim-emoji'
-Plug 'tpope/vim-dispatch'
 
 Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
@@ -52,13 +47,10 @@ Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex ' }
 
 " Color schemes
 Plug 'brendonrapp/smyck-vim'
-Plug 'chriskempson/base16-vim'
 Plug 'telamon/vim-color-github'
 Plug 'twerth/ir_black'
 Plug 'vim-scripts/molokai'
 Plug 'altercation/vim-colors-solarized'
-Plug 'Slava/vim-colors-tomorrow'
-Plug 'tpope/vim-vividchalk'
 
 call plug#end()
 
