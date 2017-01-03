@@ -29,6 +29,8 @@ then
 
   info 'Installing NeoVIM'
   brew install neovim/neovim/neovim
+  pip install neovim
+
   brew install rogual/neovim-dot-app/neovim-dot-app
   brew linkapps neovim-dot-app
 
