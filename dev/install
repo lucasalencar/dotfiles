@@ -7,30 +7,25 @@ then
   info 'Installing dev environment...'
   brew install gpgme graphviz phantomjs icu4c
 
+  info 'Setup brew-services'
+  brew tap homebrew/services
+
   mkdir -p $HOME/Library/LaunchAgents
 
   info 'Installing Atom'
   brew cask install atom
 
   info 'Setup postgresql'
-  brew install postgres
+  brew install postgresql95
   createuser postgres
   psql -d postgres -c "ALTER USER postgres WITH SUPERUSER;"
-
-  brew cask install pgadmin3
-
-  info 'Setup brew-services'
-  brew tap homebrew/services
+  createuser lucas
+  psql -d postgres -c "ALTER USER lucas WITH SUPERUSER;"
 
   info 'Setup mongodb'
   brew install mongodb
   ln -sfv /usr/local/opt/mongodb/*.plist $HOME/Library/LaunchAgents
   launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
-
-  info 'Setup memcached'
-  brew install memcached
-  # ln -sfv /usr/local/opt/memcached/*.plist $HOME/Library/LaunchAgent
-  launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.memcached.plist
 
   info 'Setup elasticsearch'
   brew install elasticsearch
@@ -44,13 +39,9 @@ then
 
   info 'Setup heroku'
   brew install heroku-toolbelt
-  heroku plugins:install git://github.com/heroku/heroku-pg-extras.git
 
   info 'Install essential tools'
   brew install coreutils htop ag tree
-
-  info 'Setup Android Studio'
-  brew cask install android-studio
 
   info 'Setup Gist'
   brew install gist

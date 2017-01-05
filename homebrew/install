@@ -13,12 +13,16 @@ if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+# Add taps to homebrew
+if test $(which brew); then
+  brew tap homebrew/versions
+fi
+
 # Install brew cask to have apps out of the box
 if test $(which brew); then
   info 'Installing brew-cask and GUI apps...'
   brew tap caskroom/cask
   brew tap caskroom/versions
-  brew install brew-cask
 
   while read app; do
     brew cask install $app
