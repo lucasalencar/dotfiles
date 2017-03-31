@@ -36,6 +36,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tmhedberg/matchit'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
@@ -443,6 +444,13 @@ endif
 let g:nerdtree_tabs_open_on_gui_startup = 0
 " Shortcut toggle for NerdTree
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+" EasyAlign
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 ""
 "" Neomake
