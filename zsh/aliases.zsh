@@ -31,6 +31,6 @@ alias todo="vim +VimwikiIndex"
 
 # Git pull and many other flags
 alias gupc="git pull --prune; gbda"
-alias gupr="git pull origin $(git_current_branch) --rebase"
+alias gupr='git pull origin $(git_current_branch) --rebase'
 
 alias nnvim=gnvim
