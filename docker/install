@@ -1,0 +1,9 @@
+#!/bin/sh
+
+source print_helper
+
+info "Installing docker-toolbox"
+brew cask install docker-toolbox
+
+info "Installing docker-machine-nfs"
+brew install docker-machine-nfs

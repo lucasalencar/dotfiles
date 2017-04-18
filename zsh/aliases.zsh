@@ -34,3 +34,5 @@ alias gupc="git pull --prune; gbda"
 alias gupr='git pull origin $(git_current_branch) --rebase'
 
 alias nnvim=gnvim
+
+alias rdd="rd-docker"
