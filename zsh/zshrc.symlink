@@ -27,6 +27,5 @@ done
 # Add rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Starts docker machine and setup env variables
-docker-machine start default
+# Docker setup
 eval $(docker-machine env)

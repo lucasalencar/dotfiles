@@ -36,3 +36,5 @@ alias gupr='git pull origin $(git_current_branch) --rebase'
 alias nnvim=gnvim
 
 alias rdd="rd-docker"
+alias ds="docker-machine start; eval \$(docker-machine env)"
+alias dss="docker-machine stop"
