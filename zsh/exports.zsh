@@ -14,8 +14,5 @@ export PATH=$PATH:$GOPATH/bin
 # Default editor
 export EDITOR="mvim"
 
-# Uses anaconda first
-# Just because this fucking shit of python does not work properly
-# I have to use this workaround to use Jupyter correctly.
-# export PATH=/Users/lucas/anaconda/bin:$PATH
+# Uses anaconda first for python
 export PATH=$HOME/anaconda3/bin:"$PATH"

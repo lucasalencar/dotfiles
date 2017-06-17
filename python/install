@@ -2,10 +2,7 @@
 
 source print_helper
 
-if test ! $(which pyenv)
-then
-  info "Installing pyenv..."
-  brew install pyenv
-fi
+info "Installing anaconda..."
+brew cask install anaconda
 
 exit 0
