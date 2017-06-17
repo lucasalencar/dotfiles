@@ -15,7 +15,6 @@ DOTFILES_ROOT=$(pwd -P)
 packages=(osx terminal.app homebrew git zsh ruby dev tmux vim js go python)
 for package in "${packages[@]}"; do
   info "Setting up $package package..."
-  $DOTFILES_ROOT/$package/install
 
   # Link config files
   for source in `find $DOTFILES_ROOT/$package -maxdepth 2 -name \*.symlink`
@@ -23,6 +22,8 @@ for package in "${packages[@]}"; do
     dest="$HOME/.`basename \"${source%.*}\"`"
     link_files $source $dest
   done
+
+  $DOTFILES_ROOT/$package/install
 done
 unset file
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source print_helper
+
 if test $(which brew)
 then
   brew install tmux
@@ -8,4 +10,10 @@ then
   # https://github.com/tmux/tmux/issues/543#issuecomment-248980734
   # https://github.com/tmux/tmux/issues/543
   brew install reattach-to-user-namespace
+
+  info 'Setting up TPM (Tmux Plugin Manager)'
+  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+
+  # Install tmux plugins
+  $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
 fi
