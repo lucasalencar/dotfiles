@@ -31,16 +31,6 @@ set-window-option -g window-status-current-bg black
 # Use vim bindings
 setw -g mode-keys vi
 
-# Remap window navigation to vim
-unbind-key j
-bind-key j select-pane -D
-unbind-key k
-bind-key k select-pane -U
-unbind-key h
-bind-key h select-pane -L
-unbind-key l
-bind-key l select-pane -R
-
 # Easy bindings for split
 unbind %
 bind \ split-window -h
@@ -56,6 +46,12 @@ set-option -g default-command "reattach-to-user-namespace -l zsh"
 # List of defalut plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# List of plugins
+
+# Setup mapping for switching between panels using ctrl+<direction>
+# It is not necessary to set it in configuration
+set -g @plugin 'christoomey/vim-tmux-navigator'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'

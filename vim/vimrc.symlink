@@ -14,7 +14,6 @@ Plug 'ap/vim-css-color'
 Plug 'janko-m/vim-test'
 
 " Tools
-
 Plug 'vim-airline/vim-airline'
 Plug 'kien/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
@@ -37,6 +36,10 @@ Plug 'tmhedberg/matchit'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'junegunn/vim-easy-align'
+
+" OBS: Creates panel switching mapping using ctrl+<direction>
+" It is not necessary to add it to vimrc
+Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
@@ -472,11 +475,6 @@ let g:neomake_info_sign = { 'text': 'ℹ', 'texthl': 'NeomakeInfoSign' }
 nnoremap <leader>v <C-w>v<C-w>l
 " New horizontal pane, moving to new pane
 nnoremap <leader>s <C-w>s<C-w>j
-" Move through panes
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " Formats JSON files
 map <leader>j :%!python -m json.tool<CR>
