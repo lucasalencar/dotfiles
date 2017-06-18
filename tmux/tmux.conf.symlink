@@ -79,5 +79,10 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @continuum-restore 'on' # Automatic restores last saved tmux server
 
+### Opens file selected in COPY mode
+# * o in COPY mode => opens file, pdf, doc, url
+# * C-o in COPY mode => opens file with $EDITOR
+set -g @plugin 'tmux-plugins/tmux-open'
+
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
