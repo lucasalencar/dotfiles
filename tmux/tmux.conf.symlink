@@ -31,7 +31,11 @@ set-window-option -g window-status-current-bg black
 
 set -g base-index 1 # Set window index to start from 1 instead of 0
 set -g mouse on # Allow selecting panes, resizing panes and select windows with mouse
-setw -g mode-keys vi # Use vim bindings to navigate in visual mode
+
+### Making navigation and commands more like vim
+setw -g mode-keys vi # Use vim keys to navigate in copy mode
+bind-key -T copy-mode-vi 'v' send -X begin-selection # Set v to start selecting in copy mode
+bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel # Set y to copy selection in copy mode
 
 # Easy bindings for split
 unbind %
