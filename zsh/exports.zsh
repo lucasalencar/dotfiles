@@ -12,7 +12,7 @@ export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
 
 # Default editor
-export EDITOR="mvim"
+export EDITOR="vim"
 
 # Uses anaconda first for python
 export PATH=$HOME/anaconda3/bin:"$PATH"
