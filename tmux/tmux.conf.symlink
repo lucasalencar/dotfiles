@@ -32,8 +32,9 @@ set-window-option -g window-status-current-format " #I: #W "
 set-window-option -g window-status-current-fg green
 set-window-option -g window-status-current-bg black
 
-# Use vim bindings
-setw -g mode-keys vi
+set -g base-index 1 # Set window index to start from 1 instead of 0
+set -g mouse on # Allow selecting panes, resizing panes and select windows with mouse
+setw -g mode-keys vi # Use vim bindings to navigate in visual mode
 
 # Easy bindings for split
 unbind %
