@@ -71,5 +71,13 @@ set -g @plugin 'christoomey/vim-tmux-navigator'
 # Y in COPY mode => copy current selection and paste it in command line
 set -g @plugin 'tmux-plugins/tmux-yank'
 
+### Allows to have a continuos session saved, even after computer restarts
+# Saves a session every 15 mins
+# * prefix + C-s => saves current tmux server
+# * prefix + C-r => restores previous tmux server
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @continuum-restore 'on' # Automatic restores last saved tmux server
+
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
