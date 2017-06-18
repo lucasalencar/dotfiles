@@ -29,21 +29,30 @@ set-window-option -g window-status-current-format " #I: #W "
 set-window-option -g window-status-current-fg green
 set-window-option -g window-status-current-bg black
 
-set -g base-index 1 # Set window index to start from 1 instead of 0
-set -g mouse on # Allow selecting panes, resizing panes and select windows with mouse
+set -g base-index 1      # Set window index to start from 1 instead of 0
+set -g mouse on          # Allow selecting panes, resizing panes and select windows with mouse
+setw -g automatic-rename # Automatically set window title to running command
+set -g @scroll-speed-num-lines-per-scroll 5 # Faster scroll
+
+# Setup notifications when there is activity in a not active window
+setw -g monitor-activity on
+set -g visual-activity on
 
 ### Making navigation and commands more like vim
 setw -g mode-keys vi # Use vim keys to navigate in copy mode
 bind-key -T copy-mode-vi 'v' send -X begin-selection # Set v to start selecting in copy mode
 bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel # Set y to copy selection in copy mode
 
-# Easy bindings for split
+# Easy bindings for split windows
 unbind %
-bind \ split-window -h
-bind - split-window -v
+bind \ split-window -h # Split window horizontally using prefix + \ #
+bind - split-window -v # Split window vertically using prefix + - #
 
-# Faster scroll
-set -g @scroll-speed-num-lines-per-scroll 5
+# Resize panels easily using prefix + <direction>
+bind-key j resize-pane -D 5 # prefix + j to resize down
+bind-key k resize-pane -U 5 # prefix + k to resize up
+bind-key h resize-pane -L 5 # prefix + h to resize left
+bind-key l resize-pane -R 5 # prefix + l to resize right
 
 # Use reattach-to-user-namespace config
 set-option -g default-command "reattach-to-user-namespace -l zsh"
