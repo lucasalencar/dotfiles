@@ -1,7 +1,5 @@
 # Change prefix key to backtick (`)
-unbind C-b
 set -g prefix `
-bind ` send-prefix
 
 # Set a Ctrl-b shortcut for reloading your tmux config
 bind r source-file ~/.tmux.conf
@@ -55,15 +53,16 @@ bind-key k resize-pane -U 5 # prefix + k to resize up
 bind-key h resize-pane -L 5 # prefix + h to resize left
 bind-key l resize-pane -R 5 # prefix + l to resize right
 
-# Use reattach-to-user-namespace config
-set-option -g default-command "reattach-to-user-namespace -l zsh"
-
 # Setup TPM (Tmux Plugin Manager)
-# List of defalut plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-
 # List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+
+# Setup tmux with some useful default configs
+# Includes:
+# * reattach-to-user-namespace
+# * unbind prefix when not C-b and prefix + prefix backup
+# * prefix + prefix prints prefix to command line (backup)
+set -g @plugin 'tmux-plugins/tmux-sensible'
 
 # Setup mapping for switching between panels using ctrl+<direction>
 # It is not necessary to set it in configuration
