@@ -41,7 +41,8 @@ set -g visual-activity on
 ### Making navigation and commands more like vim
 setw -g mode-keys vi # Use vim keys to navigate in copy mode
 bind-key -T copy-mode-vi 'v' send -X begin-selection # Set v to start selecting in copy mode
-bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel # Set y to copy selection in copy mode
+# Not needed as far as the tmux-yank is enabled
+# bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel # Set y to copy selection in copy mode
 
 # Easy bindings for split windows
 unbind %
@@ -67,6 +68,13 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 # Setup mapping for switching between panels using ctrl+<direction>
 # It is not necessary to set it in configuration
 set -g @plugin 'christoomey/vim-tmux-navigator'
+
+### Enhance copying text in tmux
+# prefix + y in NORMAL mode => copy current command line
+# prefix + Y in NORMAL mode => copy current directory
+# y in COPY mode => copy current selection
+# Y in COPY mode => copy current selection and paste it in command line
+set -g @plugin 'tmux-plugins/tmux-yank'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
