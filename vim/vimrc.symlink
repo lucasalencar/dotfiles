@@ -15,7 +15,8 @@ Plug 'janko-m/vim-test'
 
 " Tools
 Plug 'vim-airline/vim-airline'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 Plug 'thinca/vim-visualstar'
@@ -42,7 +43,8 @@ Plug 'junegunn/vim-easy-align'
 " It is not necessary to add it to vimrc
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'rking/ag.vim', { 'on': 'Ag' }
+" Disable ag vim plugin for testing fzf search
+"Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex ' }
 
 " Color schemes
@@ -375,6 +377,10 @@ endif
 "" Plugins configuration
 ""
 
+""" FZF fuzzy search
+noremap <C-p> :GFiles<CR>
+inoremap <C-p> <Esc>:GFiles<CR>
+
 """ Ag
 if has("gui_macvim") && has("gui_running")
   " Command-Shift-F on OSX
@@ -383,12 +389,6 @@ else
   " <ALT-SHIFT-F> to find the whole project
   map Ï :Ag<space>
 endif
-
-" Ctrlp
-let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn)$|bower_components|node_modules',
-      \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
-      \ }
 
 """ NERD plugins
 " Maps to comment single lines easily
