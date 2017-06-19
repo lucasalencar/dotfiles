@@ -26,3 +26,6 @@ done
 
 # Add rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# USe FZF as fuzzy search inside terminal (ctrl+r)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

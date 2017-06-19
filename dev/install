@@ -43,7 +43,7 @@ then
   brew install heroku-toolbelt
 
   info 'Install essential tools'
-  brew install coreutils htop ag tree
+  brew install coreutils htop ag tree fzf
 
   info 'Setup Gist'
   brew install gist
