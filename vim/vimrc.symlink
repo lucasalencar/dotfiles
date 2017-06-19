@@ -16,6 +16,7 @@ Plug 'janko-m/vim-test'
 " Tools
 Plug 'vim-airline/vim-airline'
 Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
 Plug 'easymotion/vim-easymotion'
 Plug 'thinca/vim-visualstar'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -42,7 +43,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'rking/ag.vim', { 'on': 'Ag' }
-Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex ' }
 
 " Color schemes
@@ -382,7 +382,7 @@ let g:ctrlp_custom_ignore = {
       \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
       \ }
 
-" NERDCommenter
+" NERD plugins
 if has("gui_macvim") && has("gui_running")
   map <D-/> <plug>NERDCommenterToggle<CR>
   imap <D-/> <ESC><plug>NERDCommenterToggle<CR>i
@@ -396,7 +396,7 @@ endif
 " Disables NERDTree auto open
 let g:nerdtree_tabs_open_on_gui_startup = 0
 " Shortcut toggle for NerdTree
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+nmap <silent> <Leader>t :NERDTreeToggle<CR>
 
 " EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vipga)
