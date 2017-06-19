@@ -238,6 +238,14 @@ nmap <leader>es :sp <C-R>=expand('%:h').'/'<cr>
 nmap <leader>ev :vsp <C-R>=expand('%:h').'/'<cr>
 nmap <leader>et :tabe <C-R>=expand('%:h').'/'<cr>
 
+" New vertical pane, moving to new pane
+nnoremap <leader>v <C-w>v<C-w>l
+" New horizontal pane, moving to new pane
+nnoremap <leader>s <C-w>s<C-w>j
+
+" Formats JSON files
+map <leader>j :%!python -m json.tool<CR>
+
 " Swap two words
 nmap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
 
@@ -364,10 +372,10 @@ if has("statusline") && !&cp
 endif
 
 ""
-"" Plugins mapping
+"" Plugins configuration
 ""
 
-" Ag
+""" Ag
 if has("gui_macvim") && has("gui_running")
   " Command-Shift-F on OSX
   map <D-F> :Ag<space>
@@ -382,7 +390,8 @@ let g:ctrlp_custom_ignore = {
       \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
       \ }
 
-" NERD plugins
+""" NERD plugins
+" Maps to comment single lines easily
 if has("gui_macvim") && has("gui_running")
   map <D-/> <plug>NERDCommenterToggle<CR>
   imap <D-/> <ESC><plug>NERDCommenterToggle<CR>i
@@ -398,17 +407,13 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 " Shortcut toggle for NerdTree
 nmap <silent> <Leader>t :NERDTreeToggle<CR>
 
-" EasyAlign
+""" EasyAlign
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-""
-"" Neomake
-""
-
+""" Neomake
 " Run NeoMake on read and write operations
 autocmd! BufReadPost,BufWritePost * Neomake
 
@@ -417,24 +422,10 @@ let g:neomake_warning_sign = { 'text': '⚠', 'texthl': 'NeomakeWarningSign' }
 let g:neomake_message_sign = { 'text': '➤', 'texthl': 'NeomakeMessageSign' }
 let g:neomake_info_sign = { 'text': 'ℹ', 'texthl': 'NeomakeInfoSign' }
 
-""
-"" vim-tmux-navigator
-""
-
+""" vim-tmux-navigator
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
 
-""
-"" Panels shortcuts
-""
-
-" New vertical pane, moving to new pane
-nnoremap <leader>v <C-w>v<C-w>l
-" New horizontal pane, moving to new pane
-nnoremap <leader>s <C-w>s<C-w>j
-
-" Formats JSON files
-map <leader>j :%!python -m json.tool<CR>
-
+""" vimwiki
 " Paths for vimwiki files
 let g:vimwiki_list =[{'path': "~/Google\ Drive/vimwiki", 'path_html': "~/Google\ Drive/vimwiki/export/html/"}]
