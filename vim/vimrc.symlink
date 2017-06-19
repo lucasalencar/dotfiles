@@ -387,7 +387,10 @@ if has("gui_macvim") && has("gui_running")
   map <D-/> <plug>NERDCommenterToggle<CR>
   imap <D-/> <ESC><plug>NERDCommenterToggle<CR>i
 else
-  map <leader>/ <plug>NERDCommenterToggle<CR>
+  " ALT + / => comments current line
+  map ÷ <plug>NERDCommenterToggle
+  " ALT + SHIFT + / => comments current line and goes to next one
+  map ¿ <plug>NERDCommenterToggle<CR>
 endif
 
 " Disables NERDTree auto open
