@@ -42,7 +42,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'rking/ag.vim', { 'on': 'Ag' }
-Plug 'mattn/gist-vim' | Plug 'mattn/webapi-vim'
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex ' }
 
@@ -382,21 +381,6 @@ let g:ctrlp_custom_ignore = {
       \ 'dir':  '\v[\/]\.(git|hg|svn)$|bower_components|node_modules',
       \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
       \ }
-
-" Gist
-if executable("pbcopy")
-  " The copy command
-  let g:gist_clip_command = 'pbcopy'
-elseif executable("xclip")
-  " The copy command
-  let g:gist_clip_command = 'xclip -selection clipboard'
-elseif executable("putclip")
-  " The copy command
-  let g:gist_clip_command = 'putclip'
-end
-
-" detect filetype if vim failed auto-detection.
-let g:gist_detect_filetype = 1
 
 " NERDCommenter
 if has("gui_macvim") && has("gui_running")
