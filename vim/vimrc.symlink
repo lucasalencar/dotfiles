@@ -375,6 +375,12 @@ else
   imap <C-8> <Esc>8gt
   map  <C-9> 9gt
   imap <C-9> <Esc>9gt
+
+  " Map ALT + SHIFT + <direction> to switch tabs
+  " ALT + SHIFT + [ => previous tab
+  map ’ :tabnext<CR>
+  " ALT SHIFT + ] => next tab
+  map ” :tabprevious<CR>
 endif
 
 " Add caller stack debugger (Ruby)
