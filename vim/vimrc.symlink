@@ -350,9 +350,9 @@ else
 
   " Map ALT + SHIFT + <direction> to switch tabs
   " ALT + SHIFT + [ => previous tab
-  map ’ :tabnext<CR>
+  noremap ’ :tabnext<CR>
   " ALT SHIFT + ] => next tab
-  map ” :tabprevious<CR>
+  noremap ” :tabprevious<CR>
 endif
 
 ""
