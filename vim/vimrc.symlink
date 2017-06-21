@@ -245,6 +245,14 @@ nnoremap <leader>v <C-w>v<C-w>l
 " New horizontal pane, moving to new pane
 nnoremap <leader>s <C-w>s<C-w>j
 
+" ALT + = => Increase current split size
+map ≠ 5<C-w>>
+" ALT + - => Decrease current split size
+map – 5<C-w><
+
+" Adjust viewports to the same size
+map <Leader>= <C-w>=
+
 " Formats JSON files
 map <leader>j :%!python -m json.tool<CR>
 
@@ -263,9 +271,6 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 " Map the arrow keys to be based on display lines, not physical lines
 map <Down> gj
 map <Up> gk
-
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
 
 if has("gui_macvim") && has("gui_running")
   " Map command-[ and command-] to indenting or outdenting
