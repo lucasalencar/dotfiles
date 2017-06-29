@@ -41,8 +41,9 @@ bind-key -T copy-mode-vi 'v' send -X begin-selection # Set v to start selecting 
 
 ### Easy bindings for split windows
 unbind %
-bind \ split-window -h # Split window horizontally using prefix + \ #
-bind - split-window -v # Split window vertically using prefix + - #
+# Both open using the same directory as current window
+bind \ split-window -h -c '#{pane_current_path}' # Split window horizontally using prefix + \ #
+bind - split-window -v -c '#{pane_current_path}' # Split window vertically using prefix + - #
 
 ### Resize panels easily using prefix + <direction>
 bind-key j resize-pane -D 5 # prefix + j to resize down
