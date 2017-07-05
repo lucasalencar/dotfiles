@@ -77,6 +77,11 @@ set -g @plugin 'christoomey/vim-tmux-navigator'
 # Y in COPY mode => copy current selection and paste it in command line
 set -g @plugin 'tmux-plugins/tmux-yank'
 
+### Tool to select specific parts of console history
+# Waiting for this issue to be fixed to start using it
+# https://github.com/tmux-plugins/tmux-copycat/issues/109
+# set -g @plugin 'thalesmello/tmux-copycat'
+
 ### Allows to have a continuos session saved, even after computer restarts
 # Saves a session every 15 mins
 # * prefix + C-s => saves current tmux server
