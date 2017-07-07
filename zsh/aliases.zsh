@@ -13,9 +13,6 @@ alias reload!='. ~/.zshrc'
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias dotfiles="cd $HOME/.dotfiles; nvim $HOME/.dotfiles"
 
-# Alert when internet is back
-alias wtfimi="until ping -W1 -c1 google.com; do sleep 5; done && say the internet is fucking back"
-
 # Organizing photos from camera
 alias photos="mkdir jpg raw; mv *.JPG jpg/; mv *.CR2 raw/"
 
@@ -36,9 +33,6 @@ alias todo="vim +VimwikiIndex"
 
 # Git pull and many other flags
 alias gupc="git pull --prune; gbda"
-alias gupr='git pull origin $(git_current_branch) --rebase'
-
-alias nnvim=gnvim
 
 alias rdd="rd-docker"
 alias ds="docker-machine start; eval \$(docker-machine env)"
