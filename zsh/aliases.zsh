@@ -19,6 +19,12 @@ alias wtfimi="until ping -W1 -c1 google.com; do sleep 5; done && say the interne
 # Organizing photos from camera
 alias photos="mkdir jpg raw; mv *.JPG jpg/; mv *.CR2 raw/"
 
+# Use colordiff as default diff command
+# y => shows diffs in 2 columns
+# b => ignores white spaces
+# B => ignores blank lines
+alias diff="colordiff -ybB"
+
 # Bundle aliases
 alias be="bundle exec"
 alias bi="bundle install"
