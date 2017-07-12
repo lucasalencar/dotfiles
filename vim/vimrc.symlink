@@ -256,6 +256,9 @@ map <Leader>= <C-w>=
 " Formats JSON files
 map <leader>j :%!python -m json.tool<CR>
 
+" Formats inline HTML files
+map <leader>h :%s/<[^>]*>/\r&\r/g<CR>:g/^$/d<CR>:normal! gg=G``<CR>
+
 " Swap two words
 nmap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
 
