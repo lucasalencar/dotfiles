@@ -11,10 +11,6 @@ then
 
   # Install better zsh-completions
   git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
-
-  # Fix zsh-completions after MacOS Sierra update
-  chmod -R 755 /usr/local/share/zsh
-  chown -R root:staff /usr/local/share/zsh
 fi
 
 exit 0
