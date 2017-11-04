@@ -9,8 +9,8 @@ then
   brew install ruby-build
 
   info 'Installing latest ruby version...'
-  rbenv install 2.2.2
-  rbenv global 2.2.2
+  rbenv install 2.3.4
+  rbenv global 2.3.4
 
   info 'Installing bundler'
   gem install bundler
