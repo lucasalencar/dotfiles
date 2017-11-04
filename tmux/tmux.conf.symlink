@@ -13,8 +13,7 @@ set-window-option -g status-left " #S "
 set-window-option -g status-left-fg black
 set-window-option -g status-left-bg white
 
-# `online_status` are provided by tmux-online-status plugin
-set-window-option -g status-right " Online: #{online_status} |  %H:%M %d/%m/%y "
+set-window-option -g status-right " %H:%M %d/%m/%y "
 set-window-option -g status-right-fg black
 set-window-option -g status-right-bg white
 
@@ -94,9 +93,6 @@ set -g @continuum-restore 'on' # Automatic restores last saved tmux server
 # * o in COPY mode => opens file, pdf, doc, url
 # * C-o in COPY mode => opens file with $EDITOR
 set -g @plugin 'tmux-plugins/tmux-open'
-
-### Add check for internet conectivity
-set -g @plugin 'tmux-plugins/tmux-online-status'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
