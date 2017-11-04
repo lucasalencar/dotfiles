@@ -24,15 +24,9 @@ then
     vim +PlugInstall +qall
   fi
 
-  info 'Installing MacVIM and helpers'
-  brew cask install macvim
-
   info 'Installing NeoVIM'
   brew install neovim/neovim/neovim
   pip install neovim
-
-  brew install rogual/neovim-dot-app/neovim-dot-app
-  brew linkapps neovim-dot-app
 
   mkdir $HOME/.config
   ln -s $HOME/.vim $HOME/.config/nvim
