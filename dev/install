@@ -31,7 +31,7 @@ then
 
   info 'Setup elasticsearch'
   brew install elasticsearch
-  ln -sfv /usr/local/opt/elasticsearch14/*.plist $HOME/Library/LaunchAgents
+  ln -sfv /usr/local/opt/elasticsearch/*.plist $HOME/Library/LaunchAgents
   launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
 
   info 'Setup redis'
