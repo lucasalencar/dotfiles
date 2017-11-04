@@ -47,7 +47,8 @@ then
 
   info 'Setup Gist'
   brew install gist
-  gist --login
+  # To login to gist, just use the command below
+  # gist --login
 fi
 
 exit 0
