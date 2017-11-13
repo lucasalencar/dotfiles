@@ -2,21 +2,15 @@
 
 source print_helper
 
-if test ! $(which npm)
-then
-  info "Installing npm..."
-  brew install node npm
-  npm update npm -g
+info "Installing npm..."
+brew install node npm
+npm update npm -g
 
+info "Installing npm packages..."
+npm install -g eslint-config-airbnb-base eslint
+npm install -g eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
 
-  info "Installing npm packages..."
-  (
-    export PKG=eslint-config-airbnb-base;
-    npm info "$PKG" peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs npm install -g "$PKG"
-  )
-
-  npm install -g bower
-  npm install -g ember ember-cli
-fi
+npm install -g bower
+npm install -g ember ember-cli
 
 exit 0
