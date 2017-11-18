@@ -1,0 +1,11 @@
+#!/bin/sh
+
+source print_helper
+
+if test ! $(which elixir)
+then
+  info "Installing elixir..."
+  brew install elixir
+fi
+
+exit 0
