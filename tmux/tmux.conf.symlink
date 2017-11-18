@@ -87,7 +87,7 @@ set -g @plugin 'tmux-plugins/tmux-yank'
 # * prefix + C-r => restores previous tmux server
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @continuum-restore 'on' # Automatic restores last saved tmux server
+# set -g @continuum-restore 'on' # Automatic restores last saved tmux server
 
 ### Opens file selected in COPY mode
 # * o in COPY mode => opens file, pdf, doc, url
