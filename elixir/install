@@ -2,10 +2,13 @@
 
 source print_helper
 
-if test ! $(which elixir)
-then
-  info "Installing elixir..."
-  brew install elixir
-fi
+info "Installing Elixir..."
+brew install elixir
+
+info "Installing hex package manager"
+yes | mix local.hex
+
+info "Installing Phoenix Framework"
+yes | mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez
 
 exit 0
