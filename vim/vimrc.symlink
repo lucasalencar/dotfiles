@@ -390,6 +390,9 @@ endif
 noremap <C-p> :GFiles<CR>
 inoremap <C-p> <Esc>:GFiles<CR>
 
+noremap π :Files<CR>
+inoremap π <Esc>:Files<CR>
+
 """ Ag
 if has("gui_macvim") && has("gui_running")
   " Command-Shift-F on OSX
