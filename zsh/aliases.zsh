@@ -37,3 +37,6 @@ alias gupc="git pull --prune; gbda"
 alias rdd="rd-docker"
 alias ds="docker-machine start; eval \$(docker-machine env)"
 alias dss="docker-machine stop"
+
+alias vi="vim"
+alias iv="vim"
