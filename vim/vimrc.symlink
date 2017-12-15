@@ -1,6 +1,10 @@
 " load vim-plug
 call plug#begin('~/.vim/plugged')
 
+" Plugin with default configurations agreed with the community
+" This is good to make the configurations in this file more simple
+Plug 'tpope/vim-sensible'
+
 " Languages
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rails'
@@ -67,12 +71,10 @@ if has('vim_starting') && !has('nvim') && &compatible
 endif
 
 set number            " Show line numbers
-set ruler             " Show line and column number
 set cursorline        " Highlights current line
 set colorcolumn=100   " Highlights column 80
 set clipboard=unnamed " Makes clipboard work with the one used by macos
 set mouse=a           " Enables mouse actions when using vim
-syntax enable         " Turn on syntax highlighting allowing local overrides
 
 " Neovim disallow changing 'enconding' option after initialization
 " see https://github.com/neovim/neovim/pull/2929 for more details
@@ -133,7 +135,6 @@ set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
 set list                          " Show invisible characters
-set backspace=indent,eol,start    " backspace through everything in insert mode
 autocmd BufWritePre * :%s/\s\+$//e " Strips white spaces on save
 
 " List chars
@@ -149,7 +150,6 @@ set listchars+=precedes:<         " The character to show in the last column whe
 ""
 
 set hlsearch    " highlight matches
-set incsearch   " incremental searching
 set ignorecase  " searches are case insensitive...
 set smartcase   " ... unless they contain at least one capital letter
 
@@ -158,9 +158,6 @@ set smartcase   " ... unless they contain at least one capital letter
 ""   Used by Ctrl-P for fuzzy finding ignoring some types of files during
 ""   search.
 ""
-
-" Shows matches when hitting tab in a word
-set wildmenu
 
 " Disable output and VCS files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -197,8 +194,6 @@ endif
 ""
 "" File types
 ""
-
-filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 
 if has("autocmd")
   " In Makefiles, use real tabs, not tabs expanded to spaces
@@ -375,14 +370,6 @@ else
   noremap ’ :tabnext<CR>
   " ALT SHIFT + ] => next tab
   noremap ” :tabprevious<CR>
-endif
-
-""
-"" Command-Line Mappings
-""
-
-if has("statusline") && !&cp
-  set laststatus=2  " always show the status bar
 endif
 
 ""
