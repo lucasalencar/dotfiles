@@ -68,7 +68,8 @@ endif
 set number            " Show line numbers
 set ruler             " Show line and column number
 set cursorline        " Highlights current line
-set colorcolumn=100    " Highlights column 80
+set colorcolumn=100   " Highlights column 80
+set clipboard=unnamed " Makes clipboard work with the one used by macos
 syntax enable         " Turn on syntax highlighting allowing local overrides
 
 " Neovim disallow changing 'enconding' option after initialization
