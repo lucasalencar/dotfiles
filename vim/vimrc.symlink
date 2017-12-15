@@ -93,15 +93,6 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
 " Remove scroll bars from macvim
 set guioptions=aAce
 
-if has("gui_running")
-  " Set default transparency
-  set transparency=3
-
-  " Disable hover tooltips
-  set noballooneval
-  let g:netrw_nobeval = 1
-endif
-
 " Unicode symbols for airline
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -183,13 +174,6 @@ set wildignore+=*.swp,*~,._*
 
 set backupdir^=~/.vim/_backup//    " where to put backup files.
 set directory^=~/.vim/_temp//      " where to put swap files.
-
-if has("gui_running")
-  if has("autocmd")
-    " Automatically resize splits when resizing MacVim window
-    autocmd VimResized * wincmd =
-  endif
-endif
 
 ""
 "" File types
@@ -274,103 +258,58 @@ nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 map <Down> gj
 map <Up> gk
 
-if has("gui_macvim") && has("gui_running")
-  " Map command-[ and command-] to indenting or outdenting
-  " while keeping the original selection in visual mode
-  vmap <D-]> >gv
-  vmap <D-[> <gv
-  nmap <D-]> >>
-  nmap <D-[> <<
-  omap <D-]> >>
-  omap <D-[> <<
-  imap <D-]> <Esc>>>i
-  imap <D-[> <Esc><<i
+" These mappings using ALT works only with MacOS
 
-  " Bubble single lines
-  nmap <D-Up> [e
-  nmap <D-Down> ]e
-  nmap <D-k> [e
-  nmap <D-j> ]e
-  vmap <D-Up> [egv
-  vmap <D-Down> ]egv
-  vmap <D-k> [egv
-  vmap <D-j> ]egv
+" Map command-[ and command-] to indenting or outdenting
+" while keeping the original selection in visual mode
+" ALT + ] => indent to right
+" ALT + [ => indent to left
+vmap ‘ >gv
+vmap “ <gv
+nmap ‘ >>
+nmap “ <<
+omap ‘ >>
+omap “ <<
+imap ‘ <Esc>>>i
+imap “ <Esc><<i
 
-  " Map Command-# to switch tabs
-  map  <D-0> 0gt
-  imap <D-0> <Esc>0gt
-  map  <D-1> 1gt
-  imap <D-1> <Esc>1gt
-  map  <D-2> 2gt
-  imap <D-2> <Esc>2gt
-  map  <D-3> 3gt
-  imap <D-3> <Esc>3gt
-  map  <D-4> 4gt
-  imap <D-4> <Esc>4gt
-  map  <D-5> 5gt
-  imap <D-5> <Esc>5gt
-  map  <D-6> 6gt
-  imap <D-6> <Esc>6gt
-  map  <D-7> 7gt
-  imap <D-7> <Esc>7gt
-  map  <D-8> 8gt
-  imap <D-8> <Esc>8gt
-  map  <D-9> 9gt
-  imap <D-9> <Esc>9gt
-else
-  " These mappings using ALT works only with MacOS
+" Bubble single lines
+" ALT + j => bubble down
+" ALT + k => bubble up
+nmap ˚ [e
+nmap ∆ ]e
+vmap ˚ [egv
+vmap ∆ ]egv
 
-  " Map command-[ and command-] to indenting or outdenting
-  " while keeping the original selection in visual mode
-  " ALT + ] => indent to right
-  " ALT + [ => indent to left
-  vmap ‘ >gv
-  vmap “ <gv
-  nmap ‘ >>
-  nmap “ <<
-  omap ‘ >>
-  omap “ <<
-  imap ‘ <Esc>>>i
-  imap “ <Esc><<i
+" Map ALT-# to switch tabs
+" Ex: ALT + 1 => goes to tab 1
+" Ex: ALT + 2 => goes to tab 2
+map  º 0gt
+imap º <Esc>0gt
+map  ¡ 1gt
+imap ¡ <Esc>1gt
+map  ™ 2gt
+imap ™ <Esc>2gt
+map  £ 3gt
+imap £ <Esc>3gt
+map  ¢ 4gt
+imap ¢ <Esc>4gt
+map  ∞ 5gt
+imap ∞ <Esc>5gt
+map  § 6gt
+imap § <Esc>6gt
+map  ¶ 7gt
+imap ¶ <Esc>7gt
+map  • 8gt
+imap • <Esc>8gt
+map  ª 9gt
+imap ª <Esc>9gt
 
-  " Bubble single lines
-  " ALT + j => bubble down
-  " ALT + k => bubble up
-  nmap ˚ [e
-  nmap ∆ ]e
-  vmap ˚ [egv
-  vmap ∆ ]egv
-
-  " Map ALT-# to switch tabs
-  " Ex: ALT + 1 => goes to tab 1
-  " Ex: ALT + 2 => goes to tab 2
-  map  º 0gt
-  imap º <Esc>0gt
-  map  ¡ 1gt
-  imap ¡ <Esc>1gt
-  map  ™ 2gt
-  imap ™ <Esc>2gt
-  map  £ 3gt
-  imap £ <Esc>3gt
-  map  ¢ 4gt
-  imap ¢ <Esc>4gt
-  map  ∞ 5gt
-  imap ∞ <Esc>5gt
-  map  § 6gt
-  imap § <Esc>6gt
-  map  ¶ 7gt
-  imap ¶ <Esc>7gt
-  map  • 8gt
-  imap • <Esc>8gt
-  map  ª 9gt
-  imap ª <Esc>9gt
-
-  " Map ALT + SHIFT + <direction> to switch tabs
-  " ALT + SHIFT + [ => previous tab
-  noremap ’ :tabnext<CR>
-  " ALT SHIFT + ] => next tab
-  noremap ” :tabprevious<CR>
-endif
+" Map ALT + SHIFT + <direction> to switch tabs
+" ALT + SHIFT + [ => previous tab
+noremap ’ :tabnext<CR>
+" ALT SHIFT + ] => next tab
+noremap ” :tabprevious<CR>
 
 ""
 "" Plugins configuration
@@ -384,25 +323,15 @@ noremap π :Files<CR>
 inoremap π <Esc>:Files<CR>
 
 """ Ag
-if has("gui_macvim") && has("gui_running")
-  " Command-Shift-F on OSX
-  map <D-F> :Ag<space>
-else
-  " <ALT-SHIFT-F> to find the whole project
-  map Ï :Ag<space>
-endif
+" <ALT-SHIFT-F> to find the whole project
+map Ï :Ag<space>
 
 """ NERD plugins
 " Maps to comment single lines easily
-if has("gui_macvim") && has("gui_running")
-  map <D-/> <plug>NERDCommenterToggle<CR>
-  imap <D-/> <ESC><plug>NERDCommenterToggle<CR>i
-else
-  " ALT + / => comments current line
-  map ÷ <plug>NERDCommenterToggle
-  " ALT + SHIFT + / => comments current line and goes to next one
-  map ¿ <plug>NERDCommenterToggle<CR>
-endif
+" ALT + / => comments current line
+map ÷ <plug>NERDCommenterToggle
+" ALT + SHIFT + / => comments current line and goes to next one
+map ¿ <plug>NERDCommenterToggle<CR>
 
 " Disables NERDTree auto open
 let g:nerdtree_tabs_open_on_gui_startup = 0
