@@ -65,11 +65,13 @@ call plug#end()
 if has('vim_starting') && !has('nvim') && &compatible
   set nocompatible " Be iMproved
 endif
+
 set number            " Show line numbers
 set ruler             " Show line and column number
 set cursorline        " Highlights current line
 set colorcolumn=100   " Highlights column 80
 set clipboard=unnamed " Makes clipboard work with the one used by macos
+set mouse=a           " Enables mouse actions when using vim
 syntax enable         " Turn on syntax highlighting allowing local overrides
 
 " Neovim disallow changing 'enconding' option after initialization
