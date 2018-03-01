@@ -6,10 +6,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 
 " Languages
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot' " Syntax highlight for may languages
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-cucumber'
-Plug 'sunaku/vim-ruby-minitest'
+Plug 'tpope/vim-cucumber' " [<C-d> to find step declaration
+Plug 'sunaku/vim-ruby-minitest' " Syntax highlight
 Plug 'chrisbra/csv.vim'
 Plug 'hallison/vim-rdoc'
 Plug 'cakebaker/scss-syntax.vim'
@@ -19,37 +19,33 @@ Plug 'ap/vim-css-color'
 Plug 'janko-m/vim-test'
 
 " Tools
-Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline' " Status line
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'easymotion/vim-easymotion'
-Plug 'thinca/vim-visualstar'
+Plug 'junegunn/fzf.vim' " File fuzzy search and content search
+Plug 'scrooloose/nerdtree' " File tree
+Plug 'thinca/vim-visualstar' " Search for terms using * or #
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-endwise'
-Plug 'ervandew/supertab'
-Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-repeat'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'neomake/neomake'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-eunuch'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tmhedberg/matchit'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'AndrewRadev/switch.vim'
-Plug 'junegunn/vim-easy-align'
+Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
+Plug 'tpope/vim-endwise' " Add end when opening block in ruby
+Plug 'ervandew/supertab' " Complete what is being written with <tab>
+Plug 'scrooloose/nerdcommenter' " Plugin to add comments according to language
+Plug 'tpope/vim-surround' " Easily add things surrounding selections
+Plug 'tpope/vim-unimpaired' " https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt
+Plug 'tpope/vim-repeat' " Repeat commands from plugins with .
+Plug 'bronson/vim-trailing-whitespace' " Remove trailing whitespace
+Plug 'neomake/neomake' " Run linters and show warinings
+Plug 'tpope/vim-fugitive' " Git wrapper
+Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
+Plug 'tpope/vim-eunuch' " Vim commands for the bash (Mkdir, Move, Rename, ...)
+Plug 'tmhedberg/matchit' " Matches HTML tags with %
+Plug 'AndrewRadev/splitjoin.vim' " Split inline constructs to multiple lines and vice versa
+Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string to symbol in ruby)
+Plug 'junegunn/vim-easy-align' " Align tables in text easily
 
 " OBS: Creates panel switching mapping using ctrl+<direction>
 " It is not necessary to add it to vimrc
 Plug 'christoomey/vim-tmux-navigator'
 
-" Disable ag vim plugin for testing fzf search
-"Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex ' }
 
 " Color schemes
