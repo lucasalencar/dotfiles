@@ -1,0 +1,15 @@
+#!/bin/sh
+
+source print_helper
+
+if test ! $(which clojure)
+then
+  info "Installing clojure..."
+  brew install clojure leiningen
+
+  mkdir -p $HOME/.lein/
+  CLOJURE_ROOT="$(cd "$(dirname "$0")" && pwd)"
+  ln -sf $CLOJURE_ROOT/lein/profiles.clj $HOME/.lein/profiles.clj
+fi
+
+exit 0
