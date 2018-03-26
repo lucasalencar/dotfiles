@@ -78,6 +78,10 @@ if !has('nvim')
   set encoding=utf-8  " Set default encoding to UTF-8
 endif
 
+" Persistent undo
+set undofile " Maintain undo history between sessions
+set undodir=~/.vim/undodir " Sets dir to store undo history
+
 ""
 "" Appearance
 ""

@@ -31,6 +31,9 @@ then
   mkdir $HOME/.config
   ln -s $HOME/.vim $HOME/.config/nvim
   ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
+
+  # Creates undodir to store files undo history
+  mkdir -p $HOME/.vim/undodir/
 fi
 
 exit 0
