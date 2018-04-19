@@ -9,20 +9,15 @@ source helpers
 
 # Check for Homebrew
 if test ! $(which brew); then
-  info 'Installing Homebrew...'
+  info 'Installing Homebrew'
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-  info 'Setup brew-services'
+  info 'Setting up brew-services tap'
   brew tap homebrew/services
 
-  info 'Installing brew-cask and install MacOS apps...'
+  info 'Setting up brew-cask tap'
   brew tap caskroom/cask
   brew tap caskroom/versions
-
-  while read app; do
-    brew cask install $app
-  done < "`pwd`/homebrew/apps"
-  unset app
 fi
 
 exit 0
