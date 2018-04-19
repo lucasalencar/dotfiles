@@ -1,6 +1,7 @@
 #!/bin/bash
+source helpers
 
-source print_helper
+check_homebrew
 
 if test ! $(which go)
 then

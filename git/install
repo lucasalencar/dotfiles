@@ -1,6 +1,7 @@
 #!/bin/sh
+source helpers
 
-source print_helper
+check_homebrew
 
 info "Installing git latest version..."
 brew install git

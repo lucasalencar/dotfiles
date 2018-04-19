@@ -1,5 +1,7 @@
 #!/bin/sh
-source print_helper
+source helpers
+
+check_homebrew
 
 info 'Installing Redis'
 brew install redis
@@ -8,3 +10,5 @@ info 'Setting up Redis LaunchAgent'
 mkdir -p $HOME/Library/LaunchAgents
 ln -sfv /usr/local/opt/redis/*.plist $HOME/Library/LaunchAgents
 launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.redis.plist
+
+exit 0

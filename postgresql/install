@@ -1,6 +1,7 @@
 #!/bin/sh
+source helpers
 
-source print_helper
+check_homebrew
 
 info 'Installing postgresql'
 brew install postgresql
@@ -15,3 +16,5 @@ createuser postgres
 psql -d postgres -c "ALTER USER postgres WITH SUPERUSER;"
 createuser lucas
 psql -d postgres -c "ALTER USER lucas WITH SUPERUSER;"
+
+exit 0

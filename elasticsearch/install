@@ -1,5 +1,7 @@
 #!/bin/sh
-source print_helper
+source helpers
+
+check_homebrew
 
 info 'Installing ElasticSearch'
 brew install elasticsearch
@@ -8,3 +10,5 @@ info 'Setting up ElasticSearch LaunchAgent'
 mkdir -p $HOME/Library/LaunchAgents
 ln -sfv /usr/local/opt/elasticsearch/*.plist $HOME/Library/LaunchAgents
 launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
+
+exit 0

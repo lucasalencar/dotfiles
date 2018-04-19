@@ -2,7 +2,7 @@
 #
 # Installation process
 
-source print_helper
+source helpers
 
 link_files () {
   ln -sf $1 $2

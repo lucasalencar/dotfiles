@@ -1,5 +1,7 @@
 #!/bin/sh
-source print_helper
+source helpers
+
+check_homebrew
 
 info 'Installing MongoDB'
 brew install mongodb
@@ -8,3 +10,5 @@ info 'Setting up MongoDB LaunchAgent'
 mkdir -p $HOME/Library/LaunchAgents
 ln -sfv /usr/local/opt/mongodb/*.plist $HOME/Library/LaunchAgents
 launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+
+exit 0

@@ -1,39 +1,37 @@
 #!/bin/sh
+source helpers
 
-source print_helper
+check_homebrew
 
-if test $(which brew)
+info 'Installing VIM'
+brew install vim
+
+if [ ! -d "$HOME/.vim" ]
 then
-  info 'Installing VIM'
-  brew install vim
+  info 'Installing vim-plug + plugins'
+  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-  if [ ! -d "$HOME/.vim" ]
-  then
-    info 'Installing vim-plug + plugins'
-    curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  # Create temp files folder
+  mkdir -p $HOME/.vim/_backup $HOME/.vim/_temp
 
-    # Create temp files folder
-    mkdir -p $HOME/.vim/_backup $HOME/.vim/_temp
+  # Install powerline fonts
+  git clone https://github.com/powerline/fonts.git powerline-fonts
+  bash powerline-fonts/install.sh
+  rm -rf powerline-fonts
 
-    # Install powerline fonts
-    git clone https://github.com/powerline/fonts.git powerline-fonts
-    bash powerline-fonts/install.sh
-    rm -rf powerline-fonts
-
-    vim +PlugInstall +qall
-  fi
-
-  info 'Installing NeoVIM'
-  brew install neovim/neovim/neovim
-  pip install neovim
-
-  mkdir $HOME/.config
-  ln -s $HOME/.vim $HOME/.config/nvim
-  ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
-
-  # Creates undodir to store files undo history
-  mkdir -p $HOME/.vim/undodir/
+  vim +PlugInstall +qall
 fi
+
+info 'Installing NeoVIM'
+brew install neovim/neovim/neovim
+pip install neovim
+
+mkdir $HOME/.config
+ln -s $HOME/.vim $HOME/.config/nvim
+ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
+
+# Creates undodir to store files undo history
+mkdir -p $HOME/.vim/undodir/
 
 exit 0

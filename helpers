@@ -1,0 +1,16 @@
+#!/bin/bash
+source print_helper
+
+check_command () {
+  if test ! $(which $1)
+  then
+    fail "Command line $1 not found"
+  fi
+}
+
+check_homebrew () {
+  if test ! $(which brew)
+  then
+    fail 'Homebrew is not installed, run ./homebrew/install to get it'
+  fi
+}

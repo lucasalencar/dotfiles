@@ -1,9 +1,12 @@
 #!/bin/sh
+source helpers
 
-source print_helper
+check_homebrew
 
 info "Installing docker-toolbox"
 brew cask install docker-toolbox
 
 info "Installing docker-machine-nfs"
 brew install docker-machine-nfs
+
+exit 0

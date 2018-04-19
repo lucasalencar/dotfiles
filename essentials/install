@@ -1,5 +1,7 @@
 #!/bin/sh
-source print_helper
+source helpers
+
+check_homebrew
 
 info 'Installing essential command line tools'
 brew install coreutils htop ag tree fzf colordiff

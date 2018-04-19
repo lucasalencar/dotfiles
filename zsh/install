@@ -2,7 +2,7 @@
 #
 # Install zsh and oh-my-zsh
 
-source print_helper
+source helpers
 
 if test $(which zsh)
 then
