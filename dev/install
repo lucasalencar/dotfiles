@@ -8,11 +8,6 @@ then
   info 'Installing dev environment...'
   brew install gpgme graphviz phantomjs icu4c
 
-  info 'Setup mongodb'
-  brew install mongodb
-  ln -sfv /usr/local/opt/mongodb/*.plist $HOME/Library/LaunchAgents
-  launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
-
   info 'Setup elasticsearch'
   brew install elasticsearch
   ln -sfv /usr/local/opt/elasticsearch/*.plist $HOME/Library/LaunchAgents
