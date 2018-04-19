@@ -1,0 +1,7 @@
+#!/bin/sh
+source print_helper
+
+info 'Installing essential command line tools'
+brew install coreutils htop ag tree fzf colordiff
+
+exit 0

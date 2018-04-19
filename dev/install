@@ -3,21 +3,8 @@ source print_helper
 
 if test $(which brew)
 then
-  mkdir -p $HOME/Library/LaunchAgents
-
   info 'Installing dev environment...'
   brew install gpgme graphviz phantomjs icu4c
-
-  info 'Setup heroku'
-  brew install heroku-toolbelt
-
-  info 'Install essential tools'
-  brew install coreutils htop ag tree fzf colordiff
-
-  info 'Setup Gist'
-  brew install gist
-  # To login to gist, just use the command below
-  # gist --login
 fi
 
 exit 0
