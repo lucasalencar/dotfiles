@@ -8,11 +8,6 @@ then
   info 'Installing dev environment...'
   brew install gpgme graphviz phantomjs icu4c
 
-  info 'Setup elasticsearch'
-  brew install elasticsearch
-  ln -sfv /usr/local/opt/elasticsearch/*.plist $HOME/Library/LaunchAgents
-  launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.elasticsearch.plist
-
   info 'Setup redis'
   brew install redis
   ln -sfv /usr/local/opt/redis/*.plist $HOME/Library/LaunchAgents
