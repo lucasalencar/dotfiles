@@ -5,12 +5,14 @@ check_homebrew
 
 if test ! $(which clojure)
 then
-  info "Installing clojure..."
+  info "Installing clojure and leiningen"
   brew install clojure leiningen
 
+  info "Setting up lein profiles configuration"
   mkdir -p $HOME/.lein/
   CLOJURE_ROOT="$(cd "$(dirname "$0")" && pwd)"
-  ln -sf $CLOJURE_ROOT/lein/profiles.clj $HOME/.lein/profiles.clj
+
+  link_files $CLOJURE_ROOT/lein/profiles.clj $HOME/.lein/profiles.clj
 fi
 
 exit 0

@@ -4,25 +4,12 @@
 
 source helpers
 
-link_files () {
-  ln -sf $1 $2
-  info "Linked $1 to $2"
-}
-
 DOTFILES_ROOT=$(pwd -P)
 
 # Install some essential softwares
 packages=(osx terminal.app homebrew git zsh ruby elixir dev tmux vim js clojure)
 for package in "${packages[@]}"; do
   info "Setting up $package package..."
-
-  # Link config files
-  for source in `find $DOTFILES_ROOT/$package -maxdepth 2 -name \*.symlink`
-  do
-    dest="$HOME/.`basename \"${source%.*}\"`"
-    link_files $source $dest
-  done
-
   $DOTFILES_ROOT/$package/install
 done
 unset file

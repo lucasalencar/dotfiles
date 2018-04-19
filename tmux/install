@@ -16,4 +16,8 @@ git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 # Install tmux plugins
 $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
 
+info "Setting up tmux.conf file"
+current_dir # Sets $CURRENT_DIR variable
+link_all_files $CURRENT_DIR
+
 exit 0

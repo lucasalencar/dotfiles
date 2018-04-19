@@ -11,6 +11,10 @@ then
 
   # Install better zsh-completions
   git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
+
+  info "Setting up .zshrc file"
+  current_dir # Sets $CURRENT_DIR variable
+  link_all_files $CURRENT_DIR
 fi
 
 exit 0

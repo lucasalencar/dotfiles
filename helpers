@@ -1,6 +1,23 @@
 #!/bin/bash
 source print_helper
 
+link_files () {
+  ln -sf $1 $2
+  info "Linked $1 to $2"
+}
+
+current_dir () {
+  CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
+}
+
+link_all_files () {
+  for source in `find $1 -maxdepth 1 -name \*.symlink`
+  do
+    dest="$HOME/.`basename \"${source%.*}\"`"
+    link_files $source $dest
+  done
+}
+
 check_command () {
   if test ! $(which $1)
   then

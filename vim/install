@@ -21,6 +21,10 @@ then
   rm -rf powerline-fonts
 
   vim +PlugInstall +qall
+
+  info "Setting up .vimrc file"
+  current_dir # Sets $CURRENT_DIR variable
+  link_all_files $CURRENT_DIR
 fi
 
 info 'Installing NeoVIM'

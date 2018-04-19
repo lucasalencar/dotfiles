@@ -18,6 +18,10 @@ then
 
   info 'Installing ruby checkers'
   gem install rubocop reek
+
+  info "Setting up rubygems config files"
+  current_dir # Sets $CURRENT_DIR variable
+  link_all_files $CURRENT_DIR
 fi
 
 exit 0
