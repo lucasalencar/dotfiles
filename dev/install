@@ -12,15 +12,6 @@ then
   info 'Installing Atom'
   brew cask install atom
 
-  info 'Setup postgresql'
-  brew install postgresql
-  ln -sfv /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist $HOME/Library/LaunchAgents
-  launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-  createuser postgres
-  psql -d postgres -c "ALTER USER postgres WITH SUPERUSER;"
-  createuser lucas
-  psql -d postgres -c "ALTER USER lucas WITH SUPERUSER;"
-
   info 'Setup mongodb'
   brew install mongodb
   ln -sfv /usr/local/opt/mongodb/*.plist $HOME/Library/LaunchAgents

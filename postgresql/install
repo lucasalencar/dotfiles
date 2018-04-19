@@ -1,0 +1,17 @@
+#!/bin/sh
+
+source print_helper
+
+info 'Installing postgresql'
+brew install postgresql
+
+info 'Setting up postgresql LaunchAgent'
+mkdir -p $HOME/Library/LaunchAgents
+ln -sfv /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist $HOME/Library/LaunchAgents
+launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+
+info 'Creating postgres users and changing authorizations'
+createuser postgres
+psql -d postgres -c "ALTER USER postgres WITH SUPERUSER;"
+createuser lucas
+psql -d postgres -c "ALTER USER lucas WITH SUPERUSER;"
