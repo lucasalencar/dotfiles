@@ -26,8 +26,6 @@ alias diff="colordiff -ybB"
 alias be="bundle exec"
 alias bi="bundle install"
 
-alias git=hub
-
 # Opens TODO file
 alias todo="vim +VimwikiIndex"
 
