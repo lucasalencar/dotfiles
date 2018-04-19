@@ -8,11 +8,6 @@ then
   info 'Installing dev environment...'
   brew install gpgme graphviz phantomjs icu4c
 
-  info 'Setup redis'
-  brew install redis
-  ln -sfv /usr/local/opt/redis/*.plist $HOME/Library/LaunchAgents
-  launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.redis.plist
-
   info 'Setup heroku'
   brew install heroku-toolbelt
 
