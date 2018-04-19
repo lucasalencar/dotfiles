@@ -11,11 +11,11 @@ source print_helper
 if test ! $(which brew); then
   info 'Installing Homebrew...'
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
 
-# Install brew cask to have apps out of the box
-if test $(which brew); then
-  info 'Installing brew-cask and GUI apps...'
+  info 'Setup brew-services'
+  brew tap homebrew/services
+
+  info 'Installing brew-cask and install MacOS apps...'
   brew tap caskroom/cask
   brew tap caskroom/versions
 

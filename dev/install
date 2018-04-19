@@ -4,13 +4,10 @@ source print_helper
 
 if test $(which brew)
 then
+  mkdir -p $HOME/Library/LaunchAgents
+
   info 'Installing dev environment...'
   brew install gpgme graphviz phantomjs icu4c
-
-  info 'Setup brew-services'
-  brew tap homebrew/services
-
-  mkdir -p $HOME/Library/LaunchAgents
 
   info 'Installing Atom'
   brew cask install atom
