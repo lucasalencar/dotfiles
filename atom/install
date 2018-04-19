@@ -1,0 +1,5 @@
+#!/bin/sh
+source print_helper
+
+info 'Installing Atom'
+brew cask install atom

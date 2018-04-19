@@ -1,5 +1,4 @@
 #!/bin/sh
-
 source print_helper
 
 if test $(which brew)
@@ -8,9 +7,6 @@ then
 
   info 'Installing dev environment...'
   brew install gpgme graphviz phantomjs icu4c
-
-  info 'Installing Atom'
-  brew cask install atom
 
   info 'Setup mongodb'
   brew install mongodb
