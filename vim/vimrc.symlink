@@ -18,6 +18,9 @@ Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
 Plug 'janko-m/vim-test'
 
+" Clojure plugins
+Plug 'tpope/vim-fireplace'
+
 " Tools
 Plug 'vim-airline/vim-airline' " Status line
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
@@ -354,3 +357,7 @@ let g:neomake_info_sign = { 'text': 'ℹ', 'texthl': 'NeomakeInfoSign' }
 """ vim-tmux-navigator
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
+
+""" vim-fireplace
+" Go to definition remap
+map gd [<C-d>
