@@ -23,8 +23,8 @@ Plug 'vim-airline/vim-airline' " Status line
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim' " File fuzzy search and content search
 Plug 'scrooloose/nerdtree' " File tree
-Plug 'thinca/vim-visualstar' " Search for terms using * or #
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'thinca/vim-visualstar' " Search for terms using * or # on Visual Mode
 Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
 Plug 'tpope/vim-endwise' " Add end when opening block in ruby
 Plug 'ervandew/supertab' " Complete what is being written with <tab>
