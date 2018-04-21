@@ -46,8 +46,6 @@ Plug 'junegunn/vim-easy-align' " Align tables in text easily
 " It is not necessary to add it to vimrc
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex ' }
-
 " Color schemes
 Plug 'brendonrapp/smyck-vim'
 Plug 'telamon/vim-color-github'
@@ -356,7 +354,3 @@ let g:neomake_info_sign = { 'text': 'ℹ', 'texthl': 'NeomakeInfoSign' }
 """ vim-tmux-navigator
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
-
-""" vimwiki
-" Paths for vimwiki files
-let g:vimwiki_list =[{'path': "~/Google\ Drive/vimwiki", 'path_html': "~/Google\ Drive/vimwiki/export/html/"}]
