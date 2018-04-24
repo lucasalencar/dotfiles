@@ -7,19 +7,42 @@ Plug 'tpope/vim-sensible'
 
 " Languages
 Plug 'sheerun/vim-polyglot' " Syntax highlight for may languages
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-cucumber' " [<C-d> to find step declaration
-Plug 'sunaku/vim-ruby-minitest' " Syntax highlight
 Plug 'chrisbra/csv.vim'
-Plug 'hallison/vim-rdoc'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'mmalecki/vim-node.js'
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
 Plug 'janko-m/vim-test'
 
-" Clojure plugins
+""" Ruby & Rails plugins
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-cucumber' " [<C-d> to find step declaration
+Plug 'sunaku/vim-ruby-minitest' " Syntax highlight
+Plug 'hallison/vim-rdoc'
+""" end Ruby & Rails plugins
+
+""" Clojure plugins
+Plug 'tpope/vim-dispatch' " Dispatch commands to console through vim integrated with tmux
+
+" Clojure integration with nREPL
+" - Enables go to definition or file (gf [<C-d> mapped to gd)
+" - Allows to search for doc or source code for a command (:Doc :Source <shift-K>)
+" - It is possible to eval Clojure code inside the buffer (:Eval)
 Plug 'tpope/vim-fireplace'
+
+""" Support to lein projects
+" - Adds navigation to specific dirs (:Esource :Etest)
+" - Allow open alternativa files (:A :AT :AV)
+" - Allow to open a REPL through vim (:Console)
+Plug 'tpope/vim-salve'
+
+Plug 'tpope/vim-projectionist' " Allows to map projections to the project (dependency to vim-salve)
+
+" Turns syntax highlight dynamic, allows to hightlight project defined functions
+"Plug 'guns/vim-clojure-highlight'
+
+Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
+""" end Clojure plugins
 
 " Tools
 Plug 'vim-airline/vim-airline' " Status line
