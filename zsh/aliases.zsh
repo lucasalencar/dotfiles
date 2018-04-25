@@ -11,7 +11,7 @@ alias reload!='. ~/.zshrc'
 
 # Aliases to config files
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias dotfiles="cd $HOME/.dotfiles; nvim $HOME/.dotfiles"
+alias dotfiles="cd $HOME/.dotfiles; $EDITOR $HOME/.dotfiles"
 
 # Organizing photos from camera
 alias photos="mkdir jpg raw; mv *.JPG jpg/; mv *.CR2 raw/"
