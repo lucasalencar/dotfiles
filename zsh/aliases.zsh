@@ -16,10 +16,6 @@ alias dotfiles="cd $HOME/.dotfiles; $EDITOR $HOME/.dotfiles"
 # B => ignores blank lines
 alias diff="colordiff -ybB"
 
-# Bundle aliases
-alias be="bundle exec"
-alias bi="bundle install"
-
 # Git pull and many other flags
 alias gupc="git pull --prune; gbda"
 
