@@ -38,3 +38,5 @@ alias dss="docker-machine stop"
 
 alias vi="vim"
 alias iv="vim"
+
+alias lr="lein repl"
