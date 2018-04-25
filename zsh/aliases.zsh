@@ -19,7 +19,6 @@ alias diff="colordiff -ybB"
 # Git pull and many other flags
 alias gupc="git pull --prune; gbda"
 
-alias rdd="rd-docker"
 alias ds="docker-machine start; eval \$(docker-machine env)"
 alias dss="docker-machine stop"
 
