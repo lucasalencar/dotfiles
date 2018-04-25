@@ -7,7 +7,7 @@ alias update="upgrade_oh_my_zsh; brew update; brew upgrade; brew cleanup; gem up
 alias reload!='. ~/.zshrc'
 
 # Aliases to config files
-alias ohmyzsh="vim ~/.oh-my-zsh"
+alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias dotfiles="cd $HOME/.dotfiles; $EDITOR $HOME/.dotfiles"
 
 # Use colordiff as default diff command
