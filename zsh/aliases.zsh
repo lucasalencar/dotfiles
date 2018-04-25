@@ -4,17 +4,11 @@ alias la='ls -lAh'
 # Get OS X Software Updates, and update installed Ruby gem and Homebrew.
 alias update="upgrade_oh_my_zsh; brew update; brew upgrade; brew cleanup; gem update --system; vim +PlugUpdate +PlugClean! +qall"
 
-# Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
-
 alias reload!='. ~/.zshrc'
 
 # Aliases to config files
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias dotfiles="cd $HOME/.dotfiles; $EDITOR $HOME/.dotfiles"
-
-# Organizing photos from camera
-alias photos="mkdir jpg raw; mv *.JPG jpg/; mv *.CR2 raw/"
 
 # Use colordiff as default diff command
 # y => shows diffs in 2 columns
