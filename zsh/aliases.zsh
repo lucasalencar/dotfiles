@@ -2,7 +2,7 @@
 alias la='ls -lAh'
 
 # Get OS X Software Updates, and update installed Ruby gem and Homebrew.
-alias update="upgrade_oh_my_zsh; brew update; brew upgrade; brew cleanup; gem update --system; vim +PlugUpdate +PlugClean! +qall"
+alias update="upgrade_oh_my_zsh; brew update; brew upgrade; brew cleanup; vim +PlugUpdate +PlugClean! +qall"
 
 alias reload!='. ~/.zshrc'
 
