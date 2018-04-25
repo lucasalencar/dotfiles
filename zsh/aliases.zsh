@@ -26,9 +26,6 @@ alias diff="colordiff -ybB"
 alias be="bundle exec"
 alias bi="bundle install"
 
-# Opens TODO file
-alias todo="vim +VimwikiIndex"
-
 # Git pull and many other flags
 alias gupc="git pull --prune; gbda"
 
