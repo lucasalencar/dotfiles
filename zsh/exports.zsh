@@ -1,9 +1,6 @@
 # Prefer homebrew installations
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
-# Adds to path automation scripts
-export PATH=$PATH:$DOTFILES_ROOT/automations
-
 # Add Go Paths
 export GOPATH=$HOME/code/go
 export PATH=$PATH:$GOPATH/bin
