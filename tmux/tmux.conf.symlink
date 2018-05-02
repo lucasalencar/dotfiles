@@ -4,6 +4,7 @@ bind r source-file ~/.tmux.conf # Set a Ctrl-b shortcut for reloading your tmux 
 ### Set alternate binding for clearing screen
 # ctrl-l is used for switching between vim+tmux panels
 bind C-l send-keys 'C-l'
+bind C-k send-keys -R \; clear-history
 
 set-option -g default-terminal "screen-256color" # Set colors
 
