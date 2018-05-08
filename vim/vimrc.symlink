@@ -42,6 +42,9 @@ Plug 'tpope/vim-projectionist' " Allows to map projections to the project (depen
 "Plug 'guns/vim-clojure-highlight'
 
 Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
+
+" Add lein eastwood and kibit checks to vim (integrates with Neomake)
+Plug 'SevereOverfl0w/clojure-check', {'do': './install'}
 """ end Clojure plugins
 
 " Tools
@@ -381,6 +384,8 @@ let g:neomake_error_sign = { 'text': '✖', 'texthl': 'NeomakeErrorSign' }
 let g:neomake_warning_sign = { 'text': '⚠', 'texthl': 'NeomakeWarningSign' }
 let g:neomake_message_sign = { 'text': '➤', 'texthl': 'NeomakeMessageSign' }
 let g:neomake_info_sign = { 'text': 'ℹ', 'texthl': 'NeomakeInfoSign' }
+
+let g:neomake_clojure_enabled_makers = ['check']
 
 """ vim-tmux-navigator
 " Write all buffers before navigating from Vim to tmux pane
