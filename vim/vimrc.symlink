@@ -145,7 +145,7 @@ let g:airline_left_sep = ''
 "" Whitespace
 ""
 
-set wrap linebreak nolist         " Wraps words when it reaches borders
+set nowrap linebreak nolist       " Do not wraps words when it reaches borders
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
