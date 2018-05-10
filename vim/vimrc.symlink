@@ -42,6 +42,7 @@ Plug 'tpope/vim-projectionist' " Allows to map projections to the project (depen
 "Plug 'guns/vim-clojure-highlight'
 
 Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'gregspurrier/vim-midje'
 
 " Add lein eastwood and kibit checks to vim (integrates with Neomake)
 Plug 'SevereOverfl0w/clojure-check', {'do': './install'}
