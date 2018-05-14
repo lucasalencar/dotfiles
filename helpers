@@ -21,7 +21,7 @@ link_all_files () {
 check_command () {
   if test ! $(which $1)
   then
-    fail "Command line $1 not found"
+    fail "Command line '$1' not found"
   fi
 }
 
