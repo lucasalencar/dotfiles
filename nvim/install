@@ -1,0 +1,23 @@
+#!/bin/bash
+source helpers
+
+check_homebrew
+current_dir # Sets $CURRENT_DIR variable
+
+if [ ! -d "$HOME/.vim" ]
+then
+  $CURRENT_DIR/../vim/install
+fi
+
+info 'Installing Neovim'
+brew install neovim
+
+check_command 'pip'
+pip install neovim
+
+check_command 'gem'
+gem install neovim
+
+mkdir $HOME/.config
+ln -s $HOME/.vim $HOME/.config/nvim
+ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim

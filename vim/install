@@ -27,14 +27,6 @@ then
   link_all_files $CURRENT_DIR
 fi
 
-info 'Installing NeoVIM'
-brew install neovim/neovim/neovim
-pip install neovim
-
-mkdir $HOME/.config
-ln -s $HOME/.vim $HOME/.config/nvim
-ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
-
 # Creates undodir to store files undo history
 mkdir -p $HOME/.vim/undodir/
 
