@@ -69,9 +69,6 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " Color schemes
 Plug 'brendonrapp/smyck-vim'
-Plug 'telamon/vim-color-github'
-Plug 'twerth/ir_black'
-Plug 'vim-scripts/molokai'
 Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
