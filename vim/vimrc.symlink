@@ -30,13 +30,13 @@ Plug 'AndrewRadev/splitjoin.vim' " Split inline constructs to multiple lines and
 Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string to symbol in ruby)
 Plug 'junegunn/vim-easy-align' " Align tables in text easily
 
-""" Ruby & Rails plugins
+""" RUBY & RAILS PLUGINS
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-cucumber' " [<C-d> to find step declaration
 Plug 'sunaku/vim-ruby-minitest' " Syntax highlight
-""" end Ruby & Rails plugins
+""" end RUBY & RAILS PLUGINS
 
-""" Clojure plugins
+""" CLOJURE PLUGINS
 Plug 'tpope/vim-dispatch' " Dispatch commands to console through vim integrated with tmux
 
 " Clojure integration with nREPL
@@ -61,7 +61,7 @@ Plug 'gregspurrier/vim-midje'
 
 " Add lein eastwood and kibit checks to vim (integrates with Neomake)
 Plug 'SevereOverfl0w/clojure-check', {'do': './install'}
-""" end Clojure plugins
+""" end CLOJURE PLUGINS
 
 " OBS: Creates panel switching mapping using ctrl+<direction>
 " It is not necessary to add it to vimrc
