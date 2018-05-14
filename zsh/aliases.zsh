@@ -24,7 +24,8 @@ alias greuse="git commit --reuse-message=HEAD@{1}"
 alias ds="docker-machine start; eval \$(docker-machine env)"
 alias dss="docker-machine stop"
 
-alias vi="vim"
-alias iv="vim"
+alias vi="nvim"
+alias iv="nvim"
+alias v="nvim"
 
 alias lr="lein repl"
