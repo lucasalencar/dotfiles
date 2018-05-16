@@ -6,8 +6,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 
 Plug 'sheerun/vim-polyglot' " Syntax highlight for may languages
+Plug 'itchyny/lightline.vim' " Minimalist status line
 Plug 'ap/vim-css-color' " Show color when writing HEX colors
-Plug 'vim-airline/vim-airline' " Status line
 Plug 'tpope/vim-eunuch' " Vim commands for the bash (Mkdir, Move, Rename, ...)
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim' " File fuzzy search and content search
@@ -87,6 +87,7 @@ set cursorline        " Highlights current line
 set colorcolumn=100   " Highlights column 80
 set clipboard=unnamed " Makes clipboard work with the one used by macos
 set mouse=a           " Enables mouse actions when using vim
+set noshowmode        " Do not show --INSERT-- when on insert mode (or any other mode indication)
 
 " Neovim disallow changing 'enconding' option after initialization
 " see https://github.com/neovim/neovim/pull/2929 for more details
@@ -108,30 +109,6 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
 
 " Remove scroll bars from macvim
 set guioptions=aAce
-
-" Unicode symbols for airline
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-let g:airline_right_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep= ''
-let g:airline_left_sep = ''
 
 ""
 "" Whitespace
@@ -383,3 +360,18 @@ let g:tmux_navigator_save_on_switch = 2
 """ vim-fireplace
 " Go to definition remap
 map gd [<C-d>
+
+""" lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'filetype' ],
+      \              [ 'fileencoding' ]]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
