@@ -107,9 +107,6 @@ set undodir=~/.vim/undodir " Sets dir to store undo history
 color smyck
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
 
-" Remove scroll bars from macvim
-set guioptions=aAce
-
 ""
 "" Whitespace
 ""
