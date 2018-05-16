@@ -30,6 +30,10 @@ Plug 'AndrewRadev/splitjoin.vim' " Split inline constructs to multiple lines and
 Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string to symbol in ruby)
 Plug 'junegunn/vim-easy-align' " Align tables in text easily
 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
+
 """ RUBY & RAILS PLUGINS
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-cucumber' " [<C-d> to find step declaration
@@ -372,3 +376,10 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
+
+""" deoplete.vim
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#disable_auto_complete = 1
+
+" Close scratch when completion is done or exit insert mode
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
