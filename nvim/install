@@ -13,7 +13,11 @@ info 'Installing Neovim'
 brew install neovim
 
 check_command 'pip'
+pip install --upgrade pip
 pip install neovim
+
+check_command 'pip3'
+pip3 install neovim
 
 check_command 'gem'
 gem install neovim
