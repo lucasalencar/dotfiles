@@ -310,6 +310,9 @@ noremap ’ :tabnext<CR>
 " ALT SHIFT + ] => next tab
 noremap ” :tabprevious<CR>
 
+" Shortcut to omnicomplete
+imap <expr><C-Space> "<C-x><C-o>"
+
 ""
 "" Plugins configuration
 ""
