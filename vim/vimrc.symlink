@@ -73,7 +73,7 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " Color schemes
 Plug 'brendonrapp/smyck-vim'
-Plug 'altercation/vim-colors-solarized'
+Plug 'rafi/awesome-vim-colorschemes'
 
 call plug#end()
 
@@ -108,8 +108,8 @@ set undodir=~/.vim/undodir " Sets dir to store undo history
 ""
 
 " Default theme configs
-color smyck
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
+color papercolor
+set background=dark
 
 ""
 "" Whitespace
