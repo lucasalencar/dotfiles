@@ -23,8 +23,12 @@ alias diff="colordiff -ybB"
 
 # Git pull and many other flags
 alias gupc="git pull --prune; gbda"
+
 # Reuse previous message that was resetted
 alias greuse="git commit --reuse-message=HEAD@{1}"
+
+# Use git log given a limited number of commits
+alias glon="git log --oneline --decorate -n"
 
 alias ds="docker-machine start; eval \$(docker-machine env)"
 alias dss="docker-machine stop"
