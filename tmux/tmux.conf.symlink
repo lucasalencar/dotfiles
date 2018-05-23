@@ -80,14 +80,6 @@ set -g @plugin 'tmux-plugins/tmux-yank'
 # https://github.com/tmux-plugins/tmux-copycat/issues/121
 # set -g @plugin 'tmux-plugins/tmux-copycat'
 
-### Allows to have a continuos session saved, even after computer restarts
-# Saves a session every 15 mins
-# * prefix + C-s => saves current tmux server
-# * prefix + C-r => restores previous tmux server
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-continuum'
-# set -g @continuum-restore 'on' # Automatic restores last saved tmux server
-
 ### Opens file selected in COPY mode
 # * o in COPY mode => opens file, pdf, doc, url
 # * C-o in COPY mode => opens file with $EDITOR
