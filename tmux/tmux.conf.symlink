@@ -85,5 +85,10 @@ set -g @plugin 'tmux-plugins/tmux-yank'
 # * C-o in COPY mode => opens file with $EDITOR
 set -g @plugin 'tmux-plugins/tmux-open'
 
+### Better defaults when dealing with mouse in tmux
+# When reaching the end of window, it exists copy-mode
+# Add mouse support to some programs that do not support (less, man)
+set -g @plugin 'nhdaly/tmux-better-mouse-mode'
+
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
