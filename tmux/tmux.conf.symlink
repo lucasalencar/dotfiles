@@ -76,9 +76,11 @@ set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'tmux-plugins/tmux-yank'
 
 ### Tool to select specific parts of console history
-# Waiting for this issue to be fixed to start using it
-# https://github.com/tmux-plugins/tmux-copycat/issues/121
-# set -g @plugin 'tmux-plugins/tmux-copycat'
+# prefix + ctrl + f => search for file path
+# prefix + ctrl + g => search for git status
+# prefix + ctrl + u => search for url
+# prefix + ctrl + d => search for digit
+set -g @plugin 'tmux-plugins/tmux-copycat'
 
 ### Opens file selected in COPY mode
 # * o in COPY mode => opens file, pdf, doc, url
