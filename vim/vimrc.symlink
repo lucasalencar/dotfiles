@@ -92,7 +92,7 @@ endif
 
 set number            " Show line numbers
 set cursorline        " Highlights current line
-set colorcolumn=100   " Highlights column 80
+set colorcolumn=100   " Highlights column 100 to avoid passing this line size
 set clipboard=unnamed " Makes clipboard work with the one used by macos
 set mouse=a           " Enables mouse actions when using vim
 set noshowmode        " Do not show --INSERT-- when on insert mode (or any other mode indication)
