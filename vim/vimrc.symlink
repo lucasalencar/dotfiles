@@ -71,6 +71,10 @@ Plug 'SevereOverfl0w/clojure-check', {'do': './install'}
 " It is not necessary to add it to vimrc
 Plug 'christoomey/vim-tmux-navigator'
 
+" When losing or gaining focus, execute some autocommands
+" Fixes some behaviors when using vim inside tmux
+Plug 'tmux-plugins/vim-tmux-focus-events'
+
 " Color schemes
 Plug 'brendonrapp/smyck-vim'
 Plug 'rafi/awesome-vim-colorschemes'
@@ -92,6 +96,7 @@ set colorcolumn=100   " Highlights column 80
 set clipboard=unnamed " Makes clipboard work with the one used by macos
 set mouse=a           " Enables mouse actions when using vim
 set noshowmode        " Do not show --INSERT-- when on insert mode (or any other mode indication)
+set autoread          " Autoreads the file from disk when it is changed outside vim
 
 " Neovim disallow changing 'enconding' option after initialization
 " see https://github.com/neovim/neovim/pull/2929 for more details
