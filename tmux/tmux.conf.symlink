@@ -1,9 +1,10 @@
 set -g prefix ` # Change prefix key to backtick (`)
-bind r source-file ~/.tmux.conf # Set a Ctrl-b shortcut for reloading your tmux config
+bind r source-file ~/.tmux.conf # Set a shortcut for reloading your tmux config
 
 ### Set alternate binding for clearing screen
 # ctrl-l is used for switching between vim+tmux panels
 bind C-l send-keys 'C-l'
+# ctrl-k clears the current history
 bind C-k send-keys -R \; clear-history
 
 set-option -g default-terminal "screen-256color" # Set colors
