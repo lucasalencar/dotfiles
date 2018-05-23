@@ -1,5 +1,4 @@
 set -g prefix ` # Change prefix key to backtick (`)
-bind r source-file ~/.tmux.conf # Set a shortcut for reloading your tmux config
 
 ### Set alternate binding for clearing screen
 # ctrl-l is used for switching between vim+tmux panels
@@ -7,10 +6,7 @@ bind C-l send-keys 'C-l'
 # ctrl-k clears the current history
 bind C-k send-keys -R \; clear-history
 
-set-option -g default-terminal "screen-256color" # Set colors
-
 ### Setup status bar
-# set -g status-utf8 on
 set-window-option -g status-left " #S "
 set-window-option -g status-left-fg black
 set-window-option -g status-left-bg white
@@ -65,6 +61,7 @@ set -g @plugin 'tmux-plugins/tpm'
 # * reattach-to-user-namespace
 # * unbind prefix when not C-b and prefix + prefix backup
 # * prefix + prefix prints prefix to command line (backup)
+# * prefix + shift + R reloads the tmux.conf file
 set -g @plugin 'tmux-plugins/tmux-sensible'
 
 ### Setup mapping for switching between panels using ctrl+<direction>
