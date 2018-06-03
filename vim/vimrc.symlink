@@ -324,15 +324,21 @@ imap <expr><C-Space> "<C-x><C-o>"
 ""
 
 """ FZF fuzzy search
+" <CTRL-P> to find versioned files
 noremap <C-p> :GFiles<CR>
 inoremap <C-p> <Esc>:GFiles<CR>
 
+" <ALT-P> to find through all files inside directory
 noremap π :Files<CR>
 inoremap π <Esc>:Files<CR>
 
-""" Ag
 " <ALT-SHIFT-F> to find the whole project
-map Ï :Ag<space>
+" map Ï :Ag<space>
+" <Leader-F> to open Ag command
+noremap <Leader>f :Ag<space>
+" <Leader-SHIFT-F> to open Ag command with current word selected
+nnoremap <silent> <Leader>F :Ag <C-R><C-W><CR>
+vnoremap <silent> <Leader>F y:Ag <C-R>"<CR>
 
 """ NERD plugins
 " Maps to comment single lines easily
@@ -376,15 +382,20 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'filetype' ],
       \              [ 'fileencoding' ]]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'fugitive#head',
+      \   'relativepath': 'LightLineFilename'
       \ },
       \ }
+
+function! LightLineFilename()
+  return expand('%')
+endfunction
 
 """ deoplete.vim
 let g:deoplete#enable_at_startup = 1
