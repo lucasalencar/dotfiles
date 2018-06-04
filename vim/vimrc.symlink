@@ -65,6 +65,7 @@ Plug 'gregspurrier/vim-midje'
 
 " Add lein eastwood and kibit checks to vim (integrates with Neomake)
 Plug 'SevereOverfl0w/clojure-check', {'do': './install'}
+Plug 'guns/vim-slamhound'
 """ end CLOJURE PLUGINS
 
 " OBS: Creates panel switching mapping using ctrl+<direction>
