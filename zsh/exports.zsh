@@ -9,4 +9,4 @@ export PATH=$PATH:$GOPATH/bin
 export EDITOR="nvim"
 
 # Uses anaconda first for python
-export PATH=$HOME/anaconda3/bin:"$PATH"
+export PATH=/usr/local/anaconda3/bin:"$PATH"

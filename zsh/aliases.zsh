@@ -3,11 +3,12 @@ alias la='ls -lAh'
 
 # Specific update aliases
 alias update_brew="brew update; brew upgrade; brew cleanup"
+alias update_brew_cask="brew cask upgrade; brew cask cleanup"
 alias update_vim_plugins="vim +PlugUpdate +PlugClean! +qall"
 alias update_tmux="$HOME/.tmux/plugins/tpm/bin/update_plugins all; $HOME/.tmux/plugins/tpm/bin/clean_plugins"
 
 # Update every system that is interesting for the command line
-alias update="upgrade_oh_my_zsh; update_brew; update_vim_plugins; update_tmux"
+alias update="upgrade_oh_my_zsh; update_brew; update_brew_cask; update_vim_plugins; update_tmux"
 
 alias reload!='. ~/.zshrc'
 
