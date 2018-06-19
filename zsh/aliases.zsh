@@ -23,7 +23,7 @@ alias dotfiles="cd $HOME/.dotfiles; $EDITOR $HOME/.dotfiles"
 alias diff="colordiff -ybB"
 
 # Git pull and many other flags
-alias gupc="git pull --prune; gbda"
+alias gupc="git pull --prune --rebase; gbda"
 
 # Reuse previous message that was resetted
 alias greuse="git commit --reuse-message=HEAD@{1}"
