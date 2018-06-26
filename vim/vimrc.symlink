@@ -390,6 +390,9 @@ let g:lightline = {
       \              [ 'filetype' ],
       \              [ 'fileencoding' ]]
       \ },
+      \ 'inactive': {
+      \   'left': [ ['relativepath'] ]
+      \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
       \   'relativepath': 'LightLineFilename'
