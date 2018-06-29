@@ -257,8 +257,8 @@ nmap <silent> \[ :set invwrap<CR>:set wrap?<CR>
 " Toggle hlsearch with <leader>hs
 nmap \] :set hlsearch! hlsearch?<CR>
 
-" find merge conflict markers
-nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+" find git merge conflict markers
+nmap <silent> <leader>gc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 " Map the arrow keys to be based on display lines, not physical lines
 map <Down> gj
