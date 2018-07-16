@@ -23,7 +23,8 @@ Plug 'tpope/vim-unimpaired' " https://github.com/tpope/vim-unimpaired/blob/maste
 Plug 'tpope/vim-repeat' " Repeat commands from plugins with .
 Plug 'bronson/vim-trailing-whitespace' " Remove trailing whitespace
 Plug 'neomake/neomake' " Run linters and show warinings
-Plug 'tpope/vim-fugitive' " Git wrapper
+Plug 'tpope/vim-fugitive' " Git wrapper for vim
+Plug 'tpope/vim-rhubarb' " Git extension for vim-fugitive
 Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
 Plug 'tmhedberg/matchit' " Matches HTML tags with %
 Plug 'AndrewRadev/splitjoin.vim' " Split inline constructs to multiple lines and vice versa
