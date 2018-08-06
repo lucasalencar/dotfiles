@@ -7,7 +7,7 @@ bind C-l send-keys 'C-l'
 bind C-k send-keys -R \; clear-history
 
 ### Setup status bar
-set-window-option -g status-left " #S "
+set-window-option -g status-left " #S " # Session number indication
 set-window-option -g status-left-fg black
 set-window-option -g status-left-bg white
 
@@ -15,15 +15,20 @@ set-window-option -g status-right " %H:%M %d/%m/%y "
 set-window-option -g status-right-fg black
 set-window-option -g status-right-bg white
 
-set-window-option -g window-status-format " #I: #W "
-
-set-window-option -g window-status-current-format " #I: #W "
 set-window-option -g window-status-current-fg green
 set-window-option -g window-status-current-bg black
 
+# Show current directory in the window status name
+set -g window-status-format ' #I: #(pwd="#{pane_current_path}"; echo ${pwd####*/}) '
+set -g window-status-current-format ' #I: #(pwd="#{pane_current_path}"; echo ${pwd####*/}) '
+
+# status bar updates every 15s by default, change to 1s here
+# (this step is optional - a lower latency might have negative battery/cpu usage impacts)
+set -g status-interval 1
+
 set -g base-index 1      # Set window index to start from 1 instead of 0
 set -g mouse on          # Allow selecting panes, resizing panes and select windows with mouse
-setw -g automatic-rename # Automatically set window title to running command
+#setw -g automatic-rename # Automatically set window title to running command
 set -g @scroll-speed-num-lines-per-scroll 5 # Faster scroll
 
 ### Setup notifications when there is activity in a not active window
