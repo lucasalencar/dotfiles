@@ -39,3 +39,4 @@ alias iv="nvim"
 alias v="nvim"
 
 alias lr="lein repl"
+alias l="lein"
