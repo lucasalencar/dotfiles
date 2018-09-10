@@ -3,7 +3,7 @@ alias la='ls -lAh'
 
 # Specific update aliases
 alias update_brew="brew update; brew upgrade; brew cleanup"
-alias update_brew_cask="brew cask upgrade; brew cask cleanup"
+alias update_brew_cask="brew cask upgrade"
 alias update_vim_plugins="vim +PlugUpdate +PlugClean! +qall"
 alias update_tmux="$HOME/.tmux/plugins/tpm/bin/update_plugins all; $HOME/.tmux/plugins/tpm/bin/clean_plugins"
 
