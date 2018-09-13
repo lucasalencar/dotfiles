@@ -22,6 +22,9 @@ pip3 install neovim
 check_command 'gem'
 gem install neovim
 
+check_command 'npm'
+npm install -g neovim
+
 mkdir $HOME/.config
 ln -s $HOME/.vim $HOME/.config/nvim
 ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
