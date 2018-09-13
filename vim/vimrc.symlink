@@ -55,7 +55,6 @@ Plug 'tpope/vim-fireplace'
 " - Allow open alternativa files (:A :AT :AV)
 " - Allow to open a REPL through vim (:Console)
 Plug 'tpope/vim-salve'
-
 Plug 'tpope/vim-projectionist' " Allows to map projections to the project (dependency to vim-salve)
 
 " Turns syntax highlight dynamic, allows to hightlight project defined functions
@@ -66,7 +65,10 @@ Plug 'gregspurrier/vim-midje'
 
 " Add lein eastwood and kibit checks to vim (integrates with Neomake)
 Plug 'SevereOverfl0w/clojure-check', {'do': './install'}
-Plug 'guns/vim-slamhound'
+
+if has('nvim')
+  Plug 'snoe/clj-refactor.nvim' " Nice keybindings to refactor clojure code
+endif
 """ end CLOJURE PLUGINS
 
 " OBS: Creates panel switching mapping using ctrl+<direction>
