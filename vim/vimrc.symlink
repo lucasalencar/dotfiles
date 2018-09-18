@@ -415,3 +415,10 @@ let g:deoplete#disable_auto_complete = 1
 
 " Close scratch when completion is done or exit insert mode
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Avoid prefix rewriting when refactoring Clojure code
+" Prefix rewriting example:
+"   [service.namespace
+"     [models]
+"     [adapters]]
+let g:clj_refactor_prefix_rewriting = 0
