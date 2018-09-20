@@ -422,3 +422,6 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 "     [models]
 "     [adapters]]
 let g:clj_refactor_prefix_rewriting = 0
+
+" Clojure indent keywords with 2 spaces (special cases)
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^ns']
