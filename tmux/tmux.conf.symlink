@@ -53,8 +53,12 @@ bind - split-window -v -c '#{pane_current_path}'
 # Split window vertically in the same directory and swap panes (prefix + _)
 bind _ split-window -v -c '#{pane_current_path}' \; swap-pane -U
 
+# Split window vertically to a 20% proportion (console paired with code)
+bind v split-window -v -p 20 -c '#{pane_current_path}'
 # Split window horizontally and open lein repl (NU)
-bind r split-window -v -p 20 -c '#{pane_current_path}' 'lein repl'
+bind r split-window -h -p 50 -c '#{pane_current_path}' 'lein repl'\; swap-pane -U
+# Joins lein repl with console paired with code
+bind V split-window -v -p 20 -c '#{pane_current_path}' \; split-window -h -p 50 -c '#{pane_current_path}' 'lein repl' \; swap-pane -U
 
 ### Resize panels easily using prefix + <direction>
 bind j resize-pane -D 5 # prefix + j to resize down
