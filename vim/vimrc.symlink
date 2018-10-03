@@ -424,4 +424,12 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:clj_refactor_prefix_rewriting = 0
 
 " Clojure indent keywords with 2 spaces (special cases)
+" (ns service.namespace
+"   (:require))
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^ns']
+
+" Clojure ident parameters when breaking lines with parenthesis
+" (form
+"  param1
+"  param2)
+let g:clojure_align_subforms = 1
