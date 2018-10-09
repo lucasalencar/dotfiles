@@ -7,3 +7,8 @@ fgb () {
   BRANCH=$(git branch | cut -c 3- | fzf)
   git checkout $BRANCH
 }
+
+vf () {
+  FILE=$(fzf)
+  nvim $FILE
+}
