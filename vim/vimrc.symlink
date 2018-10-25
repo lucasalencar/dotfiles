@@ -237,6 +237,11 @@ nnoremap <leader>v <C-w>v<C-w>l
 " New horizontal pane, moving to new pane
 nnoremap <leader>s <C-w>s<C-w>j
 
+" Close current panel
+nnoremap <leader>q :q<CR>
+" Close current tab
+nnoremap <leader>Q :tabc<CR>
+
 " ALT + = => Increase current split size
 map ≠ 5<C-w>>
 " ALT + - => Decrease current split size
