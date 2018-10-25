@@ -41,3 +41,5 @@ alias v="nvim"
 alias lr="lein repl"
 alias l="lein"
 alias lnt="lein nu-test"
+
+alias nupc="lein nu-test; lein lint"
