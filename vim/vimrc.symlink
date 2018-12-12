@@ -118,7 +118,7 @@ set undodir=~/.vim/undodir " Sets dir to store undo history
 ""
 
 " Default theme configs
-color papercolor
+color apprentice
 set background=dark
 
 ""
