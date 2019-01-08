@@ -57,8 +57,8 @@ Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-projectionist' " Allows to map projections to the project (dependency to vim-salve)
 
-" Turns syntax highlight dynamic, allows to hightlight project defined functions
-Plug 'guns/vim-clojure-highlight'
+" Turns syntax highlight dynamic, allows to highlight project defined functions
+"Plug 'guns/vim-clojure-highlight'
 
 Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'gregspurrier/vim-midje'
