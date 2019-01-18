@@ -52,23 +52,24 @@ Plug 'tpope/vim-dispatch' " Dispatch commands to console through vim integrated 
 " - Enables go to definition or file (gf [<C-d> mapped to gd)
 " - Allows to search for doc or source code for a command (:Doc :Source <shift-K>)
 " - It is possible to eval Clojure code inside the buffer (:Eval)
-Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 """ Support to lein projects
 " - Adds navigation to specific dirs (:Esource :Etest)
 " - Allow open alternativa files (:A :AT :AV)
 " - Allow to open a REPL through vim (:Console)
-Plug 'tpope/vim-salve'
+Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'tpope/vim-projectionist' " Allows to map projections to the project (dependency to vim-salve)
 
 " Turns syntax highlight dynamic, allows to highlight project defined functions
-"Plug 'guns/vim-clojure-highlight'
+"Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
-Plug 'guns/vim-sexp' | Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'gregspurrier/vim-midje'
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
+Plug 'gregspurrier/vim-midje', { 'for': 'clojure' }
 
 " Add lein eastwood and kibit checks to vim (integrates with Neomake)
-Plug 'SevereOverfl0w/clojure-check', {'do': './install'}
+Plug 'SevereOverfl0w/clojure-check', {'do': './install', 'for': 'clojure'}
 
 if has('nvim')
   Plug 'snoe/clj-refactor.nvim' " Nice keybindings to refactor clojure code
