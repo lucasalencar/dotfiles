@@ -15,7 +15,6 @@ Plug 'scrooloose/nerdtree' " File tree
 Plug 'scrooloose/nerdcommenter' " Plugin to add comments according to language
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'thinca/vim-visualstar' " Search for terms using * or # on Visual Mode
-Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
 Plug 'ervandew/supertab' " Complete what is being written with <tab>
 Plug 'tpope/vim-endwise' " Add end when opening block in ruby
 Plug 'tpope/vim-surround' " Easily add things surrounding selections
@@ -30,6 +29,11 @@ Plug 'tmhedberg/matchit' " Matches HTML tags with %
 Plug 'AndrewRadev/splitjoin.vim' " Split inline constructs to multiple lines and vice versa
 Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string to symbol in ruby)
 Plug 'junegunn/vim-easy-align' " Align tables in text easily
+
+" This plugin is conflicting with Clojure plugins and having unwanted
+" behavior. Removed for now, if using any other language then Clojure, enable
+" it again.
+"Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
