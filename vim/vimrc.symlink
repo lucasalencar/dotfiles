@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 " This is good to make the configurations in this file more simple
 Plug 'tpope/vim-sensible'
 
-Plug 'sheerun/vim-polyglot' " Syntax highlight for may languages
 Plug 'itchyny/lightline.vim' " Minimalist status line
 Plug 'ap/vim-css-color' " Show color when writing HEX colors
 Plug 'tpope/vim-eunuch' " Vim commands for the bash (Mkdir, Move, Rename, ...)
@@ -61,6 +60,8 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'tpope/vim-projectionist' " Allows to map projections to the project (dependency to vim-salve)
 
+" Static syntax highlight for clojure
+Plug 'lucasalencar/vim-clojure-static', { 'for': 'clojure' }
 " Turns syntax highlight dynamic, allows to highlight project defined functions
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
@@ -88,6 +89,9 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 " Color schemes
 Plug 'brendonrapp/smyck-vim'
 Plug 'rafi/awesome-vim-colorschemes'
+
+
+Plug 'sheerun/vim-polyglot' " Syntax highlight for may languages
 
 call plug#end()
 
