@@ -67,6 +67,7 @@ Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'gregspurrier/vim-midje', { 'for': 'clojure' }
+Plug 'amdt/vim-niji', { 'for': 'clojure' } " Rainbow parenthesis
 
 " Add lein eastwood and kibit checks to vim (integrates with Neomake)
 Plug 'SevereOverfl0w/clojure-check', {'do': './install', 'for': 'clojure'}
