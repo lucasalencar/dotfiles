@@ -2,6 +2,8 @@
 
 source helpers
 
+# Based on https://github.com/mathiasbynens/dotfiles
+
 info "Setup up MacOS sensible configs"
 
 # Close any open System Preferences panes, to prevent them from overriding
