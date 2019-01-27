@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source helpers
+
+# noclamshell avoids keeping computer on when using secondary display.
+# It is a script that checks if computer lid is closed to put it to sleep.
+info "Installing noclamshell"
+
+brew install pirj/homebrew-noclamshell/noclamshell
+brew services start noclamshell
+
+exit 0
