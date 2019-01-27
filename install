@@ -7,7 +7,7 @@ source helpers
 DOTFILES_ROOT=$(pwd -P)
 
 # Install some essential softwares
-packages=(osx terminal.app homebrew git zsh essentials tmux vim)
+packages=(osx terminal.app homebrew git zsh apps essentials tmux vim nvim karabiner)
 for package in "${packages[@]}"; do
   info "Setting up $package package..."
   $DOTFILES_ROOT/$package/install
