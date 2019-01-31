@@ -29,8 +29,8 @@ if test $COMPUTER_NAME; then
   sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 fi
 
-#info "Bring the shutdown button behavior back"
-#defaults write com.apple.loginwindow PowerButtonSleepsSystem -bool true
+info "Bring the shutdown button behavior back"
+defaults write com.apple.loginwindow PowerButtonSleepsSystem -bool true
 
 info "Disable sound effects on boot"
 sudo nvram SystemAudioVolume=" "
