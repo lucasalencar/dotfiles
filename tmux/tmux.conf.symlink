@@ -35,8 +35,8 @@ set -g mouse on          # Allow selecting panes, resizing panes and select wind
 set -g @scroll-speed-num-lines-per-scroll 5 # Faster scroll
 
 ### Setup notifications when there is activity in a not active window
-setw -g monitor-activity on
-set -g visual-activity on
+#setw -g monitor-activity on
+#set -g visual-activity on
 
 ### Making navigation and commands more like vim
 setw -g mode-keys vi # Use vim keys to navigate in copy mode
