@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source fzf-tmux-helpers.sh
+
+current_window=$(tmux_current_window_index)
+incremented=$((current_window + 1))
+
+selected_window=$(fzf_tmux_window_index)
+
+tmux swap-window -s $selected_window -t $incremented
+tmux move-window -r # Renumbers all windows according to order
+
+exit 0
