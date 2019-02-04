@@ -57,7 +57,10 @@ bind - split-window -v -c '#{pane_current_path}'
 bind _ split-window -v -c '#{pane_current_path}' \; swap-pane -U
 
 # Fuzzy finder to navigate through tmux windows
-bind P run-shell "tmux list-windows -F \"##I: ##{pane_current_path}\" | fzf-tmux | cut -d \":\" -f 1 | xargs tmux select-window -t"
+bind P run "fzf-tmux-select-window"
+
+# Swap selected window closer to the one you are working
+bind N run "fzf-tmux-swap-window-closer"
 
 # Split window vertically to a 20% proportion (console paired with code)
 bind v split-window -v -p 18 -c '#{pane_current_path}'
