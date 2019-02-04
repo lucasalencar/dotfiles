@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source fzf-tmux-helpers.sh
+
+fzf_tmux_window_index | xargs tmux select-window -t
+
+exit 0
