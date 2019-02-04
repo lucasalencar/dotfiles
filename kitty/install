@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source helpers
+
+check_homebrew
+
+info "Install Kitty terminal app"
+
+brew install cask kitty
+
+current_dir
+link_files $CURRENT_DIR/kitty.conf.symlink $HOME/.config/kitty/kitty.conf
+
+exit 0
