@@ -39,6 +39,8 @@ alias vi="nvim"
 alias iv="nvim"
 alias v="nvim"
 
+alias t="tmux"
+
 alias lr="lein repl"
 alias l="lein"
 alias lnt="lein nu-test"
