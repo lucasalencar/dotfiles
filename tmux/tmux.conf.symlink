@@ -41,8 +41,26 @@ set -g @scroll-speed-num-lines-per-scroll 5 # Faster scroll
 ### Making navigation and commands more like vim
 setw -g mode-keys vi # Use vim keys to navigate in copy mode
 bind-key -T copy-mode-vi 'v' send -X begin-selection # Set v to start selecting in copy mode
+
 # Not needed as far as the tmux-yank is enabled
 # bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel # Set y to copy selection in copy mode
+
+### WINDOW MANAGEMENT MAPPINGS
+
+# Fuzzy finder to navigate through tmux windows
+bind P run "fzf-tmux-select-window"
+
+# Swap selected window closer to the one you are working
+bind N run "fzf-tmux-swap-window-closer"
+
+### CLOJURE MAPPINGS
+
+# Split window vertically to a 20% proportion (console paired with code)
+bind v split-window -v -p 18 -c '#{pane_current_path}'
+# Setup panes to work with Clojure projects
+bind r split-window -v -p 18 -c '#{pane_current_path}' "pwd; lein repl" \; split-window -h -p 50 -c "#{pane_current_path}"
+
+### PANEL MANAGEMENT MAPPINGS
 
 ### Easy bindings for split windows
 unbind %
@@ -56,17 +74,6 @@ bind - split-window -v -c '#{pane_current_path}'
 # Split window vertically in the same directory and swap panes (prefix + _)
 bind _ split-window -v -c '#{pane_current_path}' \; swap-pane -U
 
-# Fuzzy finder to navigate through tmux windows
-bind P run "fzf-tmux-select-window"
-
-# Swap selected window closer to the one you are working
-bind N run "fzf-tmux-swap-window-closer"
-
-# Split window vertically to a 20% proportion (console paired with code)
-bind v split-window -v -p 18 -c '#{pane_current_path}'
-# Setup panes to work with Clojure projects
-bind r split-window -v -p 18 -c '#{pane_current_path}' "pwd; lein repl" \; split-window -h -p 50 -c "#{pane_current_path}"
-
 ### Resize panels easily using prefix + <direction>
 bind j resize-pane -D 5 # prefix + j to resize down
 bind k resize-pane -U 5 # prefix + k to resize up
@@ -78,6 +85,7 @@ bind J resize-pane -D 40 # prefix + J to resize down
 bind K resize-pane -U 40 # prefix + K to resize up
 bind H resize-pane -L 40 # prefix + H to resize left
 bind L resize-pane -R 40 # prefix + L to resize right
+
 
 #### Setup TPM (Tmux Plugin Manager)
 # List of plugins
