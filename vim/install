@@ -15,11 +15,6 @@ then
   # Create temp files folder
   mkdir -p $HOME/.vim/_backup $HOME/.vim/_temp
 
-  # Install powerline fonts
-  git clone https://github.com/powerline/fonts.git powerline-fonts
-  bash powerline-fonts/install.sh
-  rm -rf powerline-fonts
-
   vim +PlugInstall +qall
 
   info "Setting up .vimrc file"

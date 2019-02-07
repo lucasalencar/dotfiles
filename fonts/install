@@ -6,3 +6,10 @@ info "Install custom fonts"
 
 brew tap homebrew/cask-fonts
 brew cask install font-hack
+brew cask install font-droid-sans-mono-for-powerline
+brew cask install font-roboto-mono-for-powerline
+brew cask install font-menlo-for-powerline
+brew cask install font-meslo-for-powerline
+brew cask install font-dejavu-sans-mono-for-powerline
+brew cask install font-powerline-symbols
+brew cask install font-source-code-pro-for-powerline
