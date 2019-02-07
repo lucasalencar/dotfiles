@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source helpers
+
+info "Install custom fonts"
+
+brew tap homebrew/cask-fonts
+brew cask install font-hack
