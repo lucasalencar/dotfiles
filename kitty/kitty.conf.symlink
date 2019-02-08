@@ -300,6 +300,11 @@ map cmd+0         change_font_size all 0
 # Clear the terminal screen by erasing all contents
 # map cmd+k clear_terminal clear active
 
+
+# Map vim tab switch to behave as MacOS standard shortcuts
+map cmd+shift+] send_text all :tabnext\r
+map cmd+shift+[ send_text all :tabprev\r
+
 #: }}}
 
 # }}}
