@@ -10,7 +10,7 @@ ZSH_THEME="simple"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(tmux git brew rbenv gem bundler rake rails golang lein)
+plugins=(tmux git brew lein)
 
 # Activate zsh-completions
 plugins+=(zsh-completions)
