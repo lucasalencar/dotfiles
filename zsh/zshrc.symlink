@@ -14,7 +14,13 @@ plugins=(tmux git brew lein)
 
 # Activate zsh-completions
 plugins+=(zsh-completions)
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
+
+if test ! $(which kitty)
+then
+  # Completion for kitty
+  kitty + complete setup zsh | source /dev/stdin
+fi
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
