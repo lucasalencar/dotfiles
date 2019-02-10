@@ -9,7 +9,7 @@ let maplocalleader = " "
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
 imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 
-" format the entire file
+" Format entire file correcting identation
 nnoremap <leader>fef :normal! gg=G``<CR>
 
 " Some helpers to edit mode
@@ -30,7 +30,7 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :tabc<CR>
 
 " Adjust viewports to the same size
-map <Leader>= <C-w>=
+map <leader>= <C-w>=
 
 " Formats JSON files
 map <leader>j :%!python -m json.tool<CR>
