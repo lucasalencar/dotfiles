@@ -306,6 +306,11 @@ map cmd+0         change_font_size all 0
 map cmd+shift+] send_text all :tabnext\r
 map cmd+shift+[ send_text all :tabprev\r
 
+### TMUX MAPPINGS
+
+map cmd+l send_text all clear\r
+#map cmd+k send_text all clear\r\`:clear-history
+
 #: }}}
 
 # }}}
