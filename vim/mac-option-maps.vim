@@ -65,3 +65,7 @@ noremap ” :tabprevious<CR>
 map ≠ 5<C-w>>
 " ALT + - => Decrease current split size
 map – 5<C-w><
+
+" <ALT-P> to find through all files inside directory
+noremap π :Files<CR>
+inoremap π <Esc>:Files<CR>
