@@ -102,7 +102,11 @@ source $DOTFILES_ROOT/vim/sensible.vim
 source $DOTFILES_ROOT/vim/mappings.vim
 
 " Load all maps that use MacOS option-key unicode characters
-source $DOTFILES_ROOT/vim/mac-option-maps.vim
+"source $DOTFILES_ROOT/vim/mac-option-maps.vim
+
+" Load all alt-key maps
+" Use this when macos_option_as_alt for kitty is set to yes
+source $DOTFILES_ROOT/vim/alt-maps.vim
 
 source $DOTFILES_ROOT/vim/deoplete.vim
 source $DOTFILES_ROOT/vim/easyalign.vim

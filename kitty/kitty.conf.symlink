@@ -184,7 +184,7 @@ background #000000
 #: will break any Alt+key keyboard shortcuts in your terminal
 #: programs, but you can use the macOS unicode input technique.
 
-macos_option_as_alt no
+macos_option_as_alt yes
 
 #: Have kitty quit when all the top-level windows are closed. By
 #: default, kitty will stay running, even with no open windows, as is
