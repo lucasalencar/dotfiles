@@ -109,7 +109,6 @@ source $DOTFILES_ROOT/vim/easyalign.vim
 source $DOTFILES_ROOT/vim/fzf.vim
 source $DOTFILES_ROOT/vim/lightline.vim
 source $DOTFILES_ROOT/vim/neomake.vim
-source $DOTFILES_ROOT/vim/nerdcommenter.vim
 source $DOTFILES_ROOT/vim/nerdtree.vim
 source $DOTFILES_ROOT/vim/vim-clojure-static.vim
 source $DOTFILES_ROOT/vim/vim-fireplace.vim
