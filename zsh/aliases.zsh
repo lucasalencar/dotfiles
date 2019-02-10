@@ -46,3 +46,5 @@ alias l="lein"
 alias lnt="lein nu-test"
 
 alias nupc="lein nu-test; lein lint"
+
+alias gs="gst"
