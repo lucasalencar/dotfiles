@@ -80,10 +80,10 @@ bind H resize-pane -L 40 # prefix + H to resize left
 bind L resize-pane -R 40 # prefix + L to resize right
 
 
-# Split window vertically to a 20% proportion (console paired with code)
-bind v split-window -v -p 18 -c '#{pane_current_path}'
+# Split window vertically (console paired with code)
+bind v split-window -v -p 16 -c '#{pane_current_path}'
 # Setup panes to work with Clojure projects
-bind r split-window -v -p 18 -c '#{pane_current_path}' "pwd; lein repl" \; split-window -h -p 50 -c "#{pane_current_path}"
+bind r split-window -v -p 16 -c '#{pane_current_path}' "pwd; lein repl" \; split-window -h -p 50 -c "#{pane_current_path}"
 
 
 #### Setup TPM (Tmux Plugin Manager)
