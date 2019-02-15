@@ -61,6 +61,28 @@
                 "type": "basic"
               }
             ]
+          },
+          {
+            "description": "Open terminal with cmd+control+t",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "t",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open '/Applications/kitty.app'"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
           }
         ]
       },
