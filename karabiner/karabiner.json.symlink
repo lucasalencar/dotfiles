@@ -83,6 +83,28 @@
                 "type": "basic"
               }
             ]
+          },
+          {
+            "description": "Sleep mac with cmd+control+l",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "pmset sleepnow"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
           }
         ]
       },
