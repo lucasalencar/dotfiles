@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source helpers
+
+check_homebrew
+
+brew install skhd
+
+current_dir # Sets $CURRENT_DIR variable
+link_all_files $CURRENT_DIR/
+
+brew services start skhd
+
+exit 0
