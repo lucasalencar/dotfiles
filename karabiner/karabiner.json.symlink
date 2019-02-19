@@ -19,7 +19,10 @@
             "manipulators": [
               {
                 "from": {
-                  "key_code": "escape"
+                  "key_code": "escape",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
                 },
                 "to": [
                   {
