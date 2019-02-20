@@ -89,6 +89,8 @@ cmd + ctrl - t : open /Applications/Kitty.app
 # sleep mac
 cmd + ctrl - l : pmset sleepnow
 
+# open Activity Monitor.app
+cmd + ctrl - m : open /Applications/Utilities/Activity\ Monitor.app
 
 
 ##### CHUNKWM MAPPINGS
