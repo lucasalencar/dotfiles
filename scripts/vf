@@ -1,6 +1,10 @@
 #!/bin/bash
 
 FILE=$(fzf)
-nvim $FILE
+
+if [ $FILE ]
+then
+  nvim $FILE
+fi
 
 exit 0
