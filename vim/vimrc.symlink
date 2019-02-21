@@ -115,5 +115,5 @@ source $DOTFILES_ROOT/vim/lightline.vim
 source $DOTFILES_ROOT/vim/neomake.vim
 source $DOTFILES_ROOT/vim/nerdtree.vim
 source $DOTFILES_ROOT/vim/vim-clojure-static.vim
-source $DOTFILES_ROOT/vim/vim-fireplace.vim
 source $DOTFILES_ROOT/vim/vim-tmux-navigator.vim
+source $DOTFILES_ROOT/vim/clojure.vim
