@@ -83,14 +83,13 @@
 #     "finder"      : false
 # ]
 
-# open Kitty.app terminal
+# Open commonly used apps with easy single map
 cmd + ctrl - t : open /Applications/Kitty.app
+cmd + ctrl - m : open /Applications/Utilities/Activity\ Monitor.app
+cmd + ctrl - c : open /Applications/Google\ Chrome.app
 
 # sleep mac
 cmd + ctrl - l : pmset sleepnow
-
-# open Activity Monitor.app
-cmd + ctrl - m : open /Applications/Utilities/Activity\ Monitor.app
 
 
 ##### CHUNKWM MAPPINGS
