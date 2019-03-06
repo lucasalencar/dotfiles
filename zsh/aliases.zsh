@@ -48,3 +48,4 @@ alias lnt="lein nu-test"
 alias nupc="lein nu-test; lein lint"
 
 alias gs="gst"
+alias gdst="git diff --stat HEAD master" # Show number of lines changed for current branch
