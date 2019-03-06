@@ -86,7 +86,7 @@
 # Open commonly used apps with easy single map
 cmd + ctrl - t : open /Applications/Kitty.app
 cmd + ctrl - m : open /Applications/Utilities/Activity\ Monitor.app
-cmd + ctrl - c : open /Applications/Google\ Chrome.app
+cmd + ctrl - b : open /Applications/Brave\ Browser.app
 
 # sleep mac
 cmd + ctrl - l : pmset sleepnow
