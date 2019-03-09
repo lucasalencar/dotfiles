@@ -13,6 +13,8 @@ then
   CLOJURE_ROOT="$(cd "$(dirname "$0")" && pwd)"
 
   link_files $CLOJURE_ROOT/lein/profiles.clj $HOME/.lein/profiles.clj
+
+  brew install candid82/brew/joker
 fi
 
 exit 0
