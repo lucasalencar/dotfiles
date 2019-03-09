@@ -15,16 +15,11 @@ Plug 'scrooloose/nerdcommenter' " Plugin to add comments according to language
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'thinca/vim-visualstar' " Search for terms using * or # on Visual Mode
 Plug 'ervandew/supertab' " Complete what is being written with <tab>
-Plug 'tpope/vim-endwise' " Add end when opening block in ruby
 Plug 'tpope/vim-surround' " Easily add things surrounding selections
 Plug 'tpope/vim-unimpaired' " https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt
 Plug 'tpope/vim-repeat' " Repeat commands from plugins with .
 Plug 'bronson/vim-trailing-whitespace' " Remove trailing whitespace
-Plug 'tpope/vim-fugitive' " Git wrapper for vim
-Plug 'tpope/vim-rhubarb' " Git extension for vim-fugitive
-Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
 Plug 'tmhedberg/matchit' " Matches HTML tags with %
-Plug 'AndrewRadev/splitjoin.vim' " Split inline constructs to multiple lines and vice versa
 Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string to symbol in ruby)
 Plug 'junegunn/vim-easy-align' " Align tables in text easily
 
@@ -37,10 +32,17 @@ if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 
+""" GIT
+Plug 'tpope/vim-fugitive' " Git wrapper for vim
+Plug 'tpope/vim-rhubarb' " Git extension for vim-fugitive
+Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
+""" GIT
+
 """ RUBY & RAILS PLUGINS
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-cucumber' " [<C-d> to find step declaration
-Plug 'sunaku/vim-ruby-minitest' " Syntax highlight
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'sunaku/vim-ruby-minitest', { 'for': 'ruby' } " Syntax highlight
+Plug 'tpope/vim-endwise', { 'for': 'ruby' } " Add end when opening block in ruby
+Plug 'AndrewRadev/splitjoin.vim', { 'for': 'ruby' } " Split inline constructs to multiple lines and vice versa
 """ end RUBY & RAILS PLUGINS
 
 """ CLOJURE PLUGINS
