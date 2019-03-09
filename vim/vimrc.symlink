@@ -20,7 +20,6 @@ Plug 'tpope/vim-surround' " Easily add things surrounding selections
 Plug 'tpope/vim-unimpaired' " https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt
 Plug 'tpope/vim-repeat' " Repeat commands from plugins with .
 Plug 'bronson/vim-trailing-whitespace' " Remove trailing whitespace
-Plug 'neomake/neomake' " Run linters and show warinings
 Plug 'tpope/vim-fugitive' " Git wrapper for vim
 Plug 'tpope/vim-rhubarb' " Git extension for vim-fugitive
 Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
@@ -70,9 +69,6 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': 'clojure' }
 Plug 'gregspurrier/vim-midje', { 'for': 'clojure' }
 Plug 'amdt/vim-niji', { 'for': 'clojure' } " Rainbow parenthesis
 
-" Add lein eastwood and kibit checks to vim (integrates with Neomake)
-Plug 'SevereOverfl0w/clojure-check', {'do': './install', 'for': 'clojure'}
-
 if has('nvim')
   Plug 'snoe/clj-refactor.nvim' " Nice keybindings to refactor clojure code
 endif
@@ -112,7 +108,6 @@ source $DOTFILES_ROOT/vim/deoplete.vim
 source $DOTFILES_ROOT/vim/easyalign.vim
 source $DOTFILES_ROOT/vim/fzf.vim
 source $DOTFILES_ROOT/vim/lightline.vim
-source $DOTFILES_ROOT/vim/neomake.vim
 source $DOTFILES_ROOT/vim/nerdtree.vim
 source $DOTFILES_ROOT/vim/vim-clojure-static.vim
 source $DOTFILES_ROOT/vim/vim-tmux-navigator.vim
