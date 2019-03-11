@@ -12,3 +12,8 @@ map cP :%Eval<CR>
 " Map to vertically align maps on Clojure
 " This is not a flawless map, but will help most of the times
 nmap crmm :startinsert<CR><CR><ESC>w==gaif<SPACE>kJ==
+
+""" clojure refactor
+
+" Order NS and avoid breaking lines that are too long
+nmap cn :%s/\(\[.*\)\n *\(:as\)\n *\(.*\]\)/\1 \2 \3/g<CR>
