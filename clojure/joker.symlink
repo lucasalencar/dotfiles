@@ -1,0 +1,5 @@
+; vim: filetype=clojure
+{:known-macros [schema.core/defschema
+                schema.core/defn
+                schema.core/with-fn-validation
+                common-core.exceptions/try-type]}
