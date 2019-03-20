@@ -2,4 +2,5 @@
 {:known-macros [schema.core/defschema
                 schema.core/defn
                 schema.core/with-fn-validation
-                common-core.exceptions/try-type]}
+                common-core.exceptions/try-type
+                state-flow.core/flow]}
