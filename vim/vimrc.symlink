@@ -47,8 +47,6 @@ Plug 'AndrewRadev/splitjoin.vim', { 'for': 'ruby' } " Split inline constructs to
 """ end RUBY & RAILS PLUGINS
 
 """ CLOJURE PLUGINS
-Plug 'tpope/vim-dispatch' " Dispatch commands to console through vim integrated with tmux
-
 " Clojure integration with nREPL
 " - Enables go to definition or file (gf [<C-d> mapped to gd)
 " - Allows to search for doc or source code for a command (:Doc :Source <shift-K>)
