@@ -2,5 +2,12 @@
 
 ;; Place your private configuration here
 
-(after! ivy
-        (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))))
+(add-hook! clojure-mode #'lispyville-mode)
+
+(after! lispyville
+        (lispyville-set-key-theme
+          '(additional
+             additional-movement
+             commentary
+             operators
+             slurp/barf-cp)))
