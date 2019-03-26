@@ -7,6 +7,7 @@ alias update_brew_cask="brew cask upgrade"
 alias update_vim_plugins="nvim +PlugUpgrade +PlugUpdate +PlugClean! +qall"
 alias update_dotfiles="cd $HOME/.dotfiles; git pull --rebase; cd -"
 alias update_tmux="$HOME/.tmux/plugins/tpm/bin/update_plugins all; $HOME/.tmux/plugins/tpm/bin/clean_plugins"
+alias update_emacs="doom -y upgrade; doom -y update; doom -y refresh"
 
 # Update every system that is interesting for the command line
 alias update="upgrade_oh_my_zsh; update_brew; update_brew_cask; update_vim_plugins; update_tmux"
