@@ -3,10 +3,14 @@ source helpers
 
 check_homebrew
 
-brew tap d12frosted/emacs-plus
-brew install emacs-plus
-ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications
+brew install emacs
 
-git clone https://github.com/syl20bnr/spacemacs $HOME/.emacs.d
+git clone --branch develop https://github.com/hlissner/doom-emacs ~/.emacs.d
+
+current_dir
+ln -sf $CURRENT_DIR/doom.d.symlink $HOME/.doom.d
+
+EMACS_D="$HOME/.emacs.d"
+$EMACS_D/bin/doom refresh
 
 exit 0
