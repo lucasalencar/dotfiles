@@ -4,6 +4,6 @@ source helpers
 check_homebrew
 
 info 'Installing essential command line tools'
-brew install coreutils htop ag tree fzf colordiff
+brew install coreutils htop ag tree fzf colordiff fd
 
 exit 0
