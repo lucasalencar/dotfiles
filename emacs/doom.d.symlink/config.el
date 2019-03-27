@@ -2,6 +2,8 @@
 
 ;; Place your private configuration here
 
+(setq doom-theme 'doom-nord)
+
 ;; Mouse interaction
 (when (eq window-system nil)
     (xterm-mouse-mode t))
