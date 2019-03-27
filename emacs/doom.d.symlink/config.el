@@ -16,7 +16,7 @@
              operators
              slurp/barf-cp)))
 
-; Add C-letters to navigate through emacs panes
+; Add C-letters to navigate through emacs+tmux panes
 ; https://blog.kdheepak.com/emacsclient-and-tmux-split-navigation.html
 (defun windmove-emacs-or-tmux(dir tmux-cmd)
   (interactive)
