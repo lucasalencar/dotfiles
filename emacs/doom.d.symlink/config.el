@@ -2,6 +2,10 @@
 
 ;; Place your private configuration here
 
+;; Mouse interaction
+(when (eq window-system nil)
+    (xterm-mouse-mode t))
+
 (add-hook! clojure-mode #'lispyville-mode)
 
 (after! lispyville
