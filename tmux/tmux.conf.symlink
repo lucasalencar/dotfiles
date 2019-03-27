@@ -104,7 +104,13 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 
 ### Setup mapping for switching between panels using ctrl+<direction>
 # It is not necessary to set it in configuration
-set -g @plugin 'christoomey/vim-tmux-navigator'
+#set -g @plugin 'christoomey/vim-tmux-navigator'
+
+# Use directly keybindings to make tmux-navigation work with emacs navigation
+bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys C-h) || tmux select-pane -L"
+bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys C-j) || tmux select-pane -D"
+bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys C-k) || tmux select-pane -U"
+bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys C-l) || tmux select-pane -R"
 
 ### Enhance copying text in tmux
 # prefix + y in NORMAL mode => copy current command line
