@@ -11,7 +11,6 @@
 
 ;; Lispyville
 
-(add-hook! lispy-mode-hook #'lispyville-mode)
 (add-hook! clojure-mode #'lispyville-mode)
 
 (after! lispyville
@@ -54,3 +53,14 @@
 
 ;; evil-tabs
 (global-evil-tabs-mode t)
+
+
+;; cider
+
+(add-hook! cider-mode
+           (evil-define-key 'normal cider-mode-map
+                            "gd" #'cider-find-var)
+           (evil-define-key 'normal cider-mode-map
+                            "cP" #'cider-eval-buffer)
+           (evil-define-key 'normal cider-mode-map
+                            "cpp" #'cider-eval-sexp-at-point))
