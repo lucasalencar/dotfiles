@@ -6,15 +6,29 @@
 (when (eq window-system nil)
     (xterm-mouse-mode t))
 
+
+;; Lispyville
+
+(add-hook! lispy-mode-hook #'lispyville-mode)
 (add-hook! clojure-mode #'lispyville-mode)
 
 (after! lispyville
         (lispyville-set-key-theme
           '(additional
-             additional-movement
              commentary
              operators
-             slurp/barf-cp)))
+             slurp/barf-cp))
+        (evil-define-key 'normal lispyville-mode-map
+                         "(" #'lispyville-left)
+        (evil-define-key 'visual lispyville-mode-map
+                         "(" #'lispyville-left)
+        (evil-define-key 'normal lispyville-mode-map
+                         ")" #'lispyville-right)
+        (evil-define-key 'visual lispyville-mode-map
+                         ")" #'lispyville-right))
+
+
+;; emacs + tmux navigation
 
 ; Add C-letters to navigate through emacs+tmux panes
 ; https://blog.kdheepak.com/emacsclient-and-tmux-split-navigation.html
