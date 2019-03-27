@@ -50,3 +50,7 @@
    '(lambda () (interactive) (windmove-emacs-or-tmux "right" "tmux select-pane -R")))
 (global-set-key (kbd "C-h")
    '(lambda () (interactive) (windmove-emacs-or-tmux "left"  "tmux select-pane -L")))
+
+
+;; evil-tabs
+(global-evil-tabs-mode t)
