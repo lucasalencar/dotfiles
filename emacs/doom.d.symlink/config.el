@@ -2,7 +2,11 @@
 
 ;; Place your private configuration here
 
+;; Theme
 (setq doom-theme 'doom-nord)
+
+;; Disable confirmation message on exit
+(setq confirm-kill-emacs nil)
 
 ;; Mouse interaction
 (when (eq window-system nil)
