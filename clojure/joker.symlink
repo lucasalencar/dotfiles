@@ -3,4 +3,5 @@
                 schema.core/defn
                 schema.core/with-fn-validation
                 common-core.exceptions/try-type
-                state-flow.core/flow]}
+                state-flow.core/flow
+                common-datomic.test-helpers/let-entities]}
