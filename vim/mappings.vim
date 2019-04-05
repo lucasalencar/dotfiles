@@ -39,7 +39,7 @@ map <leader>j :%!python -m json.tool<CR>
 map <leader>h :%s/<[^>]*>/\r&\r/g<CR>:g/^$/d<CR>:normal! gg=G``<CR>
 
 " Formats inline EDN files (sort of, it breaks line when comma is found)
-map <leader>ed :%s/,/&\r/g<CR>:normal! gg=G``<CR>
+map <leader>ed :%s/,/&\r/g<CR>:%s/} {/}\r{/g<CR>:%s/,//g<CR>:normal! gg=G``<CR>
 
 " Swap two words
 nmap <silent> gw :s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR>`'
