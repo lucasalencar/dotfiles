@@ -17,3 +17,6 @@ autocmd FileType clojure nmap crmm :startinsert<CR><CR><ESC>w==gaif<SPACE>kJ==
 
 " Order NS and avoid breaking lines that are too long
 autocmd FileType clojure nmap cn :%s/\(\[.*\)\n *\(:as\)\n *\(.*\]\)/\1 \2 \3/g<CR>
+
+autocmd FileType clojure nmap crmv >e>eB<e
+autocmd FileType clojure nmap crmk >e>egE<ew>e>egE<e
