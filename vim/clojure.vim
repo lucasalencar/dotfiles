@@ -1,17 +1,41 @@
 """ vim-fireplace
 
 " Go to definition remap
-autocmd FileType clojure map gd [<C-d>
+au FileType clojure map gd [<C-d>
+
 " Go to definition on a new tab
-autocmd FileType clojure map gD <C-w>gd
+au FileType clojure map gD <C-w>gd
+
 " Eval the whole file
-autocmd FileType clojure map cP :%Eval<CR>
+au FileType clojure map cP :%Eval<CR>
+
+"
+""" vim-fireplace running clojure.test
+"
+
+" Run all tests in the current buffer (valid only for clojure.test)
+au FileType clojure map cpt :Require<CR>:Eval (clojure.test/run-tests)<CR>
+
+
+function! TestToplevel() abort
+    "Eval the toplevel clojure form (a deftest) and then test-var the result."
+    normal! ^
+    let line1 = searchpair('(','',')', 'bcrn', g:fireplace#skip)
+    let line2 = searchpair('(','',')', 'rn', g:fireplace#skip)
+    let expr = join(getline(line1, line2), "\n")
+    let var = fireplace#session_eval(expr)
+    let result = fireplace#echo_session_eval("(clojure.test/test-var " . var . ")")
+    return result
+endfunction
+au Filetype clojure nmap cpT :call TestToplevel()<cr>
+
 
 """ easyalign
 
 " Map to vertically align maps on Clojure
 " This is not a flawless map, but will help most of the times
 autocmd FileType clojure nmap crmm :startinsert<CR><CR><ESC>w==gaif<SPACE>kJ==
+
 
 """ clojure refactor
 
