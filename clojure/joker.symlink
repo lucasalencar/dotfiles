@@ -4,4 +4,8 @@
                 schema.core/with-fn-validation
                 common-core.exceptions/try-type
                 state-flow.core/flow
-                common-datomic.test-helpers/let-entities]}
+                common-datomic.test-helpers/let-entities
+                clojure.test/deftest]
+
+ :ignored-unused-namespaces [clojure.test
+                             midje.sweet]}
