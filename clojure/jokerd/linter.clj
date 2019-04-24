@@ -1,0 +1,2 @@
+(declare deftest)
+(declare is)
