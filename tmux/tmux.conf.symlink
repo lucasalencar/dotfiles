@@ -11,15 +11,14 @@ bind C-k send-keys -R \; clear-history
 
 ### Setup status bar
 set-window-option -g status-left " #S " # Session number indication
-set-window-option -g status-left-fg black
-set-window-option -g status-left-bg white
-
 set-window-option -g status-right " %H:%M %d/%m/%y "
-set-window-option -g status-right-fg black
-set-window-option -g status-right-bg white
 
-set-window-option -g window-status-current-fg green
-set-window-option -g window-status-current-bg black
+set-option -g status-left-style "fg=black,bg=white"
+set-option -g status-right-style "fg=black,bg=white"
+set-option -g status-style "bg=green"
+set-window-option -g window-status-current-style "bg=black,fg=green,bold"
+set-window-option -g window-status-style "fg=black,bg=green,dim"
+set-window-option -g window-status-activity-style "bg=yellow"
 
 # Show current directory in the window status name
 set -g window-status-format ' #I: #(pwd="#{pane_current_path}"; echo ${pwd####*/}) '
