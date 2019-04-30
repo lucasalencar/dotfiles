@@ -5,7 +5,8 @@
                 common-core.exceptions/try-type
                 state-flow.core/flow
                 common-datomic.test-helpers/let-entities
-                clojure.test/deftest]
+                clojure.test/deftest
+                postman.aux.init/defflow]
 
  :ignored-unused-namespaces [clojure.test
                              midje.sweet]}
