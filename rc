@@ -4,7 +4,6 @@
 while read package; do
   if [ -f $DOTFILES_ROOT/$package/rc ]
   then
-    echo $DOTFILES_ROOT/$package/rc
     source $DOTFILES_ROOT/$package/rc
   fi
 done < "$DOTFILES_ROOT/packages"
