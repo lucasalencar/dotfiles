@@ -8,8 +8,11 @@ DOTFILES_ROOT=$(pwd -P)
 
 # Look for packages file to know which packages are going to be installed
 while read package; do
-  info "Setting up $package package..."
-  $DOTFILES_ROOT/$package/install
+  if [ -f $DOTFILES_ROOT/$package/install ]
+  then
+    info "Setting up $package package..."
+    $DOTFILES_ROOT/$package/install
+  fi
 done < "$DOTFILES_ROOT/packages"
 unset package
 
