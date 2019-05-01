@@ -10,7 +10,7 @@ alias update_tmux="$HOME/.tmux/plugins/tpm/bin/install_plugins; $HOME/.tmux/plug
 alias update_emacs="doom -y upgrade; doom -y update; doom -y refresh"
 
 # Update every system that is interesting for the command line
-alias update="upgrade_oh_my_zsh; update_brew; update_brew_cask; update_vim_plugins; update_tmux"
+alias update="upgrade_oh_my_zsh; update_brew; update_brew_cask; update_dotfiles; update_vim_plugins; update_tmux"
 
 alias reload!='. ~/.zshrc'
 
