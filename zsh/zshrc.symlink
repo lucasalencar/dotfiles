@@ -6,7 +6,9 @@ export DOTFILES_ROOT=$HOME/.dotfiles
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="simple"
+#ZSH_THEME="simple"
+ZSH_THEME="kolo"
+#ZSH_THEME="lambda"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
