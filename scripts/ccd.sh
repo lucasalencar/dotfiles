@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ccd () {
   if [ ! $CODE_HOME ]
   then
