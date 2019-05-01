@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source helpers
+
+check_homebrew
+brew install fzf
+
+exit 0
