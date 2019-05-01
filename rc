@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Source all rc files found inside packages
+for file in $DOTFILES_ROOT/*/rc; do
+  source $file
+done
