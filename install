@@ -6,13 +6,12 @@ source helpers
 
 DOTFILES_ROOT=$(pwd -P)
 
-# Install some essential softwares
-packages=(macos terminal.app homebrew git zsh apps essentials tmux vim nvim karabiner)
-for package in "${packages[@]}"; do
+# Look for packages file to know which packages are going to be installed
+while read package; do
   info "Setting up $package package..."
   $DOTFILES_ROOT/$package/install
-done
-unset file
+done < "$DOTFILES_ROOT/packages"
+unset package
 
 success 'All done! :D'
 
