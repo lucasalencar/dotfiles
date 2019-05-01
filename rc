@@ -2,9 +2,6 @@
 
 # Source all rc files found inside packages that are being used
 while read package; do
-  if [ -f $DOTFILES_ROOT/$package/rc ]
-  then
-    source $DOTFILES_ROOT/$package/rc
-  fi
+  [ -f $DOTFILES_ROOT/$package/rc ] && source $DOTFILES_ROOT/$package/rc
 done < "$DOTFILES_ROOT/packages"
 unset package
