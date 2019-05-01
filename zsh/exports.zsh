@@ -15,3 +15,5 @@ export LANG="en_US.UTF-8"
 
 # emacs binaries
 export PATH=$HOME/.emacs.d/bin:$PATH
+
+export CODE_HOME="$HOME/code/"
