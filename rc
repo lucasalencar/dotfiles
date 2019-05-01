@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# Source all rc files found inside packages
-for file in $DOTFILES_ROOT/*/rc; do
-  source $file
-done
+# Source all rc files found inside packages that are being used
+while read package; do
+  if [ -f $DOTFILES_ROOT/$package/rc ]
+  then
+    echo $DOTFILES_ROOT/$package/rc
+    source $DOTFILES_ROOT/$package/rc
+  fi
+done < "$DOTFILES_ROOT/packages"
+unset package
