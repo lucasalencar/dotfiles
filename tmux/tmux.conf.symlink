@@ -53,6 +53,9 @@ bind P run "fzf-tmux-select-window"
 # Swap selected window closer to the one you are working
 bind N run "fzf-tmux-swap-window-closer"
 
+# Create a new window for selected code project
+bind C run "fzf-tmux-new-code-window"
+
 ### PANEL MANAGEMENT MAPPINGS
 
 ### Easy bindings for split windows
