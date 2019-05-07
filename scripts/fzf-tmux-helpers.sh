@@ -12,3 +12,7 @@ tmux_current_window_index () {
   echo $current_index
   return $current_index
 }
+
+fzf_tmux_code_dir () {
+  ls $CODE_HOME | fzf-tmux
+}
