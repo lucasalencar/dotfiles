@@ -23,6 +23,7 @@ Plug 'tmhedberg/matchit' " Matches HTML tags with %
 Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string to symbol in ruby)
 Plug 'junegunn/vim-easy-align' " Align tables in text easily
 Plug 'w0rp/ale' " Linters
+Plug 'simeji/winresizer' " Move and resize vim panels easily (C-e and arrow-letters keys)
 
 " This plugin is conflicting with Clojure plugins and having unwanted
 " behavior. Removed for now, if using any other language then Clojure, enable
