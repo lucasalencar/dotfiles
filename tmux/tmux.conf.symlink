@@ -3,6 +3,9 @@ set -g prefix ` # Change prefix key to backtick (`)
 # Set zsh as default shell
 set-option -g default-shell /bin/zsh
 
+# Renumber windows when some of them are closed
+set-option -g renumber-windows on
+
 ### Set alternate binding for clearing screen
 # ctrl-l is used for switching between vim+tmux panels
 bind C-l send-keys 'C-l'
