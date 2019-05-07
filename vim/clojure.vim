@@ -6,28 +6,20 @@ au FileType clojure map gd [<C-d>
 " Go to definition on a new tab
 au FileType clojure map gD <C-w>gd
 
+" Find symbol under cursor usage
+au FileType clojure map gu :ReplantFindSymbol<CR>
+
 " Eval the whole file
 au FileType clojure map cP :%Eval<CR>
-
-"
-""" vim-fireplace running clojure.test
-"
 
 " Run all tests in the current buffer (valid only for clojure.test)
 au FileType clojure map cpt :Require<CR>:Eval (clojure.test/run-tests)<CR>
 
+" Run all project tests
+au FileType clojure map cpT :ReplantTestProject<CR>
 
-function! TestToplevel() abort
-    "Eval the toplevel clojure form (a deftest) and then test-var the result."
-    normal! ^
-    let line1 = searchpair('(','',')', 'bcrn', g:fireplace#skip)
-    let line2 = searchpair('(','',')', 'rn', g:fireplace#skip)
-    let expr = join(getline(line1, line2), "\n")
-    let var = fireplace#session_eval(expr)
-    let result = fireplace#echo_session_eval("(clojure.test/test-var " . var . ")")
-    return result
-endfunction
-au Filetype clojure nmap cpT :call TestToplevel()<cr>
+" Rerun only failed project tests
+au FileType clojure map cpR :ReplantRetestProject<CR>
 
 
 """ easyalign
