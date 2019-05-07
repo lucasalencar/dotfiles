@@ -1,24 +1,22 @@
-""" vim-fireplace
-
-" Go to definition remap
+" Go to definition remap (fireplace)
 au FileType clojure map gd [<C-d>
 
-" Go to definition on a new tab
+" Go to definition on a new tab (fireplace)
 au FileType clojure map gD <C-w>gd
 
-" Find symbol under cursor usage
+" Find symbol under cursor usage (replant)
 au FileType clojure map gu :ReplantFindSymbol<CR>
 
-" Eval the whole file
+" Eval the whole file (fireplace)
 au FileType clojure map cP :%Eval<CR>
 
-" Run all tests in the current buffer (valid only for clojure.test)
+" Run all tests in the current buffer (valid only for clojure.test) (fireplace)
 au FileType clojure map cpt :Require<CR>:Eval (clojure.test/run-tests)<CR>
 
-" Run all project tests
+" Run all project tests (replant)
 au FileType clojure map cpT :ReplantTestProject<CR>
 
-" Rerun only failed project tests
+" Rerun only failed project tests (replant)
 au FileType clojure map cpR :ReplantRetestProject<CR>
 
 
