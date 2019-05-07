@@ -53,6 +53,7 @@ Plug 'AndrewRadev/splitjoin.vim', { 'for': 'ruby' } " Split inline constructs to
 " - Allows to search for doc or source code for a command (:Doc :Source <shift-K>)
 " - It is possible to eval Clojure code inside the buffer (:Eval)
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'SevereOverfl0w/vim-replant', { 'do': ':UpdateRemotePlugins' }
 
 """ Support to lein projects
 " - Adds navigation to specific dirs (:Esource :Etest)
