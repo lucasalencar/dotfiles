@@ -53,7 +53,10 @@ Plug 'AndrewRadev/splitjoin.vim', { 'for': 'ruby' } " Split inline constructs to
 " - Allows to search for doc or source code for a command (:Doc :Source <shift-K>)
 " - It is possible to eval Clojure code inside the buffer (:Eval)
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'SevereOverfl0w/vim-replant', { 'do': ':UpdateRemotePlugins' }
+
+if has('nvim')
+  Plug 'SevereOverfl0w/vim-replant', { 'do': ':UpdateRemotePlugins' }
+endif
 
 """ Support to lein projects
 " - Adds navigation to specific dirs (:Esource :Etest)
@@ -75,6 +78,7 @@ Plug 'amdt/vim-niji', { 'for': 'clojure' } " Rainbow parenthesis
 if has('nvim')
   Plug 'snoe/clj-refactor.nvim' " Nice keybindings to refactor clojure code
 endif
+
 """ end CLOJURE PLUGINS
 
 " OBS: Creates panel switching mapping using ctrl+<direction>
