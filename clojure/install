@@ -16,7 +16,7 @@ then
   link_files $CLOJURE_ROOT/jokerd/linter.clj $HOME/.jokerd/linter.clj
 
   brew install candid82/brew/joker
-  cp -f $CLOJURE_ROOT/joker.symlink $HOME/.joker
+  ln -f $CLOJURE_ROOT/joker.symlink $HOME/.joker
 fi
 
 exit 0
