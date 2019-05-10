@@ -59,6 +59,9 @@ bind N run "fzf-tmux-swap-window-closer"
 # Create a new window for selected code project
 bind C run "fzf-tmux-new-code-window"
 
+# Closes all windows except the current one
+bind X run "tmux-kill-windows-except-current"
+
 ### PANEL MANAGEMENT MAPPINGS
 
 ### Easy bindings for split windows

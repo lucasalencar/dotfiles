@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source fzf-tmux-helpers.sh
+
+current_window=$(tmux_current_window_index)
+tmux kill-window -a -t $current_window
+
+exit 0
