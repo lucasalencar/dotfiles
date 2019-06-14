@@ -41,3 +41,8 @@
                             "cP" #'cider-eval-buffer)
            (evil-define-key 'normal cider-mode-map
                             "cpp" #'cider-eval-sexp-at-point))
+
+
+;; Modeline
+
+(setq doom-modeline-persp-name t) ;; Shows project name in modeline
