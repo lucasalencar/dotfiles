@@ -2,7 +2,6 @@
 
 ;; Place your private configuration here
 
-;; Theme
 (setq doom-theme 'doom-one)
 
 ;; Disable confirmation message on exit
@@ -11,6 +10,14 @@
 ;; enable minibuffer to work correctly in evil mode
 ;; exit minibuffer with ESC
 (setq evil-collection-setup-minibuffer t)
+
+;; set window title "[project] filename"
+(setq frame-title-format
+      (setq icon-title-format
+            '(""
+              (:eval
+               (format "[%s] " (projectile-project-name)))
+              "%b")))
 
 ;; Mouse interaction
 (when (eq window-system nil)
