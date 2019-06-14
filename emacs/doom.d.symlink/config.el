@@ -8,6 +8,10 @@
 ;; Disable confirmation message on exit
 (setq confirm-kill-emacs nil)
 
+;; enable minibuffer to work correctly in evil mode
+;; exit minibuffer with ESC
+(setq evil-collection-setup-minibuffer t)
+
 ;; Mouse interaction
 (when (eq window-system nil)
     (xterm-mouse-mode t))
