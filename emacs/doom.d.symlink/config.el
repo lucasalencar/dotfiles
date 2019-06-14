@@ -66,6 +66,9 @@
         :g "s-9" #'+workspace/switch-to-8
         :g "s-0" #'+workspace/switch-to-final))
 
+; set default folder to projectile load projects
+(setq projectile-project-search-path (list (getenv "CODE_HOME")))
+
 ;; Lispyville
 
 (add-hook! clojure-mode #'lispyville-mode)
