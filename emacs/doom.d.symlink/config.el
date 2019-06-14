@@ -52,10 +52,10 @@
 ;; Workspaces + Projectile
 
 (map! (:when (featurep! :ui workspaces)
-        :n "`n"  #'+workspace/switch-right
-        :n "`p"  #'+workspace/switch-left
-        :n "`x"  #'+workspace/close-window-or-workspace
-        :g "s-1" #'+workspace/switch-to-0
+        :n "`n"  #'+workspace/switch-right ; next workspace (tmux like)
+        :n "`p"  #'+workspace/switch-left ; previous workspace (tmux like)
+        :n "`x"  #'+workspace/close-window-or-workspace ; close current workspace (tmux like)
+        :g "s-1" #'+workspace/switch-to-0 ; switch workspaces by index
         :g "s-2" #'+workspace/switch-to-1
         :g "s-3" #'+workspace/switch-to-2
         :g "s-4" #'+workspace/switch-to-3
@@ -64,7 +64,16 @@
         :g "s-7" #'+workspace/switch-to-6
         :g "s-8" #'+workspace/switch-to-7
         :g "s-9" #'+workspace/switch-to-8
-        :g "s-0" #'+workspace/switch-to-final))
+        :g "s-0" #'+workspace/switch-to-final
+        :n "`1"  #'+workspace/switch-to-0 ; switch workspaces by index (tmux like)
+        :n "`2"  #'+workspace/switch-to-1
+        :n "`3"  #'+workspace/switch-to-2
+        :n "`4"  #'+workspace/switch-to-3
+        :n "`5"  #'+workspace/switch-to-4
+        :n "`6"  #'+workspace/switch-to-5
+        :n "`7"  #'+workspace/switch-to-6
+        :n "`8"  #'+workspace/switch-to-7
+        :n "`9"  #'+workspace/switch-to-8))
 
 ; set default folder to projectile load projects
 (setq projectile-project-search-path (list (getenv "CODE_HOME")))
