@@ -44,6 +44,20 @@
 
 (setq doom-modeline-persp-name t) ;; Shows project name in modeline
 
+;; Windows
+
+(map!
+ ; Select windows
+ :m "C-h" #'evil-window-left
+ :m "C-l" #'evil-window-right
+ :m "C-j" #'evil-window-down
+ :m "C-k" #'evil-window-up
+ ; Move windows
+ :m "C-S-h" #'+evil/window-move-left
+ :m "C-S-j" #'+evil/window-move-down
+ :m "C-S-k" #'+evil/window-move-up
+ :m "C-S-l" #'+evil/window-move-right)
+
 ;; Workspaces
 
 (map! (:when (featurep! :ui workspaces)
