@@ -3,7 +3,7 @@
 ;; Place your private configuration here
 
 ;; Theme
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-one)
 
 ;; Disable confirmation message on exit
 (setq confirm-kill-emacs nil)
