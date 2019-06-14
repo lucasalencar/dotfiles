@@ -31,6 +31,12 @@
       doom-big-font-increment 4
       doom-unicode-font (font-spec :family "DejaVu Sans"))
 
+;; hl-fill-column
+(add-hook! hl-fill-column-mode
+  (set-face-attribute 'hl-fill-column-face nil
+                      :background (doom-color 'red)
+                      :foreground (doom-color 'fg)))
+
 ;; Modeline
 
 (setq doom-modeline-persp-name t) ;; Shows project name in modeline
