@@ -26,6 +26,11 @@
 (when (eq window-system nil)
     (xterm-mouse-mode t))
 
+;; font
+(setq doom-font (font-spec :family "Hack" :size 13)
+      doom-big-font-increment 4
+      doom-unicode-font (font-spec :family "DejaVu Sans"))
+
 ;; Lispyville
 
 (add-hook! clojure-mode #'lispyville-mode)
