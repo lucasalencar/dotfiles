@@ -19,6 +19,9 @@
                (format "[%s] " (projectile-project-name)))
               "%b")))
 
+;; set emacs to startup with maximized window
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; Mouse interaction
 (when (eq window-system nil)
     (xterm-mouse-mode t))
