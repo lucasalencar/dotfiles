@@ -19,30 +19,25 @@
 ;; Lispyville
 
 (add-hook! clojure-mode #'lispyville-mode)
+(add-hook! emacs-lisp-mode #'lispyville-mode)
 
 (after! lispyville
-        (lispyville-set-key-theme
-          '(additional
-             commentary
-             operators
-             slurp/barf-cp))
-        (evil-define-key 'normal lispyville-mode-map
-                         "(" #'lispyville-left)
-        (evil-define-key 'visual lispyville-mode-map
-                         "(" #'lispyville-left)
-        (evil-define-key 'normal lispyville-mode-map
-                         ")" #'lispyville-right)
-        (evil-define-key 'visual lispyville-mode-map
-                         ")" #'lispyville-right))
+  (lispyville-set-key-theme
+   '(additional
+     commentary
+     operators
+     slurp/barf-cp))
+  (evil-define-key 'normal lispyville-mode-map "(" #'lispyville-left)
+  (evil-define-key 'visual lispyville-mode-map "(" #'lispyville-left)
+  (evil-define-key 'normal lispyville-mode-map ")" #'lispyville-right)
+  (evil-define-key 'visual lispyville-mode-map ")" #'lispyville-right))
+
 ;; cider
 
 (add-hook! cider-mode
-           (evil-define-key 'normal cider-mode-map
-                            "gd" #'cider-find-var)
-           (evil-define-key 'normal cider-mode-map
-                            "cP" #'cider-eval-buffer)
-           (evil-define-key 'normal cider-mode-map
-                            "cpp" #'cider-eval-sexp-at-point))
+  (evil-define-key 'normal cider-mode-map "gd" #'cider-find-var)
+  (evil-define-key 'normal cider-mode-map "cP" #'cider-eval-buffer)
+  (evil-define-key 'normal cider-mode-map "cpp" #'cider-eval-sexp-at-point))
 
 ;; Modeline
 
