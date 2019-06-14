@@ -46,3 +46,10 @@
 ;; Modeline
 
 (setq doom-modeline-persp-name t) ;; Shows project name in modeline
+
+
+;; Workspaces
+
+(map! (:when (featurep! :ui workspaces)
+        :n "`n" #'+workspace/switch-right
+        :n "`p" #'+workspace/switch-left))
