@@ -31,6 +31,41 @@
       doom-big-font-increment 4
       doom-unicode-font (font-spec :family "DejaVu Sans"))
 
+;; Modeline
+
+(setq doom-modeline-persp-name t) ;; Shows project name in modeline
+
+;; Windows
+
+(map!
+ ; Select windows
+ :m "C-h" #'evil-window-left
+ :m "C-l" #'evil-window-right
+ :m "C-j" #'evil-window-down
+ :m "C-k" #'evil-window-up
+ ; Move windows
+ :m "C-S-h" #'+evil/window-move-left
+ :m "C-S-j" #'+evil/window-move-down
+ :m "C-S-k" #'+evil/window-move-up
+ :m "C-S-l" #'+evil/window-move-right)
+
+;; Workspaces + Projectile
+
+(map! (:when (featurep! :ui workspaces)
+        :n "`n"  #'+workspace/switch-right
+        :n "`p"  #'+workspace/switch-left
+        :n "`x"  #'+workspace/close-window-or-workspace
+        :g "s-1" #'+workspace/switch-to-0
+        :g "s-2" #'+workspace/switch-to-1
+        :g "s-3" #'+workspace/switch-to-2
+        :g "s-4" #'+workspace/switch-to-3
+        :g "s-5" #'+workspace/switch-to-4
+        :g "s-6" #'+workspace/switch-to-5
+        :g "s-7" #'+workspace/switch-to-6
+        :g "s-8" #'+workspace/switch-to-7
+        :g "s-9" #'+workspace/switch-to-8
+        :g "s-0" #'+workspace/switch-to-final))
+
 ;; Lispyville
 
 (add-hook! clojure-mode #'lispyville-mode)
@@ -54,37 +89,11 @@
   (evil-define-key 'normal cider-mode-map "cP" #'cider-eval-buffer)
   (evil-define-key 'normal cider-mode-map "cpp" #'cider-eval-sexp-at-point))
 
-;; Modeline
+;; Clojure mappings
 
-(setq doom-modeline-persp-name t) ;; Shows project name in modeline
-
-;; Windows
-
-(map!
- ; Select windows
- :m "C-h" #'evil-window-left
- :m "C-l" #'evil-window-right
- :m "C-j" #'evil-window-down
- :m "C-k" #'evil-window-up
- ; Move windows
- :m "C-S-h" #'+evil/window-move-left
- :m "C-S-j" #'+evil/window-move-down
- :m "C-S-k" #'+evil/window-move-up
- :m "C-S-l" #'+evil/window-move-right)
-
-;; Workspaces
-
-(map! (:when (featurep! :ui workspaces)
-        :n "`n"  #'+workspace/switch-right
-        :n "`p"  #'+workspace/switch-left
-        :n "`x"  #'+workspace/close-window-or-workspace
-        :g "s-1" #'+workspace/switch-to-0
-        :g "s-2" #'+workspace/switch-to-1
-        :g "s-3" #'+workspace/switch-to-2
-        :g "s-4" #'+workspace/switch-to-3
-        :g "s-5" #'+workspace/switch-to-4
-        :g "s-6" #'+workspace/switch-to-5
-        :g "s-7" #'+workspace/switch-to-6
-        :g "s-8" #'+workspace/switch-to-7
-        :g "s-9" #'+workspace/switch-to-8
-        :g "s-0" #'+workspace/switch-to-final))
+(map! (:map clojure-mode-map
+        (:localleader
+          (:prefix ("e" . "eval")
+            "b" #'cider-load-buffer
+            "n" #'cider-eval-ns-form
+            "c" #'cider-read-and-eval-defun-at-point))))
