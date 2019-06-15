@@ -7,6 +7,9 @@
 ;; Disable confirmation message on exit
 (setq confirm-kill-emacs nil)
 
+;; set localleader
+(setq doom-localleader-key "m")
+
 ;; enable minibuffer to work correctly in evil mode
 ;; exit minibuffer with ESC
 (setq evil-collection-setup-minibuffer t)
