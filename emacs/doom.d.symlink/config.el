@@ -103,21 +103,16 @@
   (evil-define-key 'normal lispyville-mode-map ")" #'lispyville-right)
   (evil-define-key 'visual lispyville-mode-map ")" #'lispyville-right))
 
-;; cider
-
-(add-hook! cider-mode
-  (evil-define-key 'normal cider-mode-map "gd" #'cider-find-var)
-  (evil-define-key 'normal cider-mode-map "cP" #'cider-eval-buffer)
-  (evil-define-key 'normal cider-mode-map "cpp" #'cider-eval-sexp-at-point))
-
 ;; Clojure mappings
 
 (map! (:map clojure-mode-map
+        :n "gd" #'cider-find-var
         (:localleader
           (:prefix ("e" . "eval")
             "b" #'cider-load-buffer
             "n" #'cider-eval-ns-form
-            "c" #'cider-read-and-eval-defun-at-point)
+            "c" #'cider-read-and-eval-defun-at-point
+            "f" #'cider-eval-sexp-at-point)
           (:prefix ("t" . "test")
             "t" #'cider-test-run-test
             "n" #'cider-test-run-ns-tests
