@@ -12,3 +12,7 @@
 - [ ] Show indicator that file is being evaled
 - [ ] Handle eval for form under cursor (#'cider-eval-sexp-at-point is not an option)
 - [ ] Add form motion (daf, caf)
+- [ ] Use C-o to go back cursor position
+- [ ] Use C-i to go forward cursor position
+- [ ] Solution for tabs in emacs that does not suck
+- [ ] After using project find with SPC-*, allow to filter by another search (like fzf in vim)
