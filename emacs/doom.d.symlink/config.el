@@ -121,4 +121,6 @@
             "p" #'cider-test-run-project-tests)
           (:prefix ("n" . "namespace")
             "r" #'cider-ns-refresh
-            "R" #'cider-ns-reload))))
+            "R" #'cider-ns-reload)
+          (:prefix ("r" . "repl")
+            "s" #'cider-jack-in))))
