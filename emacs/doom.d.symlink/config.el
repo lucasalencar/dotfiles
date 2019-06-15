@@ -56,7 +56,9 @@
  :m "C-S-h" #'+evil/window-move-left
  :m "C-S-j" #'+evil/window-move-down
  :m "C-S-k" #'+evil/window-move-up
- :m "C-S-l" #'+evil/window-move-right)
+ :m "C-S-l" #'+evil/window-move-right
+ ; Jump cursor back and forward (#'evil-jump-back goes to weird positions)
+ :m "C-o" #'xref-pop-marker-stack)
 
 ;; Workspaces + Projectile
 
