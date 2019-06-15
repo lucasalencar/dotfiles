@@ -117,4 +117,11 @@
           (:prefix ("e" . "eval")
             "b" #'cider-load-buffer
             "n" #'cider-eval-ns-form
-            "c" #'cider-read-and-eval-defun-at-point))))
+            "c" #'cider-read-and-eval-defun-at-point)
+          (:prefix ("t" . "test")
+            "t" #'cider-test-run-test
+            "n" #'cider-test-run-ns-tests
+            "p" #'cider-test-run-project-tests)
+          (:prefix ("n" . "namespace")
+            "r" #'cider-ns-refresh
+            "R" #'cider-ns-reload))))
