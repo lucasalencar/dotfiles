@@ -63,14 +63,26 @@
  :m "C-o" #'xref-pop-marker-stack
 
  (:when (featurep! :ui workspaces)
-   :desc "Next workspace (tmux like)"
-   :n "`n"  #'+workspace/switch-right
+   (:prefix "`"
+     :desc "Next workspace (tmux like)"
+     :n "n" #'+workspace/switch-right
 
-   :desc "Previous workspace (tmux like)"
-   :n "`p"  #'+workspace/switch-left
+     :desc "Previous workspace (tmux like)"
+     :n "p" #'+workspace/switch-left
 
-   :desc "Close current window (tmux like)"
-   :n "`x"  #'+workspace/close-window-or-workspace
+     :desc "Close current window (tmux like)"
+     :n "x" #'+workspace/close-window-or-workspace
+
+     ;; switch workspaces by index (tmux like)
+     :n "1"  #'+workspace/switch-to-0
+     :n "2"  #'+workspace/switch-to-1
+     :n "3"  #'+workspace/switch-to-2
+     :n "4"  #'+workspace/switch-to-3
+     :n "5"  #'+workspace/switch-to-4
+     :n "6"  #'+workspace/switch-to-5
+     :n "7"  #'+workspace/switch-to-6
+     :n "8"  #'+workspace/switch-to-7
+     :n "9"  #'+workspace/switch-to-8)
 
    ;; switch workspaces by index
    :g "s-1" #'+workspace/switch-to-0
@@ -83,17 +95,6 @@
    :g "s-8" #'+workspace/switch-to-7
    :g "s-9" #'+workspace/switch-to-8
    :g "s-0" #'+workspace/switch-to-final
-
-   ;; switch workspaces by index (tmux like)
-   :n "`1"  #'+workspace/switch-to-0
-   :n "`2"  #'+workspace/switch-to-1
-   :n "`3"  #'+workspace/switch-to-2
-   :n "`4"  #'+workspace/switch-to-3
-   :n "`5"  #'+workspace/switch-to-4
-   :n "`6"  #'+workspace/switch-to-5
-   :n "`7"  #'+workspace/switch-to-6
-   :n "`8"  #'+workspace/switch-to-7
-   :n "`9"  #'+workspace/switch-to-8
 
    (:leader
      (:prefix "q"
