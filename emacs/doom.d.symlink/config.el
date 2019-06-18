@@ -44,50 +44,70 @@
 
 (setq doom-modeline-persp-name t) ;; Shows project name in modeline
 
-;; Windows
+;; Workspaces + windows operations
 
 (map!
- ; Select windows
+ ;; Select windows
  :m "C-h" #'evil-window-left
  :m "C-l" #'evil-window-right
  :m "C-j" #'evil-window-down
  :m "C-k" #'evil-window-up
- ; Move windows
+
+ ;; Move windows
  :m "C-S-h" #'+evil/window-move-left
  :m "C-S-j" #'+evil/window-move-down
  :m "C-S-k" #'+evil/window-move-up
  :m "C-S-l" #'+evil/window-move-right
- ; Jump cursor back and forward (#'evil-jump-back goes to weird positions)
- :m "C-o" #'xref-pop-marker-stack)
 
-;; Workspaces + Projectile
+ ;; Jump cursor back and forward (#'evil-jump-back goes to weird positions)
+ :m "C-o" #'xref-pop-marker-stack
 
-(map! (:when (featurep! :ui workspaces)
-        :n "`n"  #'+workspace/switch-right ; next workspace (tmux like)
-        :n "`p"  #'+workspace/switch-left ; previous workspace (tmux like)
-        :n "`x"  #'+workspace/close-window-or-workspace ; close current workspace (tmux like)
-        :g "s-1" #'+workspace/switch-to-0 ; switch workspaces by index
-        :g "s-2" #'+workspace/switch-to-1
-        :g "s-3" #'+workspace/switch-to-2
-        :g "s-4" #'+workspace/switch-to-3
-        :g "s-5" #'+workspace/switch-to-4
-        :g "s-6" #'+workspace/switch-to-5
-        :g "s-7" #'+workspace/switch-to-6
-        :g "s-8" #'+workspace/switch-to-7
-        :g "s-9" #'+workspace/switch-to-8
-        :g "s-0" #'+workspace/switch-to-final
-        :n "`1"  #'+workspace/switch-to-0 ; switch workspaces by index (tmux like)
-        :n "`2"  #'+workspace/switch-to-1
-        :n "`3"  #'+workspace/switch-to-2
-        :n "`4"  #'+workspace/switch-to-3
-        :n "`5"  #'+workspace/switch-to-4
-        :n "`6"  #'+workspace/switch-to-5
-        :n "`7"  #'+workspace/switch-to-6
-        :n "`8"  #'+workspace/switch-to-7
-        :n "`9"  #'+workspace/switch-to-8))
+ (:when (featurep! :ui workspaces)
+   :desc "Next workspace (tmux like)"
+   :n "`n"  #'+workspace/switch-right
 
-; set default folder to projectile load projects
-(setq projectile-project-search-path (list (getenv "CODE_HOME")))
+   :desc "Previous workspace (tmux like)"
+   :n "`p"  #'+workspace/switch-left
+
+   :desc "Close current window (tmux like)"
+   :n "`x"  #'+workspace/close-window-or-workspace
+
+   ;; switch workspaces by index
+   :g "s-1" #'+workspace/switch-to-0
+   :g "s-2" #'+workspace/switch-to-1
+   :g "s-3" #'+workspace/switch-to-2
+   :g "s-4" #'+workspace/switch-to-3
+   :g "s-5" #'+workspace/switch-to-4
+   :g "s-6" #'+workspace/switch-to-5
+   :g "s-7" #'+workspace/switch-to-6
+   :g "s-8" #'+workspace/switch-to-7
+   :g "s-9" #'+workspace/switch-to-8
+   :g "s-0" #'+workspace/switch-to-final
+
+   ;; switch workspaces by index (tmux like)
+   :n "`1"  #'+workspace/switch-to-0
+   :n "`2"  #'+workspace/switch-to-1
+   :n "`3"  #'+workspace/switch-to-2
+   :n "`4"  #'+workspace/switch-to-3
+   :n "`5"  #'+workspace/switch-to-4
+   :n "`6"  #'+workspace/switch-to-5
+   :n "`7"  #'+workspace/switch-to-6
+   :n "`8"  #'+workspace/switch-to-7
+   :n "`9"  #'+workspace/switch-to-8
+
+   (:leader
+     (:prefix "q"
+       :desc "Close current window"
+       "w" #'+workspace/close-window-or-workspace))))
+
+;; Projectile
+
+(add-hook! projectile-mode
+  (when (eq projectile-indexing-method 'alien)
+    (setq projectile-enable-caching nil))
+
+  ; set default folder to projectile load projects
+  (setq projectile-project-search-path (list (getenv "CODE_HOME"))))
 
 ;; Lispyville
 
