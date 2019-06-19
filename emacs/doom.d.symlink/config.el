@@ -127,7 +127,8 @@
    '(additional
      commentary
      operators
-     slurp/barf-cp))
+     slurp/barf-cp
+     prettify))
   (evil-define-key 'normal lispyville-mode-map "(" #'lispyville-left)
   (evil-define-key 'visual lispyville-mode-map "(" #'lispyville-left)
   (evil-define-key 'normal lispyville-mode-map ")" #'lispyville-right)
