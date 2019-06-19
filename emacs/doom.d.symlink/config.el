@@ -117,6 +117,17 @@
          :desc "Open test or implementation in another window"
          :n "A" #'projectile-find-implementation-or-test-other-window)))))
 
+;; Elisp
+
+(add-hook! emacs-lisp-mode
+  (map!
+   (:map emacs-lisp-mode-map
+     (:localleader
+       "e" nil ; unmap macroexpand
+       "x" #'macrostep-expand
+       (:prefix ("e" . "eval")
+         "b" #'eval-buffer)))))
+
 ;; Lispyville
 
 (add-hook! clojure-mode #'lispyville-mode)
