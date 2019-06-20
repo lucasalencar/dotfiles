@@ -6,7 +6,7 @@ check_homebrew
 info "Installing Emacs"
 brew tap d12frosted/emacs-plus
 brew install emacs-plus
-ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications
+cp -f /usr/local/opt/emacs-plus/Emacs.app /Applications
 
 # Setup different icon
 git clone https://github.com/cg433n/emacs-mac-icon
