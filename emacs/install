@@ -16,8 +16,10 @@ sudo killall Finder && sudo killall Dock
 
 git clone --branch develop https://github.com/hlissner/doom-emacs ~/.emacs.d
 
-current_dir
-ln -sf $CURRENT_DIR/doom.d.symlink $HOME/.doom.d
+if [ ! -h $HOME/.doom.d ]; then
+  current_dir
+  ln -sf $CURRENT_DIR/doom.d.symlink $HOME/.doom.d
+fi
 
 EMACS_D="$HOME/.emacs.d"
 $EMACS_D/bin/doom refresh
