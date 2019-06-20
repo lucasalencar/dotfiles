@@ -7,3 +7,4 @@
 ;; (package! builtin-package :disable t)
 
 (package! lispyville)
+(package! exec-path-from-shell) ;; GUI Emacs does not load PATH var env properly (Mac issue)

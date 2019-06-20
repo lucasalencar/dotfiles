@@ -7,6 +7,10 @@
 ;; Disable confirmation message on exit
 (setq confirm-kill-emacs nil)
 
+;; Initialize emacs with system $PATH (Mac issue)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;; set localleader
 (setq doom-localleader-key "m")
 
