@@ -8,6 +8,13 @@ export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 # Default editor
 export EDITOR="nvim"
 
+# But if I am using emacs, use emacs to edit
+if [[ -n "${EMACS}" ]]; then
+  VISUAL="emacsclient"
+  EDITOR="${VISUAL}"
+  GIT_EDITOR="${EDITOR}"
+fi
+
 # Uses anaconda first for python
 export PATH=$HOME/.dotfiles/scripts:/usr/local/anaconda3/bin:"$PATH"
 
