@@ -74,6 +74,9 @@
      :desc "Previous workspace (tmux like)"
      :n "p" #'+workspace/switch-left
 
+     :desc "Switch to different project (tmux like)"
+     :n "P" #'projectile-switch-project
+
      :desc "Close current window (tmux like)"
      :n "x" #'+workspace/close-window-or-workspace
 
