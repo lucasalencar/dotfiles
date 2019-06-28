@@ -1,0 +1,9 @@
+#!/bin/bash
+source helpers
+
+check_homebrew
+
+info 'Installing shellscript utilities'
+brew install shellcheck
+
+exit 0
