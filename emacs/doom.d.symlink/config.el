@@ -151,20 +151,22 @@
 
 ;; Clojure mappings
 
-(map! (:map clojure-mode-map
-        :n "gd" #'cider-find-var
-        (:localleader
-          (:prefix ("e" . "eval")
-            "b" #'cider-load-buffer
-            "n" #'cider-eval-ns-form
-            "c" #'cider-read-and-eval-defun-at-point
-            "f" #'cider-eval-sexp-at-point)
-          (:prefix ("t" . "test")
-            "t" #'cider-test-run-test
-            "n" #'cider-test-run-ns-tests
-            "p" #'cider-test-run-project-tests)
-          (:prefix ("n" . "namespace")
-            "r" #'cider-ns-refresh
-            "R" #'cider-ns-reload)
-          (:prefix ("r" . "repl")
-            "s" #'cider-jack-in))))
+(add-hook! clojure-mode
+  (map!
+   (:map clojure-mode-map
+     :n "gd" #'cider-find-var
+     (:localleader
+       (:prefix ("e" . "eval")
+         "b" #'cider-load-buffer
+         "n" #'cider-eval-ns-form
+         "c" #'cider-read-and-eval-defun-at-point
+         "f" #'cider-eval-sexp-at-point)
+       (:prefix ("t" . "test")
+         "t" #'cider-test-run-test
+         "n" #'cider-test-run-ns-tests
+         "p" #'cider-test-run-project-tests)
+       (:prefix ("n" . "namespace")
+         "r" #'cider-ns-refresh
+         "R" #'cider-ns-reload)
+       (:prefix ("r" . "repl")
+         "s" #'cider-jack-in)))))
