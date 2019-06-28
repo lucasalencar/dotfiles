@@ -6,7 +6,7 @@ check_homebrew
 info "Installing Emacs"
 brew tap d12frosted/emacs-plus
 brew install emacs-plus
-cp -f /usr/local/opt/emacs-plus/Emacs.app /Applications
+cp -rf /usr/local/opt/emacs-plus/Emacs.app /Applications
 
 # Setup different icon
 git clone https://github.com/cg433n/emacs-mac-icon
@@ -22,6 +22,8 @@ if [ ! -h $HOME/.doom.d ]; then
 fi
 
 EMACS_D="$HOME/.emacs.d"
-$EMACS_D/bin/doom refresh
+$EMACS_D/bin/doom -y upgrade
+$EMACS_D/bin/doom -y update
+$EMACS_D/bin/doom -y refresh
 
 exit 0
