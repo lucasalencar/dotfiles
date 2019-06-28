@@ -14,7 +14,5 @@
 - Solution for tabs in emacs that does not suck
 - After using project find with SPC-*, allow to filter by another search (like fzf in vim)
 - Find a better term alternatives
-- Map clojure-align
 - Start using nudev emacs config for better alignments
 - Request gpg key inside emacs when commiting
-- Replicate create a file inside the same directory as vim
