@@ -63,9 +63,6 @@
  :m "C-S-k" #'+evil/window-move-up
  :m "C-S-l" #'+evil/window-move-right
 
- ;; Jump cursor back and forward (#'evil-jump-back goes to weird positions)
- :m "C-o" #'xref-pop-marker-stack
-
  (:when (featurep! :ui workspaces)
    (:prefix "`"
      :desc "Next workspace (tmux like)"
