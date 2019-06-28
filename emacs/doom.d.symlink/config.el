@@ -169,4 +169,6 @@
          "r" #'cider-ns-refresh
          "R" #'cider-ns-reload)
        (:prefix ("r" . "repl")
-         "s" #'cider-jack-in)))))
+         "s" #'cider-jack-in)
+       (:prefix ("c" . "code")
+         "a" #'clojure-align)))))
