@@ -1,19 +1,9 @@
 {:user
- {:plugins [[venantius/ultra "0.5.2"]
-            [jonase/eastwood "0.2.5" :exclusions [org.clojure/clojure]]
-            [jonase/kibit "0.1.6" :exclusions [org.clojure/clojure]]
-            [cider/cider-nrepl "0.16.0"]
-            [lein-cljfmt "0.5.7"]
+ {:plugins [[cider/cider-nrepl "0.21.1"]
+            [lein-ancient "0.6.15"]
             [refactor-nrepl "2.4.0"]
-            [org.clojure/tools.nrepl "0.2.13" :exclusions [org.clojure/clojure]]]
+            [nrepl "0.6.0"]]
 
-  :dependencies [[pjstadig/humane-test-output "0.8.3"]
-                 [jonase/eastwood "0.2.3" :exclusions [org.clojure/clojure]]
-                 [jonase/kibit "0.1.3" :exclusions [org.clojure/clojure]]
-                 [org.clojure/tools.nrepl "0.2.13" :exclusions [org.clojure/clojure]]
-                 [clj-kondo "2019.05.26-alpha"]]
+  :dependencies [[clj-kondo "2019.05.26-alpha"]]
 
-  :aliases {"clj-kondo" ["run" "-m" "clj-kondo.main"]}
-
-  :injections [(require 'pjstadig.humane-test-output)
-               (pjstadig.humane-test-output/activate!)]}}
+  :aliases {"clj-kondo" ["run" "-m" "clj-kondo.main"]}}}
