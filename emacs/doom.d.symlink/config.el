@@ -4,12 +4,10 @@
 
 (setq doom-theme 'doom-one)
 
-;; Disable confirmation message on exit
-(setq confirm-kill-emacs nil)
-
-;; Initialize emacs with system $PATH (Mac issue)
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+;; font
+(setq doom-font (font-spec :family "Hack" :size 13)
+      doom-big-font-increment 4
+      doom-unicode-font (font-spec :family "DejaVu Sans"))
 
 ;; set localleader
 (setq doom-localleader-key "m")
@@ -26,17 +24,19 @@
                (format "[%s] " (projectile-project-name)))
               "%b")))
 
-;; set emacs to startup with maximized window
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
 ;; Mouse interaction
 (when (eq window-system nil)
     (xterm-mouse-mode t))
 
-;; font
-(setq doom-font (font-spec :family "Hack" :size 13)
-      doom-big-font-increment 4
-      doom-unicode-font (font-spec :family "DejaVu Sans"))
+;; Disable confirmation message on exit
+(setq confirm-kill-emacs nil)
+
+;; set emacs to startup with maximized window
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; Initialize emacs with system $PATH (Mac issue)
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 ;; hl-fill-column
 (add-hook! hl-fill-column-mode
