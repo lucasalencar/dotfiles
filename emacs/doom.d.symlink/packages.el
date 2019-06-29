@@ -6,5 +6,5 @@
 ;; (package! another-package :recipe (:fetcher github :repo "username/repo"))
 ;; (package! builtin-package :disable t)
 
-(package! lispyville)
+(package! lispyville) ;; Awesome package to work with Lisp code
 (package! exec-path-from-shell) ;; GUI Emacs does not load PATH var env properly (Mac issue)
