@@ -143,9 +143,10 @@
      prettify
      text-objects
      (atom-motions t)
-     additional
      commentary
-     slurp/barf-cp))
+     slurp/barf-cp
+     additional
+     additional-insert))
 
   (map!
    (:map lispyville-mode-map
