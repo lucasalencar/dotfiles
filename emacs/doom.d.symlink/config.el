@@ -139,15 +139,20 @@
 
 (after! lispyville
   (lispyville-set-key-theme
-   '(additional
+   '(operators
+     prettify
+     text-objects
+     (atom-motions t)
+     additional
      commentary
-     operators
-     slurp/barf-cp
-     prettify))
-  (evil-define-key 'normal lispyville-mode-map "(" #'lispyville-left)
-  (evil-define-key 'visual lispyville-mode-map "(" #'lispyville-left)
-  (evil-define-key 'normal lispyville-mode-map ")" #'lispyville-right)
-  (evil-define-key 'visual lispyville-mode-map ")" #'lispyville-right))
+     slurp/barf-cp))
+
+  (map!
+   (:map lispyville-mode-map
+     :m "(" #'lispyville-left
+     :m ")" #'lispyville-right
+     "M-h" #'lispyville-beginning-of-defun
+     "M-l" #'lispyville-end-of-defun)))
 
 ;; Clojure mappings
 
