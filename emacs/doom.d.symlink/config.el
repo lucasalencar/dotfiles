@@ -46,7 +46,18 @@
 
 ;; Modeline
 
-(setq doom-modeline-persp-name t) ;; Shows project name in modeline
+;; enable major mode icon in modeline
+(setq doom-modeline-major-mode-icon t)
+
+;; Whether display buffer encoding.
+(setq doom-modeline-buffer-encoding nil)
+
+;; The maximum displayed length of the branch name of version control.
+(setq doom-modeline-vcs-max-length 30)
+
+;; disable file size indicator in modeline
+(add-hook! 'size-indication-mode-hook
+  (setq size-indication-mode nil))
 
 ;; Workspaces + windows operations
 
