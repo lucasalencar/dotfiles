@@ -146,6 +146,7 @@
      commentary
      slurp/barf-cp
      additional
+     additional-wrap
      additional-insert))
 
   (map!
