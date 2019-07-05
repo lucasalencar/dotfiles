@@ -1,12 +1,3 @@
 git/gitconfig.symlink
 
-# RD specifics
-rd/
-zsh/rd_aliases.zsh
-zsh/rd.zsh
-automations/block_emkt
-automations/unblock_emkt
-automations/me
-automations/change_account
-automations/creport
-automations/recover_account
+emacs/doom.d.symlink/local.el

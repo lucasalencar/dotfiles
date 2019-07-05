@@ -178,3 +178,6 @@
          "s" #'cider-jack-in)
        (:prefix ("c" . "code")
          "a" #'clojure-align)))))
+
+;; load local configuration file if exists
+(load! "local.el" "~/.doom.d" t)
