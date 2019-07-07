@@ -2,7 +2,7 @@
 
 ;; Place your private configuration here
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-molokai)
 
 ;; font
 (setq doom-font (font-spec :family "Hack" :size 13)
