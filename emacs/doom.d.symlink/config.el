@@ -10,7 +10,7 @@
       doom-unicode-font (font-spec :family "DejaVu Sans"))
 
 ;; set localleader
-(setq doom-localleader-key "m")
+(setq doom-localleader-key ",")
 
 ;; enable minibuffer to work correctly in evil mode
 ;; exit minibuffer with ESC
