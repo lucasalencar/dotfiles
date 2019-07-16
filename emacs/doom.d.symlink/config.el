@@ -187,9 +187,12 @@
          "r" #'cider-ns-refresh
          "R" #'cider-ns-reload)
        (:prefix ("r" . "repl")
-         "s" #'cider-jack-in)
+         "s" #'cider-jack-in
+         "C" #'cider-connect)
        (:prefix ("c" . "code")
-         "a" #'clojure-align)))))
+         "m" #'clojure-align
+         "am" #'cljr-add-missing-libspec
+         "cn" #'user/clean-ns)))))
 
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
