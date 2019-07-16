@@ -126,11 +126,10 @@
   (setq projectile-project-search-path (list (getenv "CODE_HOME")))
 
   (map!
-   (:map projectile-mode
-     (:leader
-       (:prefix "p"
-         :desc "Open test or implementation in another window"
-         "A" #'projectile-find-implementation-or-test-other-window)))))
+   (:leader
+     (:prefix "p"
+       :desc "Open test or implementation in another window"
+       "A" #'projectile-find-implementation-or-test-other-window))))
 
 ;; Elisp
 
