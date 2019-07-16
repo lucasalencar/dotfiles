@@ -172,6 +172,7 @@
   (map!
    (:map clojure-mode-map
      :n "gd" #'cider-find-var
+     :n "R" #'hydra-cljr-help-menu/body
      (:localleader
        (:prefix ("e" . "eval")
          "b" #'cider-load-buffer
