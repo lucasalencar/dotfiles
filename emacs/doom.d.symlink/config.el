@@ -169,6 +169,8 @@
 ;; Clojure mappings
 
 (add-hook! clojure-mode
+  (setq cljr-warn-on-eval nil) ;; Stop warning about evaluating whole project
+
   (map!
    (:map clojure-mode-map
      :n "gd" #'cider-find-var
