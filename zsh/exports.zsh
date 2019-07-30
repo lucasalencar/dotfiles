@@ -10,9 +10,11 @@ export EDITOR="nvim"
 
 # But if I am using emacs, use emacs to edit
 if [[ -n "${EMACS}" ]]; then
-  VISUAL="emacsclient"
-  EDITOR="${VISUAL}"
-  GIT_EDITOR="${EDITOR}"
+  export VISUAL="emacsclient"
+  export EDITOR="${VISUAL}"
+  export GIT_EDITOR="${EDITOR}"
+  # Disable RPROMPT in Emacs term
+  export RPROMPT=""
 fi
 
 # Uses anaconda first for python
