@@ -182,8 +182,8 @@
          "c" #'cider-read-and-eval-defun-at-point
          "f" #'cider-eval-sexp-at-point)
        (:prefix ("t" . "test")
-         "t" #'cider-test-run-test
-         "n" #'cider-test-run-ns-tests
+         "t" #'user/cider-eval-and-run-test
+         "n" #'user/cider-eval-and-run-ns-tests
          "p" #'cider-test-run-project-tests)
        (:prefix ("n" . "namespace")
          "r" #'cider-ns-refresh
