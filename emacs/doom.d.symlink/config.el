@@ -36,7 +36,8 @@
 
 ;; Initialize emacs with system $PATH (Mac issue)
 (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "CODE_HOME")) ;; Copy CODE_HOME env var
 
 ;; hl-fill-column
 (add-hook! hl-fill-column-mode
