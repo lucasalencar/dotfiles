@@ -119,18 +119,22 @@
 
 ;; Projectile
 
+(after! projectile
+  (map!
+   (:leader
+     (:map projectile-mode-map
+       (:prefix "p"
+         :desc "Open test or implementation in another window"
+         "a" #'projectile-find-implementation-or-test-other-window
+         :desc "Add new project"
+         "A" #'projectile-add-known-project)))))
+
 (add-hook! projectile-mode
   (when (eq projectile-indexing-method 'alien)
     (setq projectile-enable-caching nil))
 
   ; set default folder to projectile load projects
-  (setq projectile-project-search-path (list (getenv "CODE_HOME")))
-
-  (map!
-   (:leader
-     (:prefix "p"
-       :desc "Open test or implementation in another window"
-       "A" #'projectile-find-implementation-or-test-other-window))))
+  (setq projectile-project-search-path (list (getenv "CODE_HOME"))))
 
 ;; Elisp
 
