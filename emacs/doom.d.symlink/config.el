@@ -120,6 +120,13 @@
 ;; Projectile
 
 (after! projectile
+  (when (eq projectile-indexing-method 'alien)
+    (setq projectile-enable-caching nil))
+
+  ;; set default folder to projectile load projects
+  ;; To refresh project list run: projectile-discover-projects-in-search-path
+  (setq projectile-project-search-path (list (getenv "CODE_HOME")))
+
   (map!
    (:leader
      (:map projectile-mode-map
@@ -128,13 +135,6 @@
          "a" #'projectile-find-implementation-or-test-other-window
          :desc "Add new project"
          "A" #'projectile-add-known-project)))))
-
-(add-hook! projectile-mode
-  (when (eq projectile-indexing-method 'alien)
-    (setq projectile-enable-caching nil))
-
-  ; set default folder to projectile load projects
-  (setq projectile-project-search-path (list (getenv "CODE_HOME"))))
 
 ;; Elisp
 
