@@ -1,8 +1,6 @@
 # Emacs TODO
 
-- tick+N binding to move project closer
-- Rename workspaces with current project name automatically
-- Fn that loads current buffer and run ns tests (kokada has an example)
+- tick+N binding to bring project closer
 - Show flycheck warnings/errors in the echo line (not in the middle of the code)
 - Show indicator that repl is opening
 - Start repl automatically when project is opened
