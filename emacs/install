@@ -5,14 +5,8 @@ check_homebrew
 
 info "Installing Emacs"
 brew tap d12frosted/emacs-plus
-brew install --build-from-source emacs-plus
+brew install --build-from-source emacs-plus --without-spacemacs-icon
 cp -rf /usr/local/opt/emacs-plus/Emacs.app /Applications
-
-# Setup different icon
-git clone https://github.com/cg433n/emacs-mac-icon
-cp -f emacs-mac-icon/emacs.icns /Applications/Emacs.app/Contents/Resources/Emacs.icns
-rm -rf emacs-mac-icon
-sudo killall Finder && sudo killall Dock
 
 git clone --branch develop https://github.com/hlissner/doom-emacs ~/.emacs.d
 
