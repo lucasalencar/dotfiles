@@ -180,24 +180,30 @@
    (:map clojure-mode-map
      :n "gd" #'cider-find-var
      :n "R" #'hydra-cljr-help-menu/body
+
      (:localleader
        (:prefix ("e" . "eval")
          "b" #'cider-load-buffer
          "n" #'cider-eval-ns-form
          "c" #'cider-read-and-eval-defun-at-point
          "f" #'cider-eval-sexp-at-point)
+
        (:prefix ("t" . "test")
          "t" #'user/cider-eval-and-run-test
          "T" #'cider-test-run-test
          "n" #'user/cider-eval-and-run-ns-tests
          "N" #'cider-test-run-ns-tests
          "p" #'cider-test-run-project-tests)
+
        (:prefix ("n" . "namespace")
          "r" #'cider-ns-refresh
          "R" #'cider-ns-reload)
+
        (:prefix ("r" . "repl")
          "s" #'cider-jack-in
          "C" #'cider-connect)
+
+       "c" nil ; unmap to avoid conflict
        (:prefix ("c" . "code")
          "m" #'clojure-align
          "am" #'cljr-add-missing-libspec
