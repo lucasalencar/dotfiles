@@ -136,6 +136,14 @@
          :desc "Add new project"
          "A" #'projectile-add-known-project)))))
 
+;; Dired
+
+(add-hook! dired-mode
+  (dired-hide-details-mode t))
+
+(map!
+ :n "-" #'dired-jump)
+
 ;; Elisp
 
 (add-hook! emacs-lisp-mode
