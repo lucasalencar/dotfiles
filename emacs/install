@@ -16,8 +16,8 @@ if [ ! -h $HOME/.doom.d ]; then
 fi
 
 EMACS_D="$HOME/.emacs.d"
+$EMACS_D/bin/doom -y refresh
 $EMACS_D/bin/doom -y upgrade
 $EMACS_D/bin/doom -y update
-$EMACS_D/bin/doom -y refresh
 
 exit 0
