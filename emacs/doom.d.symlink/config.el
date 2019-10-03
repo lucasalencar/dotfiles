@@ -217,5 +217,13 @@
          "am" #'cljr-add-missing-libspec
          "cn" #'user/clean-ns)))))
 
+;; CIDER
+
+(add-hook! cider-mode
+  (map!
+   (:map cider-repl-mode-map
+     (:localleader
+       "k" #'+popup/raise))))
+
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
