@@ -18,7 +18,7 @@ then
   brew install candid82/brew/joker
   ln -f $CLOJURE_ROOT/joker.symlink $HOME/.joker
 
-  brew install borkdude/brew/clj-kondo
+  brew install borkdude/brew/clj-kondo clojure-lsp
 fi
 
 exit 0
