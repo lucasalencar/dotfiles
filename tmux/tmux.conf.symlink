@@ -68,7 +68,7 @@ bind X run "tmux-kill-windows-except-current"
 unbind %
 
 # Split window horizontally in the same directory (prefix + \)
-bind \ split-window -h -c '#{pane_current_path}'
+bind '\' split-window -h -c '#{pane_current_path}'
 
 # Split window horizontally full size in the same directory (prefix + |)
 bind | split-window -fh -c '#{pane_current_path}'
