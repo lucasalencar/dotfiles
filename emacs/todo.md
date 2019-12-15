@@ -11,4 +11,3 @@
 - After using project find with SPC-*, allow to filter by another search (like fzf in vim)
 - Find a better terminal emulators alternatives
 - Use tab to autocomplete suggestions popup
-- Eval files after saving them
