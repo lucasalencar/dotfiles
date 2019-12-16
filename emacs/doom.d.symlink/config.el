@@ -60,6 +60,11 @@
 (add-hook! 'size-indication-mode-hook
   (setq size-indication-mode nil))
 
+;; Map TAB to call complete
+(map!
+ :i "TAB"   #'+company/complete
+ :i "[tab]" #'+company/complete)
+
 ;; Workspaces + windows operations
 
 (map!
