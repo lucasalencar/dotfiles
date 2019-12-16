@@ -62,8 +62,7 @@
 
 ;; Map TAB to call complete
 (map!
- :i "TAB"   #'+company/complete
- :i "[tab]" #'+company/complete)
+ :i "TAB"   #'+company/complete)
 
 ;; Workspaces + windows operations
 
