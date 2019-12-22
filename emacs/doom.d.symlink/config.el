@@ -224,8 +224,8 @@
          "am" #'cljr-add-missing-libspec
          "cn" #'user/clean-ns)))))
 
-(after! clojure-mode
-  (add-hook 'after-save-hook #'cider-load-buffer)) ;; Eval buffer after save
+;; (after! clojure-mode
+;;   (add-hook 'after-save-hook #'cider-load-buffer)) ;; Eval buffer after save
 
 ;; CIDER
 
