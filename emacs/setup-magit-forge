@@ -1,0 +1,11 @@
+#!/bin/bash
+source helpers
+
+# For Magit Forge to work, create a Personal Access Token in github
+# https://github.com/settings/tokens
+# Paste the token in `authinfo` right after password
+
+info "Setting up Forge authinfo config"
+
+current_dir
+gpg --output $HOME/.authinfo.gpg --symmetric $CURRENT_DIR/authinfo
