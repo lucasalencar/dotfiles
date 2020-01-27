@@ -11,3 +11,7 @@
 - After using project find with SPC-*, allow to filter by another search (like fzf in vim)
 - Find a better terminal emulators alternatives
 - Use tab to autocomplete suggestions popup
+- Run cljfmt after saving a file 
+  - https://github.com/hlissner/doom-emacs/blob/develop/init.example.el#L57
+  - https://github.com/snoe/node-cljfmt
+  - https://gitlab.com/konrad.mrozek/cljfmt-graalvm
