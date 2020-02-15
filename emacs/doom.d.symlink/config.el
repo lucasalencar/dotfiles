@@ -235,5 +235,11 @@
      (:localleader
        "k" #'+popup/raise))))
 
+;; clj-kondo
+
+(use-package! flycheck-clj-kondo
+  :when (featurep! :checkers syntax)
+  :after flycheck)
+
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
