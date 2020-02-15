@@ -8,3 +8,6 @@
 
 (package! lispyville) ;; Awesome package to work with Lisp code
 (package! exec-path-from-shell) ;; GUI Emacs does not load PATH var env properly (Mac issue)
+
+(when (featurep! :checkers syntax)
+  (package! flycheck-clj-kondo)) ;; clj-kondo integration
