@@ -13,3 +13,5 @@
   - https://github.com/hlissner/doom-emacs/blob/develop/init.example.el#L57
   - https://github.com/snoe/node-cljfmt
   - https://gitlab.com/konrad.mrozek/cljfmt-graalvm
+- Make C-o and C-i to work only inside the current project (stop going to
+  another project when going back to some place)
