@@ -222,7 +222,11 @@
        (:prefix ("c" . "code")
          "m" #'clojure-align
          "am" #'cljr-add-missing-libspec
-         "cn" #'user/clean-ns)))))
+         "cn" #'user/clean-ns
+         "tf" #'cljr-thread-first-all
+         "tl" #'cljr-thread-last-all
+         "ua" #'cljr-unwind-all
+         "tu" #'cljr-unwind)))))
 
 ;; (after! clojure-mode
 ;;   (add-hook 'after-save-hook #'cider-load-buffer)) ;; Eval buffer after save
