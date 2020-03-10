@@ -3,10 +3,6 @@ source helpers
 
 check_homebrew
 
-info 'Setup brew-cask tap'
-brew tap caskroom/cask
-brew tap caskroom/versions
-
 current_dir # Sets CURRENT_DIR var
 
 while read app; do
