@@ -15,10 +15,6 @@ if test ! $(which brew); then
   info 'Setting up brew-services tap'
   brew tap homebrew/services
   brew services list
-
-  info 'Setting up brew-cask tap'
-  brew tap caskroom/cask
-  brew tap caskroom/versions
 fi
 
 exit 0
