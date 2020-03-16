@@ -226,7 +226,8 @@
          "tf" #'cljr-thread-first-all
          "tl" #'cljr-thread-last-all
          "ua" #'cljr-unwind-all
-         "tu" #'cljr-unwind)))))
+         "tu" #'cljr-unwind
+         "rs" #'clojure-rename-ns-alias)))))
 
 ;; (after! clojure-mode
 ;;   (add-hook 'after-save-hook #'cider-load-buffer)) ;; Eval buffer after save
