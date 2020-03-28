@@ -1,4 +1,5 @@
-{"dependency-scheme" "jar" ;; In order to make the jumping into dependency jars work
- "macro-defs"        {schema.core/defschema [:declaration :elements]
-                      schema.core/def       [:declaration :elements]
-                      schema.core/fn        [:params :bound-elements]}}
+{"dependency-scheme"         "jar" ;; In order to make the jumping into dependency jars work
+ "use-metadata-for-privacy?" true  ;; use ^:private metadata for refactorings instead of defn-
+ "macro-defs"                {schema.core/defschema [:declaration :elements]
+                              schema.core/def       [:declaration :elements]
+                              schema.core/fn        [:params :bound-elements]}}
