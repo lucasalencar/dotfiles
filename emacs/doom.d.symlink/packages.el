@@ -11,3 +11,6 @@
 
 (when (featurep! :checkers syntax)
   (package! flycheck-clj-kondo)) ;; clj-kondo integration
+
+
+(package! lsp-ui :disable t) ;; Disable lsp-ui because it is really slow
