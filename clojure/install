@@ -18,7 +18,14 @@ then
   brew install candid82/brew/joker
   ln -f $CLOJURE_ROOT/joker.symlink $HOME/.joker
 
-  brew install borkdude/brew/clj-kondo clojure-lsp
+  brew install borkdude/brew/clj-kondo
+  brew install clojure-lsp --build-from-source
+
+
+  if [ ! -h $HOME/.lsp ]; then
+    current_dir
+    ln -sf $CURRENT_DIR/lsp.symlink $HOME/.lsp
+  fi
 fi
 
 exit 0
