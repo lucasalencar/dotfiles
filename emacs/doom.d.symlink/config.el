@@ -242,7 +242,7 @@
          "tl" #'cljr-thread-last-all
          "ua" #'cljr-unwind-all
          "tu" #'cljr-unwind
-         "rs" #'clojure-rename-ns-alias)))))
+         "ra" #'clojure-rename-ns-alias)))))
 
 (after! clj-refactor
   (set-lookup-handlers! 'clj-refactor-mode nil))
