@@ -186,6 +186,10 @@
      "M-h" #'lispyville-beginning-of-defun
      "M-l" #'lispyville-end-of-defun)))
 
+;; clojure-lsp
+
+(add-hook! clojure-mode #'lsp)
+
 ;; Clojure mappings
 
 (add-hook! clojure-mode
@@ -228,6 +232,9 @@
          "ua" #'cljr-unwind-all
          "tu" #'cljr-unwind
          "rs" #'clojure-rename-ns-alias)))))
+
+(after! clj-refactor
+  (set-lookup-handlers! 'clj-refactor-mode nil))
 
 ;; (after! clojure-mode
 ;;   (add-hook 'after-save-hook #'cider-load-buffer)) ;; Eval buffer after save
