@@ -201,6 +201,8 @@
      :n "R"  #'hydra-cljr-help-menu/body
 
      (:localleader
+       "a" #'clojure-align
+
        (:prefix ("e" . "eval")
          "b" #'cider-load-buffer
          "n" #'cider-eval-ns-form
@@ -224,7 +226,6 @@
 
        "c" nil ; unmap to avoid conflict
        (:prefix ("c" . "code")
-         "m" #'clojure-align
          "am" #'lsp-clojure-add-missing-libspec
          "cn" #'user/clean-ns
          "tf" #'cljr-thread-first-all
