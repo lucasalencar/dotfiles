@@ -197,8 +197,8 @@
 
   (map!
    (:map clojure-mode-map
-     :n "gd" #'cider-find-var
-     :n "R" #'hydra-cljr-help-menu/body
+     :n "gd" #'lsp-find-definition
+     :n "R"  #'hydra-cljr-help-menu/body
 
      (:localleader
        (:prefix ("e" . "eval")
@@ -225,7 +225,7 @@
        "c" nil ; unmap to avoid conflict
        (:prefix ("c" . "code")
          "m" #'clojure-align
-         "am" #'cljr-add-missing-libspec
+         "am" #'lsp-clojure-add-missing-libspec
          "cn" #'user/clean-ns
          "tf" #'cljr-thread-first-all
          "tl" #'cljr-thread-last-all
