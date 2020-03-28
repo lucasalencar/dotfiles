@@ -195,7 +195,9 @@
   (dolist (m '(clojure-mode
                clojurec-mode
                clojurescript-mode))
-    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
+    (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
+  :init
+  (setq lsp-log-io t))
 
 ;; Clojure mappings
 
