@@ -188,7 +188,14 @@
 
 ;; clojure-lsp
 
-(add-hook! clojure-mode #'lsp)
+(use-package! lsp-mode
+  :hook ((clojure-mode . lsp))
+  :commands lsp
+  :config
+  (dolist (m '(clojure-mode
+               clojurec-mode
+               clojurescript-mode))
+    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
 
 ;; Clojure mappings
 
