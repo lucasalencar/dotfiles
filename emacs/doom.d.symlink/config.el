@@ -202,7 +202,8 @@
 ;; Clojure mappings
 
 (add-hook! clojure-mode
-  (setq cljr-warn-on-eval nil) ;; Stop warning about evaluating whole project
+  (setq cljr-warn-on-eval nil ;; Stop warning about evaluating whole project
+        cider-show-error-buffer 'only-in-repl) ;; Stop opening a buffer with stacktrace
 
   (map!
    (:map clojure-mode-map
