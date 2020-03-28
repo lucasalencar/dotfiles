@@ -1,1 +1,3 @@
-{"macro-defs" {schema.core/defschema [:declaration :elements]}}
+{"macro-defs" {schema.core/defschema [:declaration :elements]
+               schema.core/def       [:declaration :elements]
+               schema.core/fn        [:params :bound-elements]}}
