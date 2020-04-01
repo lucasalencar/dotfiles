@@ -266,3 +266,12 @@
 
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
+
+(after! plantuml-mode
+  (setq plantuml-default-exec-mode 'jar)
+
+  ;; https://github.com/skuro/plantuml-mode/issues/70
+  ;; By default plantuml-mode uses "--illegal-access=deny" as java arg.
+  ;; But this argument is only supported by Java 9.
+  ;; I am using Java 8 which caused compatibility issues.
+  (setq plantuml-java-args (list "-Djava.awt.headless=true" "-jar")))
