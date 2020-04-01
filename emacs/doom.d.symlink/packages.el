@@ -14,3 +14,5 @@
 
 
 (package! lsp-ui :disable t) ;; Disable lsp-ui because it is really slow
+
+(package! plantuml-mode)
