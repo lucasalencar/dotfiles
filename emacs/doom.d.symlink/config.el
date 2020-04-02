@@ -267,6 +267,8 @@
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
 
+;; plantuml-mode
+
 (after! plantuml-mode
   (setq plantuml-default-exec-mode 'jar)
 
@@ -274,4 +276,8 @@
   ;; By default plantuml-mode uses "--illegal-access=deny" as java arg.
   ;; But this argument is only supported by Java 9.
   ;; I am using Java 8 which caused compatibility issues.
-  (setq plantuml-java-args (list "-Djava.awt.headless=true" "-jar")))
+  (setq plantuml-java-args (list "-Djava.awt.headless=true" "-jar"))
+
+  ;; Enable plantuml flycheck checker
+  (when (featurep! :checkers syntax)
+    (flycheck-plantuml-setup)))
