@@ -302,5 +302,21 @@
   :config
   (setq dart-server-format-on-save t))
 
+;; Flutter
+
+(use-package! flutter
+  :hook (dart-mode . (lambda ()
+                       (when (flutter-test-file-p)
+                         (flutter-test-mode)))))
+
+(after! flutter
+  (map!
+   (:map dart-mode-map
+     (:localleader
+       (:prefix ("t" . "test")
+         "n" #'flutter-test-current-file
+         "t" #'flutter-test-at-point
+         "p" #'flutter-test-all)))))
+
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
