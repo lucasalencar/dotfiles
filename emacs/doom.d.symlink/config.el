@@ -264,9 +264,6 @@
   :when (featurep! :checkers syntax)
   :after flycheck)
 
-;; load local configuration file if exists
-(load! "local.el" "~/.doom.d" t)
-
 ;; plantuml-mode
 
 (after! plantuml-mode
@@ -281,3 +278,6 @@
   ;; Enable plantuml flycheck checker
   (when (featurep! :checkers syntax)
     (flycheck-plantuml-setup)))
+
+;; load local configuration file if exists
+(load! "local.el" "~/.doom.d" t)
