@@ -18,3 +18,6 @@
 (when (and (package! plantuml-mode)
            (featurep! :checkers syntax))
   (package! flycheck-plantuml))
+
+(when (package! dart-mode)
+  (package! dart-server))
