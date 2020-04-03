@@ -279,5 +279,27 @@
   (when (featurep! :checkers syntax)
     (flycheck-plantuml-setup)))
 
+;; Dart: dart-mode / dart-server
+
+(use-package! dart-server
+  :hook (dart-mode . dart-server)
+
+  :config
+  (setq dart-server-enable-analysis-server t)
+  (setq dart-server-format-on-save t))
+
+;; (add-hook 'dart-server-hook 'flycheck-mode)
+
+(after! dart-server
+  ;; Start analysis server after loading dart-server
+  ;; Does not work well, because some commands fail to check
+  ;; if analyser is up
+  ;; (dart-server-start-analysis-server)
+
+  (map!
+   (:map dart-server-map
+     :n "gd" #'dart-server-goto
+     :n "gD" #'dart-server-find-refs)))
+
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
