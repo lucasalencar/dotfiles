@@ -318,5 +318,20 @@
          "t" #'flutter-test-at-point
          "p" #'flutter-test-all)))))
 
+(use-package! hover
+  :after dart-mode
+  :config
+  (setq hover-hot-reload-on-save t
+        hover-screenshot-path "$HOME/Pictures"))
+
+(after! hover
+  (map!
+   (:map dart-mode-map
+     (:localleader
+       (:prefix ("h" . "hover")
+         "r" #'hover-run-or-hot-reload
+         "R" #'hover-run-or-hot-restart
+         "p" #'hover-take-screenshot)))))
+
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
