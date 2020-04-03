@@ -3,7 +3,7 @@
 
 ;;; Examples:
 ;; (package! some-package)
-;; (package! another-package :recipe (:fetcher github :repo "username/repo"))
+;; (package! another-package :recipe (:host github :repo "username/repo"))
 ;; (package! builtin-package :disable t)
 
 (package! lispyville) ;; Awesome package to work with Lisp code
@@ -21,4 +21,5 @@
 
 (when (package! dart-mode)
   (package! dart-server)
-  (package! flutter))
+  (package! flutter)
+  (package! hover :recipe (:host github :repo "ericdallo/hover.el")))
