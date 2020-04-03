@@ -20,4 +20,5 @@
   (package! flycheck-plantuml))
 
 (when (package! dart-mode)
-  (package! dart-server))
+  (package! dart-server)
+  (package! flutter))
