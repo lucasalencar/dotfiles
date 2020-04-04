@@ -166,6 +166,11 @@
                                                 "description": "Wired TADA 68 keyboard",
                                                 "vendor_id": 9610,
                                                 "product_id": 19
+                                            },
+                                            {
+                                                "description": "Bluetooth TADA 68 keyboard",
+                                                "vendor_id": 2652,
+                                                "product_id": 17666
                                             }
                                         ]
                                     }
@@ -194,6 +199,11 @@
                                                 "description": "Wired TADA 68 keyboard",
                                                 "vendor_id": 9610,
                                                 "product_id": 19
+                                            },
+                                            {
+                                                "description": "Bluetooth TADA 68 keyboard",
+                                                "vendor_id": 2652,
+                                                "product_id": 17666
                                             }
                                         ]
                                     }
@@ -215,24 +225,7 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                    "simple_modifications": [
-                        {
-                            "from": {
-                                "key_code": "left_option"
-                            },
-                            "to": {
-                                "key_code": "left_command"
-                            }
-                        },
-                        {
-                            "from": {
-                                "key_code": "left_command"
-                            },
-                            "to": {
-                                "key_code": "left_option"
-                            }
-                        }
-                    ]
+                    "simple_modifications": []
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -252,36 +245,6 @@
                             },
                             "to": {
                                 "key_code": "escape"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "fn_function_keys": [],
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 17666,
-                        "vendor_id": 2652
-                    },
-                    "ignore": false,
-                    "manipulate_caps_lock_led": true,
-                    "simple_modifications": [
-                        {
-                            "from": {
-                                "key_code": "left_alt"
-                            },
-                            "to": {
-                                "key_code": "left_command"
-                            }
-                        },
-                        {
-                            "from": {
-                                "key_code": "left_gui"
-                            },
-                            "to": {
-                                "key_code": "left_option"
                             }
                         }
                     ]
