@@ -248,16 +248,7 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                    "simple_modifications": [
-                        {
-                            "from": {
-                                "key_code": "caps_lock"
-                            },
-                            "to": {
-                                "key_code": "escape"
-                            }
-                        }
-                    ]
+                    "simple_modifications": []
                 }
             ],
             "fn_function_keys": [
