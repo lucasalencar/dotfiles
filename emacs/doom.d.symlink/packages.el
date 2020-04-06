@@ -19,7 +19,5 @@
            (featurep! :checkers syntax))
   (package! flycheck-plantuml))
 
-(when (package! dart-mode)
-  (package! dart-server)
-  (package! flutter)
-  (package! hover :recipe (:host github :repo "ericdallo/hover.el")))
+(package! dart-server)
+(package! hover :recipe (:host github :repo "ericdallo/hover.el"))

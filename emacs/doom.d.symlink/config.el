@@ -284,13 +284,9 @@
 
 ;; Dart: dart-mode / dart-server / lsp-dart
 
-(use-package! dart-mode
-  :hook (dart-mode . lsp)
-
-  :config
-  (setq lsp-dart-sdk-dir "~/sdk-flutter/bin/cache/dart-sdk/"))
-
 (after! dart-mode
+  (setq lsp-dart-sdk-dir "~/sdk-flutter/bin/cache/dart-sdk/")
+
   (map!
    (:map dart-mode-map
      :n "gd" #'lsp-find-definition
