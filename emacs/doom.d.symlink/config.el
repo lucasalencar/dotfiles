@@ -141,7 +141,9 @@
          :desc "Open test or implementation in another window"
          "a" #'projectile-find-implementation-or-test-other-window
          :desc "Add new project"
-         "A" #'projectile-add-known-project)))))
+         "A" #'projectile-add-known-project
+         :desc "Discover projects in serach path"
+         "D" #'projectile-discover-projects-in-search-path)))))
 
 ;; Dired
 
