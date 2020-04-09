@@ -331,5 +331,13 @@
          "R" #'hover-run-or-hot-restart
          "p" #'hover-take-screenshot)))))
 
+(after! projectile
+  ;; Consider flutter package file as project root
+  ;; Necessary because searching files in big repositories such as mini-meta-repo
+  ;; is really slow, because it considers the whole project instead of just
+  ;; the package you are working on.
+  (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
+  (add-to-list 'projectile-project-root-files-bottom-up "BUILD"))
+
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
