@@ -142,7 +142,7 @@
          "a" #'projectile-find-implementation-or-test-other-window
          :desc "Add new project"
          "A" #'projectile-add-known-project
-         :desc "Discover projects in serach path"
+         :desc "Discover projects in search path"
          "D" #'projectile-discover-projects-in-search-path)))))
 
 ;; Dired
