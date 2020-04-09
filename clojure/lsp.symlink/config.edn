@@ -2,4 +2,17 @@
  "use-metadata-for-privacy?" true  ;; use ^:private metadata for refactorings instead of defn-
  "macro-defs"                {schema.core/defschema [:declaration :elements]
                               schema.core/def       [:declaration :elements]
-                              schema.core/fn        [:params :bound-elements]}}
+                              schema.core/fn        [:params :bound-elements]
+                              schema.core/defn      [{:element         :declaration
+                                                      :doc?            [{:pred :keyword} {:pred :follows-constant :constant :-}]
+                                                      :attr-map?       [{:pred :keyword} {:pred :follows-constant :constant :-} {:pred :string}]
+                                                      :signature-style :typed
+                                                      :signature       [{:pred :keyword} {:pred :follows-constant :constant :-} {:pred :string} {:pred :map}]}
+                                                     {:element :element :pred :keyword}
+                                                     {:element :element :pred :follows-constant :constant :-}
+                                                     {:element :element :pred :string}
+                                                     {:element :element :pred :map}
+                                                     {:element        :sub-elements
+                                                      :match-patterns [[:any :keyword :any] [:param :element :element]
+                                                                       [:any] [:param]]}
+                                                     :bound-elements]}}
