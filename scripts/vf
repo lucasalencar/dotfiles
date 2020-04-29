@@ -1,10 +1,10 @@
 #!/bin/bash
 
-FILE=$(fzf)
+FILE=$(find . -type f -not -path '*/\.git/*' -not -path '*/\.idea/*' | fzf)
 
-if [ $FILE ]
+if [ "$FILE" ]
 then
-  nvim $FILE
+  nvim "$FILE"
 fi
 
 exit 0
