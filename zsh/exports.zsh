@@ -14,7 +14,10 @@ if [[ -n "${EMACS}" ]]; then
 fi
 
 # Uses anaconda first for python
-export PATH=$HOME/.dotfiles/scripts:/usr/local/anaconda3/bin:"$PATH"
+export PATH=/usr/local/anaconda3/bin:"$PATH"
+
+# Add scripts to PATH
+export PATH="$HOME/.dotfiles/scripts":"$PATH"
 
 export LANG="en_US.UTF-8"
 
