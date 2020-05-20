@@ -241,7 +241,7 @@
 
        "c" nil ; unmap to avoid conflict
        (:prefix ("c" . "code")
-         "am" #'lsp-clojure-add-missing-libspec
+         "am" #'cljr-add-missing-libspec
          "cn" #'user/clean-ns
          "tf" #'cljr-thread-first-all
          "tl" #'cljr-thread-last-all
