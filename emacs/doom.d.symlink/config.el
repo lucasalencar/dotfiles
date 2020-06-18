@@ -246,8 +246,9 @@
          "tf" #'cljr-thread-first-all
          "tl" #'cljr-thread-last-all
          "ua" #'cljr-unwind-all
-         "tu" #'cljr-unwind
-         "ra" #'clojure-rename-ns-alias)))))
+         "uu" #'cljr-unwind
+         "ra" #'clojure-rename-ns-alias
+         "rs" #'lsp-rename)))))
 
 (after! clj-refactor
   (set-lookup-handlers! 'clj-refactor-mode nil))
