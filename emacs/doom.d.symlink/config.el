@@ -129,7 +129,11 @@
       "t" #'user/open-terminal-new-vertical-window
 
       :desc "Open term new workspace"
-      "T" #'user/open-terminal-new-workspace))))
+      "T" #'user/open-terminal-new-workspace)
+
+     (:prefix "w"
+      "v" #'user/evil-window-vsplit-and-move-right
+      "s" #'user/evil-window-split-and-move-down))))
 
 ;; Projectile
 

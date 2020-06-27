@@ -25,6 +25,20 @@
   (cider-test-run-test))
 
 ;;;###autoload
+(defun user/evil-window-vsplit-and-move-right ()
+  "Creates a vertical split and move focus right"
+  (interactive)
+  (evil-window-vsplit)
+  (evil-window-right 1))
+
+;;;###autoload
+(defun user/evil-window-split-and-move-down ()
+  "Creates a horizontal split and move focus down"
+  (interactive)
+  (evil-window-split)
+  (evil-window-down 1))
+
+;;;###autoload
 (defun user/open-terminal-new-vertical-window ()
   "Opens an ansi-term in a new vertical split window"
   (interactive)
