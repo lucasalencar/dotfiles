@@ -26,8 +26,15 @@
 
 ;;;###autoload
 (defun user/open-terminal-new-vertical-window ()
-  "Opens an ansi-term in a new window"
+  "Opens an ansi-term in a new vertical split window"
   (interactive)
   (evil-window-vsplit)
   (evil-window-right 1)
+  (ansi-term "/bin/zsh"))
+
+;;;###autoload
+(defun user/open-terminal-new-workspace ()
+  "Opens an ansi-term in a new workspace"
+  (interactive)
+  (+workspace/new "Terminal")
   (ansi-term "/bin/zsh"))
