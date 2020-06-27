@@ -36,5 +36,5 @@
 (defun user/open-terminal-new-workspace ()
   "Opens an ansi-term in a new workspace"
   (interactive)
-  (+workspace/new "Terminal")
+  (+workspace/new "terminal")
   (ansi-term "/bin/zsh"))
