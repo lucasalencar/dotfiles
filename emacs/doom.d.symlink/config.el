@@ -122,7 +122,11 @@
    (:leader
      (:prefix "q"
        :desc "Close current window"
-       "w" #'+workspace/close-window-or-workspace))))
+       "w" #'+workspace/close-window-or-workspace)
+
+     (:prefix "o"
+      :desc "Open term new window"
+      "t" #'user/open-terminal-new-vertical-window))))
 
 ;; Projectile
 
@@ -224,8 +228,7 @@
      (:localleader
        "a" #'clojure-align
 
-       (:prefix ("e" . "eval")
-         "b" #'cider-load-buffer
+       (:prefix ("e" . "eval") "b" #'cider-load-buffer
          "n" #'cider-eval-ns-form
          "c" #'cider-read-and-eval-defun-at-point
          "f" #'cider-eval-sexp-at-point)

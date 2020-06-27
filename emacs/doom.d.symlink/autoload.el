@@ -23,3 +23,11 @@
   (interactive)
   (cider-eval-defun-at-point)
   (cider-test-run-test))
+
+;;;###autoload
+(defun user/open-terminal-new-vertical-window ()
+  "Opens an ansi-term in a new window"
+  (interactive)
+  (evil-window-vsplit)
+  (evil-window-right 1)
+  (ansi-term "/bin/zsh"))
