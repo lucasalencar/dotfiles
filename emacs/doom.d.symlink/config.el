@@ -247,8 +247,13 @@
          "tl" #'cljr-thread-last-all
          "ua" #'cljr-unwind-all
          "uu" #'cljr-unwind
-         "ra" #'clojure-rename-ns-alias
-         "rs" #'lsp-rename)))))
+         "r"  #'lsp-rename
+         "cc" #'lsp-clojure-cycle-coll
+         "cp" #'lsp-clojure-cycle-privacy
+         "il" #'lsp-clojure-introduce-let
+         "el" #'lsp-clojure-expand-let
+         "ml" #'lsp-clojure-move-to-let
+         "is" #'lsp-clojure-inline-symbol)))))
 
 (after! clj-refactor
   (set-lookup-handlers! 'clj-refactor-mode nil))
