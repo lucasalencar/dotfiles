@@ -204,6 +204,12 @@
   :init
   (setq lsp-log-io t))
 
+(add-hook! lsp-mode
+  (map!
+   (:map lsp-mode-map
+    (:leader
+     "clsR" #'lsp-restart-workspace))))
+
 ;; Clojure mappings
 
 (add-hook! clojure-mode
