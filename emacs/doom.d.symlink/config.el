@@ -125,8 +125,11 @@
        "w" #'+workspace/close-window-or-workspace)
 
      (:prefix "o"
-      :desc "Open term new window"
-      "t" #'user/open-terminal-new-vertical-window))))
+      :desc "Open term new vertical window"
+      "t" #'user/open-terminal-new-vertical-window
+
+      :desc "Open term new workspace"
+      "T" #'user/open-terminal-new-workspace))))
 
 ;; Projectile
 
