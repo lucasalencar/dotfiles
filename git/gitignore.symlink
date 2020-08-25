@@ -15,3 +15,6 @@
 
 # Clojure LSP folder
 .lsp/
+
+# clj-kondo cache folder
+.clj-kondo/
