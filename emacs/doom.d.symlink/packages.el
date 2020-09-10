@@ -12,12 +12,7 @@
 (when (featurep! :checkers syntax)
   (package! flycheck-clj-kondo)) ;; clj-kondo integration
 
-
 (package! lsp-ui :disable t) ;; Disable lsp-ui because it is really slow
-
-(when (and (package! plantuml-mode)
-           (featurep! :checkers syntax))
-  (package! flycheck-plantuml))
 
 (package! dart-server)
 (package! hover :recipe (:host github :repo "ericdallo/hover.el"))
