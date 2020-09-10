@@ -294,17 +294,20 @@
 ;; plantuml-mode
 
 (after! plantuml-mode
-  (setq plantuml-default-exec-mode 'jar)
-
   ;; https://github.com/skuro/plantuml-mode/issues/70
   ;; By default plantuml-mode uses "--illegal-access=deny" as java arg.
   ;; But this argument is only supported by Java 9.
   ;; I am using Java 8 which caused compatibility issues.
   (setq plantuml-java-args (list "-Djava.awt.headless=true" "-jar"))
 
-  ;; Enable plantuml flycheck checker
-  (when (featurep! :checkers syntax)
-    (flycheck-plantuml-setup)))
+  (set-popup-rule! "^\\*PLANTUML" :side 'right :size 0.5)
+
+  (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
+
+  (map!
+   (:map plantuml-mode-map
+    (:localleader
+     ("p" #'plantuml-preview)))))
 
 ;; Dart: dart-mode / dart-server / lsp-dart
 
