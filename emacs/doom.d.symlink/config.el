@@ -292,6 +292,7 @@
   :after flycheck)
 
 ;; plantuml-mode
+;; TODO Add command to save rendered plantuml to a location
 
 (after! plantuml-mode
   ;; https://github.com/skuro/plantuml-mode/issues/70
