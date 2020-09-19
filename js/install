@@ -1,0 +1,6 @@
+#!/bin/bash
+source helpers
+
+check_homebrew
+info 'Installing npm'
+brew install npm
