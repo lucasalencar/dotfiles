@@ -4,17 +4,14 @@
 
 source helpers
 
-if test ! $(which zsh)
-then
-  info "Installing zsh and oh-my-zsh..."
-  curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+info "Installing zsh and oh-my-zsh..."
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
-  # Install better zsh-completions
-  git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
+# Install better zsh-completions
+git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
 
-  info "Setting up .zshrc file"
-  current_dir # Sets $CURRENT_DIR variable
-  link_all_files $CURRENT_DIR
-fi
+info "Setting up .zshrc file"
+current_dir # Sets $CURRENT_DIR variable
+link_all_files $CURRENT_DIR
 
 exit 0
