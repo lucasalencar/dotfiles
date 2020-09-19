@@ -1,10 +1,13 @@
 #!/bin/bash
-
 source helpers
 
-info "Install custom fonts"
+check_homebrew
+
+info "Installing other fonts"
 
 brew tap homebrew/cask-fonts
+brew install svn
+
 brew cask install font-hack
 brew cask install font-droid-sans-mono-for-powerline
 brew cask install font-roboto-mono-for-powerline
