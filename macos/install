@@ -61,6 +61,7 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 info "Disable the 'Are you sure you want to open this application?' dialog"
 defaults write com.apple.LaunchServices LSQuarantine -bool false
+defaults write com.apple.LaunchServices LSQuarantine -bool NO
 
 info "Disable block when software has no validation from apple"
 spctl --master-disable
