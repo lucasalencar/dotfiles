@@ -1,5 +1,7 @@
 set -g prefix ` # Change prefix key to backtick (`)
 
+set-option -sg escape-time 10
+
 # Set zsh as default shell
 set-option -g default-shell /bin/zsh
 
