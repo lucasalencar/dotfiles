@@ -9,15 +9,8 @@ then
   brew install rbenv
   brew install ruby-build
 
-  info 'Installing latest ruby version...'
-  rbenv install 2.6.0
-  rbenv global 2.6.0
-
   info 'Installing bundler'
   gem install bundler
-
-  info 'Installing ruby checkers'
-  gem install rubocop reek
 
   info "Setting up rubygems config files"
   current_dir # Sets $CURRENT_DIR variable
