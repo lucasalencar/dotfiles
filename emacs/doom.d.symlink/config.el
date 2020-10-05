@@ -39,16 +39,7 @@
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-env "CODE_HOME")) ;; Copy CODE_HOME env var
 
-;; hl-fill-column
-(add-hook! hl-fill-column-mode
-  (set-face-attribute 'hl-fill-column-face nil
-                      :background (doom-color 'red)
-                      :foreground (doom-color 'fg)))
-
 ;; Modeline
-
-;; enable major mode icon in modeline
-(setq doom-modeline-major-mode-icon t)
 
 ;; Whether display buffer encoding.
 (setq doom-modeline-buffer-encoding nil)
@@ -62,7 +53,7 @@
 
 ;; Map TAB to call complete
 (map!
- :i "TAB"   #'+company/complete)
+ :i "TAB" #'+company/complete)
 
 ;; Workspaces + windows operations
 
