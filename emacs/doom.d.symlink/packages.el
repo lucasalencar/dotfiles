@@ -16,3 +16,5 @@
 
 (package! dart-server)
 (package! hover :recipe (:host github :repo "ericdallo/hover.el"))
+
+(package! lsp-mode :pin "936dd86142c43e01f38d8b6aaf920b32a8ea2be4")
