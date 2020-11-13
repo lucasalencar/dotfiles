@@ -204,6 +204,8 @@
   (setq cljr-warn-on-eval nil ;; Stop warning about evaluating whole project
         cider-show-error-buffer 'only-in-repl) ;; Stop opening a buffer with stacktrace
 
+  (setq lsp-file-watch-threshold nil)
+
   (map!
    (:map clojure-mode-map
      :n "gd" #'lsp-find-definition
