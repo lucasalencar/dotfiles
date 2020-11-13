@@ -192,20 +192,6 @@
 
 ;; clojure-lsp
 
-(use-package! lsp-mode
-  :hook ((clojure-mode . lsp))
-
-  :commands lsp
-
-  :config
-  (dolist (m '(clojure-mode
-               clojurec-mode
-               clojurescript-mode))
-    (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
-
-  :init
-  (setq lsp-log-io t))
-
 ;; (add-hook! lsp-mode
 ;;   (map!
 ;;    (:map lsp-mode-map
