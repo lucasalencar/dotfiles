@@ -5,7 +5,18 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
+      pkgs.coreutils
+      pkgs.fd
+      pkgs.ag
+      pkgs.ripgrep
+      pkgs.htop
+      pkgs.tree
+      pkgs.colordiff
+      pkgs.jq
+
       pkgs.vim
+
+      # Clojure
       pkgs.clj-kondo
       pkgs.clojure-lsp
     ];
