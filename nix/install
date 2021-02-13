@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# Nix package manager
+#
+# Installs nix package manager for command line software
+
+source helpers
+
+if test ! $(which nix-shell); then
+  info 'Installing Nix'
+  sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+fi

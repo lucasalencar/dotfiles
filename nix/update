@@ -1,0 +1,4 @@
+#!/bin/bash
+
+nix-channel --update nixpkgs
+nix-env -u '*'
