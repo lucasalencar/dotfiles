@@ -18,8 +18,8 @@ link_all_files () {
   done
 }
 
-check_command () {
-  if test ! $(which $1)
+ensure_command_exists () {
+  if test ! "$(which "$1")"
   then
     fail "Command line '$1' not found"
   fi
