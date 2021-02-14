@@ -12,18 +12,22 @@ fi
 info 'Installing Neovim'
 brew install neovim
 
-ensure_command_exists 'pip'
-pip install --upgrade pip
-pip install neovim
+if command_exists 'pip'; then
+  pip install --upgrade pip
+  pip install neovim
+fi
 
-ensure_command_exists 'pip3'
-pip3 install neovim
+if command_exists 'pip3'; then
+  pip3 install neovim
+fi
 
-ensure_command_exists 'gem'
-gem install neovim
+if command_exists 'gem'; then
+  gem install neovim
+fi
 
-ensure_command_exists 'npm'
-npm install -g neovim
+if command_exists 'npm'; then
+  npm install -g neovim
+fi
 
 mkdir $HOME/.config
 ln -s $HOME/.vim $HOME/.config/nvim
