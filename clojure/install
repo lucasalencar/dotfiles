@@ -1,31 +1,52 @@
 #!/bin/sh
+
 source helpers
 
 ensure_command_exists brew
 
-if test ! $(which clojure)
-then
-  info "Installing clojure and leiningen"
-  brew install clojure leiningen
+if ! command_exists clojure; then
+  brew install clojure
+else
+  info 'Skipping clojure'
+fi
 
-  info "Setting up lein profiles configuration"
-  mkdir -p $HOME/.lein/
-  CLOJURE_ROOT="$(cd "$(dirname "$0")" && pwd)"
+current_dir
 
-  link_files $CLOJURE_ROOT/lein/profiles.clj $HOME/.lein/profiles.clj
-  link_files $CLOJURE_ROOT/jokerd/linter.clj $HOME/.jokerd/linter.clj
+if ! command_exists lein; then
+  brew install leiningen
 
+  info "Setting up lein profiles"
+  mkdir -p "$HOME/.lein/"
+  link_files "$CURRENT_DIR/lein/profiles.clj" "$HOME/.lein/profiles.clj"
+else
+  info 'Skipping leiningen'
+fi
+
+if ! command_exists joker; then
   brew install candid82/brew/joker
-  ln -f $CLOJURE_ROOT/joker.symlink $HOME/.joker
 
+  info "Setting up joker"
+  ln -f "$CURRENT_DIR/joker.symlink" "$HOME/.joker"
+  link_files "$CURRENT_DIR/jokerd/linter.clj" "$HOME/.jokerd/linter.clj"
+else
+  info 'Skipping joker'
+fi
+
+if ! command_exists clj-kondo; then
   brew install borkdude/brew/clj-kondo
+else
+  info 'Skipping clj-kondo'
+fi
+
+if ! command_exists clojure-lsp; then
   brew install clojure-lsp --build-from-source
 
-
-  if [ ! -h $HOME/.lsp ]; then
-    current_dir
-    ln -sf $CURRENT_DIR/lsp.symlink $HOME/.lsp
+  info "Setting up clojure-lsp"
+  if [ ! -h "$HOME/.lsp" ]; then
+    ln -sf "$CURRENT_DIR/lsp.symlink" "$HOME/.lsp"
   fi
+else
+  info 'Skipping clojure-lsp'
 fi
 
 exit 0
