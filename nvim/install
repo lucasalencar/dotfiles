@@ -4,13 +4,16 @@ source helpers
 ensure_command_exists brew
 current_dir # Sets $CURRENT_DIR variable
 
-if [ ! -d "$HOME/.vim" ]
-then
-  $CURRENT_DIR/../vim/install
+if [ ! -d "$HOME/.vim" ]; then
+  info 'Installing vim package as dependency for neovim'
+  "$CURRENT_DIR/../vim/install"
 fi
 
-info 'Installing Neovim'
-brew install neovim
+if ! command_exists nvim; then
+  brew install neovim
+else
+  info 'Skipping neovim'
+fi
 
 if command_exists 'pip'; then
   pip install --upgrade pip
@@ -28,7 +31,3 @@ fi
 if command_exists 'npm'; then
   npm install -g neovim
 fi
-
-mkdir $HOME/.config
-ln -s $HOME/.vim $HOME/.config/nvim
-ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
