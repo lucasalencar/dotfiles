@@ -6,8 +6,4 @@ ensure_command_exists brew
 info "Installing git latest version"
 brew install git
 
-info "Setting up git config and ignore files"
-current_dir # Sets $CURRENT_DIR variable
-link_all_files $CURRENT_DIR
-
 exit 0
