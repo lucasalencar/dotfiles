@@ -3,7 +3,10 @@ source helpers
 
 ensure_command_exists brew
 
-info "Installing anaconda..."
-brew cask install anaconda
+if ! command_exists conda; then
+  brew cask install anaconda
+else
+  info 'Skipping anaconda'
+fi
 
 exit 0
