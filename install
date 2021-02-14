@@ -10,7 +10,7 @@ DOTFILES_ROOT=$(pwd -P)
 while read package; do
   if [ -f $DOTFILES_ROOT/$package/install ]
   then
-    info "Setting up $package package..."
+    info "Installing $package package..."
     $DOTFILES_ROOT/$package/install
   fi
 done < "$DOTFILES_ROOT/packages"
