@@ -2,21 +2,23 @@
 source helpers
 
 ensure_command_exists brew
+ensure_command_exists git
 
-info "Installing Emacs"
-brew tap d12frosted/emacs-plus
-brew install emacs-plus
-cp -rf /usr/local/opt/emacs-plus/Emacs.app /Applications
-
-git clone --branch develop https://github.com/hlissner/doom-emacs ~/.emacs.d
-
-if [ ! -h $HOME/.doom.d ]; then
-  current_dir
-  ln -sf $CURRENT_DIR/doom.d.symlink $HOME/.doom.d
+if ! command_exists emacs; then
+  brew tap d12frosted/emacs-plus
+  brew install emacs-plus
+  cp -rf /usr/local/opt/emacs-plus/Emacs.app /Applications
+else
+  info "Skipping emacs-plus"
 fi
 
-EMACS_D="$HOME/.emacs.d"
-$EMACS_D/bin/doom install
-$EMACS_D/bin/doom -y sync
+if [ ! -d "$HOME/.emacs.d" ]; then
+  git clone --branch develop https://github.com/hlissner/doom-emacs "$HOME/.emacs.d"
+
+  DOOM="$HOME/.emacs.d"
+  "$DOOM/bin/doom" install
+else
+  info "Skipping doom-emacs"
+fi
 
 exit 0
