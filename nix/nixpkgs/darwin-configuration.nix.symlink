@@ -17,6 +17,8 @@
       pkgs.vim
 
       # Clojure
+      pkgs.clojure
+      pkgs.joker
       pkgs.clj-kondo
       pkgs.clojure-lsp
     ];
