@@ -3,26 +3,20 @@ source helpers
 
 ensure_command_exists brew
 
-info 'Installing VIM'
-brew install vim
-
-if [ ! -d "$HOME/.vim" ]
-then
-  info 'Installing vim-plug + plugins'
-  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-  # Create temp files folder
-  mkdir -p $HOME/.vim/_backup $HOME/.vim/_temp
-
-  vim +PlugInstall +qall
-
-  info "Setting up .vimrc file"
-  current_dir # Sets $CURRENT_DIR variable
-  link_all_files $CURRENT_DIR
+if ! command_exists vim; then
+  brew install vim
+else
+  info 'Skipping vim'
 fi
 
-# Creates undodir to store files undo history
-mkdir -p $HOME/.vim/undodir/
+if [ ! -d "$HOME/.vim" ]; then
+  info 'Installing vim-plug + plugins'
+  curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  vim +PlugInstall +qall
+else
+  info 'Skipping vim plugins'
+fi
 
 exit 0
