@@ -3,18 +3,9 @@ source helpers
 
 ensure_command_exists brew
 
-if test ! $(which rbenv)
-then
-  info "Installing rbenv..."
-  brew install rbenv
-  brew install ruby-build
-
-  info 'Installing bundler'
+if ! command_exists rbenv; then
+  brew install rbenv ruby-build
   gem install bundler
-
-  info "Setting up rubygems config files"
-  current_dir # Sets $CURRENT_DIR variable
-  link_all_files $CURRENT_DIR
 fi
 
 exit 0
