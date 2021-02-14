@@ -4,13 +4,10 @@ source helpers
 
 ensure_command_exists brew
 
-info "Install Kitty terminal app"
-
-brew cask install kitty
-
-mkdir -p $HOME/.config/kitty/
-
-current_dir
-link_files $CURRENT_DIR/kitty.conf.symlink $HOME/.config/kitty/kitty.conf
+if ! command_exists kitty; then
+  brew cask install kitty
+else
+  info 'Skipping kitty'
+fi
 
 exit 0
