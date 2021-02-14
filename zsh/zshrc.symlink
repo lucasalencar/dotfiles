@@ -18,8 +18,7 @@ plugins=(tmux git gitfast lein aws colored-man-pages)
 plugins+=(zsh-completions)
 autoload -Uz compinit && compinit
 
-if test ! $(which kitty)
-then
+if test ! $(which kitty); then
   # Completion for kitty
   kitty + complete setup zsh | source /dev/stdin
 fi
