@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source helpers
+
+current_dir # Sets $CURRENT_DIR variable
+link_all_files $CURRENT_DIR
