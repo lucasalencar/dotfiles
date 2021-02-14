@@ -19,7 +19,7 @@ link_all_files () {
 }
 
 ensure_command_exists () {
-  if test ! "$(which "$1")"
+  if ! command -v "$1" &> /dev/null
   then
     fail "Command line '$1' not found"
   fi
