@@ -25,6 +25,9 @@
       pkgs.joker
       pkgs.clj-kondo
       pkgs.clojure-lsp
+
+      # Elixir
+      pkgs.elixir
     ];
 
   # Auto upgrade nix package and the daemon service.
