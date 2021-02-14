@@ -10,24 +10,15 @@ else
   info 'Skipping clojure'
 fi
 
-current_dir
-
 if ! command_exists lein; then
   brew install leiningen
 
-  info "Setting up lein profiles"
-  mkdir -p "$HOME/.lein/"
-  link_files "$CURRENT_DIR/lein/profiles.clj" "$HOME/.lein/profiles.clj"
 else
   info 'Skipping leiningen'
 fi
 
 if ! command_exists joker; then
   brew install candid82/brew/joker
-
-  info "Setting up joker"
-  ln -f "$CURRENT_DIR/joker.symlink" "$HOME/.joker"
-  link_files "$CURRENT_DIR/jokerd/linter.clj" "$HOME/.jokerd/linter.clj"
 else
   info 'Skipping joker'
 fi
@@ -40,11 +31,6 @@ fi
 
 if ! command_exists clojure-lsp; then
   brew install clojure-lsp --build-from-source
-
-  info "Setting up clojure-lsp"
-  if [ ! -h "$HOME/.lsp" ]; then
-    ln -sf "$CURRENT_DIR/lsp.symlink" "$HOME/.lsp"
-  fi
 else
   info 'Skipping clojure-lsp'
 fi
