@@ -14,7 +14,7 @@ link_all_files () {
   for source in `find $1 -maxdepth 1 -name \*.symlink`
   do
     dest="$HOME/.`basename \"${source%.*}\"`"
-    link_files $source $dest
+    link_files "$source" "$dest"
   done
 }
 
