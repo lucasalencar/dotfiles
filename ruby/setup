@@ -1,0 +1,8 @@
+#!/bin/sh
+source helpers
+
+if command_exists ruby; then
+  info "Setting up rubygems config files"
+  current_dir # Sets $CURRENT_DIR variable
+  link_all_files $CURRENT_DIR
+fi
