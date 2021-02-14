@@ -3,21 +3,17 @@ source helpers
 
 ensure_command_exists brew
 
-brew install tmux
+if ! command_exists tmux; then
+  brew install tmux
 
-# Makes copying and pasting in Terminal.app work again on MacOS Sierra
-# https://github.com/tmux/tmux/issues/543#issuecomment-248980734
-# https://github.com/tmux/tmux/issues/543
-brew install reattach-to-user-namespace
+  # Makes copying and pasting in Terminal.app work again on MacOS Sierra
+  # https://github.com/tmux/tmux/issues/543#issuecomment-248980734
+  # https://github.com/tmux/tmux/issues/543
+  brew install reattach-to-user-namespace
 
-info 'Setting up TPM (Tmux Plugin Manager)'
-git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-
-# Install tmux plugins
-$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
-
-info "Setting up tmux.conf file"
-current_dir # Sets $CURRENT_DIR variable
-link_all_files $CURRENT_DIR
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+else
+  info 'Skipping tmux'
+fi
 
 exit 0
