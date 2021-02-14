@@ -3,11 +3,11 @@ source helpers
 
 ensure_command_exists brew
 
-if test ! $(which go)
-then
-  info 'Installing go...'
+if ! command_exists go; then
   brew install go
-  mkdir -p $HOME/code/go
+  mkdir -p "$HOME/code/go"
+else
+  info "Skipping go"
 fi
 
 exit 0
