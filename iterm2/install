@@ -4,10 +4,9 @@ source helpers
 
 ensure_command_exists brew
 
-info "Installing Iterm2 for faster terminal rendering"
 brew cask install iterm2
 
-info "Don't display the annoying prompt when quitting iTerm"
+# Don't display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 exit 0

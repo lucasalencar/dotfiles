@@ -2,5 +2,5 @@
 source helpers
 
 ensure_command_exists brew
-info 'Installing npm'
+
 brew install npm
