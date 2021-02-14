@@ -1,13 +1,9 @@
 #!/bin/bash
+# Karabiner: remap keyboard keys
+
 source helpers
 
 ensure_command_exists brew
-
-info "Installing Karabiner to remap keyboard"
-
 brew cask install karabiner-elements
-
-current_dir # Sets $CURRENT_DIR variable
-source "$CURRENT_DIR/cp-out-config.sh"
 
 exit 0
