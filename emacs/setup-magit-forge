@@ -8,4 +8,4 @@ source helpers
 info "Setting up Forge authinfo config"
 
 current_dir
-gpg --output $HOME/.authinfo.gpg --symmetric $CURRENT_DIR/authinfo
+gpg --output "$HOME/.authinfo.gpg" --symmetric "$CURRENT_DIR/authinfo"
