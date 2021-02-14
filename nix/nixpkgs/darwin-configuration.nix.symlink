@@ -13,7 +13,9 @@
       pkgs.tree
       pkgs.colordiff
       pkgs.jq
+      pkgs.fzf
 
+      # Editors
       pkgs.vim
 
       # Clojure
