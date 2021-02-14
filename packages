@@ -5,6 +5,7 @@ homebrew
 git
 zsh
 apps
+essentials
 karabiner
 fonts
 js
@@ -13,4 +14,5 @@ tmux
 nvim
 emacs
 scripts
+fzf
 sh
