@@ -15,9 +15,4 @@ if test ! $(which darwin-rebuild); then
   info 'Installing nix-darwin to control MacOS'
   nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
   ./result/bin/darwin-installer
-
-  if [ ! -h $HOME/.nixpkgs ]; then
-    current_dir
-    link_files $CURRENT_DIR/nixpkgs/darwin-configuration.nix.symlink $HOME/.nixpkgs/darwin-configuration.nix
-  fi
 fi

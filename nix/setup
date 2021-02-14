@@ -1,0 +1,9 @@
+#!/bin/bash
+source helpers
+
+ensure_command_exists darwin-rebuild
+
+if [ ! -h "$HOME/.nixpkgs" ]; then
+  current_dir
+  link_files "$CURRENT_DIR/nixpkgs/darwin-configuration.nix.symlink" "$HOME/.nixpkgs/darwin-configuration.nix"
+fi
