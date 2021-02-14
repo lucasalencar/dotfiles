@@ -6,13 +6,19 @@
 
 source helpers
 
-if test ! $(which nix-env); then
-  info 'Installing Nix'
+if ! command_exists nix-env; then
+  info 'Installing nix package manager'
   sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume
+else
+  info "Skipping nix installation"
 fi
 
-if test ! $(which darwin-rebuild); then
+if ! command_exists darwin-rebuild; then
   info 'Installing nix-darwin to control MacOS'
   nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
   ./result/bin/darwin-installer
+else
+  info "Skipping nix-darwin installation"
 fi
+
+exit 0
