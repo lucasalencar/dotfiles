@@ -4,6 +4,6 @@ source helpers
 ensure_command_exists brew
 
 info "Installing git latest version"
-brew install git
+brew install git git-lfs
 
 exit 0
