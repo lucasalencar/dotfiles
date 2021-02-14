@@ -18,8 +18,12 @@ link_all_files () {
   done
 }
 
+command_exists () {
+  command -v "$1" &> /dev/null
+}
+
 ensure_command_exists () {
-  if ! command -v "$1" &> /dev/null
+  if ! command_exists "$1"
   then
     fail "Command line '$1' not found"
   fi
