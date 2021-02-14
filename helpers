@@ -28,10 +28,3 @@ ensure_command_exists () {
     fail "Command line '$1' not found"
   fi
 }
-
-check_homebrew () {
-  if test ! $(which brew)
-  then
-    fail 'Homebrew is not installed, run ./homebrew/install to get it'
-  fi
-}

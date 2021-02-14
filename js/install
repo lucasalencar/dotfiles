@@ -1,6 +1,6 @@
 #!/bin/bash
 source helpers
 
-check_homebrew
+ensure_command_exists brew
 info 'Installing npm'
 brew install npm

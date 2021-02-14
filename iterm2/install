@@ -2,7 +2,7 @@
 
 source helpers
 
-check_homebrew
+ensure_command_exists brew
 
 info "Installing Iterm2 for faster terminal rendering"
 brew cask install iterm2
