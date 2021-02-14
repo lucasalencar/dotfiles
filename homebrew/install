@@ -8,8 +8,7 @@
 source helpers
 
 # Check for Homebrew
-if test ! $(which brew); then
-  info 'Installing Homebrew'
+if ! command_exists brew; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   info 'Setting up brew-services tap'
