@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 #
-# Installation process
+# Main installation script based on packages declared in `packages` file
 
 source helpers
 
 DOTFILES_ROOT=$(pwd -P)
 
 # Look for packages file to know which packages are going to be installed
-while read package; do
-  if [ -f $DOTFILES_ROOT/$package/install ]
-  then
-    info "Installing $package package..."
-    $DOTFILES_ROOT/$package/install
+while read -r package; do
+  if [ -f "$DOTFILES_ROOT/$package/install" ]; then
+    info "Installing $package package"
+    "$DOTFILES_ROOT/$package/install"
+  fi
+
+  if [ -f "$DOTFILES_ROOT/$package/setup" ]; then
+    info "Setting up $package package"
+    "$DOTFILES_ROOT/$package/setup"
   fi
 done < "$DOTFILES_ROOT/packages"
 unset package
