@@ -28,6 +28,9 @@
 
       # Elixir
       pkgs.elixir
+
+      # Node
+      pkgs.nodejs
     ];
 
   # Auto upgrade nix package and the daemon service.
