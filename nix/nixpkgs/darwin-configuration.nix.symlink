@@ -24,6 +24,9 @@
       pkgs.vim
       pkgs.neovim
 
+      # Bash
+      pkgs.shellcheck
+
       # Clojure
       pkgs.clojure
       pkgs.joker
