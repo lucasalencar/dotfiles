@@ -27,6 +27,12 @@
       # https://github.com/tmux/tmux/issues/543
       pkgs.reattach-to-user-namespace
 
+      pkgs.tmuxPlugins.sensible
+      pkgs.tmuxPlugins.vim-tmux-navigator
+      pkgs.tmuxPlugins.yank
+      pkgs.tmuxPlugins.copycat
+      pkgs.tmuxPlugins.open
+
       # Editors
       pkgs.vim
       pkgs.neovim
