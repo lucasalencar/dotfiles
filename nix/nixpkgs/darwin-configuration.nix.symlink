@@ -35,6 +35,9 @@
 
       # Node
       pkgs.nodejs
+
+      # Ruby
+      pkgs.rbenv
     ];
 
   # Auto upgrade nix package and the daemon service.
