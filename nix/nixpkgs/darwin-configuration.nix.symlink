@@ -37,6 +37,8 @@
       pkgs.vim
       pkgs.neovim
 
+      pkgs.vimPlugins.vim-plug
+
       # Bash
       pkgs.shellcheck
 
