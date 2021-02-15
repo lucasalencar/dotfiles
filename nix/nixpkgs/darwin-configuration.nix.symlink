@@ -19,6 +19,7 @@
 
       # Terms
       pkgs.kitty
+      pkgs.oh-my-zsh
       pkgs.tmux
 
       # Makes copying and pasting in Terminal.app work again on MacOS Sierra
