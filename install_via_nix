@@ -6,8 +6,6 @@ source helpers
 
 DOTFILES_ROOT=$(pwd -P)
 
-packages_install "$DOTFILES_ROOT" "$DOTFILES_ROOT/packages_migration"
-
 info 'Installing nix package manager'
 "$DOTFILES_ROOT/nix/install"
 "$DOTFILES_ROOT/nix/setup"
@@ -18,6 +16,8 @@ darwin-rebuild switch
 
 info 'Setting up installed packages'
 for setup in */setup; do "$setup"; done
+
+packages_install "$DOTFILES_ROOT" "$DOTFILES_ROOT/packages_migration"
 
 success 'All done! :D'
 
