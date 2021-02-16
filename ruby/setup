@@ -4,5 +4,5 @@ source helpers
 if command_exists gem; then
   info "Setting up rubygems config files"
   current_dir # Sets $CURRENT_DIR variable
-  link_all_files $CURRENT_DIR
+  link_all_files "$CURRENT_DIR"
 fi
