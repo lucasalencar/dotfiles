@@ -7,15 +7,6 @@
 # Default editor
 export EDITOR="nvim"
 
-# But if I am using emacs, use emacs to edit
-if [[ -n "${EMACS}" ]]; then
-  export VISUAL="emacsclient"
-  export EDITOR="${VISUAL}"
-  export GIT_EDITOR="${EDITOR}"
-  # Disable RPROMPT in Emacs term
-  export RPROMPT=""
-fi
-
 # Uses anaconda first for python
 export PATH=/usr/local/anaconda3/bin:"$PATH"
 
