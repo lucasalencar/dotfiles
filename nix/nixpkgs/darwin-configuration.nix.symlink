@@ -36,6 +36,7 @@
       # Editors
       pkgs.vim
       pkgs.neovim
+      pkgs.emacsMacport
 
       pkgs.vimPlugins.vim-plug
 
