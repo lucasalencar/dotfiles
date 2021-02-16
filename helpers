@@ -1,6 +1,25 @@
 #!/bin/bash
 source print_helper
 
+packages_install () {
+  local -r dotfiles_root="$1"
+  local -r packages_file="$2"
+
+  # Look for packages file to know which packages are going to be installed
+  while read -r package; do
+    if [ -f "$dotfiles_root/$package/install" ]; then
+      info "Installing $package package"
+      "$dotfiles_root/$package/install"
+    fi
+
+    if [ -f "$dotfiles_root/$package/setup" ]; then
+      info "Setting up $package package"
+      "$dotfiles_root/$package/setup"
+    fi
+  done < "$packages_file"
+  unset package
+}
+
 link_files () {
   ln -sf $1 $2
   info "Linked $1 to $2"
