@@ -21,7 +21,7 @@ packages_install () {
 }
 
 link_files () {
-  ln -sf $1 $2
+  ln -sf "$1" "$2"
   info "Linked $1 to $2"
 }
 
