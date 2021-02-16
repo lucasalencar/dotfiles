@@ -64,7 +64,11 @@
   nix.package = pkgs.nix;
 
   # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.zsh = {
+    enable = true;
+    enableSyntaxHighlighting = true;
+    enableFzfHistory = true;
+  };
 
   # Enable the Emacs Daemon. Run emacs as a service
   services.emacs.enable = true;
