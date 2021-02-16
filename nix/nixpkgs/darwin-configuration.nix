@@ -63,7 +63,7 @@
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
+  # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh = {
     enable = true;
     enableSyntaxHighlighting = true;
