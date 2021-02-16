@@ -63,6 +63,11 @@
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
+  # Enable nix auto gc
+  nix.gc.automatic = true;
+  nix.gc.interval = { Hour = 24; };
+  nix.gc.options = "-d";
+
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh = {
     enable = true;
