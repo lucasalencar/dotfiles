@@ -5,21 +5,7 @@
 source helpers
 
 DOTFILES_ROOT=$(pwd -P)
-
-# Look for packages file to know which packages are going to be installed
-while read -r package; do
-  if [ -f "$DOTFILES_ROOT/$package/install" ]; then
-    info "Installing $package package"
-    "$DOTFILES_ROOT/$package/install"
-  fi
-
-  if [ -f "$DOTFILES_ROOT/$package/setup" ]; then
-    info "Setting up $package package"
-    "$DOTFILES_ROOT/$package/setup"
-  fi
-done < "$DOTFILES_ROOT/packages"
-unset package
-
+packages_install "$DOTFILES_ROOT" "$DOTFILES_ROOT/packages"
 success 'All done! :D'
 
 exit 0
