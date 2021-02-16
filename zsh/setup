@@ -2,5 +2,7 @@
 
 source helpers
 
-current_dir # Sets $CURRENT_DIR variable
-link_all_files $CURRENT_DIR
+if command_exists zsh; then
+  current_dir # Sets $CURRENT_DIR variable
+  link_all_files "$CURRENT_DIR"
+fi
