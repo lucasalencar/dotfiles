@@ -6,6 +6,8 @@ source helpers
 
 DOTFILES_ROOT=$(pwd -P)
 
+packages_install "$DOTFILES_ROOT" "$DOTFILES_ROOT/packages_migration"
+
 info 'Installing nix package manager'
 "$DOTFILES_ROOT/nix/install"
 "$DOTFILES_ROOT/nix/setup"
