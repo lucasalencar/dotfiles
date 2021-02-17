@@ -6,6 +6,9 @@
   environment.systemPackages =
     [
       pkgs.coreutils
+      pkgs.binutils
+      pkgs.diffutils
+      pkgs.findutils
       pkgs.fd
       pkgs.ag
       pkgs.ripgrep
