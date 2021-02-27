@@ -3,15 +3,15 @@ alias la='ls -lAh'
 
 # Specific update aliases
 alias update_dotfiles="cd $HOME/.dotfiles; git pull --rebase; cd -"
-alias update_oh_my_zsh="omz update"
-alias update_brew="brew update; brew upgrade; brew cleanup"
-alias update_vim_plugins="nvim +PlugUpgrade +PlugUpdate +PlugClean! +qall"
-alias update_tmux="$HOME/.tmux/plugins/tpm/bin/install_plugins; $HOME/.tmux/plugins/tpm/bin/update_plugins all; $HOME/.tmux/plugins/tpm/bin/clean_plugins"
-alias update_emacs="doom -y upgrade"
+alias update_zsh="$HOME/.dotfiles/zsh/update"
+alias update_brew="$HOME/.dotfiles/homebrew/update"
+alias update_nvim="$HOME/.dotfiles/nvim/update"
+alias update_tmux="$HOME/.dotfiles/tmux/update"
+alias update_emacs="$HOME/.dotfiles/emacs/update"
 alias update_nix="$HOME/.dotfiles/nix/update"
 
 # Update every system that is interesting for the command line
-alias update="update_dotfiles; update_oh_my_zsh; update_emacs; update_brew; update_nix; update_vim_plugins; update_tmux"
+alias update="update_dotfiles; update_zsh; update_emacs; update_brew; update_nix; update_nvim; update_tmux"
 
 alias reload!='. ~/.zshrc'
 
