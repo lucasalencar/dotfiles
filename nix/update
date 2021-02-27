@@ -2,3 +2,4 @@
 
 nix-channel --update
 nix-env -u '*'
+darwin-rebuild switch
