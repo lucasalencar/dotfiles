@@ -39,14 +39,11 @@ alias dss="docker-machine stop"
 alias vi="nvim"
 alias iv="nvim"
 alias v="nvim"
-
 alias t="tmux"
 
 alias lr="lein repl"
 alias l="lein"
 alias lnt="lein nu-test"
-
-alias nupc="lein nu-test; lein lint"
 
 alias gs="gst"
 alias gdst="git diff --stat master HEAD" # Show number of lines changed for current branch
