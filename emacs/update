@@ -1,0 +1,4 @@
+#!/bin/bash
+
+doom -y sync
+doom -y upgrade
