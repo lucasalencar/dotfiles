@@ -11,7 +11,7 @@ alias update_emacs="$HOME/.dotfiles/emacs/update"
 alias update_nix="$HOME/.dotfiles/nix/update"
 
 # Update every system that is interesting for the command line
-alias update="update_dotfiles; update_zsh; update_emacs; update_brew; update_nix; update_nvim; update_tmux"
+alias update="$HOME/.dotfiles/update"
 
 alias reload!='. ~/.zshrc'
 
