@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Updates dotfiles
-cd "$HOME/.dotfiles" || git pull --rebase || cd - || return
-
+git -C "$HOME/.dotfiles" pull --rebase
 
 "$HOME/.dotfiles/zsh/update"
 "$HOME/.dotfiles/emacs/update"
