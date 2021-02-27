@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Updates dotfiles
+cd "$HOME/.dotfiles" || git pull --rebase || cd - || return
+
+
+"$HOME/.dotfiles/zsh/update"
+"$HOME/.dotfiles/emacs/update"
+"$HOME/.dotfiles/homebrew/update"
+"$HOME/.dotfiles/nix/update"
+"$HOME/.dotfiles/nvim/update"
+"$HOME/.dotfiles/tmux/update"
