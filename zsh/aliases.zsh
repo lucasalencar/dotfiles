@@ -2,7 +2,6 @@
 alias la='ls -lAh'
 
 # Specific update aliases
-alias update_dotfiles="cd $HOME/.dotfiles; git pull --rebase; cd -"
 alias update_zsh="$HOME/.dotfiles/zsh/update"
 alias update_brew="$HOME/.dotfiles/homebrew/update"
 alias update_nvim="$HOME/.dotfiles/nvim/update"
