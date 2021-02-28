@@ -134,6 +134,7 @@
     dock.showhidden = true;
     dock.show-recents = false;
     dock.tilesize = 45;
+    dock.dashboard-in-overlay = true;
 
     ## Finder
     finder.AppleShowAllExtensions = true;
@@ -164,6 +165,9 @@
     trackpad.TrackpadThreeFingerDrag = true;
     trackpad.FirstClickThreshold = 0;
     trackpad.SecondClickThreshold = null;
+
+    # Disable shadow in screenshots
+    screencapture.disable-shadow = true;
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
