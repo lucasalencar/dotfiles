@@ -91,67 +91,70 @@
 
   ## MacOS flags
 
-  # Set dark mode
-  system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
-  system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
-  system.defaults.NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
+  system.defaults = {
+    # Set dark mode
+    NSGlobalDomain.AppleInterfaceStyle = "Dark";
+    NSGlobalDomain.AppleShowAllExtensions = true;
+    NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
 
-  system.defaults.NSGlobalDomain.AppleMeasurementUnits = "Centimeters";
-  system.defaults.NSGlobalDomain.AppleMetricUnits = 1;
-  system.defaults.NSGlobalDomain.AppleTemperatureUnit = "Celsius";
+    NSGlobalDomain.AppleMeasurementUnits = "Centimeters";
+    NSGlobalDomain.AppleMetricUnits = 1;
+    NSGlobalDomain.AppleTemperatureUnit = "Celsius";
 
-  system.defaults.dock.autohide = true;
-  system.defaults.dock.autohide-delay = "0";
-  system.defaults.dock.enable-spring-load-actions-on-all-items = true;
-  system.defaults.dock.expose-animation-duration = "0.1";
-  system.defaults.dock.expose-group-by-app = false;
-  system.defaults.dock.mineffect = "scale";
-  system.defaults.dock.minimize-to-application = true;
-  system.defaults.dock.show-process-indicators = true;
-  system.defaults.dock.showhidden = true;
-  system.defaults.dock.show-recents = false;
-  system.defaults.dock.tilesize = 50;
+    # Trackpad
+    NSGlobalDomain."com.apple.mouse.tapBehavior" = 1; # tap to click
+    NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = true;
 
-  # Trackpad
-  system.defaults.NSGlobalDomain."com.apple.mouse.tapBehavior" = 1; # tap to click
-  system.defaults.NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = true;
+    # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
+    NSGlobalDomain.AppleKeyboardUIMode = 3;
 
-  # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
-  system.defaults.NSGlobalDomain.AppleKeyboardUIMode = 3;
 
-  # Set a blazingly fast keyboard repeat rate
-  system.defaults.NSGlobalDomain.KeyRepeat = 1;
-  system.defaults.NSGlobalDomain.InitialKeyRepeat = 10;
+    # Set a blazingly fast keyboard repeat rate
+    NSGlobalDomain.KeyRepeat = 1;
+    NSGlobalDomain.InitialKeyRepeat = 10;
 
-  # Medium size sidebar Finder icons
-  system.defaults.NSGlobalDomain.NSTableViewDefaultSizeMode = 2;
+    # Medium size sidebar Finder icons
+    NSGlobalDomain.NSTableViewDefaultSizeMode = 2;
 
-  # Open folder when holding some file over it
-  system.defaults.NSGlobalDomain."com.apple.springing.enabled" = true;
-  system.defaults.NSGlobalDomain."com.apple.springing.delay" = "0.5";
+    # Open folder when holding some file over it
+    NSGlobalDomain."com.apple.springing.enabled" = true;
+    NSGlobalDomain."com.apple.springing.delay" = "0.5";
 
-  # Expand save panel by default
-  system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
-  system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
+    # Expand save panel by default
+    NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
+    NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
 
-  # Save to disk (not iCloud) by default
-  system.defaults.NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
+    # Save to disk (not iCloud) by default
+    NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
 
-  # Disable the press-and-hold feature in favor of key repeat
-  system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
+    # Disable the press-and-hold feature in favor of key repeat
+    NSGlobalDomain.ApplePressAndHoldEnabled = false;
 
-  # Increase window resize animation speed
-  system.defaults.NSGlobalDomain.NSWindowResizeTime = "0.001";
+    # Increase window resize animation speed
+    NSGlobalDomain.NSWindowResizeTime = "0.001";
 
-  # Disable automatic changes to text as its annoying when typing code
-  system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
-  system.defaults.NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = false;
-  system.defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
-  system.defaults.NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = false;
-  system.defaults.NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
+    # Disable automatic changes to text as its annoying when typing code
+    NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
+    NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = false;
+    NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
+    NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = false;
+    NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
 
-  # Disable the 'Are you sure you want to open this application?' dialog
-  system.defaults.LaunchServices.LSQuarantine = false;
+    # Disable the 'Are you sure you want to open this application?' dialog
+    LaunchServices.LSQuarantine = false;
+
+    dock.autohide = true;
+    dock.autohide-delay = "0";
+    dock.enable-spring-load-actions-on-all-items = true;
+    dock.expose-animation-duration = "0.1";
+    dock.expose-group-by-app = false;
+    dock.mineffect = "scale";
+    dock.minimize-to-application = true;
+    dock.show-process-indicators = true;
+    dock.showhidden = true;
+    dock.show-recents = false;
+    dock.tilesize = 50;
+  };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
