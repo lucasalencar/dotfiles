@@ -101,10 +101,6 @@
     NSGlobalDomain.AppleMetricUnits = 1;
     NSGlobalDomain.AppleTemperatureUnit = "Celsius";
 
-    # Trackpad
-    NSGlobalDomain."com.apple.mouse.tapBehavior" = 1; # tap to click
-    NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = true;
-
     # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
     NSGlobalDomain.AppleKeyboardUIMode = 3;
 
@@ -154,6 +150,19 @@
     dock.showhidden = true;
     dock.show-recents = false;
     dock.tilesize = 50;
+
+    finder.AppleShowAllExtensions = true;
+    finder._FXShowPosixPathInTitle = true;
+    finder.FXEnableExtensionChangeWarning = false;
+
+    # Trackpad
+    NSGlobalDomain."com.apple.mouse.tapBehavior" = 1; # tap to click
+    NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = true;
+
+    trackpad.Clicking = true;
+    trackpad.TrackpadThreeFingerDrag = true;
+    trackpad.FirstClickThreshold = 0;
+    trackpad.SecondClickThreshold = null;
   };
 
   # Used for backwards compatibility, please read the changelog before changing.
