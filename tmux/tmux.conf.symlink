@@ -39,16 +39,9 @@ set -g mouse on          # Allow selecting panes, resizing panes and select wind
 #setw -g automatic-rename # Automatically set window title to running command
 set -g @scroll-speed-num-lines-per-scroll 5 # Faster scroll
 
-### Setup notifications when there is activity in a not active window
-#setw -g monitor-activity on
-#set -g visual-activity on
-
 ### Making navigation and commands more like vim
 setw -g mode-keys vi # Use vim keys to navigate in copy mode
 bind-key -T copy-mode-vi 'v' send -X begin-selection # Set v to start selecting in copy mode
-
-# Not needed as far as the tmux-yank is enabled
-# bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel # Set y to copy selection in copy mode
 
 ### WINDOW MANAGEMENT MAPPINGS
 
@@ -81,12 +74,6 @@ bind - split-window -v -c '#{pane_current_path}'
 # Split window vertically full size in the same directory (prefix + _)
 bind _ split-window -fv -c '#{pane_current_path}'
 
-# Split window vertically in the same directory and swap panes (prefix + _)
-#bind _ split-window -v -c '#{pane_current_path}' \; swap-pane -U
-
-# Split window horizontally in the same directory and swap panes (prefix + |)
-#bind | split-window -h -c '#{pane_current_path}' \; swap-pane -U
-
 ### Resize panels easily using prefix + <direction>
 bind j resize-pane -D 5 # prefix + j to resize down
 bind k resize-pane -U 5 # prefix + k to resize up
@@ -98,13 +85,6 @@ bind J resize-pane -D 40 # prefix + J to resize down
 bind K resize-pane -U 40 # prefix + K to resize up
 bind H resize-pane -L 40 # prefix + H to resize left
 bind L resize-pane -R 40 # prefix + L to resize right
-
-
-# Split window vertically (console paired with code)
-bind v split-window -fv -p 16 -c '#{pane_current_path}'
-# Setup panes to work with Clojure projects
-bind r split-window -fv -p 16 -c '#{pane_current_path}' "pwd; lein repl" \; split-window -h -p 50 -c "#{pane_current_path}"
-
 
 #### Setup TPM (Tmux Plugin Manager)
 # List of plugins
@@ -125,12 +105,6 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 ### Setup mapping for switching between panels using ctrl+<direction>
 # It is not necessary to set it in configuration
 set -g @plugin 'christoomey/vim-tmux-navigator'
-
-# Use directly keybindings to make tmux-navigation work with emacs navigation
-#bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys C-h) || tmux select-pane -L"
-#bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys C-j) || tmux select-pane -D"
-#bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys C-k) || tmux select-pane -U"
-#bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)n?vim(diff)?$|emacs.*$' && tmux send-keys C-l) || tmux select-pane -R"
 
 ### Enhance copying text in tmux
 # prefix + y in NORMAL mode => copy current command line
