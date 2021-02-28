@@ -23,7 +23,6 @@
       # Terms
       pkgs.kitty
       pkgs.oh-my-zsh
-      pkgs.tmux
 
       # Makes copying and pasting in Terminal.app work again on MacOS Sierra
       # https://github.com/tmux/tmux/issues/543#issuecomment-248980734
@@ -77,6 +76,9 @@
     enableSyntaxHighlighting = true;
     enableFzfHistory = true;
   };
+
+  # Enable tmux
+  programs.tmux.enable = true;
 
   # Enable the Emacs Daemon. Run emacs as a service
   services.emacs.enable = true;
