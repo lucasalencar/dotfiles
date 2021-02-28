@@ -3,63 +3,62 @@
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [
-      pkgs.coreutils
-      pkgs.binutils
-      pkgs.diffutils
-      pkgs.findutils
-      pkgs.fd
-      pkgs.ag
-      pkgs.ripgrep
-      pkgs.htop
-      pkgs.tree
-      pkgs.colordiff
-      pkgs.jq
-      pkgs.fzf
-      pkgs.git
-      pkgs.git-lfs
+  environment.systemPackages = [
+    pkgs.coreutils
+    pkgs.binutils
+    pkgs.diffutils
+    pkgs.findutils
+    pkgs.fd
+    pkgs.ag
+    pkgs.ripgrep
+    pkgs.htop
+    pkgs.tree
+    pkgs.colordiff
+    pkgs.jq
+    pkgs.fzf
+    pkgs.git
+    pkgs.git-lfs
 
-      # Terms
-      pkgs.kitty
-      pkgs.oh-my-zsh
+    # Terms
+    pkgs.kitty
+    pkgs.oh-my-zsh
 
-      # Makes copying and pasting in Terminal.app work again on MacOS Sierra
-      # https://github.com/tmux/tmux/issues/543#issuecomment-248980734
-      # https://github.com/tmux/tmux/issues/543
-      pkgs.reattach-to-user-namespace
+    # Makes copying and pasting in Terminal.app work again on MacOS Sierra
+    # https://github.com/tmux/tmux/issues/543#issuecomment-248980734
+    # https://github.com/tmux/tmux/issues/543
+    pkgs.reattach-to-user-namespace
 
-      pkgs.tmuxPlugins.sensible
-      pkgs.tmuxPlugins.vim-tmux-navigator
-      pkgs.tmuxPlugins.yank
-      pkgs.tmuxPlugins.copycat
-      pkgs.tmuxPlugins.open
+    pkgs.tmuxPlugins.sensible
+    pkgs.tmuxPlugins.vim-tmux-navigator
+    pkgs.tmuxPlugins.yank
+    pkgs.tmuxPlugins.copycat
+    pkgs.tmuxPlugins.open
 
-      # Editors
-      pkgs.vim
-      pkgs.neovim
-      pkgs.emacsMacport
+    # Editors
+    pkgs.vim
+    pkgs.neovim
+    pkgs.emacsMacport
 
-      pkgs.vimPlugins.vim-plug
+    pkgs.vimPlugins.vim-plug
 
-      # Bash
-      pkgs.shellcheck
+    # Bash
+    pkgs.shellcheck
 
-      # Clojure
-      pkgs.clojure
-      pkgs.joker
-      pkgs.clj-kondo
-      pkgs.clojure-lsp
+    # Clojure
+    pkgs.clojure
+    pkgs.joker
+    pkgs.clj-kondo
+    pkgs.clojure-lsp
 
-      # Elixir
-      pkgs.elixir
+    # Elixir
+    pkgs.elixir
 
-      # Node
-      pkgs.nodejs
+    # Node
+    pkgs.nodejs
 
-      # Ruby
-      pkgs.rbenv
-    ];
+    # Ruby
+    pkgs.rbenv
+  ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
