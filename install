@@ -1,11 +1,24 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #
-# Main installation script based on packages declared in `packages` file
+# Main installation script using nix-darwin to build the system
 
 source helpers
 
 DOTFILES_ROOT=$(pwd -P)
+
+info 'Installing nix package manager'
+"$DOTFILES_ROOT/nix/install"
+"$DOTFILES_ROOT/nix/setup"
+
+ensure_command_exists darwin-rebuild
+info 'Building system using nix-darwin'
+darwin-rebuild switch
+
+info 'Setting up installed packages'
+for setup in */setup; do "$setup"; done
+
 packages_install "$DOTFILES_ROOT" "$DOTFILES_ROOT/packages"
+
 success 'All done! :D'
 
 exit 0
