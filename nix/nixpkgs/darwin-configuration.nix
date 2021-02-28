@@ -95,7 +95,6 @@
     # Set dark mode
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
     NSGlobalDomain.AppleShowAllExtensions = true;
-    NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
 
     NSGlobalDomain.AppleMeasurementUnits = "Centimeters";
     NSGlobalDomain.AppleMetricUnits = 1;
@@ -104,17 +103,9 @@
     # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
     NSGlobalDomain.AppleKeyboardUIMode = 3;
 
-
     # Set a blazingly fast keyboard repeat rate
     NSGlobalDomain.KeyRepeat = 1;
     NSGlobalDomain.InitialKeyRepeat = 10;
-
-    # Medium size sidebar Finder icons
-    NSGlobalDomain.NSTableViewDefaultSizeMode = 2;
-
-    # Open folder when holding some file over it
-    NSGlobalDomain."com.apple.springing.enabled" = true;
-    NSGlobalDomain."com.apple.springing.delay" = "0.5";
 
     # Expand save panel by default
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
@@ -149,13 +140,23 @@
     dock.show-process-indicators = true;
     dock.showhidden = true;
     dock.show-recents = false;
-    dock.tilesize = 50;
+    dock.tilesize = 45;
 
+    ## Finder
     finder.AppleShowAllExtensions = true;
     finder._FXShowPosixPathInTitle = true;
     finder.FXEnableExtensionChangeWarning = false;
 
-    # Trackpad
+    # Medium size sidebar Finder icons
+    NSGlobalDomain.NSTableViewDefaultSizeMode = 2;
+
+    # Open folder when holding some file over it
+    NSGlobalDomain."com.apple.springing.enabled" = true;
+    NSGlobalDomain."com.apple.springing.delay" = "0.5";
+
+
+    ## Trackpad/Mouse
+    NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
     NSGlobalDomain."com.apple.mouse.tapBehavior" = 1; # tap to click
     NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = true;
 
