@@ -100,13 +100,6 @@
     NSGlobalDomain.AppleMetricUnits = 1;
     NSGlobalDomain.AppleTemperatureUnit = "Celsius";
 
-    # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
-    NSGlobalDomain.AppleKeyboardUIMode = 3;
-
-    # Set a blazingly fast keyboard repeat rate
-    NSGlobalDomain.KeyRepeat = 1;
-    NSGlobalDomain.InitialKeyRepeat = 10;
-
     # Expand save panel by default
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
     NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
@@ -154,6 +147,13 @@
     NSGlobalDomain."com.apple.springing.enabled" = true;
     NSGlobalDomain."com.apple.springing.delay" = "0.5";
 
+    ## Keyboard
+    # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
+    NSGlobalDomain.AppleKeyboardUIMode = 3;
+
+    # Set a blazingly fast keyboard repeat rate
+    NSGlobalDomain.KeyRepeat = 1;
+    NSGlobalDomain.InitialKeyRepeat = 10;
 
     ## Trackpad/Mouse
     NSGlobalDomain.AppleShowScrollBars = "WhenScrolling";
