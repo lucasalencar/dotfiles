@@ -14,10 +14,11 @@ ensure_command_exists darwin-rebuild
 info 'Building system using nix-darwin'
 darwin-rebuild switch
 
+"$HOME/homebrew/install"
+brew bundle
+
 info 'Setting up installed packages'
 for setup in */setup; do "$setup"; done
-
-packages_install "$DOTFILES_ROOT" "$DOTFILES_ROOT/packages"
 
 success 'All done! :D'
 
