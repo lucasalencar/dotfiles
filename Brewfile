@@ -1,3 +1,5 @@
+tap 'homebrew/services'
+
 cask 'karabiner-elements'
 cask 'brave-browser'
 cask 'homebrew/cask-versions/google-chrome-beta'

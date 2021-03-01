@@ -10,10 +10,6 @@ source helpers
 # Check for Homebrew
 if ! command_exists brew; then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-  info 'Setting up brew-services tap'
-  brew tap homebrew/services
-  brew services list
 fi
 
 exit 0
