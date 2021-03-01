@@ -1,3 +1,4 @@
 git/gitconfig.symlink
 
 emacs/doom.d.symlink/local.el
+Brewfile.lock.json
