@@ -14,7 +14,10 @@ ensure_command_exists darwin-rebuild
 info 'Building system using nix-darwin'
 darwin-rebuild switch
 
+info 'Installing homebrew'
 "$HOME/homebrew/install"
+
+info 'Installing homebrew packages'
 brew bundle
 
 info 'Setting up installed packages'
