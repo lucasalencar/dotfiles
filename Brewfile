@@ -18,6 +18,8 @@ cask 'send-to-kindle'
 cask 'eqmac'
 cask 'stremio'
 
+brew 'svn'
+
 # Fonts
 tap 'homebrew/cask-fonts'
 cask 'font-hack'
