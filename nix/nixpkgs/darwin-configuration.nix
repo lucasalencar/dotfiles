@@ -84,7 +84,7 @@
 
   environment.shellAliases = {
     # Use emacsclient to open files in current emacs instance server
-    emacs = "emacsclient -cn";
+    # emacs = "emacsclient -cn";
 
     nixre = "darwin-rebuild switch";
     nixgc = "nix-collect-garbage -d";
