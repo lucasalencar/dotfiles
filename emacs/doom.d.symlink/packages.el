@@ -16,3 +16,5 @@
 
 (package! dart-server)
 (package! hover :recipe (:host github :repo "ericdallo/hover.el"))
+
+(package! tmux-pane) ;; Moving through tmux <> emacs panels
