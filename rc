@@ -3,5 +3,5 @@
 # Source all rc files found inside packages that are being used
 while read package; do
   [ -f $DOTFILES_ROOT/$package/rc ] && source $DOTFILES_ROOT/$package/rc
-done < "$DOTFILES_ROOT/packages"
+done < "$DOTFILES_ROOT/rc-enabled"
 unset package
