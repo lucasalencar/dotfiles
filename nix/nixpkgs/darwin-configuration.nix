@@ -82,9 +82,15 @@
   # Enable the Emacs Daemon. Run emacs as a service
   services.emacs.enable = true;
 
+  environment.variables = {
+    EDITOR = "vim";
+  };
+
   environment.shellAliases = {
     # Use emacsclient to open files in current emacs instance server
     # emacs = "emacsclient -cn";
+
+    vim = "nvim";
 
     nixre = "darwin-rebuild switch";
     nixgc = "nix-collect-garbage -d";
