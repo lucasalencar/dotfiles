@@ -69,19 +69,6 @@
   # nix.gc.interval = { Hour = 24; };
   # nix.gc.options = "-d";
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh = {
-    enable = true;
-    enableSyntaxHighlighting = true;
-    enableFzfHistory = true;
-  };
-
-  # Enable tmux
-  programs.tmux.enable = true;
-
-  # Enable the Emacs Daemon. Run emacs as a service
-  services.emacs.enable = true;
-
   environment.variables = {
     EDITOR = "vim";
   };
@@ -95,6 +82,19 @@
     nixre = "darwin-rebuild switch";
     nixgc = "nix-collect-garbage -d";
   };
+
+  # Create /etc/zshrc that loads the nix-darwin environment.
+  programs.zsh = {
+    enable = true;
+    enableSyntaxHighlighting = true;
+    enableFzfHistory = true;
+  };
+
+  # Enable tmux
+  programs.tmux.enable = true;
+
+  # Enable the Emacs Daemon. Run emacs as a service
+  services.emacs.enable = true;
 
   ## MacOS flags
 
