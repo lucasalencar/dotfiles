@@ -1,1 +1,4 @@
+# Path to Dotfiles root
+export DOTFILES_ROOT=$HOME/.dotfiles
+
 source $DOTFILES_ROOT/rc

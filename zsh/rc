@@ -1,9 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-# Path to Dotfiles root
-export DOTFILES_ROOT=$HOME/.dotfiles
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 #ZSH_THEME="simple"
