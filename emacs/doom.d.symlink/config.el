@@ -38,11 +38,6 @@
 ;; set emacs to startup with maximized window
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; Initialize emacs with system $PATH (Mac issue)
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-env "CODE_HOME")) ;; Copy CODE_HOME env var
-
 ;; Modeline
 
 ;; Whether display buffer encoding.
