@@ -168,7 +168,8 @@
        "e" nil ; unmap macroexpand
        "x" #'macrostep-expand
        (:prefix ("e" . "eval")
-         "b" #'eval-buffer)))))
+        "b" #'+eval/buffer
+        "d" #'+eval/buffer-or-region)))))
 
 ;; Lispyville
 
