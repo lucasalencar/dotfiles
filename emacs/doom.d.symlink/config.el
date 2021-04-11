@@ -9,6 +9,10 @@
       doom-big-font-increment 4
       doom-unicode-font (font-spec :family "DejaVu Sans"))
 
+;; Set column max characters to 100
+(global-display-fill-column-indicator-mode +1)
+(setq-default fill-column 100)
+
 ;; set localleader
 (setq doom-localleader-key ",")
 
