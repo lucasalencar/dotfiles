@@ -129,6 +129,10 @@
 ;; Projectile
 
 (after! projectile
+  ;; Set indexing method to Alien
+  ;; => which mean it is not ran inside emacs but using other faster tools
+  (setq projectile-indexing-method 'alien)
+
   (when (eq projectile-indexing-method 'alien)
     (setq projectile-enable-caching nil))
 
