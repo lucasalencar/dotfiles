@@ -51,9 +51,15 @@
 (add-hook! 'size-indication-mode-hook
   (setq size-indication-mode nil))
 
-;; Map TAB to call complete
-(map!
- :i "TAB" #'+company/complete)
+;; Company
+
+(after! company
+  ;; Disable auto completion when idle, allowing only manual trigger
+  (setq company-idle-delay nil)
+
+  (map!
+   ;; Map TAB to call complete
+   :i "TAB" #'+company/complete))
 
 ;; Workspaces + windows operations
 
