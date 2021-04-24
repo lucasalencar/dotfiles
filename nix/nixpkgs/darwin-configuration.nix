@@ -169,7 +169,7 @@
     NSGlobalDomain."com.apple.trackpad.enableSecondaryClick" = true;
 
     trackpad.Clicking = true;
-    trackpad.TrackpadThreeFingerDrag = true;
+    trackpad.TrackpadThreeFingerDrag = false;
     trackpad.FirstClickThreshold = 0;
     trackpad.SecondClickThreshold = null;
 
