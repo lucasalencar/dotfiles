@@ -372,5 +372,26 @@
           :desc "vpane" :nv "v" #'tmux-pane-toggle-vertical
           :desc "hpane" :nv "h" #'tmux-pane-toggle-horizontal)))
 
+;; org-roam
+
+(use-package! org-roam
+  :custom (org-roam-directory "/Users/lucas/Google Drive/Documentos/roam-notes/"))
+
+(add-hook! org-mode #'org-roam-mode)
+
+(after! org-roam
+  (map!
+   (:map org-roam-mode-map
+    (:localleader
+     (:prefix ("R" . "+org-roam")
+      "r" #'org-roam
+      "f" #'org-roam-find-file
+      "g" #'org-roam-graph
+      "i" #'org-roam-insert
+      "I" #'org-roam-insert-immediate
+      "tt" #'org-roam-tag-add
+      "td" #'org-roam-tag-delete
+      "c" #'org-roam-db-build-cache)))))
+
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
