@@ -17,6 +17,7 @@ cask 'kindle'
 cask 'send-to-kindle'
 cask 'eqmac'
 cask 'stremio'
+cask 'homebrew/cask-drivers/logitech-options'
 
 brew 'svn'
 
