@@ -30,3 +30,7 @@ cask 'font-menlo-for-powerline'
 cask 'font-dejavu-sans-mono-for-powerline'
 cask 'font-powerline-symbols'
 cask 'font-source-code-pro-for-powerline'
+
+# Emacs
+tap 'd12frosted/emacs-plus'
+brew 'emacs-plus@28 --with-native-comp'
