@@ -1,5 +1,4 @@
 #!/bin/bash
 
-doom env
 doom -y sync
 doom -y upgrade
