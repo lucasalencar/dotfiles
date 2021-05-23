@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Uses anaconda first for python
+export PATH=/usr/local/anaconda3/bin:${PATH}
