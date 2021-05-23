@@ -7,9 +7,6 @@
 # Default editor
 export EDITOR="nvim"
 
-# Uses anaconda first for python
-export PATH=/usr/local/anaconda3/bin:"$PATH"
-
 export LANG="en_US.UTF-8"
 
 export CODE_HOME="$HOME/code/"
