@@ -10,9 +10,6 @@ export EDITOR="nvim"
 # Uses anaconda first for python
 export PATH=/usr/local/anaconda3/bin:"$PATH"
 
-# Add scripts to PATH
-export PATH="$HOME/.dotfiles/scripts":"$PATH"
-
 export LANG="en_US.UTF-8"
 
 # emacs binaries

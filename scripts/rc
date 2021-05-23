@@ -1,3 +1,5 @@
 #!/bin/bash
 
-source $DOTFILES_ROOT/scripts/ccd.sh
+source ${DOTFILES_ROOT}/scripts/ccd.sh
+
+export PATH=${PATH}:${HOME}/.dotfiles/scripts
