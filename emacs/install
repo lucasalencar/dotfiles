@@ -6,8 +6,7 @@ ensure_command_exists git
 
 if ! command_exists emacs; then
   brew tap d12frosted/emacs-plus
-  brew install emacs-plus
-  cp -rf /usr/local/opt/emacs-plus/Emacs.app /Applications
+  brew install emacs-plus@28 --with-native-comp
 else
   info "Skipping emacs-plus"
 fi

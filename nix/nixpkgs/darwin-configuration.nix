@@ -5,7 +5,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
     pkgs.coreutils
-    pkgs.binutils
+    #pkgs.binutils
     pkgs.diffutils
     pkgs.findutils
     pkgs.fd
@@ -37,7 +37,6 @@
     # Editors
     pkgs.vim
     pkgs.neovim
-    pkgs.emacsMacport
 
     pkgs.vimPlugins.vim-plug
 
@@ -92,9 +91,6 @@
 
   # Enable tmux
   programs.tmux.enable = true;
-
-  # Enable the Emacs Daemon. Run emacs as a service
-  services.emacs.enable = true;
 
   ## MacOS flags
 
