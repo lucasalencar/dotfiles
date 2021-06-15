@@ -34,3 +34,5 @@ cask 'font-source-code-pro-for-powerline'
 # Emacs
 tap 'd12frosted/emacs-plus'
 brew 'emacs-plus@28 --with-native-comp'
+
+brew 'borkdude/brew/babashka'
