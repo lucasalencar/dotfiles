@@ -47,7 +47,7 @@
     pkgs.clojure
     pkgs.joker
     pkgs.clj-kondo
-    pkgs.clojure-lsp
+    #pkgs.clojure-lsp
 
     # Elixir
     pkgs.elixir

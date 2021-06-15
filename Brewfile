@@ -35,4 +35,5 @@ cask 'font-source-code-pro-for-powerline'
 tap 'd12frosted/emacs-plus'
 brew 'emacs-plus@28 --with-native-comp'
 
+brew 'clojure-lsp/brew/clojure-lsp-native'
 brew 'borkdude/brew/babashka'
