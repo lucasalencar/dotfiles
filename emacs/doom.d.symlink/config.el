@@ -247,12 +247,12 @@
        "c" nil ; unmap to avoid conflict
        (:prefix ("c" . "code")
          "am" #'cljr-add-missing-libspec
-         "cn" #'user/clean-ns
          "tf" #'cljr-thread-first-all
          "tl" #'cljr-thread-last-all
          "ua" #'cljr-unwind-all
          "uu" #'cljr-unwind
          "r"  #'lsp-rename
+         "cn" #'lsp-clojure-clean-ns
          "cc" #'lsp-clojure-cycle-coll
          "cp" #'lsp-clojure-cycle-privacy
          "il" #'lsp-clojure-introduce-let
