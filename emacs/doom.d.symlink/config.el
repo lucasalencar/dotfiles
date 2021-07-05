@@ -164,6 +164,15 @@
 (map!
  :n "-" #'dired-jump)
 
+;; Forge
+
+(add-hook! magit-mode
+  (map!
+   (:leader
+    (:map forge-pullreq-list-mode-map
+     :desc "Copy url at point"
+     "gu" #'forge-copy-url-at-point-as-kill))))
+
 ;; Elisp
 
 (add-hook! emacs-lisp-mode
