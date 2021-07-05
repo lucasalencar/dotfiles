@@ -170,8 +170,23 @@
   (map!
    (:leader
     (:map forge-pullreq-list-mode-map
-     :desc "Copy url at point"
-     "gu" #'forge-copy-url-at-point-as-kill))))
+     (:prefix "g"
+      :desc "Copy url at point"
+      "u" #'forge-copy-url-at-point-as-kill
+      :desc "Open in browser"
+      "O" #'forge-browse-dwim
+
+      (:prefix ("e" . "edit")
+       :desc "Title"
+       "t" #'forge-edit-topic-title
+       :desc "Post (description)"
+       "p" #'forge-edit-post
+       :desc "Labels"
+       "l" #'forge-edit-topic-labels
+       :desc "Private note"
+       "n" #'forge-edit-topic-note
+       :desc "State (close or reopen)"
+       "s" #'forge-edit-topic-state))))))
 
 ;; Elisp
 
