@@ -388,7 +388,7 @@
 
 (add-hook! org-mode #'org-roam-mode)
 
-(after! org-roam
+(add-hook! org-roam-mode
   (map!
    (:map org-roam-mode-map
     (:localleader
