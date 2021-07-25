@@ -4,7 +4,7 @@
 (defun user/clean-ns ()
   "Clean ns but removing breaklines when done by refactor-nrepl."
   (interactive)
-  (cljr-clean-ns)
+  (lsp-clojure-clean-ns)
   (goto-char (point-min))
   (while (re-search-forward "\n\s*:as\n\s*" nil t)
     (save-match-data
