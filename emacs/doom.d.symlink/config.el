@@ -276,7 +276,7 @@
          "ua" #'cljr-unwind-all
          "uu" #'cljr-unwind
          "r"  #'lsp-rename
-         "cn" #'lsp-clojure-clean-ns
+         "cn" #'user/clean-ns
          "cc" #'lsp-clojure-cycle-coll
          "cp" #'lsp-clojure-cycle-privacy
          "il" #'lsp-clojure-introduce-let
