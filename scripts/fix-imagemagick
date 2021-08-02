@@ -1,0 +1,2 @@
+ln -s /usr/local/opt/imagemagick/lib/libMagickCore-7.Q16HDRI.10.dylib /usr/local/opt/imagemagick/lib/libMagickCore-7.Q16HDRI.9.dylib
+ln -s /usr/local/opt/imagemagick/lib/libMagickWand-7.Q16HDRI.10.dylib /usr/local/opt/imagemagick/lib/libMagickWand-7.Q16HDRI.9.dylib
