@@ -50,6 +50,9 @@
 (add-hook! 'size-indication-mode-hook
   (setq size-indication-mode nil))
 
+;; Set migration ack to stop warning popups
+(setq org-roam-v2-ack t)
+
 ;; Company
 
 (after! company
@@ -417,8 +420,6 @@
       "td" #'org-roam-tag-delete
       "c" #'org-roam-db-build-cache)))))
 
-;; Set migration ack to stop warning popups
-(setq org-roam-v2-ack t)
 
 ;; load local configuration file if exists
 (load! "local.el" "~/.doom.d" t)
