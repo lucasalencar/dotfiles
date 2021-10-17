@@ -6,6 +6,18 @@ ensure_command_exists brew
 if ! command_exists pyenv; then
   brew install pyenv
   pyenv install 3.10.0
+
+  pip3 install notebook
+
+
+  # Install vim bindings into jupyter notebooks
+  # Create required directory in case (optional)
+  mkdir -p $(jupyter --data-dir)/nbextensions
+  # Clone the repository
+  cd $(jupyter --data-dir)/nbextensions
+  git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
+  # Activate the extension
+  jupyter nbextension enable vim_binding/vim_binding
 else
   info 'Skipping python'
 fi
