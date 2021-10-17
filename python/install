@@ -3,10 +3,11 @@ source helpers
 
 ensure_command_exists brew
 
-if ! command_exists conda; then
-  brew cask install anaconda
+if ! command_exists pyenv; then
+  brew install pyenv
+  pyenv install 3.10.0
 else
-  info 'Skipping anaconda'
+  info 'Skipping python'
 fi
 
 exit 0
