@@ -404,7 +404,7 @@
 (use-package! org-roam
   :custom (org-roam-directory "/Users/lucas/Google Drive/Documentos/roam-notes/"))
 
-(add-hook! org-mode #'org-roam-mode)
+;; (add-hook! org-mode #'org-roam-mode)
 
 (add-hook! org-roam-mode
   (map!
