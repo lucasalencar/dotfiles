@@ -326,6 +326,22 @@
     (:localleader
      ("p" #'plantuml-preview)))))
 
+;; markdown
+
+(after! markdown-mode
+  (map!
+   (:map markdown-mode-map
+    (:localleader
+     (:prefix ("t" . "table")
+      ("i" #'markdown-insert-table)
+      ("c" #'markdown-table-insert-column)
+      ("r" #'markdown-table-insert-row)
+      ("a" #'markdown-table-align)
+      ("s" #'markdown-table-sort-lines)
+      (:prefix ("d" . "delete")
+       ("c" #'markdown-table-delete-column)
+       ("r" #'markdown-table-delete-row)))))))
+
 ;; Dart: dart-mode / dart-server / lsp-dart
 
 (after! dart-mode
