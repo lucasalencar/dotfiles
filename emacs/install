@@ -11,10 +11,10 @@ else
   info "Skipping emacs-plus"
 fi
 
-if [ ! -d "$HOME/.emacs.d" ]; then
-  git clone --branch develop https://github.com/hlissner/doom-emacs "$HOME/.emacs.d"
+if [ ! -d "$HOME/.config/emacs" ]; then
+  git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.config/emacs"
 
-  DOOM="$HOME/.emacs.d"
+  DOOM="$HOME/.config/emacs"
   "$DOOM/bin/doom" install
 else
   info "Skipping doom-emacs"
