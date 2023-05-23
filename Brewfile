@@ -103,3 +103,9 @@ cask 'font-menlo-for-powerline'
 cask 'font-dejavu-sans-mono-for-powerline'
 cask 'font-powerline-symbols'
 cask 'font-source-code-pro-for-powerline'
+
+# Haskell
+brew 'ghc'
+brew 'ghcup' # package installer
+brew 'cabal-install' # package manager
+>>>>>>> 918db7a (Add haskell)
