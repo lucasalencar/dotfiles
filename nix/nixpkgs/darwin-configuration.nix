@@ -15,7 +15,7 @@
     pkgs.tree
     pkgs.colordiff
     pkgs.jq
-    pkgs.fzf
+    #pkgs.fzf
     pkgs.git
     pkgs.git-lfs
 
