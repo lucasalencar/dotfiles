@@ -21,6 +21,14 @@ brew 'git-lfs'
 
 brew 'pirj/homebrew-noclamshell/noclamshell'
 
+# Tmux
+brew 'tmux'
+
+# Makes copying and pasting in Terminal.app work again on MacOS Sierra
+# https://github.com/tmux/tmux/issues/543#issuecomment-248980734
+# https://github.com/tmux/tmux/issues/543
+brew 'reattach-to-user-namespace'
+
 # Vim
 brew 'vim'
 brew 'neovim'
