@@ -1,8 +1,7 @@
-nix
 zsh
+tmux
 fzf
 emacs
 ruby
-python
 js
 scripts
