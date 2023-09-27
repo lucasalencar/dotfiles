@@ -1,5 +1,7 @@
 #!/bin/bash
 source helpers
 
+ensure_command_exists npm
+
 current_dir # Sets $CURRENT_DIR variable
 link_all_files "$CURRENT_DIR"
