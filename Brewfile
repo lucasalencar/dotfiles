@@ -51,5 +51,8 @@ brew 'candid82/brew/joker'
 brew 'borkdude/brew/clj-kondo'
 brew 'clojure-lsp/brew/clojure-lsp-native'
 
+# Docker
+brew 'docker'
+
 # Elixir
 brew 'elixir'
