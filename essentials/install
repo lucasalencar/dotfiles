@@ -1,9 +1,0 @@
-#!/bin/bash
-source helpers
-
-ensure_command_exists brew
-
-info 'Installing essential command line tools'
-brew install coreutils fd ag htop tree colordiff markdown
-
-exit 0
