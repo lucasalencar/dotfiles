@@ -45,6 +45,10 @@ tap 'd12frosted/emacs-plus'
 brew 'emacs-plus@28 --with-native-comp'
 
 # Clojure
+brew 'clojure'
+brew 'leiningen'
+brew 'candid82/brew/joker'
+brew 'borkdude/brew/clj-kondo'
 brew 'clojure-lsp/brew/clojure-lsp-native'
 
 # Elixir
