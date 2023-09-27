@@ -4,7 +4,7 @@ source helpers
 if command_exists nvim; then
   mkdir "$HOME/.config"
   link_files "$HOME/.vim" "$HOME/.config/nvim"
-  link_files "$HOME/.vimrc" '$HOME/.config/nvim/init.vim'
+  link_files "$HOME/.vimrc" "$HOME/.config/nvim/init.vim"
 fi
 
 if command_exists 'pip'; then
