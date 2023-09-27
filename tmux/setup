@@ -1,6 +1,8 @@
 #!/bin/bash
 source helpers
 
+ensure_command_exists tmux
+
 if command_exists tmux; then
   git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 
