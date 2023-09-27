@@ -1,20 +1,20 @@
 tap 'homebrew/services'
 
 # Essential tools
-brew coreutils
-brew binutils
-brew diffutils
-brew findutils
-brew fd
-brew ripgrep
-brew htop
-brew tree
-brew colordiff
-brew jq
-brew markdown
+brew 'coreutils'
+brew 'binutils'
+brew 'diffutils'
+brew 'findutils'
+brew 'fd'
+brew 'ripgrep'
+brew 'htop'
+brew 'tree'
+brew 'colordiff'
+brew 'jq'
+brew 'markdown'
 
 # Cask apps
-cask 'karabiner-elements'
+cask 'karabiner-elements' 
 cask 'brave-browser'
 cask 'homebrew/cask-versions/google-chrome-beta'
 cask 'spotify'
