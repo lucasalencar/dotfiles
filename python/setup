@@ -1,9 +1,9 @@
 #!/bin/sh
 source helpers
 
+ensure_command_exists python
 ensure_command_exists pyenv
 ensure_command_exists pip3
-ensure_command_exists git
 
 pyenv install 3.10.0
 pip3 install notebook
