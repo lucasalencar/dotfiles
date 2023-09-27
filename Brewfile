@@ -65,6 +65,9 @@ brew 'elixir'
 # Go
 brew 'go'
 
+# Python
+brew 'pyenv'
+
 # Fonts
 tap 'homebrew/cask-fonts'
 cask 'font-hack'
