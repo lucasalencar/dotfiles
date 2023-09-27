@@ -1,0 +1,4 @@
+#!/bin/bash
+source helpers
+
+mkdir -p "$HOME/code/go"
