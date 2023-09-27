@@ -14,6 +14,10 @@ brew 'jq'
 brew 'markdown'
 brew 'fzf'
 
+# Git
+brew 'git'
+brew 'git-lfs'
+
 # Cask apps
 cask 'karabiner-elements' 
 cask 'brave-browser'
