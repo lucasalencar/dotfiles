@@ -38,16 +38,6 @@ cask 'send-to-kindle'
 cask 'eqmac'
 cask 'homebrew/cask-drivers/logitech-options'
 
-# Fonts
-tap 'homebrew/cask-fonts'
-cask 'font-hack'
-cask 'font-droid-sans-mono-for-powerline'
-cask 'font-roboto-mono-for-powerline'
-cask 'font-menlo-for-powerline'
-cask 'font-dejavu-sans-mono-for-powerline'
-cask 'font-powerline-symbols'
-cask 'font-source-code-pro-for-powerline'
-
 # Emacs
 tap 'd12frosted/emacs-plus'
 brew 'emacs-plus@28 --with-native-comp'
@@ -70,3 +60,13 @@ brew 'elixir'
 
 # Go
 brew 'go'
+
+# Fonts
+tap 'homebrew/cask-fonts'
+cask 'font-hack'
+cask 'font-droid-sans-mono-for-powerline'
+cask 'font-roboto-mono-for-powerline'
+cask 'font-menlo-for-powerline'
+cask 'font-dejavu-sans-mono-for-powerline'
+cask 'font-powerline-symbols'
+cask 'font-source-code-pro-for-powerline'
