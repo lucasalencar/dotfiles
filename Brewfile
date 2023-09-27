@@ -23,6 +23,8 @@ brew 'zsh-completions'
 brew 'git'
 brew 'git-lfs'
 
+# No Clam Shell (use notebook with screen closed)
+tap 'pirj/noclamshell'
 brew 'pirj/homebrew-noclamshell/noclamshell'
 
 # Tmux
