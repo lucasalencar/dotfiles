@@ -68,6 +68,10 @@ brew 'go'
 # Python
 brew 'pyenv'
 
+# Ruby
+brew 'rbenv'
+brew 'ruby-build'
+
 # Fonts
 tap 'homebrew/cask-fonts'
 cask 'font-hack'
