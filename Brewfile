@@ -46,3 +46,6 @@ brew 'emacs-plus@28 --with-native-comp'
 
 # Clojure
 brew 'clojure-lsp/brew/clojure-lsp-native'
+
+# Elixir
+brew 'elixir'
