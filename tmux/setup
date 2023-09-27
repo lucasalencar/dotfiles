@@ -2,6 +2,8 @@
 source helpers
 
 if command_exists tmux; then
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+
   # Install tmux plugins
   "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
