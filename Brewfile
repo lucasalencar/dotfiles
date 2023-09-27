@@ -60,7 +60,7 @@ cask 'discord'
 
 # Emacs
 tap 'd12frosted/emacs-plus'
-brew 'emacs-plus@28 --with-native-comp'
+brew 'emacs-plus@30', args: ["with-native-comp"]
 
 # Clojure
 brew 'clojure'
