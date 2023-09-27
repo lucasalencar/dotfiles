@@ -13,6 +13,7 @@ brew 'colordiff'
 brew 'jq'
 brew 'markdown'
 brew 'fzf'
+brew 'shellcheck'
 
 # Git
 brew 'git'

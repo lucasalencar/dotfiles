@@ -1,9 +1,0 @@
-#!/bin/bash
-source helpers
-
-ensure_command_exists brew
-
-info 'Installing shellscript utilities'
-brew install shellcheck
-
-exit 0
