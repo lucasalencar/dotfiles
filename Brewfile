@@ -59,6 +59,9 @@ brew 'clojure-lsp/brew/clojure-lsp-native'
 # Docker
 brew 'docker'
 
+# JS
+brew 'npm'
+
 # Elixir
 brew 'elixir'
 

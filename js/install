@@ -1,6 +1,0 @@
-#!/bin/bash
-source helpers
-
-ensure_command_exists brew
-
-brew install npm
