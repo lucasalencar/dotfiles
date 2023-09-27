@@ -3,6 +3,17 @@
 source helpers
 
 ensure_command_exists emacs
+ensure_command_exists git
+
+if [ ! -d "$HOME/.config/emacs" ]; then
+  git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.config/emacs"
+
+  DOOM="$HOME/.config/emacs"
+  "$DOOM/bin/doom" install
+else
+  info "Skipping doom-emacs"
+fi
+
 ensure_command_exists doom
 
 if [ ! -d "$HOME/.doom.d" ]; then
