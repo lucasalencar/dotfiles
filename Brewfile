@@ -20,6 +20,7 @@ brew 'git-lfs'
 
 # Cask apps
 cask 'karabiner-elements' 
+cask 'kitty'
 cask 'brave-browser'
 cask 'homebrew/cask-versions/google-chrome-beta'
 cask 'spotify'
