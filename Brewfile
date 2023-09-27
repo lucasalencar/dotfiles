@@ -61,3 +61,6 @@ brew 'docker'
 
 # Elixir
 brew 'elixir'
+
+# Go
+brew 'go'
