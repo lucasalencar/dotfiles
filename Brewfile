@@ -15,6 +15,10 @@ brew 'markdown'
 brew 'fzf'
 brew 'shellcheck'
 
+# Zsh
+brew 'zsh'
+brew 'zsh-completions'
+
 # Git
 brew 'git'
 brew 'git-lfs'
