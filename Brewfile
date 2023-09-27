@@ -17,23 +17,18 @@ brew markdown
 cask 'karabiner-elements'
 cask 'brave-browser'
 cask 'homebrew/cask-versions/google-chrome-beta'
-cask 'whatsapp'
 cask 'spotify'
+cask 'whatsapp'
 cask 'telegram'
-cask 'slack'
+# cask 'slack'
 cask 'the-unarchiver'
 cask 'google-drive'
-cask 'nordvpn'
 cask 'caffeine'
 cask 'shiftit'
 cask 'rescuetime'
-cask 'kindle'
 cask 'send-to-kindle'
 cask 'eqmac'
-cask 'stremio'
 cask 'homebrew/cask-drivers/logitech-options'
-
-brew 'svn'
 
 # Fonts
 tap 'homebrew/cask-fonts'
@@ -49,5 +44,5 @@ cask 'font-source-code-pro-for-powerline'
 tap 'd12frosted/emacs-plus'
 brew 'emacs-plus@28 --with-native-comp'
 
+# Clojure
 brew 'clojure-lsp/brew/clojure-lsp-native'
-brew 'borkdude/brew/babashka'
