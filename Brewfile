@@ -18,6 +18,8 @@ brew 'fzf'
 brew 'git'
 brew 'git-lfs'
 
+brew 'pirj/homebrew-noclamshell/noclamshell'
+
 # Cask apps
 cask 'karabiner-elements' 
 cask 'kitty'
