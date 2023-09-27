@@ -70,23 +70,23 @@ brew 'candid82/brew/joker'
 brew 'borkdude/brew/clj-kondo'
 
 # Docker
-brew 'docker'
+# brew 'docker'
 
 # JS
 brew 'npm'
 
 # Elixir
-brew 'elixir'
+# brew 'elixir'
 
 # Go
-brew 'go'
+# brew 'go'
 
 # Python
-brew 'pyenv'
+# brew 'pyenv'
 
 # Ruby
-brew 'rbenv'
-brew 'ruby-build'
+# brew 'rbenv'
+# brew 'ruby-build'
 
 # Fonts
 tap 'homebrew/cask-fonts'
