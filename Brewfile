@@ -12,6 +12,7 @@ brew 'tree'
 brew 'colordiff'
 brew 'jq'
 brew 'markdown'
+brew 'fzf'
 
 # Cask apps
 cask 'karabiner-elements' 

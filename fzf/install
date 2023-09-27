@@ -1,8 +1,0 @@
-#!/bin/bash
-
-source helpers
-
-ensure_command_exists brew
-brew install fzf
-
-exit 0
