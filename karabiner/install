@@ -1,9 +1,0 @@
-#!/bin/bash
-# Karabiner: remap keyboard keys
-
-source helpers
-
-ensure_command_exists brew
-brew cask install karabiner-elements
-
-exit 0
