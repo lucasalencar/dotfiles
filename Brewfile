@@ -20,6 +20,10 @@ brew 'git-lfs'
 
 brew 'pirj/homebrew-noclamshell/noclamshell'
 
+# Vim
+brew 'vim'
+brew 'neovim'
+
 # Cask apps
 cask 'karabiner-elements' 
 cask 'kitty'
