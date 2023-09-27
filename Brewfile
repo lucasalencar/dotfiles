@@ -54,6 +54,7 @@ cask 'rescuetime'
 cask 'send-to-kindle'
 cask 'eqmac'
 cask 'homebrew/cask-drivers/logitech-options'
+cask 'discord'
 
 # Emacs
 tap 'd12frosted/emacs-plus'
