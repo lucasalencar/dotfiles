@@ -55,7 +55,7 @@ cask 'shiftit'
 cask 'rescuetime'
 cask 'send-to-kindle'
 cask 'eqmac'
-cask 'homebrew/cask-drivers/logitech-options'
+cask 'logitech-options'
 cask 'discord'
 
 # Emacs
