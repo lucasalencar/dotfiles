@@ -40,7 +40,7 @@ brew 'vim'
 brew 'neovim'
 
 # Cask apps
-cask 'karabiner-elements' 
+cask 'karabiner-elements'
 cask 'kitty'
 cask 'brave-browser'
 cask 'homebrew/cask-versions/google-chrome-beta'
@@ -70,7 +70,7 @@ brew 'candid82/brew/joker'
 brew 'borkdude/brew/clj-kondo'
 
 # Docker
-# brew 'docker'
+brew 'docker'
 
 # JS
 brew 'npm'
