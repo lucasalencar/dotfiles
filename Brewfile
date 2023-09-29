@@ -23,9 +23,9 @@ brew 'zsh-completions'
 brew 'git'
 brew 'git-lfs'
 
-# No Clam Shell (use notebook with screen closed)
-tap 'pirj/noclamshell'
-brew 'pirj/homebrew-noclamshell/noclamshell'
+# No Clam Shell (don't allow to use notebook with lid closed)
+# tap 'pirj/noclamshell'
+# brew 'pirj/homebrew-noclamshell/noclamshell'
 
 # Tmux
 brew 'tmux'
