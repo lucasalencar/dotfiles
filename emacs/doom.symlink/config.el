@@ -64,10 +64,10 @@
 
 (map!
  ;; Select windows
- ;; :m "C-h" #'evil-window-left
- ;; :m "C-l" #'evil-window-right
- ;; :m "C-j" #'evil-window-down
- ;; :m "C-k" #'evil-window-up
+ :m "C-h" #'evil-window-left
+ :m "C-l" #'evil-window-right
+ :m "C-j" #'evil-window-down
+ :m "C-k" #'evil-window-up
 
  ;; Move windows
  :m "C-S-h" #'+evil/window-move-left
