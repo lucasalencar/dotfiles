@@ -1,1 +1,1 @@
-machine api.github.com login lucas.alencar^forge password <personal-access-token>
+machine api.github.com login lucasalencar^forge password <personal-access-token>
