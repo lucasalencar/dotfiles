@@ -88,6 +88,10 @@ brew 'npm'
 # brew 'rbenv'
 # brew 'ruby-build'
 
+# Infosec
+cask 'gpg-suite'
+brew 'ykman'
+
 # Fonts
 tap 'homebrew/cask-fonts'
 cask 'font-hack'
