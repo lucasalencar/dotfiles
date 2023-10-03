@@ -40,7 +40,7 @@ alias dss="docker-machine stop"
 alias vi="nvim"
 alias iv="nvim"
 alias v="nvim"
-alias t="tmux"
+alias t="tmux attach"
 
 alias gs="gst"
 alias gdst="git diff --stat master HEAD" # Show number of lines changed for current branch
