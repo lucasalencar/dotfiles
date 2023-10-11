@@ -6,7 +6,8 @@ ensure_command_exists pyenv
 pyenv install 3.10.0
 pyenv global 3.10.0
 
-pip3 install notebook
+pip install --upgrade pip
+pip install notebook
 
 
 # Install vim bindings into jupyter notebooks
