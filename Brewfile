@@ -57,6 +57,7 @@ cask 'send-to-kindle'
 cask 'eqmac'
 cask 'logitech-options'
 cask 'discord'
+cask 'logseq'
 
 # Emacs
 tap 'd12frosted/emacs-plus'
