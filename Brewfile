@@ -83,7 +83,7 @@ brew 'npm'
 # brew 'go'
 
 # Python
-# brew 'pyenv'
+brew 'pyenv'
 
 # Ruby
 # brew 'rbenv'
