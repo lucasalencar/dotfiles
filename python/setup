@@ -3,8 +3,8 @@ source helpers
 
 ensure_command_exists pyenv
 
-pyenv install 3.11.6
-pyenv global 3.11.6
+pyenv install 3.10.0
+pyenv global 3.10.0
 
 pip3 install notebook
 
