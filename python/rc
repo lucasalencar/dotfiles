@@ -1,4 +1,5 @@
 #!/bin/bash
 
-# Uses anaconda first for python
-export PATH=/usr/local/anaconda3/bin:${PATH}
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

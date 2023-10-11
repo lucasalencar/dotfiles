@@ -1,19 +1,19 @@
 #!/bin/sh
 source helpers
 
-ensure_command_exists python
 ensure_command_exists pyenv
-ensure_command_exists pip3
 
-pyenv install 3.10.0
+pyenv install 3.11.6
+pyenv global 3.11.6
+
 pip3 install notebook
 
 
 # Install vim bindings into jupyter notebooks
 # Create required directory in case (optional)
-mkdir -p $(jupyter --data-dir)/nbextensions
+mkdir -p "$(jupyter --data-dir)/nbextensions"
 # Clone the repository
-cd $(jupyter --data-dir)/nbextensions
+cd "$(jupyter --data-dir)/nbextensions"
 git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
 # Activate the extension
 jupyter nbextension enable vim_binding/vim_binding
