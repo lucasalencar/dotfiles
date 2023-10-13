@@ -27,6 +27,9 @@ if command_exists nvim; then
   mkdir "$HOME/.config"
   link_files "$HOME/.vim" "$HOME/.config/nvim"
   link_files "$HOME/.vimrc" "$HOME/.config/nvim/init.vim"
+
+  nvim +PlugInstall +qall # Install NVIM specific plugins
+  nvim -c 'CocInstall -sync coc-clojure|q' # Install Clojure LSP plugin
 fi
 
 if command_exists 'pip'; then

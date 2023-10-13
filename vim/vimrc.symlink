@@ -25,6 +25,10 @@ Plug 'junegunn/vim-easy-align' " Align tables in text easily
 Plug 'w0rp/ale' " Linters
 Plug 'simeji/winresizer' " Move and resize vim panels easily (C-e and arrow-letters keys)
 
+if has('nvim')
+  Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP
+endif
+
 " This plugin is conflicting with Clojure plugins and having unwanted
 " behavior. Removed for now, if using any other language then Clojure, enable
 " it again.
