@@ -48,14 +48,12 @@ Plug 'AndrewRadev/splitjoin.vim', { 'for': 'ruby' } " Split inline constructs to
 """ end RUBY & RAILS PLUGINS
 
 """ CLOJURE PLUGINS
-" Clojure integration with nREPL
-" - Enables go to definition or file (gf [<C-d> mapped to gd)
-" - Allows to search for doc or source code for a command (:Doc :Source <shift-K>)
-" - It is possible to eval Clojure code inside the buffer (:Eval)
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Clojure nREPL integration
+Plug 'Olical/conjure', { 'for': 'clojure' }
+Plug 'tpope/vim-dispatch' | Plug 'clojure-vim/vim-jack-in', { 'for': 'clojure' } " Depends on vim-dispatch
 
 if has('nvim')
-  Plug 'SevereOverfl0w/vim-replant', { 'do': ':UpdateRemotePlugins' }
+  Plug 'radenling/vim-dispatch-neovim'
 endif
 
 """ Support to lein projects
@@ -66,7 +64,7 @@ Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'tpope/vim-projectionist' " Allows to map projections to the project (dependency to vim-salve)
 
 " Static syntax highlight for clojure
-Plug 'lucasalencar/vim-clojure-static', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 " Turns syntax highlight dynamic, allows to highlight project defined functions
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
