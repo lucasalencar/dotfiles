@@ -3,7 +3,7 @@
 " Set leader and local leader key
 " <space> is now the leader and local leader for all the files
 let mapleader = " "
-let maplocalleader = " "
+let maplocalleader = ","
 
 " Toggle paste mode
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
