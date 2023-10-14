@@ -14,3 +14,6 @@ let g:coc_global_extensions = [
 
 " Set custom config file for coc
 let g:coc_config_home = '~/.dotfiles/vim'
+
+" Go to definition mapping
+nmap <silent> gd <Plug>(coc-definition)
