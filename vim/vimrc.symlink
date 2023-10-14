@@ -120,3 +120,4 @@ source $DOTFILES_ROOT/vim/lightline.vim
 source $DOTFILES_ROOT/vim/nerdtree.vim
 source $DOTFILES_ROOT/vim/vim-tmux-navigator.vim
 source $DOTFILES_ROOT/vim/clojure.vim
+source $DOTFILES_ROOT/vim/coc.vim
