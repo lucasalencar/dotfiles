@@ -1,3 +1,11 @@
+""
+"" Appearance
+""
+
+" Default theme configs
+color molokai
+set background=dark
+
 """ lightline.vim
 let g:lightline = {
       \ 'colorscheme': 'wombat',

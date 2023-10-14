@@ -1,14 +1,6 @@
 """ Sensible configs for vim
 
 ""
-"" Appearance
-""
-
-" Default theme configs
-color apprentice
-set background=dark
-
-""
 "" Basic Setup
 ""
 
