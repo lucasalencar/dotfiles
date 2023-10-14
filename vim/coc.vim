@@ -11,3 +11,5 @@ let g:coc_global_extensions = [
       \'coc-json',
       \'coc-clojure'
       \]
+
+let g:coc_config_home = '~/.dotfiles/vim'

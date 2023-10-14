@@ -1,0 +1,17 @@
+{
+  "clojure.enable": {
+    "type": "boolean",
+    "default": true,
+    "description": "Enable/disable coc-clojure extension"
+  },
+  "clojure.keymaps.enable": {
+    "type": "boolean",
+    "default": true,
+    "description": "Create normal-mode mappings for clojure-lsp commands"
+  },
+  "clojure.startup-message": {
+    "type": "boolean",
+    "default": true,
+    "description": "Enable/disable coc-clojure's message on startup"
+  }
+}
