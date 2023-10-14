@@ -100,6 +100,8 @@ Plug 'sheerun/vim-polyglot' " Syntax highlight for may languages
 
 call plug#end()
 
+source $DOTFILES_ROOT/vim/appearance.vim
+
 " Load sensible configs for vim
 source $DOTFILES_ROOT/vim/sensible.vim
 
@@ -116,7 +118,6 @@ source $DOTFILES_ROOT/vim/alt-maps.vim
 source $DOTFILES_ROOT/vim/deoplete.vim
 source $DOTFILES_ROOT/vim/easyalign.vim
 source $DOTFILES_ROOT/vim/fzf.vim
-source $DOTFILES_ROOT/vim/lightline.vim
 source $DOTFILES_ROOT/vim/nerdtree.vim
 source $DOTFILES_ROOT/vim/vim-tmux-navigator.vim
 source $DOTFILES_ROOT/vim/clojure.vim
