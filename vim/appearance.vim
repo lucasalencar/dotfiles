@@ -7,8 +7,9 @@ color molokai
 set background=dark
 
 """ lightline.vim
+" previously colorscheme wombat
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'molokai',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
