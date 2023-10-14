@@ -12,4 +12,5 @@ let g:coc_global_extensions = [
       \'coc-clojure'
       \]
 
+" Set custom config file for coc
 let g:coc_config_home = '~/.dotfiles/vim'

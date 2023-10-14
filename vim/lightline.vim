@@ -6,14 +6,16 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'filetype' ],
-      \              [ 'fileencoding' ]]
+      \              [ 'cocstatus', 'currentFunction' ]]
       \ },
       \ 'inactive': {
       \   'left': [ ['relativepath'] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'relativepath': 'LightLineFilename'
+      \   'relativepath': 'LightLineFilename',
+      \   'cocstatus': 'coc#status',
+      \   'currentFunction': 'CocCurrentFunction'
       \ },
       \ }
 
@@ -21,3 +23,6 @@ function! LightLineFilename()
   return expand('%')
 endfunction
 
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
