@@ -2,10 +2,6 @@
 noremap <C-p> :Files<CR>
 inoremap <C-p> <Esc>:Files<CR>
 
-" <CTRL-k> to find versioned files
-noremap <C-k> :Files<CR>
-inoremap <C-k> <Esc>:Files<CR>
-
 " <Leader-f> to open Rg command
 noremap <Leader>f :Rg<space>
 
