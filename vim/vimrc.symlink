@@ -12,7 +12,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 Plug 'junegunn/fzf.vim' " File fuzzy search and content search
 Plug 'scrooloose/nerdtree' " File tree
 Plug 'scrooloose/nerdcommenter' " Plugin to add comments according to language
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' " Textmate snippet style
 Plug 'thinca/vim-visualstar' " Search for terms using * or # on Visual Mode
 Plug 'ervandew/supertab' " Complete what is being written with <tab>
 Plug 'tpope/vim-surround' " Easily add things surrounding selections
