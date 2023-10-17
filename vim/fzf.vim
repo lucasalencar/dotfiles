@@ -1,11 +1,12 @@
-" <CTRL-P> to find versioned files
+" <CTRL-p> to find versioned files
 noremap <C-p> :Files<CR>
 inoremap <C-p> <Esc>:Files<CR>
 
-noremap <leader><space> :Files<CR>
-inoremap <leader><space> <Esc>:Files<CR>
+" <CTRL-k> to find versioned files
+noremap <C-k> :Files<CR>
+inoremap <C-k> <Esc>:Files<CR>
 
-" <Leader-F> to open Rg command
+" <Leader-f> to open Rg command
 noremap <Leader>f :Rg<space>
 
 " <Leader-SHIFT-F> to open Rg command with current word selected
