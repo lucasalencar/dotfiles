@@ -100,6 +100,7 @@ Plug 'sheerun/vim-polyglot' " Syntax highlight for may languages
 
 call plug#end()
 
+" Load any config related to editor appearance
 source $DOTFILES_ROOT/vim/appearance.vim
 
 " Load sensible configs for vim
@@ -107,6 +108,7 @@ source $DOTFILES_ROOT/vim/sensible.vim
 
 " Load all my custom mappings
 source $DOTFILES_ROOT/vim/mappings.vim
+source $DOTFILES_ROOT/vim/git.vim
 
 " Load all maps that use MacOS option-key unicode characters
 "source $DOTFILES_ROOT/vim/mac-option-maps.vim
