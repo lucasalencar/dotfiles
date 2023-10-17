@@ -9,7 +9,8 @@ let g:coc_global_extensions = [
       \'coc-flutter',
       \'coc-git',
       \'coc-json',
-      \'coc-clojure'
+      \'coc-clojure',
+      \'coc-vimlsp'
       \]
 
 " Set custom config file for coc
