@@ -2,6 +2,9 @@
 noremap <C-p> :Files<CR>
 inoremap <C-p> <Esc>:Files<CR>
 
+noremap <leader><space> :Files<CR>
+inoremap <leader><space> <Esc>:Files<CR>
+
 " <Leader-F> to open Rg command
 noremap <Leader>f :Rg<space>
 
