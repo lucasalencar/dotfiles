@@ -21,7 +21,7 @@ let g:lightline = {
       \   'left': [ ['relativepath'] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
+      \   'gitbranch': 'fugitive#statusline',
       \   'relativepath': 'LightLineFilename',
       \   'cocstatus': 'coc#status',
       \   'currentFunction': 'CocCurrentFunction'
