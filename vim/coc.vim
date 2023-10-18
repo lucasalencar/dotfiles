@@ -24,6 +24,8 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
+""" Mappings
+
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
@@ -51,23 +53,11 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window
-" TODO Make this only work when there is a LSP running
-"nnoremap <silent> K :call ShowDocumentation()<CR>
-
-"function! ShowDocumentation()
-  "if CocAction('hasProvider', 'hover')
-    "call CocActionAsync('doHover')
-  "else
-    "call feedkeys('K', 'in')
-  "endif
-"endfunction
+" Symbol renaming
+nmap <localleader>rn <Plug>(coc-rename)
 
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
 
 " Vim script LSP configs
 " Enable document highlight
