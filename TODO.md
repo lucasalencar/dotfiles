@@ -6,3 +6,4 @@ https://github.com/snoe/dotfiles/blob/master/home/.vim/coc-settings.json
 https://github.com/snoe/dotfiles/blob/master/home/.vimrc
 - [ ] Fix vim to work with REPL using Conjure
 https://endot.org/2023/05/27/vim-clojure-dev-2023/
+- [ ] Check tmux-fzf plugin to tmux
