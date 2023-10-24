@@ -56,6 +56,24 @@ nmap <silent> gr <Plug>(coc-references)
 " Symbol renaming
 nmap <localleader>rn <Plug>(coc-rename)
 
+" Applying code actions to the selected code block
+" Example: `<localleader>cap` for current paragraph
+xmap <localleader>c  <Plug>(coc-codeaction-selected)
+nmap <localleader>c  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying code actions at the cursor position
+nmap <localleader>cc  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer
+nmap <localleader>cb  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+"nmap <localleader>qf  <Plug>(coc-fix-current)
+
+" Add `:Format` command to format current buffer
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" Add `:OR` command for organize imports of the current buffer
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
