@@ -2,16 +2,21 @@
 
 " Map to vertically align maps on Clojure
 " This is not a flawless map, but will help most of the times
-autocmd FileType clojure nmap crmm :startinsert<CR><CR><ESC>w==gaif<SPACE>kJ==
+autocmd FileType clojure nmap <localleader>cam :startinsert<CR><CR><ESC>w==gaif<SPACE>kJ==
 
 
-""" clojure refactor
+""" clojure refactors
 
 " Order NS and avoid breaking lines that are too long
-autocmd FileType clojure nmap cn :%s/\(\[.*\)\n *\(:as\)\n *\(.*\]\)/\1 \2 \3/g<CR>
+"autocmd FileType clojure nmap cn :%s/\(\[.*\)\n *\(:as\)\n *\(.*\]\)/\1 \2 \3/g<CR>
 
 autocmd FileType clojure nmap crmv >e>eB<e
 autocmd FileType clojure nmap crmk >e>egE<ew>e>egE<e
+
+""" LSP Mappings
+
+" Clean ns
+autocmd FileType clojure nmap <localleader>cn :call CocActionAsync('runCommand', 'lsp-clojure-clean-ns')<CR>
 
 """ vim-clojure-static
 
