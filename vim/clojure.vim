@@ -1,3 +1,8 @@
+""" Clojure vim config
+
+" Consider *.edn files as clojure
+autocmd BufNewFile,BufRead *.edn setf clojure
+
 """ easyalign
 
 " Map to vertically align maps on Clojure
