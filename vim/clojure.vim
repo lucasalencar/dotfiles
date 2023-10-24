@@ -14,6 +14,10 @@ autocmd FileType clojure nmap crmv >e>eB<e
 autocmd FileType clojure nmap crmk >e>egE<ew>e>egE<e
 
 """ LSP Mappings
+""" Create mappings using:
+""" autocmd FileType clojure nmap <mapping> :call CocActionAsync('runCommand', '<command>')<CR>
+""" <command> is found at coc-clojure readme
+""" https://github.com/NoahTheDuke/coc-clojure#refactoring-commands
 
 " Clean ns
 autocmd FileType clojure nmap <localleader>cn :call CocActionAsync('runCommand', 'lsp-clojure-clean-ns')<CR>
