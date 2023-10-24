@@ -1,5 +1,10 @@
 {
   "clojure.enable": true,
   "clojure.keymaps.enable": false,
-  "clojure.startup-message": true
+  "clojure.startup-message": true,
+  "[clojure]": {
+    "semanticTokens.enable": true
+  },
+  "codeLens.enable": true,
+  "codeLens.position": "eol",
 }
