@@ -48,6 +48,9 @@ bind-key -T copy-mode-vi 'v' send -X begin-selection # Set v to start selecting 
 # From tmux 3.0a, we need to run shell scripts in background when binding a key
 # https://github.com/junegunn/fzf/issues/1841#issuecomment-580975759
 
+# TODO Check if this plugin helps replace this key bindings
+# https://github.com/sainnhe/tmux-fzf
+
 # Fuzzy finder to navigate through tmux windows
 bind P run-shell -b "$DOTFILES_ROOT/scripts/fzf-tmux-select-window"
 
