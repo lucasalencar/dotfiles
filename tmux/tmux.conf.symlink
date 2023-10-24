@@ -45,14 +45,17 @@ bind-key -T copy-mode-vi 'v' send -X begin-selection # Set v to start selecting 
 
 ### WINDOW MANAGEMENT MAPPINGS
 
+# From tmux 3.0a, we need to run shell scripts in background when binding a key
+# https://github.com/junegunn/fzf/issues/1841#issuecomment-580975759
+
 # Fuzzy finder to navigate through tmux windows
-bind P run-shell "$DOTFILES_ROOT/scripts/fzf-tmux-select-window"
+bind P run-shell -b "$DOTFILES_ROOT/scripts/fzf-tmux-select-window"
 
 # Swap selected window closer to the one you are working
-bind N run-shell "$DOTFILES_ROOT/scripts/fzf-tmux-swap-window-closer"
+bind N run-shell -b "$DOTFILES_ROOT/scripts/fzf-tmux-swap-window-closer"
 
 # Create a new window for selected code project
-bind C run-shell "$DOTFILES_ROOT/scripts/fzf-tmux-new-code-window"
+bind C run-shell -b "$DOTFILES_ROOT/scripts/fzf-tmux-new-code-window"
 
 # Closes all windows except the current one
 bind X run-shell "$DOTFILES_ROOT/scripts/tmux-kill-windows-except-current"
