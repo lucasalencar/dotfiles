@@ -22,6 +22,16 @@ autocmd FileType clojure nmap crmk >e>egE<ew>e>egE<e
 " Clean ns
 autocmd FileType clojure nmap <localleader>cn :call CocActionAsync('runCommand', 'lsp-clojure-clean-ns')<CR>
 
+" Function to open project dependencies when finding references outside
+" current project (e.g. gd into a common lib in a repo)
+function! LoadClojureContent(uri)
+    setfiletype clojure
+    let content = CocRequest('clojure', 'clojure/dependencyContents', {'uri': a:uri})
+    call setline(1, split(content, "\n"))
+    setl nomodified readonly
+endfunction
+autocmd BufReadCmd  jar:file://*    call LoadClojureContent(expand("<afile>"))
+
 """ vim-clojure-static
 
 " Avoid prefix rewriting when refactoring Clojure code
