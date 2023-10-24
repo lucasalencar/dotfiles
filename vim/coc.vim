@@ -56,6 +56,12 @@ nmap <silent> gr <Plug>(coc-references)
 " Symbol renaming
 nmap <localleader>rn <Plug>(coc-rename)
 
+" Formatting selected code
+xmap <localleader>a  <Plug>(coc-format-selected)
+nmap <localleader>a  <Plug>(coc-format)
+xmap <localleader>f  <Plug>(coc-format-selected)
+nmap <localleader>f  <Plug>(coc-format)
+
 " Applying code actions to the selected code block
 " Example: `<localleader>cap` for current paragraph
 xmap <localleader>c  <Plug>(coc-codeaction-selected)
