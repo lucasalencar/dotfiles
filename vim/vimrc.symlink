@@ -24,6 +24,7 @@ Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string t
 Plug 'junegunn/vim-easy-align' " Align tables in text easily
 Plug 'w0rp/ale' " Linters
 Plug 'simeji/winresizer' " Move and resize vim panels easily (C-e and arrow-letters keys)
+Plug 'github/copilot.vim' " Add IA copilot to replace my job
 
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP
