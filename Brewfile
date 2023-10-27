@@ -67,8 +67,8 @@ brew 'emacs-plus', args: ["with-native-comp", "with-imagemagick"]
 brew 'clojure'
 brew 'leiningen'
 brew 'clojure-lsp/brew/clojure-lsp-native'
-brew 'candid82/brew/joker'
 brew 'borkdude/brew/clj-kondo'
+brew 'borkdude/brew/babashka'
 
 # Docker
 brew 'docker'
