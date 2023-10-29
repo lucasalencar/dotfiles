@@ -37,6 +37,10 @@ function! LoadClojureContent(uri)
 endfunction
 autocmd BufReadCmd  jar:file://*    call LoadClojureContent(expand("<afile>"))
 
+
+" Clojure mapping to start a REPL based on vim-jack-in
+autocmd FileType clojure nmap <localleader>rs :Lein<CR>
+
 """ vim-clojure-static
 
 " Avoid prefix rewriting when refactoring Clojure code
