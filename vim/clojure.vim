@@ -57,3 +57,6 @@ let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', '^ns', '^provide
 "  param1
 "  param2)
 let g:clojure_align_subforms = 1
+
+" Set mapping to run current test under cursor
+let g:conjure#client#clojure#nrepl#mapping#run_current_test = 'tt'
