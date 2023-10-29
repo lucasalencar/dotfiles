@@ -26,6 +26,10 @@ autocmd FileType clojure nmap crmk >e>egE<ew>e>egE<e
 
 " Clean ns
 autocmd FileType clojure nmap <localleader>cn :call CocActionAsync('runCommand', 'lsp-clojure-clean-ns')<CR>
+" Drag pairs of symbols forward (used for maps or let bindings)
+autocmd FileType clojure nmap <localleader>J :call CocActionAsync('runCommand', 'lsp-clojure-drag-forward')<CR>
+" Drag pairs of symbols backwards (used for maps or let bindings)
+autocmd FileType clojure nmap <localleader>K :call CocActionAsync('runCommand', 'lsp-clojure-drag-backward')<CR>
 
 " Function to open project dependencies when finding references outside
 " current project (e.g. gd into a common lib in a repo)
