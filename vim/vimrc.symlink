@@ -25,6 +25,7 @@ Plug 'junegunn/vim-easy-align' " Align tables in text easily
 Plug 'w0rp/ale' " Linters
 Plug 'simeji/winresizer' " Move and resize vim panels easily (C-e and arrow-letters keys)
 Plug 'github/copilot.vim' " Add IA copilot to replace my job
+Plug 'jreybert/vimagit' " Plugin to emulate Emacs magit
 
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP
