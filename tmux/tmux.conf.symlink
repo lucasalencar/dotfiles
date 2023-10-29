@@ -136,5 +136,11 @@ set -g @plugin 'tmux-plugins/tmux-open'
 # Add mouse support to some programs that do not support (less, man)
 set -g @plugin 'nhdaly/tmux-better-mouse-mode'
 
+### Add fuzzy finder for tmux commands using fzf
+# prefix + F => opens fzf window with tmux commands
+set -g @plugin 'sainnhe/tmux-fzf'
+
+TMUX_FZF_ORDER="window|pane|command|keybinding|clipboard|process|session"
+
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
