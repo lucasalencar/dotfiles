@@ -7,7 +7,7 @@ autocmd BufNewFile,BufRead *.edn setf clojure
 
 " Map to vertically align maps on Clojure
 " This is not a flawless map, but will help most of the times
-autocmd FileType clojure nmap <localleader>cam :startinsert<CR><CR><ESC>w==gaif<SPACE>kJ==
+autocmd FileType clojure nmap <localleader>cma :startinsert<CR><CR><ESC>w==gaif<SPACE>kJ==
 
 
 """ clojure refactors
@@ -26,6 +26,8 @@ autocmd FileType clojure nmap crmk >e>egE<ew>e>egE<e
 
 " Clean ns
 autocmd FileType clojure nmap <localleader>cn :call CocActionAsync('runCommand', 'lsp-clojure-clean-ns')<CR>
+" Add missing require
+autocmd FileType clojure nmap <localleader>cam :call CocActionAsync('runCommand', 'lsp-clojure-add-missing-libspec')<CR>
 " Drag pairs of symbols forward (used for maps or let bindings)
 autocmd FileType clojure nmap <localleader>J :call CocActionAsync('runCommand', 'lsp-clojure-drag-forward')<CR>
 " Drag pairs of symbols backwards (used for maps or let bindings)
