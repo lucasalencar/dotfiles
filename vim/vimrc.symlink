@@ -10,6 +10,10 @@ Plug 'itchyny/lightline.vim' " Minimalist status line
 Plug 'ap/vim-css-color' " Show color when writing HEX colors
 Plug 'sheerun/vim-polyglot' " Syntax highlight for many languages
 
+if has('nvim')
+  Plug 'nvim-tree/nvim-web-devicons'
+endif
+
 " Color schemes
 Plug 'brendonrapp/smyck-vim'
 Plug 'rafi/awesome-vim-colorschemes'
@@ -41,6 +45,10 @@ Plug 'scrooloose/nerdtree' " File tree
 Plug 'thinca/vim-visualstar' " Search for terms using * or # on Visual Mode
 Plug 'simeji/winresizer' " Move and resize vim panels easily (C-e and arrow-letters keys)
 Plug 'tpope/vim-eunuch' " Vim commands for the bash (Mkdir, Move, Rename, ...)
+
+if has('nvim')
+  Plug 'stevearc/oil.nvim' " File manager that works like a normal buffer
+endif
 """ end NAVIGATION PLUGINS
 
 """ TMUX PLUGINS
@@ -139,3 +147,10 @@ source $DOTFILES_ROOT/vim/nerdtree.vim
 source $DOTFILES_ROOT/vim/vim-tmux-navigator.vim
 source $DOTFILES_ROOT/vim/clojure.vim
 source $DOTFILES_ROOT/vim/coc.vim
+
+" Hack to run Lua inside vimscript
+lua <<EOF
+-- Load oil.nvim and set keymap
+require("oil").setup()
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+EOF
