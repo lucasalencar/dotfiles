@@ -2,47 +2,68 @@
 call plug#begin('~/.vim/plugged')
 
 " Plugin with default configurations agreed with the community
-" This is good to make the configurations in this file more simple
+" This is good to make the configurations in this file simpler
 Plug 'tpope/vim-sensible'
 
+""" APPEARANCE PLUGINS
 Plug 'itchyny/lightline.vim' " Minimalist status line
 Plug 'ap/vim-css-color' " Show color when writing HEX colors
-Plug 'tpope/vim-eunuch' " Vim commands for the bash (Mkdir, Move, Rename, ...)
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  } | Plug 'junegunn/fzf.vim' " File fuzzy search and content search
-Plug 'scrooloose/nerdtree' " File tree
+Plug 'sheerun/vim-polyglot' " Syntax highlight for many languages
+
+" Color schemes
+Plug 'brendonrapp/smyck-vim'
+Plug 'rafi/awesome-vim-colorschemes'
+""" end APPEARANCE PLUGINS
+
+""" TEXT MANIPULATION PLUGINS
 Plug 'scrooloose/nerdcommenter' " Plugin to add comments according to language
-Plug 'thinca/vim-visualstar' " Search for terms using * or # on Visual Mode
-Plug 'ervandew/supertab' " Complete what is being written with <tab>
 Plug 'tpope/vim-surround' " Easily add things surrounding selections
 Plug 'tpope/vim-unimpaired' " https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt
 Plug 'tpope/vim-repeat' " Repeat commands from plugins with .
+Plug 'junegunn/vim-easy-align' " Align tables in text easily
 Plug 'bronson/vim-trailing-whitespace' " Remove trailing whitespace
 Plug 'tmhedberg/matchit' " Matches HTML tags with %
 Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string to symbol in ruby)
-Plug 'junegunn/vim-easy-align' " Align tables in text easily
-Plug 'w0rp/ale' " Linters
+
+if has('nvim')
+  " Async autocomplete plugin
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+""" end TEXT MANIPULATION PLUGINS
+
+""" NAVIGATION PLUGINS
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  } | Plug 'junegunn/fzf.vim' " File fuzzy search and content search
+Plug 'scrooloose/nerdtree' " File tree
+Plug 'thinca/vim-visualstar' " Search for terms using * or # on Visual Mode
 Plug 'simeji/winresizer' " Move and resize vim panels easily (C-e and arrow-letters keys)
+Plug 'tpope/vim-eunuch' " Vim commands for the bash (Mkdir, Move, Rename, ...)
+""" end NAVIGATION PLUGINS
+
+""" GENERAL LANG TOOLING
+Plug 'ervandew/supertab' " Complete what is being written with <tab>
+Plug 'w0rp/ale' " Linters
 Plug 'github/copilot.vim' " Add IA copilot to replace my job
-Plug 'jreybert/vimagit' " Plugin to emulate Emacs magit
 
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP
 endif
+""" end GENERAL LANG TOOLING
 
 " This plugin is conflicting with Clojure plugins and having unwanted
 " behavior. Removed for now, if using any other language then Clojure, enable
 " it again.
 "Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-endif
-
-""" GIT
+""" GIT PLUGINS
+Plug 'jreybert/vimagit' " Plugin to emulate Emacs magit
 Plug 'tpope/vim-fugitive' " Git wrapper for vim
 Plug 'tpope/vim-rhubarb' " Git extension for vim-fugitive
 Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
-""" GIT
+""" end GIT PLUGINS
 
 """ RUBY & RAILS PLUGINS
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
@@ -80,9 +101,9 @@ Plug 'amdt/vim-niji', { 'for': 'clojure' } " Rainbow parenthesis
 if has('nvim')
   Plug 'snoe/clj-refactor.nvim' " Nice keybindings to refactor clojure code
 endif
-
 """ end CLOJURE PLUGINS
 
+""" TMUX PLUGINS
 " OBS: Creates panel switching mapping using ctrl+<direction>
 " It is not necessary to add it to vimrc
 Plug 'christoomey/vim-tmux-navigator'
@@ -90,13 +111,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " When losing or gaining focus, execute some autocommands
 " Fixes some behaviors when using vim inside tmux
 Plug 'tmux-plugins/vim-tmux-focus-events'
-
-" Color schemes
-Plug 'brendonrapp/smyck-vim'
-Plug 'rafi/awesome-vim-colorschemes'
-
-
-Plug 'sheerun/vim-polyglot' " Syntax highlight for may languages
+""" end TMUX PLUGINS
 
 call plug#end()
 
