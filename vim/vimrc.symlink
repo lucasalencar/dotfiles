@@ -43,6 +43,16 @@ Plug 'simeji/winresizer' " Move and resize vim panels easily (C-e and arrow-lett
 Plug 'tpope/vim-eunuch' " Vim commands for the bash (Mkdir, Move, Rename, ...)
 """ end NAVIGATION PLUGINS
 
+""" TMUX PLUGINS
+" OBS: Creates panel switching mapping using ctrl+<direction>
+" It is not necessary to add it to vimrc
+Plug 'christoomey/vim-tmux-navigator'
+
+" When losing or gaining focus, execute some autocommands
+" Fixes some behaviors when using vim inside tmux
+Plug 'tmux-plugins/vim-tmux-focus-events'
+""" end TMUX PLUGINS
+
 """ GENERAL LANG TOOLING
 Plug 'ervandew/supertab' " Complete what is being written with <tab>
 Plug 'w0rp/ale' " Linters
@@ -99,19 +109,9 @@ Plug 'gregspurrier/vim-midje', { 'for': 'clojure' }
 Plug 'amdt/vim-niji', { 'for': 'clojure' } " Rainbow parenthesis
 
 if has('nvim')
-  Plug 'snoe/clj-refactor.nvim' " Nice keybindings to refactor clojure code
+  Plug 'snoe/clj-refactor.nvim', { 'for': 'clojure' } " Nice keybindings to refactor clojure code
 endif
 """ end CLOJURE PLUGINS
-
-""" TMUX PLUGINS
-" OBS: Creates panel switching mapping using ctrl+<direction>
-" It is not necessary to add it to vimrc
-Plug 'christoomey/vim-tmux-navigator'
-
-" When losing or gaining focus, execute some autocommands
-" Fixes some behaviors when using vim inside tmux
-Plug 'tmux-plugins/vim-tmux-focus-events'
-""" end TMUX PLUGINS
 
 call plug#end()
 
