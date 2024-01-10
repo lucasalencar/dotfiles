@@ -7,5 +7,4 @@ git -C "$HOME/.dotfiles" pull --rebase
 "$HOME/.dotfiles/emacs/update"
 "$HOME/.dotfiles/homebrew/update"
 # "$HOME/.dotfiles/nix/update"
-"$HOME/.dotfiles/nvim/update"
 "$HOME/.dotfiles/tmux/update"
