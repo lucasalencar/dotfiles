@@ -1,3 +1,5 @@
+set rtp+=/opt/homebrew/opt/fzf
+
 " <CTRL-p> to find versioned files
 noremap <C-p> :Files<CR>
 inoremap <C-p> <Esc>:Files<CR>
