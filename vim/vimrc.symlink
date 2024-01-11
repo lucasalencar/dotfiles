@@ -83,6 +83,11 @@ Plug 'tpope/vim-rhubarb' " Git extension for vim-fugitive
 Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
 """ end GIT PLUGINS
 
+""" MARKDOWN PLUGINS
+" If you have nodejs
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+""" end MARKDOWN PLUGINS
+
 """ RUBY & RAILS PLUGINS
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'sunaku/vim-ruby-minitest', { 'for': 'ruby' } " Syntax highlight
@@ -132,6 +137,7 @@ source $DOTFILES_ROOT/vim/sensible.vim
 " Load all my custom mappings
 source $DOTFILES_ROOT/vim/mappings.vim
 source $DOTFILES_ROOT/vim/git.vim
+source $DOTFILES_ROOT/vim/markdown.vim
 
 " Load all maps that use MacOS option-key unicode characters
 "source $DOTFILES_ROOT/vim/mac-option-maps.vim
