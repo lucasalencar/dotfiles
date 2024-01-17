@@ -3,20 +3,21 @@
 " Consider *.edn files as clojure
 autocmd BufNewFile,BufRead *.edn setf clojure
 
-""" easyalign
+function ClojureRefactorMappings()
+    """ Mappings related to code refactor
 
-" Map to vertically align maps on Clojure
-" This is not a flawless map, but will help most of the times
-autocmd FileType clojure nmap <localleader>cma :startinsert<CR><CR><ESC>w==gaif<SPACE>kJ==
+    " Vertically align maps on Clojure
+    " This is not a flawless, but will help most of the times
+    " Uses easyalign plugin
+    nmap <localleader>cma :startinsert<CR><CR><ESC>w==gaif<SPACE>kJ==
 
+    " Order NS and avoid breaking lines that are too long
+    "nmap cn :%s/\(\[.*\)\n *\(:as\)\n *\(.*\]\)/\1 \2 \3/g<CR>
 
-""" clojure refactors
-
-" Order NS and avoid breaking lines that are too long
-"autocmd FileType clojure nmap cn :%s/\(\[.*\)\n *\(:as\)\n *\(.*\]\)/\1 \2 \3/g<CR>
-
-autocmd FileType clojure nmap crmv >e>eB<e
-autocmd FileType clojure nmap crmk >e>egE<ew>e>egE<e
+    nmap <localleader>crmv >e>eB<e
+    nmap <localleader>crmk >e>egE<ew>e>egE<e
+endfunction
+autocmd FileType clojure ClojureRefactorMappings()
 
 function ClojureLSPMappings()
     """ Create mappings using:
