@@ -18,30 +18,32 @@ autocmd FileType clojure nmap <localleader>cma :startinsert<CR><CR><ESC>w==gaif<
 autocmd FileType clojure nmap crmv >e>eB<e
 autocmd FileType clojure nmap crmk >e>egE<ew>e>egE<e
 
-""" LSP Mappings
-""" Create mappings using:
-""" autocmd FileType clojure nmap <mapping> :call CocActionAsync('runCommand', '<command>')<CR>
-""" <command> is found at coc-clojure readme
-""" https://github.com/NoahTheDuke/coc-clojure#refactoring-commands
+function ClojureLSPMappings()
+    """ Create mappings using:
+    """ nmap <mapping> :call CocActionAsync('runCommand', '<command>')<CR>
+    """ <command> is found at coc-clojure readme
+    """ https://github.com/NoahTheDuke/coc-clojure#refactoring-commands
 
-" Clean ns
-autocmd FileType clojure nmap <localleader>cn :call CocActionAsync('runCommand', 'lsp-clojure-clean-ns')<CR>
-" Add missing require
-autocmd FileType clojure nmap <localleader>cam :call CocActionAsync('runCommand', 'lsp-clojure-add-missing-libspec')<CR>
-" Drag pairs of symbols forward (used for maps or let bindings)
-autocmd FileType clojure nmap <localleader>J :call CocActionAsync('runCommand', 'lsp-clojure-drag-forward')<CR>
-" Drag pairs of symbols backwards (used for maps or let bindings)
-autocmd FileType clojure nmap <localleader>K :call CocActionAsync('runCommand', 'lsp-clojure-drag-backward')<CR>
+    " Clean ns
+    nmap <localleader>cn :call CocActionAsync('runCommand', 'lsp-clojure-clean-ns')<CR>
+    " Add missing require
+    nmap <localleader>cam :call CocActionAsync('runCommand', 'lsp-clojure-add-missing-libspec')<CR>
+    " Drag pairs of symbols forward (used for maps or let bindings)
+    nmap <localleader>J :call CocActionAsync('runCommand', 'lsp-clojure-drag-forward')<CR>
+    " Drag pairs of symbols backwards (used for maps or let bindings)
+    nmap <localleader>K :call CocActionAsync('runCommand', 'lsp-clojure-drag-backward')<CR>
+endfunction
+autocmd FileType clojure call ClojureLSPMappings()
 
 " Function to open project dependencies when finding references outside
-" current project (e.g. gd into a common lib in a repo)
+" current project (e.g. gd into a lib in a repo)
 function! LoadClojureContent(uri)
     setfiletype clojure
     let content = CocRequest('clojure', 'clojure/dependencyContents', {'uri': a:uri})
     call setline(1, split(content, "\n"))
     setl nomodified readonly
 endfunction
-autocmd BufReadCmd  jar:file://*    call LoadClojureContent(expand("<afile>"))
+autocmd BufReadCmd jar:file://* call LoadClojureContent(expand("<afile>"))
 
 
 " Clojure mapping to start a REPL based on vim-jack-in
