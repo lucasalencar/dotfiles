@@ -3,7 +3,7 @@
 " Consider *.edn files as clojure
 autocmd BufNewFile,BufRead *.edn setf clojure
 
-function ClojureRefactorMappings()
+function ClojureMappings()
     """ Mappings related to code refactor
 
     " Vertically align maps on Clojure
@@ -17,7 +17,7 @@ function ClojureRefactorMappings()
     nmap <localleader>crmv >e>eB<e
     nmap <localleader>crmk >e>egE<ew>e>egE<e
 endfunction
-autocmd FileType clojure ClojureRefactorMappings()
+autocmd FileType clojure call ClojureMappings()
 
 function ClojureLSPMappings()
     """ Create mappings using:
