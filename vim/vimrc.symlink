@@ -152,6 +152,7 @@ source $DOTFILES_ROOT/vim/fzf.vim
 source $DOTFILES_ROOT/vim/nerdtree.vim
 source $DOTFILES_ROOT/vim/vim-tmux-navigator.vim
 source $DOTFILES_ROOT/vim/clojure.vim
+source $DOTFILES_ROOT/vim/vim-sexp.vim
 source $DOTFILES_ROOT/vim/coc.vim
 
 " Hack to run Lua inside vimscript
