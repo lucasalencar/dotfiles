@@ -59,6 +59,7 @@ cask 'eqmac'
 cask 'logitech-options'
 cask 'discord'
 cask 'logseq'
+cask 'meetingbar'
 
 # Emacs
 tap 'd12frosted/emacs-plus'
