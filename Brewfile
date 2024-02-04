@@ -57,6 +57,7 @@ cask 'rescuetime'
 cask 'send-to-kindle'
 cask 'eqmac'
 cask 'logitech-options'
+cask 'logitune'
 cask 'discord'
 cask 'logseq'
 cask 'meetingbar'
@@ -109,4 +110,3 @@ cask 'font-source-code-pro-for-powerline'
 brew 'ghc'
 brew 'ghcup' # package installer
 brew 'cabal-install' # package manager
->>>>>>> 918db7a (Add haskell)
