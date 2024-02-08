@@ -73,3 +73,5 @@ let g:clojure_align_subforms = 1
 
 " Set mapping to run current test under cursor
 let g:conjure#client#clojure#nrepl#mapping#run_current_test = 'tt'
+
+let g:conjure#client#clojure#nrepl#test#current_form_names = ['deftest', 'defspec', 'defflow']
