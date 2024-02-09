@@ -33,6 +33,14 @@ function ClojureLSPMappings()
     nmap <localleader>J :call CocActionAsync('runCommand', 'lsp-clojure-drag-forward')<CR>
     " Drag pairs of symbols backwards (used for maps or let bindings)
     nmap <localleader>K :call CocActionAsync('runCommand', 'lsp-clojure-drag-backward')<CR>
+    " Thread first all
+    nmap <localleader>ctf :call CocActionAsync('runCommand', 'lsp-clojure-thread-first-all')<CR>
+    " Thread last all
+    nmap <localleader>ctl :call CocActionAsync('runCommand', 'lsp-clojure-thread-last-all')<CR>
+    " Thread unwind all
+    nmap <localleader>ctua :call CocActionAsync('runCommand', 'lsp-clojure-unwind-all')<CR>
+    " Thread unwind
+    nmap <localleader>ctuu :call CocActionAsync('runCommand', 'lsp-clojure-unwind-thread')<CR>
 endfunction
 autocmd FileType clojure call ClojureLSPMappings()
 
