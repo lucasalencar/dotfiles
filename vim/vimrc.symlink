@@ -65,16 +65,13 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'ervandew/supertab' " Complete what is being written with <tab>
 Plug 'w0rp/ale' " Linters
 Plug 'github/copilot.vim' " Add IA copilot to replace my job
+Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
 
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP
 endif
 """ end GENERAL LANG TOOLING
 
-" This plugin is conflicting with Clojure plugins and having unwanted
-" behavior. Removed for now, if using any other language then Clojure, enable
-" it again.
-"Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
 
 """ GIT PLUGINS
 Plug 'jreybert/vimagit' " Plugin to emulate Emacs magit
