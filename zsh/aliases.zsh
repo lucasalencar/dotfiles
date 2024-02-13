@@ -5,7 +5,7 @@ alias l='ls -lAh'
 # Specific update aliases
 alias update_zsh="$HOME/.dotfiles/zsh/update"
 alias update_brew="$HOME/.dotfiles/homebrew/update"
-alias update_nvim="$HOME/.dotfiles/nvim/update"
+alias update_vim="$HOME/.dotfiles/vim/update"
 alias update_tmux="$HOME/.dotfiles/tmux/update"
 alias update_emacs="$HOME/.dotfiles/emacs/update"
 alias update_nix="$HOME/.dotfiles/nix/update"
