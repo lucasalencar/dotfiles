@@ -3,8 +3,8 @@
 # Updates dotfiles
 git -C "$HOME/.dotfiles" pull --rebase
 
-"$HOME/.dotfiles/zsh/update"
-"$HOME/.dotfiles/emacs/update"
-"$HOME/.dotfiles/homebrew/update"
-# "$HOME/.dotfiles/nix/update"
-"$HOME/.dotfiles/tmux/update"
+# Packages eligible for update
+packages=("zsh" "emacs" "homebrew" "vim" "tmux")
+for package in "${packages[@]}"; do
+  "$DOTFILES_ROOT/$package/update"
+done
