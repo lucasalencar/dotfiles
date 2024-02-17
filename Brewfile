@@ -1,5 +1,5 @@
 tap 'homebrew/services'
-tap 'buo/cask-upgrade'
+tap 'buo/cask-upgrade' # Replaces standard brew upgrade command
 
 # Essential tools
 brew 'coreutils'
