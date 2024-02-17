@@ -1,5 +1,5 @@
-tap 'homebrew/services'
-tap 'buo/cask-upgrade' # Replaces standard brew upgrade command
+tap 'homebrew/services' # Control Mac services through brew
+tap 'buo/cask-upgrade' # Enables cask updates through brew
 
 # Essential tools
 brew 'coreutils'
