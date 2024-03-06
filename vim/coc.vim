@@ -5,7 +5,7 @@ let g:coc_global_extensions = [
       \'coc-markdownlint',
       \'coc-highlight',
       \'coc-go',
-      \'coc-python',
+      \'coc-pyright',
       \'coc-flutter',
       \'coc-git',
       \'coc-json',
