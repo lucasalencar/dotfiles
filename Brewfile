@@ -88,6 +88,7 @@ brew 'npm'
 
 # Python
 brew 'pyenv'
+brew 'pyright' # Python LSP
 
 # Ruby
 # brew 'rbenv'
