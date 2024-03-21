@@ -67,6 +67,10 @@ cask 'meetingbar'
 tap 'd12frosted/emacs-plus'
 brew 'emacs-plus', args: ["with-native-comp", "with-imagemagick"]
 
+# Java
+brew 'openjdk@8'
+brew 'openjdk@11'
+
 # Clojure
 brew 'clojure'
 brew 'leiningen'
