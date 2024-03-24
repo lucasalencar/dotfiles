@@ -5,7 +5,6 @@ git -C "$HOME/.dotfiles" pull --rebase
 
 function update_package() {
   "$DOTFILES_ROOT/$1/update"
-
 }
 
 update_package "zsh"
