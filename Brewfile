@@ -1,4 +1,5 @@
 tap 'homebrew/services'
+tap 'buo/cask-upgrade'
 
 # Essential tools
 brew 'coreutils'
