@@ -99,6 +99,12 @@ brew 'pyright' # Python LSP
 # brew 'rbenv'
 # brew 'ruby-build'
 
+# Scala
+brew 'sbt'
+
+# Rust
+brew 'rust'
+
 # Infosec
 cask 'gpg-suite'
 brew 'ykman'
