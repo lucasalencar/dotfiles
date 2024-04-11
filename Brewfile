@@ -24,6 +24,7 @@ brew 'zsh-completions'
 brew 'git'
 brew 'git-lfs'
 brew 'hub'
+brew 'gh'
 
 # No Clam Shell (don't allow to use notebook with lid closed)
 # tap 'pirj/noclamshell'
