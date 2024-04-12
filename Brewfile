@@ -43,10 +43,10 @@ brew 'vim'
 brew 'neovim'
 
 # Cask apps
+cask 'arc'
+cask 'google-chrome'
 cask 'karabiner-elements'
 cask 'kitty'
-cask 'google-chrome'
-cask 'arc'
 cask 'spotify'
 cask 'whatsapp'
 cask 'telegram'
