@@ -1,6 +1,12 @@
 #!/bin/bash
 
-source fzf-tmux-helpers.sh
+source "$DOTFILES_ROOT/scripts/fzf-tmux-helpers.sh"
+
+# Debug: Verifica se a função está carregada
+if ! declare -f fzf_tmux_window_index > /dev/null; then
+  echo "Function fzf_tmux_window_index not found."
+  exit 1
+fi
 
 fzf_tmux_window_index | xargs tmux select-window -t
 
