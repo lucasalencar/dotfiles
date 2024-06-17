@@ -89,6 +89,12 @@ bind K resize-pane -U 40 # prefix + K to resize up
 bind H resize-pane -L 40 # prefix + H to resize left
 bind L resize-pane -R 40 # prefix + L to resize right
 
+# tmux-fzf configs
+TMUX_FZF_LAUNCH_KEY="K" # prefix + K to launch tmux-fzf
+TMUX_FZF_ORDER="window|pane|command|keybinding|clipboard|process|session"
+TMUX_FZF_PANE_FORMAT="[#{window_name}: #{pane_current_path}] #{pane_current_command} #{?pane_active,[active],[inactive]}"
+TMUX_FZF_WINDOW_FORMAT="#{pane_current_path}"
+
 #### Setup TPM (Tmux Plugin Manager)
 # List of plugins
 
@@ -136,8 +142,6 @@ set -g @plugin 'nhdaly/tmux-better-mouse-mode'
 ### Add fuzzy finder for tmux commands using fzf
 # prefix + F => opens fzf window with tmux commands
 set -g @plugin 'sainnhe/tmux-fzf'
-
-TMUX_FZF_ORDER="window|pane|command|keybinding|clipboard|process|session"
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
