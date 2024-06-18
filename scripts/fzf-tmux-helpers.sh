@@ -13,5 +13,5 @@ tmux_current_window_index () {
 }
 
 fzf_tmux_code_dir () {
-  ls $CODE_HOME | fzf-tmux
+  ls "$CODE_HOME" | fzf-tmux
 }

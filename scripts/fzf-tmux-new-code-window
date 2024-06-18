@@ -1,9 +1,9 @@
 #!/bin/bash
 
-source fzf-tmux-helpers.sh
+source "$DOTFILES_ROOT/scripts/fzf-tmux-helpers.sh"
 
 selected_dir=$(fzf_tmux_code_dir)
 
-if [ $selected_dir ]; then
+if [ "$selected_dir" ]; then
   tmux new-window -a -c "$CODE_HOME/$selected_dir"
 fi
