@@ -58,7 +58,7 @@ bind N run-shell -b "$DOTFILES_ROOT/scripts/fzf-tmux-swap-window-closer"
 bind C run-shell -b "$DOTFILES_ROOT/scripts/fzf-tmux-new-code-window"
 
 # Closes all windows except the current one
-bind X run-shell "$DOTFILES_ROOT/scripts/tmux-kill-windows-except-current"
+bind X run-shell -b "$DOTFILES_ROOT/scripts/tmux-kill-windows-except-current"
 
 ### PANEL MANAGEMENT MAPPINGS
 
