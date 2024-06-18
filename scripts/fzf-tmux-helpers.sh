@@ -8,8 +8,7 @@ fzf_tmux_window_index () {
 
 tmux_current_window_index () {
   current_index=$(tmux display-message -p '#I')
-  echo $current_index
-  return $current_index
+  echo "$current_index"
 }
 
 fzf_tmux_code_dir () {
