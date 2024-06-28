@@ -8,4 +8,6 @@
   },
   "codeLens.enable": true,
   "codeLens.position": "eol",
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
 }
