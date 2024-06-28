@@ -11,7 +11,8 @@ let g:coc_global_extensions = [
       \'coc-json',
       \'coc-clojure',
       \'coc-vimlsp',
-      \'coc-metals'
+      \'coc-metals',
+      \'coc-tsserver',
       \]
 
 " Set custom config file for coc
