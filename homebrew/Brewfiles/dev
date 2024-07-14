@@ -1,0 +1,24 @@
+# Docker
+brew 'docker'
+
+# JS
+brew 'npm'
+
+# Elixir
+ #brew 'elixir'
+
+# Go
+# brew 'go'
+
+# Python
+brew 'pyenv'
+brew 'pyright' # Python LSP
+
+# Ruby
+# brew 'rbenv'
+# brew 'ruby-build'
+
+# Haskell
+brew 'ghc'
+brew 'ghcup' # package installer
+brew 'cabal-install' # package manager

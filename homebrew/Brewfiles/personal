@@ -1,0 +1,3 @@
+# Cask apps
+cask 'discord'
+cask 'stremio'
