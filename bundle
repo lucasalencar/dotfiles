@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source helpers
+
+# Basic file is always bundled
+brew bundle --file="$DOTFILES_ROOT/homebrew/Brewfiles/basic"
+
+for file in "$@"; do
+  brewfile_path="$DOTFILES_ROOT/homebrew/Brewfiles/$file"
+
+  if [ -f "$brewfile_path" ]; then
+    brew bundle --file="$brewfile_path"
+  else
+    fail "Bundle $brewfile_path not found."
+  fi
+done

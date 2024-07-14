@@ -1,0 +1,32 @@
+cask 'slack'
+cask 'logitech-options'
+cask 'logitune'
+cask 'meetingbar'
+
+# Emacs
+tap 'd12frosted/emacs-plus'
+brew 'emacs-plus', args: ["with-native-comp", "with-imagemagick"]
+
+# Java
+brew 'openjdk@11'
+
+# Clojure
+brew 'clojure'
+brew 'leiningen'
+brew 'clojure-lsp/brew/clojure-lsp-native'
+brew 'borkdude/brew/clj-kondo'
+brew 'borkdude/brew/babashka'
+
+# Docker
+brew 'docker'
+
+# Python
+brew 'pyenv'
+brew 'pyright' # Python LSP
+
+# Scala
+brew 'sbt'
+
+# Infosec
+cask 'gpg-suite'
+brew 'ykman'
