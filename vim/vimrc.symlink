@@ -74,7 +74,6 @@ endif
 
 
 """ GIT PLUGINS
-Plug 'jreybert/vimagit' " Plugin to emulate Emacs magit
 Plug 'tpope/vim-fugitive' " Git wrapper for vim
 Plug 'tpope/vim-rhubarb' " Git extension for vim-fugitive
 Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
