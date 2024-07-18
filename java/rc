@@ -1,2 +1,6 @@
 # Default Java installation (don't use bin folder)
-export JAVA_HOME="/opt/homebrew/opt/openjdk@11/"
+#export JAVA_HOME="/opt/homebrew/opt/openjdk@11/"
+
+# Jenv configuration
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
