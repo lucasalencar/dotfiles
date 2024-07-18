@@ -1,4 +1,5 @@
-cask 'slack'
+cask 'arc'
+#cask 'slack'
 cask 'logitech-options'
 cask 'logitune'
 cask 'meetingbar'
@@ -9,6 +10,7 @@ brew 'emacs-plus', args: ["with-native-comp", "with-imagemagick"]
 
 # Java
 brew 'openjdk@11'
+brew 'jenv'
 
 # Clojure
 brew 'clojure'
