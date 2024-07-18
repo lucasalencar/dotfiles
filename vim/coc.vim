@@ -13,6 +13,7 @@ let g:coc_global_extensions = [
       \'coc-vimlsp',
       \'coc-metals',
       \'coc-tsserver',
+      \'coc-kotlin',
       \]
 
 " Set custom config file for coc
