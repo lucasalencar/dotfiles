@@ -1,3 +1,5 @@
 # Cask apps
+cask 'arc'
+cask 'google-chrome'
 cask 'discord'
 cask 'stremio'
