@@ -1,6 +1,6 @@
 # User friedly ls
-alias la='ls -lAh'
-alias l='ls -lAh'
+alias la='ls -lAh --color'
+alias l='ls -lAh --color'
 
 # Specific update aliases
 alias update_zsh="$HOME/.dotfiles/zsh/update"
@@ -39,7 +39,7 @@ alias dss="docker-machine stop"
 alias vi="nvim"
 alias iv="nvim"
 alias v="nvim"
-alias t="tmux attach"
+alias t="tmux"
 
 alias gs="gst"
 alias gdst="git diff --stat master HEAD" # Show number of lines changed for current branch
