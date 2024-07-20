@@ -1,6 +1,7 @@
 # User friedly ls
 alias la='ls -lAh --color'
 alias l='ls -lAh --color'
+alias ls='ls --color'
 
 # Specific update aliases
 alias update_zsh="$HOME/.dotfiles/zsh/update"
