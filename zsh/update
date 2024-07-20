@@ -1,3 +1,7 @@
 #!/bin/bash
 
-"$HOME/.oh-my-zsh/tools/upgrade.sh"
+echo "TODO understand why zinit commands are not found here"
+echo "$(which zinit)"
+
+zinit self-update
+zinit update --parallel
