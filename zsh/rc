@@ -15,7 +15,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # Syntax highlight
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-### ZSH Completion config
+### ZSH Completion config ###
 # Completions package
 zinit light zsh-users/zsh-completions
 autoload -U compinit && compinit
@@ -28,7 +28,7 @@ zstyle ':completion:*' menu no # Disable default zsh completion menu
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*' # case insensitive
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # Use LS_COLORS for completion colors
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # Show directory content when completing cd
-### End ZSH Completion config
+### End ZSH Completion config ###
 
 # Command suggestions
 zinit light zsh-users/zsh-autosuggestions
