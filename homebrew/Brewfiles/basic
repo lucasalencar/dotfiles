@@ -60,7 +60,7 @@ cask 'logseq'
 brew 'npm'
 
 # Fonts
-tap 'homebrew/cask-fonts'
+#tap 'homebrew/cask-fonts'
 cask 'font-hack'
 cask 'font-droid-sans-mono-for-powerline'
 cask 'font-roboto-mono-for-powerline'
@@ -68,3 +68,4 @@ cask 'font-menlo-for-powerline'
 cask 'font-dejavu-sans-mono-for-powerline'
 cask 'font-powerline-symbols'
 cask 'font-source-code-pro-for-powerline'
+cask 'font-meslo-lg-nerd-font'
