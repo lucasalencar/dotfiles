@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# USe FZF as fuzzy search inside terminal (ctrl+r)
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
-
 # ZINIT package manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
