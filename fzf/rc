@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # USe FZF as fuzzy search inside terminal (ctrl+r)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
