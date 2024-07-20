@@ -15,20 +15,28 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # Syntax highlight
 zinit light zdharma-continuum/fast-syntax-highlighting
 
-# Tab completions
+### ZSH Completion config
+# Completions package
 zinit light zsh-users/zsh-completions
 autoload -U compinit && compinit
+
+# FZF when tabbing for completions
+zinit light Aloxaf/fzf-tab
+
+# Completions setup
+zstyle ':completion:*' menu no # Disable default zsh completion menu
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*' # case insensitive
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # Use LS_COLORS for completion colors
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # Show directory content when completing cd
+### End ZSH Completion config
 
 # Command suggestions
 zinit light zsh-users/zsh-autosuggestions
 
-# Fzf when tabbing for completions
-zinit light Aloxaf/fzf-tab
-zstyle ':completion:*' menu no
-
 # Oh my zsh port
 zinit snippet OMZL::history.zsh
 zinit snippet OMZL::key-bindings.zsh
+zinit snippet OMZL::directories.zsh
 
 zinit snippet OMZP::git
 zinit snippet OMZP::colored-man-pages
