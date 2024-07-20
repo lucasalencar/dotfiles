@@ -1,4 +1,4 @@
-# Override oh-my-zsh alias to a more user friendly
+# User friedly ls
 alias la='ls -lAh'
 alias l='ls -lAh'
 
@@ -16,7 +16,6 @@ alias update="$HOME/.dotfiles/update"
 alias reload!='. ~/.zshrc'
 
 # Aliases to config files
-alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias dotfiles="cd $HOME/.dotfiles; $EDITOR $HOME/.dotfiles"
 
 # Use colordiff as default diff command
