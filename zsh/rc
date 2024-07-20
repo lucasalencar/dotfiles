@@ -1,27 +1,39 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+#!/bin/bash
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="simple"
-# ZSH_THEME="kolo"
-#ZSH_THEME="lambda"
+# ZINIT package manager
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(tmux git gitfast lein aws colored-man-pages)
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Activate zsh-completions
-plugins+=(zsh-completions)
-autoload -Uz compinit && compinit
+# Theme
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+# Syntax highlight
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# Tab completions
+zinit light zsh-users/zsh-completions
+autoload -U compinit && compinit
+
+# Command suggestions
+zinit light zsh-users/zsh-autosuggestions
+
+# Oh my zsh port
+zinit snippet OMZL::history.zsh
+zinit snippet OMZL::key-bindings.zsh
+zinit snippet OMZP::tmux
+zinit snippet OMZP::git
+zinit snippet OMZP::colored-man-pages
+
+# TODO Check why this is necessary
 if test ! $(which kitty); then
   # Completion for kitty
   kitty + complete setup zsh | source /dev/stdin
 fi
-
-# Load oh-my-zsh
-source $ZSH/oh-my-zsh.sh
 
 # Load all custom configs from dotfiles to zsh
 for file in $DOTFILES_ROOT/zsh/*.zsh; do

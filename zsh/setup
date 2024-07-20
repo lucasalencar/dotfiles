@@ -2,13 +2,10 @@
 
 source helpers
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-
-  # Install better zsh-completions
-  git clone https://github.com/zsh-users/zsh-completions "$HOME/.oh-my-zsh/custom/plugins/zsh-completions"
-else
-  info 'Skipping zsh and oh-my-zsh'
+# Install zinit package manager
+if [ ! -d "$HOME/.local/share/zinit" ]; then
+  # NO_EDIT is to avoid editting zshrc file
+  NO_EDIT=1 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 fi
 
 if command_exists zsh; then
