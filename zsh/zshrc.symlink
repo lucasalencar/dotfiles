@@ -10,5 +10,8 @@ export DOTFILES_ROOT=$HOME/.dotfiles
 
 source $DOTFILES_ROOT/rc
 
+# USe FZF as fuzzy search inside terminal (ctrl+r)
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
