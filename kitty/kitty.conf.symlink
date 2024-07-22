@@ -106,8 +106,13 @@ mouse_hide_wait 1.0
 #: Window layout {{{
 
 #: The window margin (in pts) (blank area outside the border)
+window_margin_width 5.0
 
-window_margin_width 1.0
+#: Hide window bar
+hide_window_decorations titlebar-only
+
+#: Show current active command only on menubar
+macos_show_window_title_in menubar
 
 #: }}}
 
