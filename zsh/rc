@@ -18,6 +18,9 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 # Command suggestions
 zinit light zsh-users/zsh-autosuggestions
 
+# git-fzf | gfzf | gf fuzzy find branches
+zinit light alexiszamanidis/zsh-git-fzf
+
 # Oh my zsh port
 zinit snippet OMZL::history.zsh
 zinit snippet OMZL::key-bindings.zsh
