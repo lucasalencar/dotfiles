@@ -14,21 +14,20 @@ bind C-l send-keys 'C-l'
 # ctrl-k clears the current history
 bind C-k send-keys -R \; clear-history
 
-### Setup status bar
-set-window-option -g status-left " #S " # Session number indication
-set-window-option -g status-right " %H:%M %d/%m/%y "
+### Setup status bar (raw version)
+#set-window-option -g status-right " %H:%M %d/%m/%y "
 
-set-option -g status-left-style "fg=black,bg=white"
-set-option -g status-right-style "fg=black,bg=white"
-set-option -g status-style "bg=#6d2177"
-set-window-option -g pane-active-border-style "fg=#6d2177"
-set-window-option -g window-status-current-style "bg=black,fg=white,bold"
-set-window-option -g window-status-style "fg=white,bg=#6d2177,dim"
-set-window-option -g window-status-activity-style "bg=yellow"
+#set-option -g status-left-style "fg=black,bg=white"
+#set-option -g status-right-style "fg=black,bg=white"
+#set-option -g status-style "bg=#6d2177"
+#set-window-option -g pane-active-border-style "fg=#6d2177"
+#set-window-option -g window-status-current-style "bg=black,fg=white,bold"
+#set-window-option -g window-status-style "fg=white,bg=#6d2177,dim"
+#set-window-option -g window-status-activity-style "bg=yellow"
 
 # Show current directory in the window status name
-set -g window-status-format ' #I: #(pwd="#{pane_current_path}"; echo ${pwd####*/}) '
-set -g window-status-current-format ' #I: #(pwd="#{pane_current_path}"; echo ${pwd####*/}) '
+#set -g window-status-format ' #I: #(pwd="#{pane_current_path}"; echo ${pwd####*/}) '
+#set -g window-status-current-format ' #I: #(pwd="#{pane_current_path}"; echo ${pwd####*/}) '
 
 # status bar updates every 15s by default, change to 1s here
 # (this step is optional - a lower latency might have negative battery/cpu usage impacts)
@@ -142,6 +141,28 @@ set -g @plugin 'nhdaly/tmux-better-mouse-mode'
 ### Add fuzzy finder for tmux commands using fzf
 # prefix + F => opens fzf window with tmux commands
 set -g @plugin 'sainnhe/tmux-fzf'
+
+### Status bar theme
+set -g @plugin 'catppuccin/tmux'
+set -g @catppuccin_flavour 'mocha' # latte,frappe, macchiato or mocha
+
+set -g @catppuccin_status_modules_right "application" # Right status line
+set -g @catppuccin_status_modules_left "" # Left status line
+
+# Setup window list style
+set -g @catppuccin_window_right_separator " "
+set -g @catppuccin_window_left_separator ""
+set -g @catppuccin_window_middle_separator " "
+set -g @catppuccin_window_number_position "left"
+set -g @catppuccin_window_default_fill "none"
+set -g @catppuccin_window_current_fill "all"
+set -g @catppuccin_application_icon ""
+
+# Setup modules style
+set -g @catppuccin_status_left_separator  ""
+set -g @catppuccin_status_right_separator " "
+set -g @catppuccin_status_fill "all"
+set -g @catppuccin_status_connect_separator "yes"
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
