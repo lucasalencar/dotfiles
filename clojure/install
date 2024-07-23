@@ -1,8 +1,6 @@
 #!/bin/bash
 
-brew install \
-  clojure \
-  leiningen \
-  clojure-lsp/brew/clojure-lsp-native \
-  borkdude/brew/clj-kondo \
-  borkdude/brew/babashka
+source helpers
+
+current_dir
+brew bundle --file="$CURRENT_DIR/Brewfile"
