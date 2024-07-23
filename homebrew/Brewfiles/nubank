@@ -17,18 +17,8 @@ cask 'logseq'
 tap 'd12frosted/emacs-plus'
 brew 'emacs-plus', args: ["with-native-comp", "with-imagemagick"]
 
-# Clojure
-brew 'clojure'
-brew 'leiningen'
-brew 'clojure-lsp/brew/clojure-lsp-native'
-brew 'borkdude/brew/clj-kondo'
-brew 'borkdude/brew/babashka'
-
 # Docker
 brew 'docker'
-
-# Scala
-brew 'sbt'
 
 # Infosec
 cask 'gpg-suite'
