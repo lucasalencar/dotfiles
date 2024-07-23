@@ -19,6 +19,9 @@ brew 'clojure-lsp/brew/clojure-lsp-native'
 brew 'borkdude/brew/clj-kondo'
 brew 'borkdude/brew/babashka'
 
+# JS
+brew 'npm'
+
 # Docker
 brew 'docker'
 
