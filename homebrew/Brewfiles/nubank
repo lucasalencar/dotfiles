@@ -13,10 +13,6 @@ cask 'send-to-kindle'
 cask 'eqmac'
 cask 'logseq'
 
-# Emacs
-tap 'd12frosted/emacs-plus'
-brew 'emacs-plus', args: ["with-native-comp", "with-imagemagick"]
-
 # Docker
 brew 'docker'
 
