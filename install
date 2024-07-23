@@ -10,11 +10,20 @@ DOTFILES_ROOT=$(pwd -P)
 info 'Installing homebrew'
 "$HOME/homebrew/install"
 
-info 'Installing homebrew packages'
 ./bundle "$PROFILE"
 
-info 'Setting up installed packages'
-for setup in */setup; do "$setup"; done
+info "Installing enabled packages from $PROFILE"
+while read package; do
+  [ -f $DOTFILES_ROOT/$package/install ] && "$DOTFILES_ROOT/$package/install"
+done < "$DOTFILES_ROOT/profiles/$PROFILE"
+unset package
+
+info 'Setting up enabled packages from $PROFILE'
+#for setup in */setup; do "$setup"; done
+while read package; do
+  [ -f $DOTFILES_ROOT/$package/setup ] && "$DOTFILES_ROOT/$package/setup"
+done < "$DOTFILES_ROOT/profiles/$PROFILE"
+unset package
 
 success 'All done! :D'
 
