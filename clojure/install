@@ -1,6 +1,4 @@
 #!/bin/bash
 
 source helpers
-
-current_dir
-brew bundle --file="$CURRENT_DIR/Brewfile"
+bundle_current_dir
