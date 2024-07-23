@@ -1,12 +1,23 @@
 tap 'homebrew/services' # Control Mac services through brew
 tap 'buo/cask-upgrade' # Enables cask updates through brew
 
-# Essential tools
 brew 'zsh'
 brew 'git'
 brew 'hub'
 brew 'fzf'
 brew 'ripgrep'
+
+# Tmux
+brew 'tmux'
+
+# Makes copying and pasting in Terminal.app work again on MacOS Sierra
+# https://github.com/tmux/tmux/issues/543#issuecomment-248980734
+# https://github.com/tmux/tmux/issues/543
+brew 'reattach-to-user-namespace'
+
+# Vim
+brew 'vim'
+brew 'neovim'
 
 brew 'coreutils'
 brew 'binutils'
@@ -23,18 +34,6 @@ brew 'shellcheck'
 # No Clam Shell (don't allow to use notebook with lid closed)
 # tap 'pirj/noclamshell'
 # brew 'pirj/homebrew-noclamshell/noclamshell'
-
-# Tmux
-brew 'tmux'
-
-# Makes copying and pasting in Terminal.app work again on MacOS Sierra
-# https://github.com/tmux/tmux/issues/543#issuecomment-248980734
-# https://github.com/tmux/tmux/issues/543
-brew 'reattach-to-user-namespace'
-
-# Vim
-brew 'vim'
-brew 'neovim'
 
 # Cask apps
 cask 'caffeine'
@@ -54,10 +53,10 @@ cask 'logseq'
 # Fonts
 #tap 'homebrew/cask-fonts'
 cask 'font-hack'
+cask 'font-meslo-lg-nerd-font'
 cask 'font-droid-sans-mono-for-powerline'
 cask 'font-roboto-mono-for-powerline'
 cask 'font-menlo-for-powerline'
 cask 'font-dejavu-sans-mono-for-powerline'
 cask 'font-powerline-symbols'
 cask 'font-source-code-pro-for-powerline'
-cask 'font-meslo-lg-nerd-font'
