@@ -1,0 +1,8 @@
+#!/bin/bash
+
+brew install \
+  clojure \
+  leiningen \
+  clojure-lsp/brew/clojure-lsp-native \
+  borkdude/brew/clj-kondo \
+  borkdude/brew/babashka
