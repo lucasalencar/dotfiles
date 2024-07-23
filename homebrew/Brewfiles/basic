@@ -2,29 +2,23 @@ tap 'homebrew/services' # Control Mac services through brew
 tap 'buo/cask-upgrade' # Enables cask updates through brew
 
 # Essential tools
+brew 'zsh'
+brew 'git'
+brew 'hub'
+brew 'fzf'
+brew 'ripgrep'
+
 brew 'coreutils'
 brew 'binutils'
 brew 'diffutils'
 brew 'findutils'
 brew 'fd'
-brew 'ripgrep'
 brew 'htop'
 brew 'tree'
 brew 'colordiff'
 brew 'jq'
 brew 'markdown'
-brew 'fzf'
 brew 'shellcheck'
-
-# Zsh
-brew 'zsh'
-brew 'zsh-completions'
-
-# Git
-brew 'git'
-brew 'git-lfs'
-brew 'hub'
-brew 'gh'
 
 # No Clam Shell (don't allow to use notebook with lid closed)
 # tap 'pirj/noclamshell'
