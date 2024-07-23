@@ -35,21 +35,6 @@ brew 'shellcheck'
 # tap 'pirj/noclamshell'
 # brew 'pirj/homebrew-noclamshell/noclamshell'
 
-# Cask apps
-cask 'caffeine'
-cask 'karabiner-elements'
-cask 'kitty'
-cask 'spotify'
-cask 'ytmdesktop-youtube-music'
-cask 'whatsapp'
-cask 'telegram'
-cask 'the-unarchiver'
-cask 'google-drive'
-cask 'shiftit'
-cask 'send-to-kindle'
-cask 'eqmac'
-cask 'logseq'
-
 # Fonts
 #tap 'homebrew/cask-fonts'
 cask 'font-hack'
