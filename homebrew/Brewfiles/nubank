@@ -30,10 +30,6 @@ brew 'npm'
 # Docker
 brew 'docker'
 
-# Python
-brew 'pyenv'
-brew 'pyright' # Python LSP
-
 # Scala
 brew 'sbt'
 

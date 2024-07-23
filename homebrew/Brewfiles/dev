@@ -10,10 +10,6 @@ brew 'npm'
 # Go
 # brew 'go'
 
-# Python
-brew 'pyenv'
-brew 'pyright' # Python LSP
-
 # Ruby
 # brew 'rbenv'
 # brew 'ruby-build'
