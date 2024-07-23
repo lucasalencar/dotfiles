@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# pyenv: manage multiple python versions
+# pyright: python LSP
+brew install pyenv pyright
