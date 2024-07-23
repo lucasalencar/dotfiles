@@ -1,6 +1,5 @@
 #!/bin/sh
 
 source helpers
-
 ensure_command_exists brew
-
+bundle_current_dir

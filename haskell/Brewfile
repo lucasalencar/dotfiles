@@ -1,0 +1,3 @@
+brew 'ghc'
+brew 'ghcup' # package installer
+brew 'cabal-install' # package manager
