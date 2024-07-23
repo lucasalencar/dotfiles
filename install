@@ -4,13 +4,14 @@
 
 source helpers
 
+PROFILE=$1 # Accepts profile (e.g. personal, work)
 DOTFILES_ROOT=$(pwd -P)
 
 info 'Installing homebrew'
 "$HOME/homebrew/install"
 
 info 'Installing homebrew packages'
-brew bundle
+./bundle "$PROFILE"
 
 info 'Setting up installed packages'
 for setup in */setup; do "$setup"; done
