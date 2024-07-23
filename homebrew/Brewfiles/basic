@@ -57,9 +57,6 @@ cask 'send-to-kindle'
 cask 'eqmac'
 cask 'logseq'
 
-# JS
-brew 'npm'
-
 # Fonts
 #tap 'homebrew/cask-fonts'
 cask 'font-hack'
