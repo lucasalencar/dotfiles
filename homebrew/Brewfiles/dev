@@ -1,9 +1,6 @@
 # Docker
 brew 'docker'
 
-# JS
-brew 'npm'
-
 # Elixir
  #brew 'elixir'
 
