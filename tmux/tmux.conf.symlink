@@ -143,6 +143,7 @@ set -g @plugin 'nhdaly/tmux-better-mouse-mode'
 set -g @plugin 'sainnhe/tmux-fzf'
 
 ### Status bar theme
+# https://github.com/catppuccin/tmux
 set -g @plugin 'catppuccin/tmux'
 set -g @catppuccin_flavour 'mocha' # latte,frappe, macchiato or mocha
 
