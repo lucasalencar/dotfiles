@@ -1,5 +1,6 @@
 #!/bin/bash
-source print_helper
+
+source "$DOTFILES_ROOT/print_helper"
 
 link_files () {
   ln -sf "$1" "$2"
