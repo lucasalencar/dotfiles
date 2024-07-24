@@ -3,3 +3,5 @@ git/gitconfig.symlink
 emacs/doom.d.symlink/local.el
 Brewfile.lock.json
 homebrew/Brewfiles/*.lock.json
+
+.current_profile
