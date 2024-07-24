@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# reattach-to-user-namespace: Makes copying and pasting in Terminal.app work again on MacOS Sierra
+# https://github.com/tmux/tmux/issues/543#issuecomment-248980734
+# https://github.com/tmux/tmux/issues/543
+brew install tmux reattach-to-user-namespace

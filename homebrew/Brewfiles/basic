@@ -7,9 +7,6 @@ brew 'hub'
 brew 'fzf'
 brew 'ripgrep'
 
-# Tmux
-brew 'tmux'
-
 # Vim
 brew 'vim'
 brew 'neovim'
@@ -25,10 +22,6 @@ brew 'colordiff'
 brew 'jq'
 brew 'markdown'
 brew 'shellcheck'
-
-# No Clam Shell (don't allow to use notebook with lid closed)
-# tap 'pirj/noclamshell'
-# brew 'pirj/homebrew-noclamshell/noclamshell'
 
 # Fonts
 #tap 'homebrew/cask-fonts'
