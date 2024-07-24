@@ -35,3 +35,10 @@ bundle_current_dir() {
   current_dir
   brew bundle --file="$CURRENT_DIR/Brewfile"
 }
+
+current_profile() {
+  if [ -f "$DOTFILES_ROOT/.current_profile" ]; then
+    current_profile=$(head -n 1 "$DOTFILES_ROOT/.current_profile")
+    echo "$current_profile"
+  fi
+}
