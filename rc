@@ -13,8 +13,4 @@ load_rc_for_profile() {
 }
 
 load_rc_for_profile "basic"
-
-if [ -f ".current_profile" ]; then
-  current_profile=$(head -n 1 ".current_profile")
-  load_rc_for_profile "$current_profile"
-fi
+[ -n "$(current_profile)" ] && load_rc_for_profile "$(current_profile)"
