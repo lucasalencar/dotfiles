@@ -1,16 +1,6 @@
 tap 'homebrew/services' # Control Mac services through brew
 tap 'buo/cask-upgrade' # Enables cask updates through brew
 
-brew 'zsh'
-brew 'git'
-brew 'hub'
-brew 'fzf'
-brew 'ripgrep'
-
-# Vim
-brew 'vim'
-brew 'neovim'
-
 brew 'coreutils'
 brew 'binutils'
 brew 'diffutils'
