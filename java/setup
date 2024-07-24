@@ -1,0 +1,3 @@
+#!/bin/bash
+
+jenv add /usr/local/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home
