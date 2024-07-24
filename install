@@ -1,29 +1,52 @@
 #!/bin/bash
-#
-# Main installation script using nix-darwin to build the system
 
 source helpers
 
 PROFILE=$1 # Accepts profile (e.g. personal, work)
 DOTFILES_ROOT=$(pwd -P)
 
+install_package() {
+  local package="$1"
+
+  if [ -f "$DOTFILES_ROOT/$package/install" ]; then
+    info "Installing package $package"
+    "$DOTFILES_ROOT/$package/install"
+  fi
+}
+
+setup_package() {
+  local package="$1"
+
+  if [ -f "$DOTFILES_ROOT/$package/setup" ]; then
+    info "Setting up package $package"
+    "$DOTFILES_ROOT/$package/setup"
+  fi
+}
+
+bundle_profile() {
+  local profile=$1
+
+  if [ -f "$DOTFILES_ROOT/profiles/$profile" ]; then
+    info "Bundling Brewfile for $profile profile"
+    ./bundle "$profile"
+
+    info "Installing packages from \"$profile\" profile"
+    while read -r package; do
+      install_package "$package"
+      setup_package "$package"
+    done < "$DOTFILES_ROOT/profiles/$profile"
+    unset package
+  fi
+}
+
 info 'Installing homebrew'
 "$HOME/homebrew/install"
 
-./bundle "$PROFILE"
+bundle_profile "basic"
 
-info "Installing enabled packages from $PROFILE"
-while read package; do
-  [ -f $DOTFILES_ROOT/$package/install ] && "$DOTFILES_ROOT/$package/install"
-done < "$DOTFILES_ROOT/profiles/$PROFILE"
-unset package
-
-info 'Setting up enabled packages from $PROFILE'
-#for setup in */setup; do "$setup"; done
-while read package; do
-  [ -f $DOTFILES_ROOT/$package/setup ] && "$DOTFILES_ROOT/$package/setup"
-done < "$DOTFILES_ROOT/profiles/$PROFILE"
-unset package
+if [ -n "$PROFILE" ]; then
+  bundle_profile "$PROFILE"
+fi
 
 success 'All done! :D'
 
