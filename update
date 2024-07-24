@@ -1,14 +1,35 @@
 #!/bin/bash
 
-# Updates dotfiles
-git -C "$HOME/.dotfiles" pull --rebase
+source "$DOTFILES_ROOT/helpers"
 
-function update_package() {
-  "$DOTFILES_ROOT/$1/update"
+update_package() {
+  local package=$1
+
+  if [ -f "$DOTFILES_ROOT/$package/update" ]; then
+    info "Updating $package"
+   "$DOTFILES_ROOT/$package/update"
+  fi
 }
 
-update_package "zsh"
-update_package "emacs"
+update_profile_packages() {
+  local profile=$1
+
+  info "Updating packages for $profile profile"
+
+  "$DOTFILES_ROOT/bundle" "$profile"
+
+  while read -r package; do
+    update_package "$package"
+  done < "$DOTFILES_ROOT/profiles/$profile"
+  unset package
+
+  success "$profile profile packages update completed"
+}
+
+info "Updating dotfiles project"
+git -C "$HOME/.dotfiles" pull --rebase
+
 update_package "homebrew"
-update_package "vim"
-update_package "tmux"
+update_profile_packages "basic"
+
+[ -n "$(current_profile)" ] && update_profile_packages "$(current_profile)"
