@@ -9,6 +9,7 @@ link_files () {
 
 current_dir () {
   CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
+  echo "$CURRENT_DIR"
 }
 
 link_all_files () {
