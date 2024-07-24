@@ -1,7 +1,18 @@
 #!/bin/bash
 
-# Source all rc files found inside packages that are being used
-while read package; do
-  [ -f $DOTFILES_ROOT/$package/rc ] && source $DOTFILES_ROOT/$package/rc
-done < "$DOTFILES_ROOT/rc-enabled"
-unset package
+load_rc_for_profile() {
+  local profile="$1"
+
+  # Source all rc files found inside packages that are being used
+  while read -r package; do
+    [ -f "$DOTFILES_ROOT/$package/rc" ] && source "$DOTFILES_ROOT/$package/rc"
+  done < "$DOTFILES_ROOT/profiles/$profile"
+  unset package
+}
+
+load_rc_for_profile "basic"
+
+if [ -f ".current_profile" ]; then
+  current_profile=$(head -n 1 ".current_profile")
+  load_rc_for_profile "$current_profile"
+fi
