@@ -1,0 +1,4 @@
+#!/bin/bash
+
+source helpers
+bundle_current_dir
