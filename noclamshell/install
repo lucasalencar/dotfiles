@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Makes copying and pasting in Terminal.app work again on MacOS Sierra
-# https://github.com/tmux/tmux/issues/543#issuecomment-248980734
-# https://github.com/tmux/tmux/issues/543
-brew install reattach-to-user-namespace
+# No Clam Shell (don't allow to use notebook with lid closed)
+# tap 'pirj/noclamshell'
+# brew 'pirj/homebrew-noclamshell/noclamshell'
