@@ -33,3 +33,5 @@ update_package "homebrew"
 update_profile_packages "basic"
 
 [ -n "$(current_profile)" ] && update_profile_packages "$(current_profile)"
+
+success "Update completed"
