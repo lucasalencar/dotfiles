@@ -1,49 +1,51 @@
 #!/bin/bash
+
 source helpers
 
-if [ -d "$HOME/.vim" ]; then
-  info 'Installing vim-plug + plugins'
-  curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+EDITOR=${1:-"nvim"} # Receive editor as argument but uses nvim by default
 
-  vim +PlugInstall +qall
+# Set CONFIG_DIR according to editor
+if [ "$EDITOR" = "vim" ]; then
+  CONFIG_DIR="$HOME/.vim"
+elif [ "$EDITOR" = "nvim" ]; then
+  CONFIG_DIR="$HOME/.config/nvim"
 else
-  info 'Skipping vim plugins'
+  fail "Editor not recognized. Please use 'vim' or 'nvim'."
 fi
 
-if [ -d "$HOME/.vim" ]; then
+if [ ! -d "$CONFIG_DIR" ]; then
+  info "Setting up config directory $CONFIG_DIR"
+  mkdir "$CONFIG_DIR"
   # Create temp files folder
-  mkdir -p "$HOME/.vim/_backup" "$HOME/.vim/_temp"
-
-  link_all_files "$(current_dir)"
+  mkdir -p "$CONFIG_DIR/_backup" "$CONFIG_DIR/_temp"
 
   # Creates undodir to store files undo history
-  mkdir -p "$HOME/.vim/undodir/"
+  mkdir -p "$CONFIG_DIR/undodir/"
+
+  if [ "$EDITOR" = "nvim" ]; then
+    link_files "$(current_dir)/vimrc.symlink" "$CONFIG_DIR/init.vim"
+  elif [ "$EDITOR" = "vim" ]; then
+    link_files "$(current_dir)/vimrc.symlink" "$CONFIG_DIR/.vimrc"
+  fi
 fi
 
-# NVIM
-if command_exists nvim; then
-  mkdir "$HOME/.config"
-  link_files "$HOME/.vim" "$HOME/.config/nvim"
-  link_files "$HOME/.vimrc" "$HOME/.config/nvim/init.vim"
+info 'Installing vim-plug + plugins'
+"$EDITOR" +PlugInstall +qall
 
-  nvim +PlugInstall +qall # Install NVIM specific plugins
+if [ "$EDITOR" = "nvim" ]; then
+  if command_exists 'pip'; then
+    pip install neovim
+  fi
+
+  if command_exists 'pip3'; then
+    pip3 install neovim
+  fi
+
+  if command_exists 'npm'; then
+    npm install -g neovim
+  fi
 fi
 
-if command_exists 'pip'; then
-  pip install neovim
-fi
-
-if command_exists 'pip3'; then
-  pip3 install neovim
-fi
-
-if command_exists 'gem'; then
-  gem install neovim
-fi
-
-if command_exists 'npm'; then
-  npm install -g neovim
-fi
+success "$editor configuration completed"
 
 exit 0
