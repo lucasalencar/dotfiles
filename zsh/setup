@@ -1,14 +1,4 @@
 #!/bin/bash
 
 source helpers
-
-# Install zinit package manager
-if [ ! -d "$HOME/.local/share/zinit" ]; then
-  # NO_EDIT is to avoid editting zshrc file
-  NO_EDIT=1 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-fi
-
-if command_exists zsh; then
-  current_dir # Sets $CURRENT_DIR variable
-  link_all_files "$CURRENT_DIR"
-fi
+link_all_files "$(current_dir)"
