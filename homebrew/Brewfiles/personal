@@ -1,4 +1,3 @@
-cask 'arc'
 cask 'google-chrome'
 cask 'caffeine'
 cask 'karabiner-elements'
