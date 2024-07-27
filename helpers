@@ -4,7 +4,7 @@ source "$DOTFILES_ROOT/print_helper"
 
 link_files () {
   ln -sf "$1" "$2"
-  info "Linked $1 to $2"
+  success "Linked $1 to $2"
 }
 
 current_dir () {
@@ -13,7 +13,9 @@ current_dir () {
 }
 
 link_all_files () {
-  for source in `find $1 -maxdepth 1 -name \*.symlink`
+  local directory=$1
+
+  for source in `find $directory -maxdepth 1 -name \*.symlink`
   do
     dest="$HOME/.`basename \"${source%.*}\"`"
     link_files "$source" "$dest"
@@ -32,8 +34,7 @@ ensure_command_exists () {
 }
 
 bundle_current_dir() {
-  current_dir
-  brew bundle --file="$CURRENT_DIR/Brewfile"
+  brew bundle --file="$(current_dir)/Brewfile"
 }
 
 current_profile() {

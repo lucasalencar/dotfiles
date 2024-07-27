@@ -2,3 +2,5 @@
 
 source helpers
 bundle_current_dir
+
+link_all_files "$(current_dir)"
