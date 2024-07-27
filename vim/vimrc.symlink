@@ -116,8 +116,7 @@ Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
 
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
-Plug 'gregspurrier/vim-midje', { 'for': 'clojure' }
-Plug 'amdt/vim-niji', { 'for': 'clojure' } " Rainbow parenthesis
+Plug 'luochen1990/rainbow', { 'for': 'clojure' } " Rainbow parenthesis
 
 if has('nvim')
   Plug 'snoe/clj-refactor.nvim', { 'for': 'clojure' } " Nice keybindings to refactor clojure code
