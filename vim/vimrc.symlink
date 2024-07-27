@@ -32,10 +32,6 @@ Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string t
 if has('nvim')
   " Async autocomplete plugin
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 """ end TEXT MANIPULATION PLUGINS
 
@@ -144,7 +140,10 @@ source $DOTFILES_ROOT/vim/alt-maps.vim
 " Load python configurations (nvim uses python in some plugins)
 source $DOTFILES_ROOT/vim/python.vim
 
-source $DOTFILES_ROOT/vim/deoplete.vim
+if has('nvim')
+  source $DOTFILES_ROOT/vim/deoplete.vim
+endif
+
 source $DOTFILES_ROOT/vim/easyalign.vim
 source $DOTFILES_ROOT/vim/fzf.vim
 source $DOTFILES_ROOT/vim/nerdtree.vim
@@ -154,8 +153,11 @@ source $DOTFILES_ROOT/vim/vim-sexp.vim
 source $DOTFILES_ROOT/vim/coc.vim
 
 " Hack to run Lua inside vimscript
+" Maintain identation like this to avoid problems
+if has('nvim')
 lua <<EOF
 -- Load oil.nvim and set keymap
 require("oil").setup()
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 EOF
+endif
