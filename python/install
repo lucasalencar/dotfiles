@@ -3,3 +3,6 @@
 # pyenv: manage multiple python versions
 # pyright: python LSP
 brew install pyenv pyright
+
+pyenv install 3.10.0
+pyenv global 3.10.0
