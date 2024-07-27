@@ -1,6 +1,4 @@
 #!/bin/bash
 
 source helpers
-
-ensure_command_exists npm
 link_all_files "$(current_dir)"
