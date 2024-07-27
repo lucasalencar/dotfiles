@@ -40,6 +40,7 @@ alias dss="docker-machine stop"
 alias vi="nvim"
 alias iv="nvim"
 alias v="nvim"
+alias vim="nvim"
 alias t="tmux"
 
 alias gs="gst"
