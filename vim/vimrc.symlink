@@ -41,7 +41,7 @@ endif
 
 """ NAVIGATION PLUGINS
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  } | Plug 'junegunn/fzf.vim' " File fuzzy search and content search
-Plug 'scrooloose/nerdtree' " File tree
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeFind' } " File tree
 Plug 'thinca/vim-visualstar' " Search for terms using * or # on Visual Mode
 Plug 'simeji/winresizer' " Move and resize vim panels easily (C-e and arrow-letters keys)
 Plug 'tpope/vim-eunuch' " Vim commands for the bash (Mkdir, Move, Rename, ...)
