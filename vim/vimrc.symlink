@@ -16,14 +16,11 @@ Plug 'tpope/vim-sensible'
 Plug 'itchyny/lightline.vim' " Minimalist status line
 Plug 'ap/vim-css-color' " Show color when writing HEX colors
 Plug 'sheerun/vim-polyglot' " Syntax highlight for many languages
+Plug 'rafi/awesome-vim-colorschemes'
 
 if has('nvim')
   Plug 'nvim-tree/nvim-web-devicons'
 endif
-
-" Color schemes
-Plug 'brendonrapp/smyck-vim'
-Plug 'rafi/awesome-vim-colorschemes'
 """ end APPEARANCE PLUGINS
 
 """ TEXT MANIPULATION PLUGINS
@@ -66,7 +63,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 
 """ GENERAL LANG TOOLING
 Plug 'ervandew/supertab' " Complete what is being written with <tab>
-Plug 'w0rp/ale' " Linters
+"Plug 'w0rp/ale' " Linters
 Plug 'github/copilot.vim' " Add IA copilot to replace my job
 Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
 
@@ -97,11 +94,6 @@ Plug 'AndrewRadev/splitjoin.vim', { 'for': 'ruby' } " Split inline constructs to
 """ CLOJURE PLUGINS
 " Clojure nREPL integration
 Plug 'Olical/conjure', { 'for': 'clojure' }
-Plug 'tpope/vim-dispatch' | Plug 'clojure-vim/vim-jack-in', { 'for': 'clojure' } " Depends on vim-dispatch
-
-if has('nvim')
-  Plug 'radenling/vim-dispatch-neovim'
-endif
 
 """ Support to lein projects
 " - Adds navigation to specific dirs (:Esource :Etest)
