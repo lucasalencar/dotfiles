@@ -16,7 +16,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 # Command suggestions
-zinit light zsh-users/zsh-autosuggestions
+#zinit light zsh-users/zsh-autosuggestions
 
 # git-fzf | gfzf | gf fuzzy find branches
 zinit light alexiszamanidis/zsh-git-fzf
