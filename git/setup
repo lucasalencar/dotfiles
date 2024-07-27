@@ -5,5 +5,4 @@ source helpers
 ensure_command_exists git
 
 info "Setting up git config and ignore files"
-current_dir # Sets $CURRENT_DIR variable
-link_all_files "$CURRENT_DIR"
+link_all_files "$(current_dir)"
