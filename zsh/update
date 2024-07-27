@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source helpers
+bundle_current_dir
+
 echo "TODO understand why zinit commands are not found here"
 echo "$(which zinit)"
 
