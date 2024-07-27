@@ -32,11 +32,6 @@ Plug 'junegunn/vim-easy-align' " Align tables in text easily
 Plug 'bronson/vim-trailing-whitespace' " Remove trailing whitespace
 Plug 'tmhedberg/matchit' " Matches HTML tags with %
 Plug 'AndrewRadev/switch.vim' " Switch a representation by another (ex: string to symbol in ruby)
-
-if has('nvim')
-  " Async autocomplete plugin
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'on': ['InsertEnter', 'CmdlineEnter'] }
-endif
 """ end TEXT MANIPULATION PLUGINS
 
 """ NAVIGATION PLUGINS
@@ -137,10 +132,6 @@ source $DOTFILES_ROOT/vim/alt-maps.vim
 
 " Load python configurations (nvim uses python in some plugins)
 source $DOTFILES_ROOT/vim/python.vim
-
-if has('nvim')
-  source $DOTFILES_ROOT/vim/deoplete.vim
-endif
 
 source $DOTFILES_ROOT/vim/easyalign.vim
 source $DOTFILES_ROOT/vim/fzf.vim
