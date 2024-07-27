@@ -2,23 +2,13 @@
 
 source helpers
 
-current_dir
-
 if command_exists lein; then
-  info "Setting up lein profiles"
   mkdir -p "$HOME/.lein/"
-  link_files "$CURRENT_DIR/lein/profiles.clj" "$HOME/.lein/profiles.clj"
-fi
-
-if command_exists joker; then
-  info "Setting up joker"
-  ln -f "$CURRENT_DIR/joker.symlink" "$HOME/.joker"
-  link_files "$CURRENT_DIR/jokerd/linter.clj" "$HOME/.jokerd/linter.clj"
+  link_files "$(current_dir)/lein/profiles.clj" "$HOME/.lein/profiles.clj"
 fi
 
 if command_exists clojure-lsp; then
-  info "Setting up clojure-lsp"
   if [ ! -h "$HOME/.lsp" ]; then
-    ln -sf "$CURRENT_DIR/lsp.symlink" "$HOME/.lsp"
+    link_files "$(current_dir)/lsp.symlink" "$HOME/.lsp"
   fi
 fi

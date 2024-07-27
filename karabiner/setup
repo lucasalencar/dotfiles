@@ -3,6 +3,5 @@
 source helpers
 
 if [ -d /Applications/Karabiner-Elements.app ]; then
-  current_dir # Sets $CURRENT_DIR variable
-  "$CURRENT_DIR/cp-out-config.sh"
+  "$(current_dir)/cp-out-config.sh"
 fi
