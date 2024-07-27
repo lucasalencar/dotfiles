@@ -18,9 +18,8 @@ ensure_command_exists doom
 
 if [ ! -d "$HOME/.doom.d" ]; then
   info "Setting up doom"
-  current_dir
   mv "$HOME/.config/doom" "$HOME/.config/doom.backup"
-  link_files "$CURRENT_DIR/doom.symlink" "$HOME/.config/doom"
+  link_files "$(current_dir)/doom.symlink" "$HOME/.config/doom"
   doom sync
 
   doom env

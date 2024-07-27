@@ -4,9 +4,7 @@ source helpers
 
 if command_exists kitty; then
   mkdir -p "$HOME/.config/kitty/"
-
-  current_dir
-  link_files "$CURRENT_DIR/kitty.conf.symlink" "$HOME/.config/kitty/kitty.conf"
+  link_files "$(current_dir)/kitty.conf.symlink" "$HOME/.config/kitty/kitty.conf"
 fi
 
 exit 0
