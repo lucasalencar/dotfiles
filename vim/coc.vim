@@ -84,7 +84,9 @@ command! -nargs=0 Format :call CocActionAsync('format')
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 " Highlight the symbol and its references when holding the cursor
-autocmd CursorHold * silent call CocActionAsync('highlight')
+if has('nvim')
+      autocmd CursorHold * silent call CocActionAsync('highlight')
+endif
 
 " Vim script LSP configs
 " Enable document highlight
