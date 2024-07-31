@@ -63,10 +63,6 @@ Plug 'github/copilot.vim' " Add IA copilot to replace my job
 Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
 
 if has('nvim')
-  Plug 'kdheepak/lazygit.nvim'
-endif
-
-if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP
 endif
 """ end GENERAL LANG TOOLING
@@ -76,6 +72,10 @@ endif
 Plug 'tpope/vim-fugitive' " Git wrapper for vim
 Plug 'tpope/vim-rhubarb' " Git extension for vim-fugitive
 Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
+
+if has('nvim')
+  Plug 'kdheepak/lazygit.nvim'
+endif
 """ end GIT PLUGINS
 
 """ MARKDOWN PLUGINS
