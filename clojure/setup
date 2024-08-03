@@ -2,13 +2,7 @@
 
 source helpers
 
-if command_exists lein; then
-  mkdir -p "$HOME/.lein/"
-  link_files "$(current_dir)/lein/profiles.clj" "$HOME/.lein/profiles.clj"
-fi
+ensure_command_exists "stow"
 
-if command_exists clojure-lsp; then
-  if [ ! -h "$HOME/.lsp" ]; then
-    link_files "$(current_dir)/lsp.symlink" "$HOME/.lsp"
-  fi
-fi
+info "Setting up Clojure package"
+stow clojure
