@@ -1,6 +1,7 @@
 tap 'homebrew/services' # Control Mac services through brew
 tap 'buo/cask-upgrade' # Enables cask updates through brew
 
+brew 'stow'
 brew 'coreutils'
 brew 'binutils'
 brew 'diffutils'
