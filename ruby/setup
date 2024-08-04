@@ -5,9 +5,8 @@ source helpers
 ensure_command_exists ruby
 ensure_command_exists gem
 
+info "Setting up ruby package"
 gem install bundler
+stow ruby
 
-if command_exists gem; then
-  info "Setting up rubygems config files"
-  link_all_files "$(current_dir)"
-fi
+exit 0
