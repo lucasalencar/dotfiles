@@ -2,9 +2,7 @@
 
 source helpers
 
-ensure_command_exists kitty
-
-mkdir -p "$HOME/.config/kitty/"
-link_files "$(current_dir)/kitty.conf.symlink" "$HOME/.config/kitty/kitty.conf"
+info "Setting up Kitty terminal"
+stow kitty
 
 exit 0
