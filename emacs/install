@@ -2,3 +2,12 @@
 
 source helpers
 bundle_current_dir
+
+if [ ! -d "$HOME/.config/emacs" ]; then
+  info "Installing Doom Emacs"
+
+  git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.config/emacs"
+
+  DOOM="$HOME/.config/emacs"
+  "$DOOM/bin/doom" install
+fi
