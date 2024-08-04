@@ -1,8 +1,6 @@
 #!/bin/bash
+
 source helpers
 
-ensure_command_exists darwin-rebuild
-
-if [ ! -h "$HOME/.nixpkgs" ]; then
-  link_files "$(current_dir)/nixpkgs/darwin-configuration.nix" "$HOME/.nixpkgs/darwin-configuration.nix"
-fi
+info "Setting up Nix package manager"
+stow nix
