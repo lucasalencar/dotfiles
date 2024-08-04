@@ -1,15 +1,7 @@
 #!/bin/bash
 source helpers
 
-ensure_command_exists tmux
-
-if command_exists tmux; then
-  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-
-  # Install tmux plugins
-  "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
-
-  link_all_files "$(current_dir)"
-fi
+info "Setting up tmux package"
+stow tmux
 
 exit 0
