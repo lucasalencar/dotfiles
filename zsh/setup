@@ -1,4 +1,6 @@
 #!/bin/bash
 
 source helpers
-link_all_files "$(current_dir)"
+
+info "Setting up zsh package"
+stow zsh
