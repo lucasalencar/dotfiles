@@ -5,4 +5,4 @@ source helpers
 ensure_command_exists git
 
 info "Setting up git config and ignore files"
-link_all_files "$(current_dir)"
+stow git
