@@ -4,3 +4,9 @@
 # https://github.com/tmux/tmux/issues/543#issuecomment-248980734
 # https://github.com/tmux/tmux/issues/543
 brew install tmux reattach-to-user-namespace
+
+info "Installing tmux plugin manager"
+git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+
+info "Installing tmux plugins"
+"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
