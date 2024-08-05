@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source helpers
+
+info "Setting up nvim"
+stow nvim
