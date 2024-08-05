@@ -1,3 +1,4 @@
 #!/bin/bash
 
+info "Installing VIM"
 brew install vim nvim
