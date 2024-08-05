@@ -23,14 +23,15 @@ if [ ! -d "$CONFIG_DIR" ]; then
   mkdir -p "$CONFIG_DIR/undodir/"
 
   if [ "$EDITOR" = "nvim" ]; then
-    link_files "$(current_dir)/vimrc.symlink" "$CONFIG_DIR/init.vim"
+    link_files "$(current_dir)/.vimrc" "$CONFIG_DIR/init.vim"
   elif [ "$EDITOR" = "vim" ]; then
-    link_files "$(current_dir)/vimrc.symlink" "$CONFIG_DIR/.vimrc"
+    stow vim
   fi
 fi
 
 info 'Installing vim-plug + plugins'
 "$EDITOR" +PlugInstall +qall
+
 
 if [ "$EDITOR" = "nvim" ]; then
   if command_exists 'pip'; then
@@ -46,6 +47,6 @@ if [ "$EDITOR" = "nvim" ]; then
   fi
 fi
 
-success "$editor configuration completed"
+success "$EDITOR configuration completed"
 
 exit 0

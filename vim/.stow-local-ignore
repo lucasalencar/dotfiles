@@ -1,0 +1,8 @@
+install
+setup
+update
+rc
+Brewfile
+Brewfile.lock.json
+.*\.vim
+coc-settings.json
