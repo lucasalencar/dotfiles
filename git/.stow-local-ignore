@@ -3,4 +3,4 @@ setup
 update
 rc
 Brewfile
-.gitconfig.example
+\.gitconfig\.example
