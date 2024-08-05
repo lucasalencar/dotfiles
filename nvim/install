@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source helpers
+
+info "Installing Neovim"
+brew install nvim
