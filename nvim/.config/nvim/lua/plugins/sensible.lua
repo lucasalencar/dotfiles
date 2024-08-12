@@ -4,6 +4,7 @@ return {
   "tpope/vim-sensible",
 
   -- Some general sensible defaults not really related to the plugin
+  -- TODO Separate this into another plugin / file / table
   config = function()
     vim.o.number = true -- Show line numbers
     vim.o.cursorline = true -- Highlights current line
