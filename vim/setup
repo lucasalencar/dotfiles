@@ -16,11 +16,6 @@ fi
 if [ ! -d "$CONFIG_DIR" ]; then
   info "Setting up config directory $CONFIG_DIR"
   mkdir "$CONFIG_DIR"
-  # Create temp files folder
-  mkdir -p "$CONFIG_DIR/_backup" "$CONFIG_DIR/_temp"
-
-  # Creates undodir to store files undo history
-  mkdir -p "$CONFIG_DIR/undodir/"
 
   if [ "$EDITOR" = "nvim" ]; then
     link_files "$(current_dir)/.vimrc" "$CONFIG_DIR/init.vim"
@@ -28,6 +23,10 @@ if [ ! -d "$CONFIG_DIR" ]; then
     stow vim
   fi
 fi
+
+# Create backup, temp files and persistent undo folder
+# Using .vim because of sensible configurations
+mkdir -p "$HOME/.vim/_backup" "$HOME/.vim/_temp" "$HOME/.vim/undodir/"
 
 info 'Installing vim-plug + plugins'
 "$EDITOR" +PlugInstall +qall
