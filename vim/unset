@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source helpers
+
+info "Removing vim and nvim configurations"
+
+rm -rf "$HOME/.vim"
+rm "$HOME/.vimrc"
+rm -rf "$HOME/.config/nvim"
+
+success "Vim and Neovim configurations removed"
