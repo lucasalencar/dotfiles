@@ -50,10 +50,6 @@ endif
 " OBS: Creates panel switching mapping using ctrl+<direction>
 " It is not necessary to add it to vimrc
 Plug 'christoomey/vim-tmux-navigator'
-
-" When losing or gaining focus, execute some autocommands
-" Fixes some behaviors when using vim inside tmux
-Plug 'tmux-plugins/vim-tmux-focus-events'
 """ end TMUX PLUGINS
 
 """ GENERAL LANG TOOLING
