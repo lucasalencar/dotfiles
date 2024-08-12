@@ -2,19 +2,15 @@ return {
   {
     -- File manager that works like a normal buffer
     'stevearc/oil.nvim',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       view_options = {
         show_hidden = true,
       }
     },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function(params)
-      -- Requires oil.nvim to be setup,
-      -- there is a conflict when declaring `opts` and `config`
-      require("oil").setup(params._.cache.opts)
-
-      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-    end
+    keys = {
+      { "-", "<CMD>Oil<CR>", desc = "Open parent directory" }
+    },
   },
   {
     -- File tree navigation style
@@ -28,7 +24,9 @@ return {
       "NvimTreeRefresh",
       "NvimTreeFindFile",
     },
-    -- TODO Add keymaps not dependent on the plugin load
+    keys = {
+      { "<leader>t", "<cmd>NvimTreeFindFile<cr>", desc = "Nvim Tree Find File" },
+    },
   },
   {
     -- Vim commands for the bash (:Mkdir, :Move, :Rename, :Copy, :Duplicate, :Delete)
