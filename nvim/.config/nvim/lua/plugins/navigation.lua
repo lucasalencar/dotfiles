@@ -32,6 +32,7 @@ return {
     -- Fuzzy finder
     'junegunn/fzf.vim',
     dependencies = { 'junegunn/fzf' },
+    enabled = false,
     config = function()
       vim.keymap.set('n', '<C-p>', '<cmd>Files<CR>', { desc = "Find files" })
     end
