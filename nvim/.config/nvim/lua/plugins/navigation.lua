@@ -13,6 +13,19 @@ return {
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Grep files" })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "Find buffers" })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Find for help (manual)" })
+
+      local actions = require("telescope.actions")
+      require("telescope").setup {
+        defaults = {
+          mappings = {
+            i = {
+              ["<esc>"] = actions.close,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+            },
+          },
+        }
+      }
     end
   },
   {
