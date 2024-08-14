@@ -72,6 +72,9 @@ return {
   },
   {
     -- Move and resize vim panels easily (C-e and arrow-letters keys)
-    'simeji/winresizer'
+    'simeji/winresizer',
+    keys = {
+      { "<C-e>", "<cmd>WinResizerStartResize<CR>", desc = "Start window resizer" },
+    }
   },
 }
