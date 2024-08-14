@@ -68,7 +68,15 @@ return {
   },
   {
     -- Vim commands for the bash (:Mkdir, :Move, :Rename, :Copy, :Duplicate, :Delete)
-    'tpope/vim-eunuch'
+    'tpope/vim-eunuch',
+    cmd = {
+      "Mkdir",
+      "Move",
+      "Rename",
+      "Copy",
+      "Duplicate",
+      "Delete",
+    },
   },
   {
     -- Move and resize vim panels easily (C-e and arrow-letters keys)
