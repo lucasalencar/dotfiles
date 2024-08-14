@@ -2,7 +2,10 @@ return {
   {
     -- Fuzzy finder
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make'} -- Better performance
+    },
     config = function()
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = "Find files" })
