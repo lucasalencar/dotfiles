@@ -9,6 +9,14 @@ return {
       "G",
       "Git",
       "GBrowse",
+    },
+    keys = {
+      { "<leader>gs", "<cmd>Git<CR>", desc = "Git status" },
+      { "<leader>gd", "<cmd>Gvdiffsplit<CR>", desc = "Git diff" },
+      { "<leader>gb", "<cmd>GBrowse<CR>", desc = "Git browse" },
+      { "<leader>gc", "<cmd>Git commit<CR>", desc = "Git commit" },
+      { "<leader>gP", "<cmd>Git push<CR>", desc = "Git push" },
+      { "<leader>gp", "<cmd>Git pull<CR>", desc = "Git pull" },
     }
   },
   {
