@@ -85,5 +85,11 @@ return {
   {
     -- Git rich interface inside editor
     'kdheepak/lazygit.nvim',
+    keys = {
+      { "<leader>gg", "<cmd>LazyGit<CR>", desc = "LazyGit" },
+    },
+    cmd = {
+      "LazyGit",
+    }
   }
 }
