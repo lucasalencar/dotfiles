@@ -86,13 +86,3 @@ return {
     'kdheepak/lazygit.nvim',
   }
 }
-
-
-
---Plug 'tpope/vim-fugitive' " Git wrapper for vim
---Plug 'tpope/vim-rhubarb' " Git extension for vim-fugitive
---Plug 'airblade/vim-gitgutter' " Git add or removed lines indication
-
---if has('nvim')
-  --Plug 'kdheepak/lazygit.nvim'
-  --endif
