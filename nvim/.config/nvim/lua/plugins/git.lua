@@ -51,7 +51,6 @@ return {
         end)
 
         -- Actions
-        -- TODO Create post it with mappings
         map('n', '<leader>hs', gitsigns.stage_hunk)
         map('n', '<leader>hr', gitsigns.reset_hunk)
         map('v', '<leader>hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
