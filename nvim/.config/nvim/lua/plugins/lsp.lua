@@ -18,7 +18,8 @@ return {
       mason_lspconfig.setup({
           -- LSPs list for installation
           ensure_installed = {
-            "clojure_lsp"
+            "clojure_lsp",
+            "lua_ls",
           },
 
           -- Automatically install missing LSPs based on ensure_installed
@@ -40,8 +41,21 @@ return {
             -- ["rust_analyzer"] = function ()
               --     require("rust-tools").setup {}
             -- end
-          }
-        })
+            ["lua_ls"] = function()
+              lspconfig.lua_ls.setup({
+                  capabilities = capabilities,
+                  settings = {
+                    Lua = {
+                      diagnostics = {
+                        -- Recognize `vim` as a global variable
+                        globals = { "vim" }
+                      }
+                    }
+                  }
+                })
+          end
+        }
+      })
 
       -- Keymaps
       local k = vim.keymap
