@@ -5,23 +5,6 @@ return {
     dependencies = {
       'hrsh7th/cmp-buffer', -- Adds buffer completion source
       'hrsh7th/cmp-path', -- Adds path completion source
-      -- 'hrsh7th/cmp-nvim-lsp',
-      -- 'hrsh7th/cmp-nvim-lua',
-      -- 'hrsh7th/cmp-vsnip',
-      -- 'hrsh7th/cmp-calc',
-      -- 'hrsh7th/cmp-emoji',
-      -- 'hrsh7th/cmp-look',
-      -- 'hrsh7th/cmp-latex-symbols',
-      -- 'hrsh7th/cmp-omni',
-      -- 'hrsh7th/cmp-vim-doc',
-      -- 'hrsh7th/cmp-vim-lua',
-      -- 'hrsh7th/cmp-vim-lsp',
-      -- 'hrsh7th/cmp-vim-look',
-      -- 'hrsh7th/cmp-vim-omni',
-      -- 'hrsh7th/cmp-vim-pandoc',
-      -- 'hrsh7th/cmp-vim-ultisnips',
-      -- 'hrsh7th/cmp-vim-vsnip',
-      -- 'hrsh7th/cmp-vim-lsp',
     },
     event = 'InsertEnter',
     config = function()
