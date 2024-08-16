@@ -27,6 +27,7 @@ return {
           automatic_installation = true,
 
           -- Specify how to setup specific LSPs (place to put custom configurations)
+          -- Also loads LSP if it exists automatically
           handlers = {
             -- The first entry (without a key) will be the default handler
             -- and will be called for each installed server that doesn't have
