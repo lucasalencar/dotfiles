@@ -55,6 +55,7 @@ return {
       k.set("n", "<localleader>cc", vim.lsp.buf.code_action, { desc = "Code actions" })
       k.set("n", "<localleader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
       k.set({ "n", "v" }, "<localleader>a", vim.lsp.buf.format, { desc = "Format buffer" })
+      k.set("n", "K", vim.lsp.buf.hover, { desc = "Show hover information" })
     end
   },
 }
