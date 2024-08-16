@@ -4,12 +4,14 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim", -- LSP manager, helps install and manage multiple LSPs
-      "williamboman/mason-lspconfig.nvim" -- Extension to integrate mason.nvim better with nvim-lspconfig
+      "williamboman/mason-lspconfig.nvim", -- Extension to integrate mason.nvim better with nvim-lspconfig
+      "hrsh7th/cmp-nvim-lsp", -- LSP completion source for nvim-cmp
     },
     config = function()
       local mason = require("mason")
       local mason_lspconfig = require("mason-lspconfig")
       local lspconfig = require("lspconfig")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       mason.setup()
 
@@ -30,7 +32,9 @@ return {
             -- and will be called for each installed server that doesn't have
             -- a dedicated handler.
             function (server_name) -- default handler (optional)
-              lspconfig[server_name].setup {}
+              lspconfig[server_name].setup({
+                  capabilities = capabilities
+                })
             end,
             -- Next, you can provide a dedicated handler for specific servers.
             -- For example, a handler override for the `rust_analyzer`:
