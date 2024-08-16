@@ -48,6 +48,7 @@ return {
 
       -- Mason related keymaps
       k.set("n", "<leader>ll", "<cmd>Mason<CR>", { desc = "Mason LSP manager" })
+      k.set("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "Restart LSP server" })
 
       -- LSP related keymaps
       k.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
