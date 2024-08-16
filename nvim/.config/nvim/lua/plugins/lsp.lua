@@ -15,8 +15,6 @@ return {
 
       mason.setup()
 
-      vim.keymap.set("n", "<leader>ll", "<cmd>Mason<CR>", { desc = "Mason LSP manager" })
-
       mason_lspconfig.setup({
           -- LSPs list for installation
           ensure_installed = {
@@ -44,6 +42,19 @@ return {
             -- end
           }
         })
+
+      -- Keymaps
+      local k = vim.keymap
+
+      -- Mason related keymaps
+      k.set("n", "<leader>ll", "<cmd>Mason<CR>", { desc = "Mason LSP manager" })
+
+      -- LSP related keymaps
+      k.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
+      k.set("n", "gD", "<cmd>Telescope lsp_references<CR>", { desc = "Find references" })
+      k.set("n", "<localleader>cc", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code actions" })
+      k.set("n", "<localleader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename symbol" })
+      k.set({ "n", "v" }, "<localleader>a", ":lua vim.lsp.buf.format()<CR>", { desc = "Format buffer" })
     end
   },
 }
