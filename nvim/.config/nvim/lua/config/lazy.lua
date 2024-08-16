@@ -23,6 +23,7 @@ vim.g.maplocalleader = ","
 
 -- Setup Lazy mapping
 vim.keymap.set("n", "<leader>pp", "<cmd>Lazy<CR>", { desc = "Lazy plugin manager" })
+vim.keymap.set("n", "<leader>pr", ":Lazy reload ", { desc = "Plugin reload" })
 
 -- Setup lazy.nvim
 require("lazy").setup({
