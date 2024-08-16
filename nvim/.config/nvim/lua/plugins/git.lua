@@ -15,7 +15,7 @@ return {
       { "<leader>gd", "<cmd>Gvdiffsplit<CR>", desc = "Git diff" },
       -- Keep using `:` instead of `<cmd>` to avoid breaking visual mode selection
       { "<leader>gb", ":GBrowse<CR>", desc = "Git browse", mode = { "n", "v" } },
-      { "<leader>gc", "<cmd>Git commit<CR>", desc = "Git commit" },
+      { "<leader>gc", "<cmd>Git commit --verbose<CR>", desc = "Git commit" },
       { "<leader>gP", "<cmd>Git push<CR>", desc = "Git push" },
       { "<leader>gp", "<cmd>Git pull<CR>", desc = "Git pull" },
     }
