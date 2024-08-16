@@ -3,9 +3,9 @@ return {
     -- LSP config
     "neovim/nvim-lspconfig",
     dependencies = {
-      "williamboman/mason.nvim", -- LSP manager, helps install and manage multiple LSPs
+      "williamboman/mason.nvim",           -- LSP manager, helps install and manage multiple LSPs
       "williamboman/mason-lspconfig.nvim", -- Extension to integrate mason.nvim better with nvim-lspconfig
-      "hrsh7th/cmp-nvim-lsp", -- LSP completion source for nvim-cmp
+      "hrsh7th/cmp-nvim-lsp",              -- LSP completion source for nvim-cmp
     },
     config = function()
       local mason = require("mason")
@@ -16,43 +16,43 @@ return {
       mason.setup()
 
       mason_lspconfig.setup({
-          -- LSPs list for installation
-          ensure_installed = {
-            "clojure_lsp",
-            "lua_ls",
-          },
+        -- LSPs list for installation
+        ensure_installed = {
+          "clojure_lsp",
+          "lua_ls",
+        },
 
-          -- Automatically install missing LSPs based on ensure_installed
-          automatic_installation = true,
+        -- Automatically install missing LSPs based on ensure_installed
+        automatic_installation = true,
 
-          -- Specify how to setup specific LSPs (place to put custom configurations)
-          -- Also loads LSP if it exists automatically
-          handlers = {
-            -- The first entry (without a key) will be the default handler
-            -- and will be called for each installed server that doesn't have
-            -- a dedicated handler.
-            function (server_name) -- default handler (optional)
-              lspconfig[server_name].setup({
-                  capabilities = capabilities
-                })
-            end,
-            -- Next, you can provide a dedicated handler for specific servers.
-            -- For example, a handler override for the `rust_analyzer`:
-            -- ["rust_analyzer"] = function ()
-              --     require("rust-tools").setup {}
-            -- end
-            ["lua_ls"] = function()
-              lspconfig.lua_ls.setup({
-                  capabilities = capabilities,
-                  settings = {
-                    Lua = {
-                      diagnostics = {
-                        -- Recognize `vim` as a global variable
-                        globals = { "vim" }
-                      }
-                    }
+        -- Specify how to setup specific LSPs (place to put custom configurations)
+        -- Also loads LSP if it exists automatically
+        handlers = {
+          -- The first entry (without a key) will be the default handler
+          -- and will be called for each installed server that doesn't have
+          -- a dedicated handler.
+          function(server_name) -- default handler (optional)
+            lspconfig[server_name].setup({
+              capabilities = capabilities
+            })
+          end,
+          -- Next, you can provide a dedicated handler for specific servers.
+          -- For example, a handler override for the `rust_analyzer`:
+          -- ["rust_analyzer"] = function ()
+          --     require("rust-tools").setup {}
+          -- end
+          ["lua_ls"] = function()
+            lspconfig.lua_ls.setup({
+              capabilities = capabilities,
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    -- Recognize `vim` as a global variable
+                    globals = { "vim" }
                   }
-                })
+                }
+              }
+            })
           end
         }
       })
