@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# TODO Migrate find to use fd (simpler and faster tool)
-FILE=$(find . -type f -not -path '*/\.git/*' -not -path '*/\.idea/*' | fzf --preview "bat --color=always --style=numbers --line-range=:500 {}")
+FILE=$(fd -t f -c always | fzf --ansi --preview "bat --color=always --style=numbers --line-range=:500 {}")
 
 if [ "$FILE" ]
 then
