@@ -9,4 +9,7 @@
   "codeLens.enable": true,
   "codeLens.position": "eol",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.parameterTypes": false,
+  "pyright.inlayHints.variableTypes": false,
 }
