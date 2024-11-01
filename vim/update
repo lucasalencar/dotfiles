@@ -1,3 +1,4 @@
 #!/bin/bash
 
-nvim +PlugUpgrade +PlugUpdate +PlugClean! +qall
+# Set stdin as /dev/null to avoid inputting standard input from other scripts into vim
+nvim +PlugUpgrade +PlugUpdate +PlugClean! +qall < /dev/null
