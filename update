@@ -2,6 +2,8 @@
 
 source "$DOTFILES_ROOT/helpers"
 
+sudo -v
+
 update_package() {
   local package=$1
 
