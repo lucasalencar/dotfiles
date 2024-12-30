@@ -10,5 +10,10 @@ return {
       -- Configure forms that are identified as tests
       vim.g["conjure#client#clojure#nrepl#test#current_form_names"] = { 'deftest', 'defspec', 'defflow' }
     end
+  },
+  {
+    -- Better clojure navigation movements
+    'guns/vim-sexp',
+    ft = 'clojure',
   }
 }
