@@ -1,0 +1,3 @@
+#!/bin/bash
+
+export PATH="$PATH:/opt/homebrew/opt/postgresql@15/bin"
