@@ -8,3 +8,6 @@ eval "$(pyenv init -)"
 # https://github.com/jupyter/nbclassic/issues/255
 export JUPYTER_PATH=/opt/homebrew/share/jupyter
 export JUPYTER_CONFIG_PATH=/opt/homebrew/etc/jupyter
+
+# Add local bin to path for local installs (pipenv requirement)
+export PATH=$PATH:$HOME/.local/bin
