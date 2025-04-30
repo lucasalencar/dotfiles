@@ -168,5 +168,9 @@
             "commands": ["paredit.barfSexpForward"],
             "when": "calva:enabled"
         }
-    ]
+    ],
+
+    // Calva
+    "calva.autoConnectRepl": true,
+    "calva.autoOpenInspector": false
 }
