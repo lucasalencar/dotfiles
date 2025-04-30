@@ -1,0 +1,148 @@
+{
+    "window.commandCenter": 1,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+
+    // Files
+    "files.autoSave": "onFocusChange",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+
+    // VIM
+    "vim.leader": "<space>",
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.visualstar": true,
+    // To improve performance
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+    "vim.normalModeKeyBindings": [
+        // Splits
+        {
+            "before": ["<leader>", "v"],
+            "commands": ["workbench.action.splitEditorRight"]
+        },
+        {
+            "before": ["<leader>", "s"],
+            "commands": ["workbench.action.splitEditorDown"]
+        },
+        // Git
+        {
+            "before": ["<leader>", "g", "g"],
+            "commands": ["lazygit.openLazygit"]
+        },
+        // Clojure/Calva - REPL
+        {
+            "before": [",", "r", "s"],
+            "commands": ["calva.jackIn"]
+        },
+        {
+            "before": [",", "r", "q"],
+            "commands": ["calva.jackOut"]
+        },
+        {
+            "before": [",", "r", "c"],
+            "commands": ["calva.connect"]
+        },
+        {
+            "before": [",", "l", "r"],
+            "commands": ["calva.clearReplHistory"]
+        },
+        {
+            "before": [",", "l", "v"],
+            "commands": ["calva.showReplWindow"]
+        },
+        // Clojure/Calva - Eval
+        {
+            "before": [",", "e", "e"],
+            "commands": ["calva.evaluateCurrentTopLevelForm"]
+        },
+        {
+            "before": [",", "e", "b"],
+            "commands": ["calva.loadFile"]
+        },
+        // Clojure/Calva - Tests
+        {
+            "before": [",", "t", "t"],
+            "commands": ["calva.runTestUnderCursor"]
+        },
+        {
+            "before": [",", "t", "n"],
+            "commands": ["calva.runNamespaceTests"]
+        },
+        // Clojure/Calva - Namespace refresh
+        {
+            "before": [",", "r", "r"],
+            "commands": ["calva.refresh"]
+        },
+        {
+            "before": [",", "r", "R"],
+            "commands": ["calva.refreshAll"]
+        },
+        // Clojure/Calva - LSP
+        {
+            "before": [",", "c", "a", "m"],
+            "commands": ["clojureLsp.refactor.addMissingLibspec"]
+
+        },
+        {
+            "before": [",", "c", "n"],
+            "commands": ["clojureLsp.refactor.cleanNs"]
+        },
+        {
+            "before": [",", "c", "t", "f"],
+            "commands": ["clojureLsp.refactor.threadFirstAll"]
+        },
+        {
+            "before": [",", "c", "t", "F"],
+            "commands": ["clojureLsp.refactor.threadFirst"]
+        },
+        {
+            "before": [",", "c", "t", "l"],
+            "commands": ["clojureLsp.refactor.threadLastAll"]
+        },
+        {
+            "before": [",", "c", "t", "L"],
+            "commands": ["clojureLsp.refactor.threadLast"]
+        },
+        {
+            "before": [",", "c", "t", "u"],
+            "commands": ["clojureLsp.refactor.unwindAll"]
+        },
+        {
+            "before": [",", "c", "t", "U"],
+            "commands": ["clojureLsp.refactor.unwind"]
+        },
+        {
+            "before": [",", "c", "f"],
+            "commands": [
+                "calva-fmt.alignCurrentForm",
+                "calva-fmt.formatCurrentForm"
+            ]
+        },
+        // Clojure/Calva - Sexp
+        {
+            "before": ["®"], // option+r
+            "commands": ["paredit.raiseSexp"]
+        },
+        {
+            "before": [">", "("],
+            "commands": ["paredit.barfSexpBackward"]
+        },
+        {
+            "before": ["<", "("],
+            "commands": ["paredit.slurpSexpBackward"]
+        },
+        {
+            "before": [">", ")"],
+            "commands": ["paredit.slurpSexpForward"]
+        },
+        {
+            "before": ["<", ")"],
+            "commands": ["paredit.barfSexpForward"]
+        }
+    ]
+}
