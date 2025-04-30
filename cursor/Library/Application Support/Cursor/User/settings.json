@@ -29,6 +29,11 @@
             "before": ["<leader>", "s"],
             "commands": ["workbench.action.splitEditorDown"]
         },
+        // File Explorer
+        {
+            "before": ["<leader>", "t"],
+            "commands": ["workbench.action.toggleSidebarVisibility"]
+        },
         // Git
         {
             "before": ["<leader>", "g", "g"],
