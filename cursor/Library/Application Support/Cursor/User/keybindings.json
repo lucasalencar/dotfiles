@@ -30,5 +30,17 @@
         "key": "ctrl+k",
         "command": "workbench.action.focusEditor",
         "when": "terminalFocus"
+    },
+    // Terminal
+    {
+        "key": "cmd+t",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.terminal.newInActiveWorkspace",
+                "workbench.action.terminal.moveToEditor",
+                "workbench.action.togglePanel"
+            ]
+        }
     }
 ]
