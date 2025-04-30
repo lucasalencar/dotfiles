@@ -34,6 +34,11 @@
             "before": ["<leader>", "t"],
             "commands": ["workbench.action.toggleSidebarVisibility"]
         },
+        {
+            "before": ["-"],
+            "commands": ["vsnetrw.open"],
+            "when": "editorLangId != vsnetrw"
+        },
         // Git
         {
             "before": ["<leader>", "g", "g"],
