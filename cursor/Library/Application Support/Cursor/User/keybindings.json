@@ -4,6 +4,7 @@
         "key": "cmd+i",
         "command": "composerMode.agent"
     },
+    // Navigate through panels
     {
         "key": "ctrl+k",
         "command": "workbench.action.navigateUp"
