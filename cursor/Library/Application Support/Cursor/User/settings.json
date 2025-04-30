@@ -37,112 +37,136 @@
         // Clojure/Calva - REPL
         {
             "before": [",", "r", "s"],
-            "commands": ["calva.jackIn"]
+            "commands": ["calva.jackIn"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "r", "q"],
-            "commands": ["calva.jackOut"]
+            "commands": ["calva.jackOut"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "r", "c"],
-            "commands": ["calva.connect"]
+            "commands": ["calva.connect"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "l", "r"],
-            "commands": ["calva.clearReplHistory"]
+            "commands": ["calva.clearReplHistory"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "l", "v"],
-            "commands": ["calva.showReplWindow"]
+            "commands": ["calva.showReplWindow"],
+            "when": "calva:enabled"
         },
         // Clojure/Calva - Eval
         {
             "before": [",", "e", "e"],
-            "commands": ["calva.evaluateCurrentTopLevelForm"]
+            "commands": ["calva.evaluateCurrentTopLevelForm"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "e", "b"],
-            "commands": ["calva.loadFile"]
+            "commands": ["calva.loadFile"],
+            "when": "calva:enabled"
         },
         // Clojure/Calva - Tests
         {
             "before": [",", "t", "t"],
-            "commands": ["calva.runTestUnderCursor"]
+            "commands": ["calva.runTestUnderCursor"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "t", "n"],
-            "commands": ["calva.runNamespaceTests"]
+            "commands": ["calva.runNamespaceTests"],
+            "when": "calva:enabled"
         },
         // Clojure/Calva - Namespace refresh
         {
             "before": [",", "r", "r"],
-            "commands": ["calva.refresh"]
+            "commands": ["calva.refresh"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "r", "R"],
-            "commands": ["calva.refreshAll"]
+            "commands": ["calva.refreshAll"],
+            "when": "calva:enabled"
         },
         // Clojure/Calva - LSP
         {
             "before": [",", "c", "a", "m"],
-            "commands": ["clojureLsp.refactor.addMissingLibspec"]
-
+            "commands": ["clojureLsp.refactor.addMissingLibspec"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "c", "n"],
-            "commands": ["clojureLsp.refactor.cleanNs"]
+            "commands": ["clojureLsp.refactor.cleanNs"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "c", "t", "f"],
-            "commands": ["clojureLsp.refactor.threadFirstAll"]
+            "commands": ["clojureLsp.refactor.threadFirstAll"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "c", "t", "F"],
-            "commands": ["clojureLsp.refactor.threadFirst"]
+            "commands": ["clojureLsp.refactor.threadFirst"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "c", "t", "l"],
-            "commands": ["clojureLsp.refactor.threadLastAll"]
+            "commands": ["clojureLsp.refactor.threadLastAll"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "c", "t", "L"],
-            "commands": ["clojureLsp.refactor.threadLast"]
+            "commands": ["clojureLsp.refactor.threadLast"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "c", "t", "u"],
-            "commands": ["clojureLsp.refactor.unwindAll"]
+            "commands": ["clojureLsp.refactor.unwindAll"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "c", "t", "U"],
-            "commands": ["clojureLsp.refactor.unwind"]
+            "commands": ["clojureLsp.refactor.unwind"],
+            "when": "calva:enabled"
         },
         {
             "before": [",", "c", "f"],
             "commands": [
                 "calva-fmt.alignCurrentForm",
                 "calva-fmt.formatCurrentForm"
-            ]
+            ],
+            "when": "calva:enabled"
         },
         // Clojure/Calva - Sexp
         {
             "before": ["®"], // option+r
-            "commands": ["paredit.raiseSexp"]
+            "commands": ["paredit.raiseSexp"],
+            "when": "calva:enabled"
         },
         {
             "before": [">", "("],
-            "commands": ["paredit.barfSexpBackward"]
+            "commands": ["paredit.barfSexpBackward"],
+            "when": "calva:enabled"
         },
         {
             "before": ["<", "("],
-            "commands": ["paredit.slurpSexpBackward"]
+            "commands": ["paredit.slurpSexpBackward"],
+            "when": "calva:enabled"
         },
         {
             "before": [">", ")"],
-            "commands": ["paredit.slurpSexpForward"]
+            "commands": ["paredit.slurpSexpForward"],
+            "when": "calva:enabled"
         },
         {
             "before": ["<", ")"],
-            "commands": ["paredit.barfSexpForward"]
+            "commands": ["paredit.barfSexpForward"],
+            "when": "calva:enabled"
         }
     ]
 }
