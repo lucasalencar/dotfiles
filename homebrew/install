@@ -5,7 +5,7 @@
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
 
-source helpers
+source "$DOTFILES_ROOT/helpers"
 
 # Check for Homebrew
 if ! command_exists brew; then

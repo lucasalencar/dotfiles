@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source helpers
+source "$DOTFILES_ROOT/helpers"
 
 if command_exists jenv; then
   jenv add /usr/local/opt/openjdk@11/libexec/openjdk.jdk/Contents/Home
