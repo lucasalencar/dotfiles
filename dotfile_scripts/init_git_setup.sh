@@ -17,6 +17,7 @@ if [ -f "$GITCONFIG_TARGET" ]; then
     echo "WARNING: $GITCONFIG_TARGET already exists."
     read -p "Do you want to overwrite it? (y/N): " confirm_overwrite
     if [[ "$confirm_overwrite" != "y" && "$confirm_overwrite" != "Y" ]]; then
+        echo "gitconfig setup aborted."
         exit 0
     fi
 fi
