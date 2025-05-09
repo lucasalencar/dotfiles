@@ -1,17 +1,5 @@
-cask 'arc'
+cask 'google-chrome'
 cask 'meetingbar'
-cask 'caffeine'
-cask 'karabiner-elements'
-cask 'kitty'
-cask 'spotify'
-cask 'whatsapp'
-cask 'telegram'
-cask 'the-unarchiver'
-cask 'google-drive'
-cask 'shiftit'
-cask 'send-to-kindle'
-cask 'eqmac'
-cask 'logseq'
 
 # Infosec
 cask 'gpg-suite'
