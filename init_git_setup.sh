@@ -2,15 +2,9 @@
 
 # Script to initialize Git setup by configuring .gitconfig
 
-# Determine the directory where the script is located
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-# Assume the script is in a subdirectory of the dotfiles root (e.g., dotfile_scripts)
-# and the 'git' directory is at the root.
-DOTFILES_ROOT="$SCRIPT_DIR/.."
-
 # Source and destination files
-GITCONFIG_SYMLINK="$DOTFILES_ROOT/git/.gitconfig.example"
-GITCONFIG_TARGET="$DOTFILES_ROOT/git/.gitconfig"
+GITCONFIG_SYMLINK="git/.gitconfig.example"
+GITCONFIG_TARGET="git/.gitconfig"
 
 # 1. Copy gitconfig file
 if [ -f "$GITCONFIG_TARGET" ]; then
