@@ -40,10 +40,10 @@ bundle_profile() {
 }
 
 info 'Initializing Git setup'
-"$DOTFILES_ROOT/dotfile_scripts/init_git_setup.sh"
+"$DOTFILES_ROOT/init_git_setup.sh"
 
 info 'Installing homebrew'
-"$HOME/homebrew/install"
+"$DOTFILES_ROOT/homebrew/install"
 
 bundle_profile "basic"
 
@@ -55,5 +55,3 @@ if [ -n "$PROFILE" ]; then
 fi
 
 success 'All done! :D'
-
-exit 0
