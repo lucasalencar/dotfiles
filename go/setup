@@ -1,5 +1,5 @@
 #!/bin/bash
-source helpers
+source "$DOTFILES_ROOT/helpers"
 
 ensure_command_exists go
 mkdir -p "$HOME/code/go"
