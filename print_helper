@@ -1,19 +1,50 @@
 #!/bin/bash
 
+# Check if terminal supports emoji
+if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+  # Try to display an emoji and check if it's rendered correctly
+  if printf "😊" | grep -q "😊"; then
+    SUPPORTS_EMOJI=true
+  else
+    SUPPORTS_EMOJI=false
+  fi
+else
+  SUPPORTS_EMOJI=false
+fi
+
+# Define symbols based on emoji support
+if [ "$SUPPORTS_EMOJI" = true ]; then
+  INFO_SYMBOL="ℹ️"
+  USER_SYMBOL="❓"
+  SUCCESS_SYMBOL="✅"
+  FAIL_SYMBOL="❌"
+  WARNING_SYMBOL="⚠️"
+else
+  INFO_SYMBOL="i"
+  USER_SYMBOL="?"
+  SUCCESS_SYMBOL="✓"
+  FAIL_SYMBOL="✗"
+  WARNING_SYMBOL="!"
+fi
+
 info () {
-  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+  printf "\r  [\033[00;34m%s\033[0m] $1\n" "$INFO_SYMBOL"
 }
 
 user () {
-  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+  printf "\r  [\033[0;33m%s\033[0m] \033[0;33m$1\033[0m\n" "$USER_SYMBOL"
 }
 
 success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+  printf "\r\033[2K  [\033[00;32m%s\033[0m] \033[00;32m$1\033[0m\n" "$SUCCESS_SYMBOL"
 }
 
 fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  printf "\r\033[2K  [\033[0;31m%s\033[0m] \033[0;31m$1\033[0m\n" "$FAIL_SYMBOL"
   echo ''
   exit 1
+}
+
+warning () {
+  printf "\r\033[2K  [\033[0;33m%s\033[0m] \033[0;33m$1\033[0m\n" "$WARNING_SYMBOL"
 }
