@@ -52,7 +52,7 @@ if [ -n "$PROFILE" ]; then
   bundle_profile "$PROFILE"
 
   # Save installation profile to load rc files
-  echo "$PROFILE" > .current_profile
+  echo "$PROFILE" > "$DOTFILES_ROOT/.current_profile"
 fi
 
 success 'All done! :D'
