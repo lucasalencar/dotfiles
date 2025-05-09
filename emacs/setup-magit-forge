@@ -1,5 +1,6 @@
 #!/bin/bash
-source helpers
+
+source "$DOTFILES_ROOT/print_helper"
 
 # For Magit Forge to work, create a Personal Access Token in github
 # https://github.com/settings/tokens

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source print_helper
+source "$DOTFILES_ROOT/print_helper"
 
 # Script to initialize Git setup by configuring .gitconfig
 

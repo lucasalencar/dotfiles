@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source helpers
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
 
 PROFILE=$1 # Accepts profile (e.g. personal, work)
 DOTFILES_ROOT=$(pwd -P)

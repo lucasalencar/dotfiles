@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source helpers
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
 
 OPENAI_API_KEY=$(cat $HOME/.OPENAI_API_KEY)
 

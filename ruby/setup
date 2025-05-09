@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
-source helpers
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
 
 ensure_command_exists ruby
 ensure_command_exists gem
