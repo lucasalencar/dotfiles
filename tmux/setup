@@ -5,5 +5,3 @@ source "$DOTFILES_ROOT/helpers"
 
 info "Setting up tmux package"
 stow tmux
-
-exit 0
