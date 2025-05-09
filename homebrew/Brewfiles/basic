@@ -4,6 +4,8 @@ tap 'buo/cask-upgrade' # Enables cask updates through brew
 brew 'git'
 brew 'hub'
 brew 'jesseduffield/lazygit/lazygit'
+brew 'vim'
+brew 'nvim'
 brew 'stow'
 brew 'coreutils'
 brew 'binutils'
