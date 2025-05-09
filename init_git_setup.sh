@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source print_helper
+
 # Script to initialize Git setup by configuring .gitconfig
 
 # Source and destination files
@@ -8,24 +10,23 @@ GITCONFIG_TARGET="git/.gitconfig"
 
 # 1. Copy gitconfig file
 if [ -f "$GITCONFIG_TARGET" ]; then
-    echo "WARNING: $GITCONFIG_TARGET already exists."
+    user "WARNING: $GITCONFIG_TARGET already exists."
     read -p "Do you want to overwrite it? (y/N): " confirm_overwrite
     if [[ "$confirm_overwrite" != "y" && "$confirm_overwrite" != "Y" ]]; then
-        echo "gitconfig setup aborted."
+        info "gitconfig setup aborted."
         exit 0
     fi
 fi
 
 if [ -f "$GITCONFIG_SYMLINK" ]; then
     cp "$GITCONFIG_SYMLINK" "$GITCONFIG_TARGET"
-    echo "Copied $GITCONFIG_SYMLINK to $GITCONFIG_TARGET"
+    success "Copied $GITCONFIG_SYMLINK to $GITCONFIG_TARGET"
 else
-    echo "Error: $GITCONFIG_SYMLINK not found."
-    exit 1
+    fail "Error: $GITCONFIG_SYMLINK not found."
 fi
 
 # 2. Collect user information
-echo "Please enter your Git user information:"
+info "Please enter your Git user information:"
 read -p "Full Author Name: " git_user_name
 read -p "Author Email: " git_user_email
 
@@ -36,9 +37,8 @@ TMP_FILE=$(mktemp)
 sed -e "s/AUTHOR NAME/$git_user_name/" -e "s/AUTHOR EMAIL/$git_user_email/" "$GITCONFIG_TARGET" > "$TMP_FILE" && mv "$TMP_FILE" "$GITCONFIG_TARGET"
 
 if [ $? -eq 0 ]; then
-    echo "Successfully updated $GITCONFIG_TARGET with your information."
-    echo "Git configuration is set up."
+    success "Successfully updated $GITCONFIG_TARGET with your information."
+    success "Git configuration is set up."
 else
-    echo "Error updating $GITCONFIG_TARGET."
-    exit 1
+    fail "Error updating $GITCONFIG_TARGET."
 fi
