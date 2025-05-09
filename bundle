@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source "$DOTFILES_ROOT/print_helper"
 source "$DOTFILES_ROOT/helpers"
 
 for file in "$@"; do

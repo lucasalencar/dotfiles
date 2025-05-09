@@ -1,5 +1,7 @@
 #!/bin/bash
-source helpers
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
 
 if command_exists mix; then
   info "Installing hex package manager"
