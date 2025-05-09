@@ -1,11 +1,18 @@
 tap 'homebrew/services' # Control Mac services through brew
 tap 'buo/cask-upgrade' # Enables cask updates through brew
 
+# Git Package
 brew 'git'
 brew 'hub'
 brew 'jesseduffield/lazygit/lazygit'
+
+# Vim Package
 brew 'vim'
 brew 'nvim'
+
+# Go Package
+brew 'go'
+
 brew 'stow'
 brew 'coreutils'
 brew 'binutils'
