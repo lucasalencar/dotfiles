@@ -4,7 +4,7 @@
 #
 # Installs nix package manager for command line software
 
-source helpers
+source "$DOTFILES_ROOT/helpers"
 
 if ! command_exists nix-env; then
   info 'Installing nix package manager'

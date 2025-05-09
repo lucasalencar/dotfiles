@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source helpers
+source "$DOTFILES_ROOT/helpers"
 
 EDITOR=${1:-"nvim"} # Receive editor as argument but uses nvim by default
 

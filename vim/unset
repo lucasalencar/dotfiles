@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source helpers
+source "$DOTFILES_ROOT/helpers"
 
 info "Removing vim and nvim configurations"
 
