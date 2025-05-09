@@ -12,20 +12,6 @@ Personal machine setup.
 git clone https://github.com/lucasalencar/dotfiles.git ~/.dotfiles
 ```
 
-### Setup git configuration
-
-1. Copy gitconfig file
-```bash
-cp git/.gitconfig.symlink git/.gitconfig
-```
-
-2. Fill it with your information
-```
-[user]
-  name = YOUR FULL NAME HERE
-  email = YOUR EMAIL HERE
-```
-
 ### Installation
 
 The installation process supports different profiles for different setups. Available profiles are:
@@ -34,6 +20,8 @@ The installation process supports different profiles for different setups. Avail
 - `nubank`: My work environment setup
 
 Profiles are listed at profile folder.
+
+During the installation, you will be prompted to enter your Git user name and email for the initial `.gitconfig` setup.
 
 To install with a specific profile:
 ```bash
