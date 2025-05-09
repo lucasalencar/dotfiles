@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source helpers
+source "$DOTFILES_ROOT/helpers"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     info "Setting up key repeat for VS Code on macOS..."

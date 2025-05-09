@@ -1,4 +1,4 @@
 #!/bin/bash
 
-source helpers
+source "$DOTFILES_ROOT/helpers"
 bundle_current_dir

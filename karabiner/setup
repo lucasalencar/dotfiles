@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source helpers
+source "$DOTFILES_ROOT/helpers"
 
 if [ -d /Applications/Karabiner-Elements.app ]; then
   "$(current_dir)/cp-out-config.sh"

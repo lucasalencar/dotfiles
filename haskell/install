@@ -1,5 +1,5 @@
 #!/bin/sh
 
-source helpers
+source "$DOTFILES_ROOT/helpers"
 ensure_command_exists brew
 bundle_current_dir
