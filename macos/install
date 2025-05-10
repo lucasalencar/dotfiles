@@ -1,0 +1,4 @@
+#!/bin/bash
+
+info "Installing Rosetta to support Intel apps"
+softwareupdate --install-rosetta --agree-to-license
