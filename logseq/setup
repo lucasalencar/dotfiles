@@ -5,3 +5,5 @@ source "$DOTFILES_ROOT/helpers"
 
 info "Setting up logseq"
 stow logseq
+
+warning "Ask Logseq to install plugins from file at Plugin page."
