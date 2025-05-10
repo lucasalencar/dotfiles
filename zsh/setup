@@ -3,5 +3,7 @@
 source "$DOTFILES_ROOT/print_helper"
 source "$DOTFILES_ROOT/helpers"
 
+mkdir -p "$HOME/code/"
+
 info "Setting up zsh package"
 stow zsh
