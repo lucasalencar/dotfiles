@@ -1,0 +1,18 @@
+;; This global config file applies a configuration to all graphs. Any config
+;; keys from a graph's logseq/config.edn can used here. A graph's
+;; logseq/config.edn overrides config keys in this file except for maps which
+;; are merged. As an example of merging, the following global and local configs:
+;;   {:shortcuts {:ui/toggle-theme "t z"}}
+;;   {:shortcuts {:ui/toggle-brackets "t b"}}
+;;
+;;  would result in the final config:
+;;   {:shortcuts {:ui/toggle-theme "t z"
+;;                :ui/toggle-brackets "t b"}}
+
+{:shortcuts {:command/toggle-favorite ["mod+shift+f" "meta+d"]
+ :editor/open-file-in-default-app []
+ :go/search ["mod+k" "meta+t"]
+ :editor/open-file-in-directory []
+ :ui/toggle-left-sidebar ["t l" "meta+s"]
+ :go/journals ["g j" "meta+j"]
+ :plugin.logseq-vim-shortcuts/vim-shortcut-exit-editing-0 []}}
