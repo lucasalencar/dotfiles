@@ -1,10 +1,10 @@
 #!/bin/bash
 
+PROFILE=$1 # Accepts profile (e.g. personal, work)
+export DOTFILES_ROOT=$(pwd -P)
+
 source "$DOTFILES_ROOT/print_helper"
 source "$DOTFILES_ROOT/helpers"
-
-PROFILE=$1 # Accepts profile (e.g. personal, work)
-DOTFILES_ROOT=$(pwd -P)
 
 install_package() {
   local package="$1"
