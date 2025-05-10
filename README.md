@@ -72,3 +72,4 @@ This dotfiles repository includes configurations for:
 # Inspirations
 
 - https://github.com/holman/dotfiles
+- https://github.com/mathiasbynens/dotfiles
