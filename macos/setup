@@ -163,7 +163,7 @@ info "Dock: Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true
 
 info "Dock: Show recent applications "
-defaults write com.apple.dock show-recents -bool true
+defaults write com.apple.dock show-recents -bool false
 
 ### Mission Control
 
