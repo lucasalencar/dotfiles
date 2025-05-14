@@ -17,7 +17,7 @@ alias update="$HOME/.dotfiles/update"
 alias reload!='. ~/.zshrc'
 
 # Aliases to config files
-alias dotfiles="cd $HOME/.dotfiles; $EDITOR $HOME/.dotfiles"
+alias dotfiles="cd $HOME/.dotfiles; $EDITOR $HOME/.dotfiles/README.md"
 
 # Use colordiff as default diff command
 # y => shows diffs in 2 columns
