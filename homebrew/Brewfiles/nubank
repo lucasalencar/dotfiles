@@ -1,3 +1,7 @@
+# JS Package
+brew 'npm'
+
+# Apps
 cask 'google-chrome'
 cask 'meetingbar'
 
