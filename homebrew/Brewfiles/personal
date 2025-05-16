@@ -1,2 +1,7 @@
+# JS Package
+brew 'npm'
+brew 'node'
+
+# Apps
 cask 'stremio'
 cask 'cursor'
