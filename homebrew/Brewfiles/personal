@@ -5,3 +5,4 @@ brew 'node'
 # Apps
 cask 'stremio'
 cask 'cursor'
+cask 'tunnelbear'
