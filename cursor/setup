@@ -20,4 +20,9 @@ cursor --install-extesiion shd101wyy.markdown-preview-enhanced # Markdown previe
 cursor --install-extension betterthantomorrow.calva
 cursor --install-extension betterthantomorrow.calva-spritz
 
+# Python extensions
+cursor --install-extension ms-python.debugpy
+cursor --install-extension ms-python.python
+cursor --install-extension ms-python.vscode-pylance
+
 stow cursor
