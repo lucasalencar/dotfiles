@@ -26,6 +26,7 @@ brew 'jq'
 brew 'markdown'
 brew 'shellcheck'
 brew 'bat'
+brew 'plantuml'
 
 # Fonts
 cask 'font-hack'
