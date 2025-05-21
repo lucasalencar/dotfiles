@@ -9,4 +9,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     defaults write $CURSOR_ID ApplePressAndHoldEnabled -bool false
 fi
 
+info "Installing cursor extensions/plugins"
+
+cursor --install-extension vscodevim.vim # Vim
+cursor --install-extension danprince.vsnetrw # oil.nvim / netrw / vim-vinegar
+cursor --install-extension chaitanyashahare.lazygit # Better git
+cursor --install-extesiion shd101wyy.markdown-preview-enhanced # Markdown preview
+
+# Clojure extensions
+cursor --install-extension betterthantomorrow.calva
+cursor --install-extension betterthantomorrow.calva-spritz
+
 stow cursor
