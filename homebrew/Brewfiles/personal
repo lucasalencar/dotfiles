@@ -2,6 +2,8 @@
 brew 'npm'
 brew 'node'
 
+brew 'heroku'
+
 # Apps
 cask 'stremio'
 cask 'cursor'
