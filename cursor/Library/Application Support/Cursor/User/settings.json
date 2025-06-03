@@ -188,5 +188,5 @@
     "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
     // Check for Homebrew script to get jar path;
     // cat /opt/homebrew/bin/plantuml
-    "markdown-preview-enhanced.plantumlJarPath": "/opt/homebrew/Cellar/plantuml/1.2025.2/libexec/plantuml.jar"
+    "markdown-preview-enhanced.plantumlJarPath": "/opt/homebrew/Cellar/plantuml/1.2025.3/libexec/plantuml.jar",
 }
