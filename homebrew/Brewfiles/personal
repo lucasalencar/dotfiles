@@ -1,8 +1,13 @@
 # JS Package
 brew 'npm'
 brew 'node'
+brew 'yarn'
 
 brew 'heroku'
+
+# Android Package
+cask 'android-platform-tools'
+brew 'scrcpy' # Show Android screen through Window
 
 # Apps
 cask 'stremio'
