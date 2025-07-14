@@ -188,6 +188,7 @@
     "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
     // Check for Homebrew script to get jar path;
     // cat /opt/homebrew/bin/plantuml
-    "markdown-preview-enhanced.plantumlJarPath": "/opt/homebrew/Cellar/plantuml/1.2025.3/libexec/plantuml.jar",
-    "editor.fontSize": 14
+    "markdown-preview-enhanced.plantumlJarPath": "/opt/homebrew/Cellar/plantuml/1.2025.4/libexec/plantuml.jar",
+    "editor.fontSize": 14,
+    "editor.accessibilitySupport": "off"
 }
