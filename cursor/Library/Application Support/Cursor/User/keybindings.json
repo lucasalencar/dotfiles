@@ -42,5 +42,9 @@
                 "workbench.action.togglePanel"
             ]
         }
+    },
+    {
+        "key": "cmd+e",
+        "command": "composerMode.background"
     }
 ]
