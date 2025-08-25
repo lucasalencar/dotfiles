@@ -28,6 +28,8 @@ brew 'shellcheck'
 brew 'bat'
 brew 'plantuml'
 
+brew 'cursor-cli'
+
 # Fonts
 cask 'font-hack'
 cask 'font-meslo-lg-nerd-font'
