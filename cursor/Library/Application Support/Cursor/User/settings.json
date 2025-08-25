@@ -189,5 +189,8 @@
     "editor.fontSize": 14,
     "editor.accessibilitySupport": "off",
     "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "markdown-preview-enhanced.previewTheme": "solarized-light.css",
+    "markdown-preview-enhanced.revealjsTheme": "none.css",
+    "markdown-preview-enhanced.codeBlockTheme": "monokai.css"
 }
