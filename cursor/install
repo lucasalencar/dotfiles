@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# Install script for Cursor CLI
-curl https://cursor.com/install -fsS | bash
