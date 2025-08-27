@@ -13,6 +13,7 @@ brew 'nvim'
 # Go Package
 brew 'go'
 
+# Command line utils
 brew 'stow'
 brew 'coreutils'
 brew 'binutils'
@@ -22,13 +23,15 @@ brew 'fd'
 brew 'htop'
 brew 'tree'
 brew 'colordiff'
-brew 'jq'
-brew 'markdown'
-brew 'shellcheck'
+brew 'jq' # JSON
 brew 'bat'
-brew 'plantuml'
+brew 'shellcheck'
 
-brew 'cursor-cli'
+# Diagram tools
+brew 'markdown'
+brew 'plantuml' # Plant UML diagram generator
+brew 'mermaid-cli' # Mermaid diagram and chart generator
+cask 'prince' # Converts HTML to PDF
 
 # Fonts
 cask 'font-hack'
@@ -55,5 +58,8 @@ cask 'eqmac'
 cask 'logseq'
 cask 'logitech-options'
 cask 'logitune'
-cask 'cursor'
 cask 'aqua-voice'
+
+# AI
+cask 'cursor'
+cask 'cursor-cli'
