@@ -11,6 +11,5 @@ brew 'scrcpy' # Show Android screen through Window
 
 # Apps
 cask 'stremio'
-cask 'cursor'
 cask 'tunnelbear'
 cask 'zen'
