@@ -60,6 +60,10 @@ cask 'logitech-options'
 cask 'logitune'
 cask 'aqua-voice'
 
+# Dev tools
+brew 'colima'
+brew 'docker'
+
 # AI
 cask 'cursor'
 cask 'cursor-cli'
