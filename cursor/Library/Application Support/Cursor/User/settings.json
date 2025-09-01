@@ -192,5 +192,5 @@
     "explorer.confirmDelete": false,
     "markdown-preview-enhanced.previewTheme": "solarized-light.css",
     "markdown-preview-enhanced.revealjsTheme": "none.css",
-    "markdown-preview-enhanced.codeBlockTheme": "monokai.css"
+    "markdown-preview-enhanced.codeBlockTheme": "default.css"
 }
