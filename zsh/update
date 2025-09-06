@@ -3,8 +3,13 @@
 source "$DOTFILES_ROOT/helpers"
 bundle_current_dir
 
-echo "TODO understand why zinit commands are not found here"
-echo "$(which zinit)"
+# Executar comandos zinit usando zsh com as configurações carregadas
+zsh -c "
+  # Carregar configurações do zinit
+  ZINIT_HOME=\"\${XDG_DATA_HOME:-\${HOME}/.local/share}/zinit/zinit.git\"
+  [ -f \"\$ZINIT_HOME/zinit.zsh\" ] && source \"\$ZINIT_HOME/zinit.zsh\"
 
-zinit self-update
-zinit update --parallel
+  # Executar comandos de atualização
+  zinit self-update
+  zinit update --parallel
+"
