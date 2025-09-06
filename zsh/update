@@ -1,15 +1,14 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/helpers"
-bundle_current_dir
 
-# Executar comandos zinit usando zsh com as configurações carregadas
+# Execute zinit commands using zsh with the loaded configurations
 zsh -c "
-  # Carregar configurações do zinit
+  # Load zinit configurations
   ZINIT_HOME=\"\${XDG_DATA_HOME:-\${HOME}/.local/share}/zinit/zinit.git\"
   [ -f \"\$ZINIT_HOME/zinit.zsh\" ] && source \"\$ZINIT_HOME/zinit.zsh\"
 
-  # Executar comandos de atualização
+  # Execute update commands
   zinit self-update
   zinit update --parallel
 "

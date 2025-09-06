@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/helpers"
-bundle_current_dir
 
 # Install zinit package manager
 if [ ! -d "$HOME/.local/share/zinit" ]; then
