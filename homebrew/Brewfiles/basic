@@ -1,37 +1,21 @@
-tap 'buo/cask-upgrade' # Enables cask updates through brew
-
-# Git Package
-brew 'git'
-brew 'hub'
-tap 'jesseduffield/lazygit'
-brew 'lazygit'
-
-# Vim Package
-brew 'vim'
-brew 'nvim'
-
-# Go Package
-brew 'go'
+# Terminal
+brew 'zsh'
+brew 'fzf'
+brew 'ripgrep'
+brew 'stow'
+brew 'fd'
+brew 'jq' # JSON
+brew 'bat'
 
 # Command line utils
-brew 'stow'
 brew 'coreutils'
 brew 'binutils'
 brew 'diffutils'
 brew 'findutils'
-brew 'fd'
 brew 'htop'
 brew 'tree'
 brew 'colordiff'
-brew 'jq' # JSON
-brew 'bat'
 brew 'shellcheck'
-
-# Diagram tools
-brew 'markdown'
-brew 'plantuml' # Plant UML diagram generator
-brew 'mermaid-cli' # Mermaid diagram and chart generator
-cask 'prince' # Converts HTML to PDF
 
 # Fonts
 cask 'font-hack'
@@ -59,6 +43,27 @@ cask 'logseq'
 cask 'logitech-options'
 cask 'logitune'
 cask 'aqua-voice'
+
+tap 'buo/cask-upgrade' # Enables cask updates through brew
+
+# Git Package
+brew 'git'
+brew 'hub'
+tap 'jesseduffield/lazygit'
+brew 'lazygit'
+
+# Vim Package
+brew 'vim'
+brew 'nvim'
+
+# Go Package
+brew 'go'
+
+# Diagram tools
+brew 'markdown'
+brew 'plantuml' # Plant UML diagram generator
+brew 'mermaid-cli' # Mermaid diagram and chart generator
+cask 'prince' # Converts HTML to PDF
 
 # Dev tools
 brew 'colima'
