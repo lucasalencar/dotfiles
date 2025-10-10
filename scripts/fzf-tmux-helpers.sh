@@ -22,5 +22,6 @@ tmux_current_window_index () {
 fzf_tmux_code_dir () {
   local base_dir
   base_dir=$(resolve_code_home)
-  ls "$base_dir" | fzf-tmux
+  ls "$base_dir" | fzf-tmux \
+    --preview "bat --style=plain --color=always $base_dir/{}/README.md"
 }
