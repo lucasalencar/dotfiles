@@ -13,3 +13,6 @@ brew 'scrcpy' # Show Android screen through Window
 cask 'stremio'
 cask 'tunnelbear'
 cask 'zen'
+
+# AI
+brew 'gemini-cli'
