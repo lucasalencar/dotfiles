@@ -5,5 +5,6 @@ source "$DOTFILES_ROOT/scripts/fzf-tmux-helpers.sh"
 selected_dir=$(fzf_tmux_code_dir)
 
 if [ "$selected_dir" ]; then
-  tmux new-window -a -c "$CODE_HOME/$selected_dir"
+  base_dir=$(resolve_code_home)
+  tmux new-window -a -c "$base_dir/$selected_dir"
 fi
