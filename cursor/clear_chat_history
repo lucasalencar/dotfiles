@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Clear Cursor chat history and workspace storage
+rm -r ~/Library/Application\ Support/Cursor/User/workspaceStorage/*
