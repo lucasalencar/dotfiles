@@ -3,16 +3,11 @@ alias la='ls -lAh --color'
 alias l='ls -lAh --color'
 alias ls='ls --color'
 
-# Specific update aliases
-alias update_zsh="$HOME/.dotfiles/zsh/update"
-alias update_brew="$HOME/.dotfiles/homebrew/update"
-alias update_vim="$HOME/.dotfiles/vim/update"
-alias update_tmux="$HOME/.dotfiles/tmux/update"
-alias update_emacs="$HOME/.dotfiles/emacs/update"
-alias update_nix="$HOME/.dotfiles/nix/update"
-
-# Update every system that is interesting for the command line
-alias update="$HOME/.dotfiles/update"
+# Update command - accepts package names as arguments
+# Usage: update [package1] [package2] ... (updates all if no arguments)
+update() {
+  "$HOME/.dotfiles/update" "$@"
+}
 
 alias reload!='. ~/.zshrc'
 
