@@ -6,4 +6,4 @@ source "$DOTFILES_ROOT/helpers"
 ensure_command_exists "stow"
 
 info "Setting up JS package"
-stow js
+stow npm
