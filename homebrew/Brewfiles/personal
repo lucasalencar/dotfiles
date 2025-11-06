@@ -10,6 +10,8 @@ cask 'android-platform-tools'
 brew 'scrcpy' # Show Android screen through Window
 
 # Apps
+cask 'whatsapp'
+cask 'telegram'
 cask 'stremio'
 cask 'tunnelbear'
 cask 'zen'
