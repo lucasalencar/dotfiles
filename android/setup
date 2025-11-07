@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Opens Android Studio the first time to download and setup environment
+# Follow up the setup through the interface
+# Here is a guide to setup emulators through the interface
+# https://docs.expo.dev/workflow/android-studio-emulator/
+#
+# Remember to install (under Settings>Languages & Frameworks>Android SDK):
+#   - Command-line Tools
+#   - Platform Tools
+#   - Build Tools
+#   - Android Emulator
+#
+# After installed Command-line tools:
+#   `sdkmanager --licenses`
+open /Applications/Android Studio.app
+
