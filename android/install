@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Install Maestro (E2E Testing Framework)
+curl -Ls "https://get.maestro.mobile.dev" | bash
