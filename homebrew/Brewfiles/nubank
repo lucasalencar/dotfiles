@@ -2,6 +2,7 @@
 brew 'npm'
 
 # Apps
+cask 'arc'
 cask 'google-chrome'
 cask 'meetingbar'
 
