@@ -28,7 +28,6 @@ cask 'font-powerline-symbols'
 cask 'font-source-code-pro-for-powerline'
 
 # Apps
-cask 'arc'
 cask 'caffeine'
 cask 'karabiner-elements'
 cask 'kitty'
