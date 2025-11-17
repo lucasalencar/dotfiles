@@ -1,1 +1,7 @@
 export PATH=${PATH}:${HOME}/.npm-packages/bin
+
+# NVM (Node Version Manager)
+# Installs and setup zsh
+NVM_COMPLETION=true
+export NVM_SYMLINK_CURRENT="true"
+zinit wait lucid light-mode for lukechilds/zsh-nvm

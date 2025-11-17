@@ -1,5 +1,6 @@
 # JS Package
 brew 'npm'
+brew 'nvm'
 brew 'node'
 brew 'yarn'
 
