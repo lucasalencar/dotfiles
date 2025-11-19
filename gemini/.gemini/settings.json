@@ -1,0 +1,18 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "general": {
+    "vimMode": false,
+    "previewFeatures": true,
+    "preferredEditor": "neovim"
+  },
+  "output": {
+    "format": "text"
+  },
+  "ui": {
+    "theme": "Dracula"
+  }
+}
