@@ -13,6 +13,15 @@
     "format": "text"
   },
   "ui": {
-    "theme": "Dracula"
+    "theme": "Dracula",
+    "showStatusInTitle": false,
+    "footer": {
+      "hideContextPercentage": false
+    },
+    "showMemoryUsage": true
+  },
+  "tools": {
+    "autoAccept": false,
+    "useRipgrep": true
   }
 }
