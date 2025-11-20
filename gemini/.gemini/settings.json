@@ -6,8 +6,11 @@
   },
   "general": {
     "vimMode": false,
-    "previewFeatures": true,
-    "preferredEditor": "neovim"
+    "previewFeatures": false,
+    "preferredEditor": "neovim",
+    "checkpointing": {
+      "enabled": true
+    }
   },
   "output": {
     "format": "text"
