@@ -1,0 +1,2 @@
+# Enable Gemini sandbox execution by default
+export GEMINI_SANDBOX=true
