@@ -19,3 +19,4 @@ cask 'tunnelbear'
 
 # AI
 brew 'gemini-cli'
+brew 'opencode'
