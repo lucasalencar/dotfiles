@@ -45,7 +45,7 @@ tap 'buo/cask-upgrade' # Enables cask updates through brew
 
 # Git Package
 brew 'git'
-brew 'hub'
+brew 'gh' # Github CLI
 tap 'jesseduffield/lazygit'
 brew 'lazygit'
 
