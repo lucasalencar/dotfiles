@@ -1,12 +1,17 @@
 Open a Pull Request comparing the current branch to the main one.
 
-## Guidelines
+## Steps
+
+1. Check difference between current branch and main
+2. Recover any pull request templates if available (.github folder)
+3. Push local changes in case it wasn't done yet
+4. Create Pull Request using `gh` CLI tool
+
+## Output instructions
 
 - Provide a title and description for the Pull Request.
-- Use `gh` CLI tool to create the Pull Request.
-- Ensure the Pull Request follows repository contribution guidelines.
-- Use Pull Request templates when present, usually present at `.github` or similar folders.
-- When returning the Pull Request link, format it in markdown as:
-  `[PR Title](PR Link)`.
+- Text must be in English, unless requested to use another language.
 - When branch is referencing some Jira ticket, include the ticket ID in
     the PR title like `[Ticket ID]`.
+- Description must follow pull request template available in the repository.
+- When returning the Pull Request link, return it as a clickable link in the chat.
