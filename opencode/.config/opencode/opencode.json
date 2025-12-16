@@ -1,4 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "monokai"
+  "theme": "monokai",
+  "provider": { // Modify the Open AI provider to use your credentials
+    "openai": {
+      "options": {
+        "baseURL": "{env:OPENAI_BASE_URL}",
+        "apiKey": "{env:OPENAI_API_KEY}"
+      }
+    }
+  }
 }
