@@ -69,3 +69,4 @@ brew 'docker'
 # AI
 cask 'cursor'
 cask 'cursor-cli'
+brew 'opencode'
