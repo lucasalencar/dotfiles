@@ -2,5 +2,4 @@ install
 setup
 update
 rc
-Brewfile
 \.gitconfig\.example
