@@ -40,6 +40,7 @@ cask 'logseq'
 cask 'logitech-options'
 cask 'logitune'
 cask 'aqua-voice'
+cask 'stats'
 
 tap 'buo/cask-upgrade' # Enables cask updates through brew
 
