@@ -19,3 +19,7 @@ cask 'tunnelbear'
 
 # AI
 brew 'gemini-cli'
+
+# Ruby
+brew 'rbenv'
+brew 'ruby-build'
