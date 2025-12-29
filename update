@@ -48,6 +48,17 @@ else
   done 2>/dev/null &
   SUDO_KEEPALIVE_PID=$!
 
+  # Cleanup function to stop sudo keepalive process
+  cleanup() {
+    kill "$SUDO_KEEPALIVE_PID" 2>/dev/null
+  }
+
+  # Handle script exit: always cleanup keepalive process
+  trap cleanup EXIT
+
+  # Handle Ctrl+C: show message and exit (cleanup runs automatically via EXIT trap)
+  trap 'echo ""; warning "Update interrupted by user"; exit 130' INT TERM
+
   info "Updating dotfiles project"
   git -C "$HOME/.dotfiles" pull --rebase
 
@@ -55,9 +66,6 @@ else
   update_profile_packages "basic"
 
   [ -n "$(current_profile)" ] && update_profile_packages "$(current_profile)"
-
-  # Stop the sudo keepalive background process
-  kill "$SUDO_KEEPALIVE_PID" 2>/dev/null
 
   success "Update completed"
 fi
