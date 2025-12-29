@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+
+info "Installing Git and tools"
+brew install git gh
+brew tap jesseduffield/lazygit
+brew install lazygit
