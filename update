@@ -37,7 +37,16 @@ if [ $# -gt 0 ]; then
   success "Update completed"
 else
   # No arguments: update everything (default behavior)
-  sudo -v # Keep sudo privileges for the duration of the script
+  sudo -v # Ask for sudo password once
+
+  # Keep sudo privileges alive in background
+  # This prevents password prompts during long-running operations like Homebrew cask updates
+  while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+  done 2>/dev/null &
+  SUDO_KEEPALIVE_PID=$!
 
   info "Updating dotfiles project"
   git -C "$HOME/.dotfiles" pull --rebase
@@ -46,6 +55,9 @@ else
   update_profile_packages "basic"
 
   [ -n "$(current_profile)" ] && update_profile_packages "$(current_profile)"
+
+  # Stop the sudo keepalive background process
+  kill "$SUDO_KEEPALIVE_PID" 2>/dev/null
 
   success "Update completed"
 fi
