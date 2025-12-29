@@ -1,5 +1,4 @@
 # Terminal
-brew 'zsh'
 brew 'fzf'
 brew 'ripgrep'
 brew 'stow'
@@ -43,12 +42,6 @@ cask 'aqua-voice'
 cask 'stats'
 
 tap 'buo/cask-upgrade' # Enables cask updates through brew
-
-# Git Package
-brew 'git'
-brew 'gh' # Github CLI
-tap 'jesseduffield/lazygit'
-brew 'lazygit'
 
 # Vim Package
 brew 'vim'
