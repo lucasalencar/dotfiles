@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/print_helper"
-source "$DOTFILES_ROOT/helpers"
 
-info "Installing Neovim"
+info "Installing Vim"
 brew install vim nvim

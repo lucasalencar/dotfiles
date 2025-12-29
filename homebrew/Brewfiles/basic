@@ -43,10 +43,6 @@ cask 'stats'
 
 tap 'buo/cask-upgrade' # Enables cask updates through brew
 
-# Vim Package
-brew 'vim'
-brew 'nvim'
-
 # Diagram tools
 brew 'markdown'
 brew 'plantuml' # Plant UML diagram generator
