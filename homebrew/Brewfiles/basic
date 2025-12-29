@@ -1,4 +1,5 @@
 # Terminal
+brew 'zsh' # Ensure zsh is installed right in the beginning
 brew 'fzf'
 brew 'ripgrep'
 brew 'stow'
