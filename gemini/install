@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+
+info "Installing gemini-cli"
+brew install gemini-cli

@@ -1,2 +1,0 @@
-tap 'd12frosted/emacs-plus'
-brew 'emacs-plus', args: ["with-native-comp", "with-imagemagick"]

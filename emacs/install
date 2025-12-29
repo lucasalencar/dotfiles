@@ -1,7 +1,10 @@
 #!/bin/bash
 
-source "$DOTFILES_ROOT/helpers"
-bundle_current_dir
+source "$DOTFILES_ROOT/print_helper"
+
+info "Installing Emacs"
+brew tap d12frosted/emacs-plus
+brew install emacs-plus --with-native-comp --with-imagemagick
 
 if [ ! -d "$HOME/.config/emacs" ]; then
   info "Installing Doom Emacs"
