@@ -54,21 +54,8 @@ brew 'lazygit'
 brew 'vim'
 brew 'nvim'
 
-# Go Package
-brew 'go'
-
 # Diagram tools
 brew 'markdown'
 brew 'plantuml' # Plant UML diagram generator
 brew 'mermaid-cli' # Mermaid diagram and chart generator
 cask 'prince' # Converts HTML to PDF
-
-# Docker
-brew 'colima'
-brew 'docker'
-brew 'docker-compose'
-
-# AI
-cask 'cursor'
-cask 'cursor-cli'
-brew 'opencode'

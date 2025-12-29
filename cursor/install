@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+
+info "Installing Cursor AI editor"
+brew install --cask cursor cursor-cli
