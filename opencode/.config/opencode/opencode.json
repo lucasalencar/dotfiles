@@ -42,6 +42,25 @@
         }
       }
     },
+    "nu-x-inference-custom-models": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Nubank X Inference Custom Models (BDC)",
+      "options": {
+        "baseURL": "https://nb2.api.inference.net/v1",
+        "apiKey": "{env:NU_X_INFERENCE_NET_API_KEY}"
+      },
+      "models": {
+        "nubank-custom-model-original": {
+          "name": "Nubank Custom Model"
+        },
+        "nubank-custom-model-swift": {
+          "name": "Nubank Custom Model Swift"
+        },
+        "nubank-custom-model-tank": {
+          "name": "Nubank Custom Model Tank"
+        }
+      }
+    }
   },
 
   "mcp": {
