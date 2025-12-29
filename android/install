@@ -1,4 +1,11 @@
 #!/bin/bash
 
+source "$DOTFILES_ROOT/print_helper"
+
+info "Installing Android development tools"
+brew install --cask android-studio
+brew install scrcpy # Show Android screen through Window
+
 # Install Maestro (E2E Testing Framework)
+info "Installing Maestro"
 curl -Ls "https://get.maestro.mobile.dev" | bash

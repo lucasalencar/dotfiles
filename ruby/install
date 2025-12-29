@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+
+info "Installing ruby package dependencies"
+brew install rbenv ruby-build

@@ -1,15 +1,3 @@
-# JS Package
-brew 'npm'
-brew 'nvm'
-brew 'node'
-brew 'yarn'
-
-brew 'heroku'
-
-# Android Package
-cask 'android-studio'
-brew 'scrcpy' # Show Android screen through Window
-
 # Apps
 cask 'zen'
 cask 'whatsapp'
@@ -17,9 +5,5 @@ cask 'telegram'
 cask 'stremio'
 cask 'tunnelbear'
 
-# AI
-brew 'gemini-cli'
-
-# Ruby
-brew 'rbenv'
-brew 'ruby-build'
+# Small tools without config
+brew 'heroku'

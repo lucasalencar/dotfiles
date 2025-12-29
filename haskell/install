@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-source "$DOTFILES_ROOT/helpers"
-ensure_command_exists brew
-bundle_current_dir
+source "$DOTFILES_ROOT/print_helper"
+
+info "Installing Haskell and tooling"
+brew install ghc ghcup cabal-install
