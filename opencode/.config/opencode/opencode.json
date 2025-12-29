@@ -1,12 +1,78 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "monokai",
+  "model": "anthropic/claude-sonnet-4-5", // Default model
+
   "provider": { // Modify the Open AI provider to use your credentials
     "openai": {
       "options": {
         "baseURL": "{env:OPENAI_BASE_URL}",
         "apiKey": "{env:OPENAI_API_KEY}"
       }
+    },
+    "gemini-litellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "gemini-litellm",
+      "options": {
+        "baseURL": "https://ist-prod-litellm.nullmplatform.com/v1",
+        "apiKey": "{env:OPENAI_API_KEY}"
+      },
+      "models": {
+        "gemini/gemini-3-pro-preview": {
+          "name": "Gemini 3 Pro"
+        },
+        "gemini/gemini-3-flash-preview": {
+          "name": "Gemini 3 Flash"
+        }
+      }
+    },
+    "anthropic-litellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "anthropic-litellm",
+      "options": {
+        "baseURL": "https://ist-prod-litellm.nullmplatform.com/v1",
+        "apiKey": "{env:OPENAI_API_KEY}"
+      },
+      "models": {
+        "anthropic/claude-sonnet-4-5": {
+          "name": "Claude Sonnet 4.5"
+        },
+        "anthropic/claude-opus-4-5": {
+          "name": "Claude Opus 4.5"
+        }
+      }
+    },
+  },
+
+  "mcp": {
+    "atlassian": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "mcp-remote",
+        "https://mcp.atlassian.com/v1/sse"
+      ],
+      "enabled": true
+    },
+    "slack": {
+      "type": "local",
+      "command": ["{env:HOME}//dev/nu/slack-mcp-server/start.sh"],
+      "enabled": true
     }
-  }
+  },
+
+  "lsp": {
+    "clojure-lsp": {
+      "command": ["clojure-lsp", "--stdio"],
+      "extensions": [".clj", ".cljs", ".cljc"]
+    }
+  },
+
+  "keybinds": {
+    "input_newline": "Shift+Enter"
+  },
+
+  "autoshare": false,
+  "autoupdate": true
 }
