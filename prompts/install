@@ -1,0 +1,92 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/helpers"
+
+SKILLS_SOURCE="$DOTFILES_ROOT/prompts/skills"
+
+# Function to check if an agent command exists
+is_agent_installed() {
+  local agent="$1"
+  command -v "$agent" &>/dev/null
+}
+
+# Function to get target directory for an agent
+get_target_dir() {
+  local agent="$1"
+  case "$agent" in
+    claude)
+      echo "$HOME/.claude/skills"
+      ;;
+    cursor)
+      echo "$HOME/.cursor/prompts"
+      ;;
+    gemini)
+      echo "$HOME/.gemini/prompts"
+      ;;
+  esac
+}
+
+# Function to install prompts for a specific agent
+install_for_agent() {
+  local agent="$1"
+  local target_dir
+  target_dir=$(get_target_dir "$agent")
+
+  info "Installing prompts for $agent"
+  mkdir -p "$target_dir"
+
+  local count=0
+  for skill in "$SKILLS_SOURCE"/*; do
+    if [ -d "$skill" ]; then
+      skill_name=$(basename "$skill")
+      ln -sfn "$skill" "$target_dir/$skill_name"
+      count=$((count + 1))
+    fi
+  done
+
+  success "Installed $count skill(s) for $agent"
+}
+
+# Main logic
+if [ -z "$1" ]; then
+  # Auto-detect mode
+  info "Auto-detecting installed agents..."
+
+  detected=()
+  for agent in claude cursor gemini; do
+    if is_agent_installed "$agent"; then
+      detected+=("$agent")
+    fi
+  done
+
+  if [ ${#detected[@]} -eq 0 ]; then
+    echo "No agents detected. Install manually with: $0 <agent>"
+    echo "Available agents: claude, cursor, gemini"
+    exit 1
+  fi
+
+  info "Detected agents: ${detected[*]}"
+  for agent in "${detected[@]}"; do
+    install_for_agent "$agent"
+  done
+else
+  # Manual mode
+  AGENT="$1"
+
+  case "$AGENT" in
+    claude|cursor|gemini)
+      install_for_agent "$AGENT"
+      ;;
+    all)
+      info "Installing for all agents..."
+      for agent in claude cursor gemini; do
+        install_for_agent "$agent"
+      done
+      ;;
+    *)
+      echo "Unknown agent: $AGENT"
+      echo "Available agents: claude, cursor, gemini, all"
+      exit 1
+      ;;
+  esac
+fi
