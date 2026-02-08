@@ -39,23 +39,6 @@ else
   # No arguments: update everything (default behavior)
   sudo -v # Ask for sudo password once
 
-  # Keep sudo privileges alive in background
-  # This prevents password prompts during long-running operations like Homebrew cask updates
-  while true; do
-    sudo -n true
-    sleep 60
-    kill -0 "$$" || exit
-  done 2>/dev/null &
-  SUDO_KEEPALIVE_PID=$!
-
-  # Cleanup function to stop sudo keepalive process
-  cleanup() {
-    kill "$SUDO_KEEPALIVE_PID" 2>/dev/null
-  }
-
-  # Handle script exit: always cleanup keepalive process
-  trap cleanup EXIT
-
   # Handle Ctrl+C: show message and exit (cleanup runs automatically via EXIT trap)
   trap 'echo ""; warning "Update interrupted by user"; exit 130' INT TERM
 
