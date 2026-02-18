@@ -9,6 +9,7 @@ description: Create a new pull request based on the changes made in the current 
 2. Recover any pull request templates if available (.github folder)
 3. Push local changes in case it wasn't done yet
 4. Create Pull Request using `gh` CLI tool
+5. When Pull Request is created, open the link in the browser
 
 ## Output instructions
 
