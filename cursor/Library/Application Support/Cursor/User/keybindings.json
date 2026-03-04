@@ -42,5 +42,10 @@
                 "workbench.action.togglePanel"
             ]
         }
+    },
+    {
+        "key": "alt+cmd+s",
+        "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
+        "when": "cursor.agentIdeUnification.enabled == true && !isAuxiliaryWindowFocusedContext"
     }
 ]
