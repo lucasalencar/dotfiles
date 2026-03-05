@@ -16,6 +16,7 @@ brew 'htop'
 brew 'tree'
 brew 'colordiff'
 brew 'shellcheck'
+brew 'terminal-notifier'
 
 # Fonts
 cask 'font-hack'
