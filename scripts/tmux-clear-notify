@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Clears the * indicator from the current tmux window.
+# Used automatically via after-select-window hook in .tmux.conf.
+
+tmux set-option -wu @notify
