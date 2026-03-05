@@ -6,4 +6,9 @@
 # Usage: long_command; tmux-notify-window
 
 window_index="${1:-$(tmux display-message -t "$TMUX_PANE" -p '#I')}"
-tmux set-option -w -t "$window_index" @notify 1
+active_index=$(tmux display-message -p '#I')
+
+# Skip if the window is already active (user is looking at it)
+if [[ "$window_index" != "$active_index" ]]; then
+  tmux set-option -w -t "$window_index" @notify 1
+fi
