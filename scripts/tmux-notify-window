@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Adds a * indicator to the tmux window where this script was called.
+# Sets the @notify flag which is read by catppuccin window text format.
+# Uses $TMUX_PANE to resolve the correct window even if you switched away.
+# Usage: long_command; tmux-notify-window
+
+window_index="${1:-$(tmux display-message -t "$TMUX_PANE" -p '#I')}"
+tmux set-option -w -t "$window_index" @notify 1
