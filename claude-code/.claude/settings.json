@@ -1,3 +1,17 @@
 {
-  "skipDangerousModePermissionPrompt": true
+  "model": "opus",
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-notify-window"
+          }
+        ]
+      }
+    ]
+  }
 }
