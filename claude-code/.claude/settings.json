@@ -1,6 +1,4 @@
 {
-  "model": "opus",
-  "skipDangerousModePermissionPrompt": true,
   "hooks": {
     "Notification": [
       {
@@ -9,9 +7,14 @@
           {
             "type": "command",
             "command": "tmux-notify-window"
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'INPUT=$(cat); TYPE=$(echo \"$INPUT\" | jq -r .notification_type); [ \"$TYPE\" = \"auth_success\" ] && exit 0; MSG=$(echo \"$INPUT\" | jq -r \".message // empty\"); WIN=$(tmux display-message -t \"$TMUX_PANE\" -p \"#I\" 2>/dev/null); notify-macos \"Claude Code\" \"$MSG\" \"tmux select-window -t $WIN\"'"
           }
         ]
       }
     ]
-  }
+  },
+  "skipDangerousModePermissionPrompt": true
 }
