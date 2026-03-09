@@ -5,10 +5,15 @@
 # Uses $TMUX_PANE to resolve the correct window even if you switched away.
 # Usage: long_command; tmux-notify-window
 
-window_index="${1:-$(tmux display-message -t "$TMUX_PANE" -p '#I')}"
+target="${1:-$TMUX_PANE}"
+if [[ -z "$target" ]]; then exit 0; fi
+
+window_index=$(tmux display-message -t "$target" -p '#I' 2>/dev/null)
+if [[ -z "$window_index" ]]; then exit 0; fi
+
 active_index=$(tmux display-message -p '#I')
 
 # Skip if the window is already active (user is looking at it)
 if [[ "$window_index" != "$active_index" ]]; then
-  tmux set-option -w -t "$window_index" @notify 1
+  tmux set-option -w -t "$target" @notify 1
 fi
