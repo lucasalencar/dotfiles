@@ -141,10 +141,4 @@ source $DOTFILES_ROOT/vim/clojure.vim
 source $DOTFILES_ROOT/vim/vim-sexp.vim
 source $DOTFILES_ROOT/vim/coc.vim
 
-" Hack to run Lua inside vimscript
-" Maintain identation like this to avoid problems
-lua <<EOF
--- Load oil.nvim and set keymap
-require("oil").setup()
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-EOF
+source $DOTFILES_ROOT/vim/oil.vim
