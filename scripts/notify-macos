@@ -8,9 +8,10 @@ if [ -z "$MESSAGE" ]; then
 fi
 
 if [ -n "$ON_CLICK" ]; then
-  terminal-notifier -title "$TITLE" -message "$MESSAGE" \
-    -execute "osascript -e 'tell application \"kitty\" to activate'; $ON_CLICK"
+  /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
+    -activate "net.kovidgoyal.kitty" \
+    -execute "export PATH='/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin'; $ON_CLICK"
 else
-  terminal-notifier -title "$TITLE" -message "$MESSAGE" \
+  /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
     -activate "net.kovidgoyal.kitty"
 fi
