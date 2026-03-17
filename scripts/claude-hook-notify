@@ -1,0 +1,19 @@
+#!/bin/bash
+INPUT=$(cat)
+TYPE=$(echo "$INPUT" | jq -r .notification_type)
+
+[ "$TYPE" = "auth_success" ] && exit 0
+
+MSG=$(echo "$INPUT" | jq -r ".message // empty")
+[ -z "$MSG" ] && exit 0
+
+WIN=$(tmux display-message -t "$TMUX_PANE" -p "#I" 2>/dev/null)
+
+# Skip notification only if kitty is focused and the user is in this exact pane
+IS_KITTY=$(osascript -e 'tell application "System Events" to frontmost of application process "kitty"' 2>/dev/null)
+if [ "$IS_KITTY" = "true" ]; then
+  ACTIVE_PANE=$(tmux list-panes -a -F "#{pane_active} #{window_active} #{pane_id}" 2>/dev/null | awk '$1==1 && $2==1{print $3}')
+  [ "$TMUX_PANE" = "$ACTIVE_PANE" ] && exit 0
+fi
+
+notify-macos "Claude Code" "$MSG" "tmux select-window -t $WIN" &
