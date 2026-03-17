@@ -31,5 +31,14 @@
     "type": "command",
     "command": "bash /Users/lucas.alencar/.claude/statusline-command.sh"
   },
+  "enabledPlugins": {},
+  "extraKnownMarketplaces": {
+    "nubank-ai-agents-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "nubank/ai-agents-plugins"
+      }
+    }
+  },
   "skipDangerousModePermissionPrompt": true
 }
