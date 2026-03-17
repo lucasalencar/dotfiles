@@ -21,7 +21,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'lein lint 2>&1 | tail -20'"
+            "command": "bash -c 'lein lint-fix 2>&1 | lein lint 2>&1 | tail -20'"
           }
         ]
       }
