@@ -1,5 +1,22 @@
 #!/bin/bash
 
+# Wrapper that intercepts sudo calls to notify when a password is needed.
+# Placed at the start of PATH so brew cu/upgrade picks it up instead of /usr/bin/sudo.
+_SUDO_WRAPPER_DIR=$(mktemp -d)
+trap "rm -rf $_SUDO_WRAPPER_DIR" EXIT
+
+cat > "$_SUDO_WRAPPER_DIR/sudo" << 'EOF'
+#!/bin/bash
+if ! /usr/bin/sudo -n true 2>/dev/null; then
+  tmux-notify-window 2>/dev/null
+  notify-macos "Homebrew Update" "Senha necessária para continuar o update" 2>/dev/null
+fi
+exec /usr/bin/sudo "$@"
+EOF
+chmod +x "$_SUDO_WRAPPER_DIR/sudo"
+
+export PATH="$_SUDO_WRAPPER_DIR:$PATH"
+
 brew cu --all --yes
 brew update
 brew upgrade
