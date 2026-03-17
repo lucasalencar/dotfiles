@@ -16,7 +16,6 @@ short_dir="${cwd/#$HOME/\~}"
 git_branch=$(git -C "$cwd" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
 
 # Build status parts
-printf "\033[1;34m%s@%s\033[0m" "$user" "$host"
 printf " \033[0;37m%s\033[0m" "$short_dir"
 
 if [ -n "$git_branch" ]; then
