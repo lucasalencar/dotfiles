@@ -31,7 +31,10 @@
     "type": "command",
     "command": "bash /Users/lucas.alencar/.claude/statusline-command.sh"
   },
-  "enabledPlugins": {},
+  "enabledPlugins": {
+    "slack@claude-plugins-official": true,
+    "atlassian@claude-plugins-official": true
+  },
   "extraKnownMarketplaces": {
     "nubank-ai-agents-plugins": {
       "source": {
