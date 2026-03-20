@@ -40,7 +40,8 @@
       "source": {
         "source": "github",
         "repo": "nubank/ai-agents-plugins"
-      }
+      },
+      "autoUpdate": true
     }
   },
   "skipDangerousModePermissionPrompt": true
