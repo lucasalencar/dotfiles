@@ -114,3 +114,9 @@ if has("autocmd")
     au FocusLost * silent! wall
   endif
 endif
+
+" Reload buffers changed outside vim when focusing the editor
+augroup auto_checktime
+  autocmd!
+  autocmd FocusGained,BufEnter * checktime
+augroup END
