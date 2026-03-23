@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs cat:*)",
+      "mcp__clojure__read_file",
+      "Bash(tmux list-windows:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(terminal-notifier:*)",
+      "Bash(time /Users/lucas.alencar/.rbenv/shims/terminal-notifier:*)",
+      "Bash(time /opt/homebrew/bin/terminal-notifier:*)",
+      "Bash(grep -r \"^function\\\\|^alias\" /Users/lucas.alencar/.dotfiles/zsh/*.zsh)"
+    ]
+  }
+}
