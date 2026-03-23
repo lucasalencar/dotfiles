@@ -6,3 +6,6 @@ cask 'meetingbar'
 # Infosec tools
 cask 'gpg-suite'
 brew 'ykman'
+
+# Kubernetes
+brew 'k9s'
