@@ -16,4 +16,5 @@ if [ "$IS_KITTY" = "true" ]; then
   [ "$TMUX_PANE" = "$ACTIVE_PANE" ] && exit 0
 fi
 
-notify-macos "Claude Code" "$MSG" "tmux select-window -t $WIN" &
+PROJECT=$(basename "$PWD")
+notify-macos "Claude Code - $PROJECT" "$MSG" "tmux select-window -t $WIN" &
