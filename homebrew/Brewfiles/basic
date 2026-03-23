@@ -6,6 +6,7 @@ brew 'stow'
 brew 'fd'
 brew 'jq' # JSON
 brew 'bat'
+brew 'worktrunk'
 
 # Command line utils
 brew 'coreutils'
