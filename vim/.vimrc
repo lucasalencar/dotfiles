@@ -47,8 +47,8 @@ endif
 """ end NAVIGATION PLUGINS
 
 """ TMUX PLUGINS
-" OBS: Creates panel switching mapping using ctrl+<direction>
-" It is not necessary to add it to vimrc
+" Disable default mappings so we can define our own (including terminal mode)
+let g:tmux_navigator_no_mappings = 1
 Plug 'christoomey/vim-tmux-navigator'
 """ end TMUX PLUGINS
 
