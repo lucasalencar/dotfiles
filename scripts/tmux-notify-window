@@ -4,6 +4,7 @@
 # Sets the @notify flag which is read by catppuccin window text format.
 # Uses $TMUX_PANE to resolve the correct window even if you switched away.
 # Usage: long_command; tmux-notify-window
+# Example: sleep 10; tmux-notify-window "$TMUX_PANE"
 
 target="${1:-$TMUX_PANE}"
 if [[ -z "$target" ]]; then exit 0; fi

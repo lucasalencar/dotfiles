@@ -1,17 +1,30 @@
 #!/bin/bash
+
+# Sends a macOS notification via terminal-notifier.
+# Usage: notify-macos "Title" "Message" ["on-click-command"] ["group-id"]
+# Example: notify-macos "Build" "Done!" "tmux select-window -t 2" "tmux-window-2"
+
 TITLE="${1:-Notification}"
 MESSAGE="${2:-}"
 ON_CLICK="${3:-}"
+GROUP="${4:-}"
 
 if [ -z "$MESSAGE" ]; then
   exit 0
 fi
 
+GROUP_FLAG=()
+if [ -n "$GROUP" ]; then
+  GROUP_FLAG=(-group "$GROUP")
+fi
+
 if [ -n "$ON_CLICK" ]; then
   /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
     -activate "net.kovidgoyal.kitty" \
-    -execute "export PATH='/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin'; $ON_CLICK"
+    -execute "export PATH='/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin'; $ON_CLICK" \
+    "${GROUP_FLAG[@]}"
 else
   /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
-    -activate "net.kovidgoyal.kitty"
+    -activate "net.kovidgoyal.kitty" \
+    "${GROUP_FLAG[@]}"
 fi
