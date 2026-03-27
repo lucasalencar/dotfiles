@@ -17,4 +17,4 @@ if [ "$IS_KITTY" = "true" ]; then
 fi
 
 PROJECT=$(basename "$PWD")
-notify-macos "Claude Code - $PROJECT" "$MSG" "tmux select-window -t $WIN" &
+notify-macos "Claude Code - $PROJECT" "$MSG" "tmux select-window -t $WIN" "tmux-window-$WIN" &
