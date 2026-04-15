@@ -1,5 +1,5 @@
 ---
-name: push
+name: commit-push
 description: Commit (if necessary) and push changes to origin branch
 ---
 
