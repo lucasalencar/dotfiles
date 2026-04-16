@@ -50,4 +50,3 @@ tap 'buo/cask-upgrade' # Enables cask updates through brew
 brew 'markdown'
 brew 'plantuml' # Plant UML diagram generator
 brew 'mermaid-cli' # Mermaid diagram and chart generator
-cask 'prince' # Converts HTML to PDF
