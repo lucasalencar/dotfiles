@@ -41,7 +41,8 @@ cask 'eqmac'
 cask 'logseq'
 cask 'logitech-options'
 cask 'logitune'
-cask 'aqua-voice'
+cask 'aqua-voice' # Dictation
+cask 'typewhisper/tap/typewhisper' # Dictation
 cask 'stats'
 cask 'xykong/tap/flux-markdown' # Render Markdown quick look MacOS
 
