@@ -43,6 +43,7 @@ cask 'logitech-options'
 cask 'logitune'
 cask 'aqua-voice'
 cask 'stats'
+cask 'xykong/tap/flux-markdown' # Render Markdown quick look MacOS
 
 tap 'buo/cask-upgrade' # Enables cask updates through brew
 
