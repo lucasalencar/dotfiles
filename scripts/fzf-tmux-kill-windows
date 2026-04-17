@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/scripts/fzf-tmux-helpers.sh"
+
+selected_windows=$(tmux list-windows -F "#I: #{pane_current_path}" \
+  | fzf-tmux --multi)
+
+if [ -z "$selected_windows" ]; then
+  exit 0
+fi
+
+echo "$selected_windows" | cut -d ":" -f 1 | while read -r window_index; do
+  tmux kill-window -t "$window_index"
+done
+
+exit 0
