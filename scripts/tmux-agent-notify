@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Sends a macOS notification when an agent pane needs attention.
+# Usage: tmux-agent-notify <pane_id>
+# Intended to be called periodically or from a tmux hook.
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+pane_id="$1"
+
+attention=$(tmux show -t "$pane_id" -pv @pane_attention 2>/dev/null)
+[ "$attention" != "1" ] && exit 0
+
+status=$(tmux show -t "$pane_id" -pv @pane_status 2>/dev/null)
+name=$(tmux show -t "$pane_id" -pv @pane_name 2>/dev/null)
+reason=$(tmux show -t "$pane_id" -pv @pane_wait_reason 2>/dev/null)
+
+title="${name:-Agent}"
+
+case "$status" in
+  waiting) message="${reason:-Waiting for input}" ;;
+  error)   message="Error occurred" ;;
+  idle)    message="Task completed" ;;
+  *)       message="Needs attention" ;;
+esac
+
+"$SCRIPT_DIR/notify-macos" "$title" "$message" "" "tmux-agent-$pane_id"
