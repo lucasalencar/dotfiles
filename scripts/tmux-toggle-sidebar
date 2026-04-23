@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Toggles tmux-agent-sidebar and rebalances panes only on close.
+# Usage: tmux-toggle-sidebar <sidebar_bin> <window_id> <pane_path>
+
+sidebar_bin="$1"
+window_id="$2"
+pane_path="$3"
+
+panes_before=$(tmux list-panes | wc -l)
+
+"$sidebar_bin" toggle "$window_id" "$pane_path" 2>/dev/null
+
+panes_after=$(tmux list-panes | wc -l)
+
+if [ "$panes_after" -lt "$panes_before" ]; then
+  tmux select-layout -E
+fi
