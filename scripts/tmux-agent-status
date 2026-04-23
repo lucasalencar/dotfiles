@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Outputs status icons for all agent panes except the active one.
+# Usage: tmux-agent-status <active_pane_id>
+
+active_pane="$1"
+output=""
+
+while IFS= read -r pane_id; do
+  status=$(tmux show -t "$pane_id" -pv @pane_status 2>/dev/null)
+  [ -z "$status" ] && continue
+
+  name=$(tmux show -t "$pane_id" -pv @pane_name 2>/dev/null)
+  case "$status" in
+    running)    icon="●" ;;
+    waiting)    icon="◐" ;;
+    background) icon="⚙" ;;
+    idle)       icon="○" ;;
+    error)      icon="✕" ;;
+    *)          continue ;;
+  esac
+
+  if [ -z "$name" ]; then
+    cwd=$(tmux show -t "$pane_id" -pv @pane_cwd 2>/dev/null)
+    name="${cwd##*/}"
+  fi
+  label="${name:-.}"
+  output="${output}${icon} ${label} "
+done < <(tmux list-panes -a -F '#{pane_id}')
+
+echo "$output"

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Outputs a status icon for agent panes in a window.
+# Usage: tmux-agent-icon <window_id>
+
+while IFS= read -r pane_id; do
+  status=$(tmux show -t "$pane_id" -pv @pane_status 2>/dev/null)
+  case "$status" in
+    running)    echo " ●"; exit ;;
+    waiting)    echo " ◐"; exit ;;
+    error)      echo " ✕"; exit ;;
+    background) echo " ⚙"; exit ;;
+    idle)       echo " ○"; exit ;;
+  esac
+done < <(tmux list-panes -t "$1" -F '#{pane_id}')
