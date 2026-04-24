@@ -2,8 +2,8 @@
 # Runs when a tmux window is selected (via hook after-select-window).
 # Clears notification indicators and refreshes the status line.
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPTS="$DOTFILES_ROOT/scripts"
 
-"$SCRIPT_DIR/tmux-clear-notify"
-"$SCRIPT_DIR/clear-notify-macos"
+"$SCRIPTS/tmux-clear-notify"
+"$SCRIPTS/clear-notify-macos"
 tmux refresh-client -S
