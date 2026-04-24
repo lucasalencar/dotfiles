@@ -12,6 +12,9 @@ panes_before=$(tmux list-panes | wc -l)
 
 panes_after=$(tmux list-panes | wc -l)
 
-if [ "$panes_after" -lt "$panes_before" ]; then
+if [ "$panes_after" -gt "$panes_before" ]; then
+  # Focus the newly created sidebar pane (last one added)
+  tmux select-pane -t '{last}'
+elif [ "$panes_after" -lt "$panes_before" ]; then
   tmux select-layout -E
 fi
