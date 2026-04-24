@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$DOTFILES_ROOT/tmux/scripts/fzf-tmux-helpers.sh"
+source "$DOTFILES_ROOT/scripts/helpers.sh"
 
 ccd () {
   local base_dir

@@ -1,12 +1,6 @@
 #!/bin/bash
 
-resolve_code_home () {
-  local base_dir
-  base_dir="${CODE_HOME:-$HOME/code}"
-  # Expand ~ if present
-  base_dir=$(eval echo "$base_dir")
-  echo "$base_dir"
-}
+source "$DOTFILES_ROOT/scripts/helpers.sh"
 
 fzf_tmux_window_index () {
   selected_window=$(tmux list-windows -F "#I: #{pane_current_path}" | fzf-tmux)
