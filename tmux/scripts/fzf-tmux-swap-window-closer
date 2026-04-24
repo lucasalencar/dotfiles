@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$DOTFILES_ROOT/scripts/fzf-tmux-helpers.sh"
+source "$DOTFILES_ROOT/tmux/scripts/fzf-tmux-helpers.sh"
 
 current_window=$(tmux_current_window_index)
 incremented=$((current_window + 1))
