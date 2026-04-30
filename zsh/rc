@@ -32,8 +32,14 @@ zinit snippet OMZP::colored-man-pages
 # Completions package
 zinit light zsh-users/zsh-completions
 
-# Load completions
-autoload -U compinit && compinit
+# Load completions. Regenerate the dump at most once per day; on every other
+# startup, use the cached dump (-C) to skip the full scan (saves ~100-300ms).
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 # FZF when tabbing for completions
 # WARN: Must be after compinit to work
