@@ -1,14 +1,17 @@
+# Path to Dotfiles root
+export DOTFILES_ROOT=$HOME/.dotfiles
+source $DOTFILES_ROOT/rc
+
+if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
+  tmux new-session -A -s main
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# Path to Dotfiles root
-export DOTFILES_ROOT=$HOME/.dotfiles
-
-source $DOTFILES_ROOT/rc
 
 # USe FZF as fuzzy search inside terminal (ctrl+r)
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
