@@ -1,3 +1,7 @@
+# Path to Dotfiles root — exported before tmux so the tmux server (and any
+# hook scripts it runs) inherit it.
+export DOTFILES_ROOT=$HOME/.dotfiles
+
 # Attach to tmux before anything else. `exec` replaces this shell, so the outer
 # shell never pays the cost of sourcing rc / initializing pyenv/jenv/etc — the
 # inner shell (inside tmux) is the one that matters. Must be above the p10k
@@ -13,8 +17,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Path to Dotfiles root
-export DOTFILES_ROOT=$HOME/.dotfiles
 source $DOTFILES_ROOT/rc
 
 # Use FZF as fuzzy search inside terminal (ctrl+r)
