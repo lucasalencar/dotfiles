@@ -1,9 +1,9 @@
-# Path to Dotfiles root
-export DOTFILES_ROOT=$HOME/.dotfiles
-source $DOTFILES_ROOT/rc
-
+# Attach to tmux before anything else. `exec` replaces this shell, so the outer
+# shell never pays the cost of sourcing rc / initializing pyenv/jenv/etc — the
+# inner shell (inside tmux) is the one that matters. Must be above the p10k
+# instant prompt block: tmux requires a real TTY.
 if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
-  tmux new-session -A -s main
+  exec tmux new-session -A -s main
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -13,10 +13,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# USe FZF as fuzzy search inside terminal (ctrl+r)
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+# Path to Dotfiles root
+export DOTFILES_ROOT=$HOME/.dotfiles
+source $DOTFILES_ROOT/rc
+
+# Use FZF as fuzzy search inside terminal (ctrl+r)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
