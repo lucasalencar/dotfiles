@@ -3,4 +3,10 @@
 
 # Jenv configuration
 export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+
+# Lazy-load `jenv init -` after the prompt is visible (saves ~50-100ms on startup).
+# Trade-off: until this fires, `java` resolves to the system binary, not jenv shims.
+zinit wait lucid light-mode \
+  id-as'jenv-init' \
+  atload'eval "$(jenv init -)"' \
+  for zdharma-continuum/null

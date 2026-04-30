@@ -1,4 +1,10 @@
 #!/bin/bash
 
-# Add rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# Lazy-load `rbenv init -` after the prompt is visible (saves ~30-100ms on startup).
+# Trade-off: until this fires, `ruby` resolves to the system binary, not rbenv shims.
+if (( $+commands[rbenv] )); then
+  zinit wait lucid light-mode \
+    id-as'rbenv-init' \
+    atload'eval "$(rbenv init -)"' \
+    for zdharma-continuum/null
+fi
