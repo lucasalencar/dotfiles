@@ -2,7 +2,13 @@
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+
+# Lazy-load `pyenv init -` after the prompt is visible (saves ~50-150ms on startup).
+# Trade-off: until this fires, `python` resolves to the system binary, not pyenv shims.
+zinit wait lucid light-mode \
+  id-as'pyenv-init' \
+  atload'eval "$(pyenv init -)"' \
+  for zdharma-continuum/null
 
 # Set jupyter paths to avoid a bug when using magilla
 # https://github.com/jupyter/nbclassic/issues/255
