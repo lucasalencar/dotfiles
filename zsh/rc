@@ -57,10 +57,13 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}" # Use LS_COLORS for completion colors
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath' # Show directory content when completing cd
 
-# TODO Check why this is necessary
-if test ! $(which kitty); then
-  # Completion for kitty
-  kitty + complete setup zsh | source /dev/stdin
+# Completion for kitty. Cached on disk to avoid spawning kitty on every shell.
+# Regenerate with: rm "${XDG_CACHE_HOME:-$HOME/.cache}/kitty-completion.zsh"
+if (( $+commands[kitty] )); then
+  kitty_comp="${XDG_CACHE_HOME:-$HOME/.cache}/kitty-completion.zsh"
+  [[ -f $kitty_comp ]] || kitty + complete setup zsh > $kitty_comp
+  source $kitty_comp
+  unset kitty_comp
 fi
 
 # Load all custom configs from dotfiles to zsh
