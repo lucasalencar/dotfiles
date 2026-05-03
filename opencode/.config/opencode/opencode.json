@@ -81,6 +81,10 @@
     }
   },
 
+  "plugin": [
+    "{HOME}/.dotfiles/opencode/.config/opencode/plugins/notification.ts"
+  ],
+
   "lsp": {
     "clojure-lsp": {
       "command": ["clojure-lsp", "--stdio"],
