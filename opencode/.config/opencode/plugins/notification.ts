@@ -4,7 +4,7 @@ export const NotificationPlugin: Plugin = async ({ client, $ }) => {
   return {
     event: async ({ event }) => {
       const sendNotification = async (notificationType: string, message: string) => {
-        const jsonPayload = JSON.stringify({ notification_type: notificationType, message })
+        const jsonPayload = JSON.stringify({ notification_type: notificationType, message, agent_name: "OpenCode" })
         await $`echo ${jsonPayload} | agent-notify`
       }
 
@@ -25,6 +25,11 @@ export const NotificationPlugin: Plugin = async ({ client, $ }) => {
         case "session.idle":
           await notifyTmux()
           await sendNotification("done", "Session completed")
+          break
+
+        case "tui.prompt.append":
+          await notifyTmux()
+          await sendNotification("waiting", "OpenCode is waiting for your input")
           break
 
         case "session.status":
