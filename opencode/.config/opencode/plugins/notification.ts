@@ -3,18 +3,35 @@ import type { Plugin } from "@opencode-ai/plugin"
 export const NotificationPlugin: Plugin = async ({ client, $ }) => {
   return {
     event: async ({ event }) => {
-      if (event.type === "session.idle") {
+      const sendNotification = async (notificationType: string, message: string) => {
+        const jsonPayload = JSON.stringify({ notification_type: notificationType, message })
+        await $`echo ${jsonPayload} | agent-notify`
+      }
+
+      const notifyTmux = async () => {
         try {
           await $`tmux-notify-window`
         } catch (err) {
           console.error("tmux-notify-window failed:", err)
         }
+      }
 
-        try {
-          await $`agent-notify`
-        } catch (err) {
-          console.error("agent-notify failed:", err)
-        }
+      switch (event.type) {
+        case "session.error":
+          await notifyTmux()
+          await sendNotification("error", event.data?.message || "Session error occurred")
+          break
+
+        case "session.idle":
+          await notifyTmux()
+          await sendNotification("done", "Session completed")
+          break
+
+        case "session.status":
+          if (event.data?.status === "busy") {
+            await notifyTmux()
+          }
+          break
       }
     },
   }
