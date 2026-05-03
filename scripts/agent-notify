@@ -1,0 +1,36 @@
+#!/bin/bash
+# agent-notify: A generic notification wrapper for AI agents (Gemini, Claude, etc.)
+# Usage: <json_input> | AGENT_NAME="Gemini CLI" agent-notify
+
+INPUT=$(cat)
+
+# Try to detect agent name if not provided
+if [ -z "$AGENT_NAME" ]; then
+  EVENT=$(echo "$INPUT" | jq -r .hook_event_name)
+  if [[ "$EVENT" == *"Gemini"* ]] || [[ -n $(echo "$INPUT" | jq -r '.session_id // empty') ]]; then
+    AGENT_NAME="Gemini CLI"
+  else
+    AGENT_NAME="Claude Code"
+  fi
+fi
+
+TYPE=$(echo "$INPUT" | jq -r .notification_type)
+
+# Skip auth success or other noise
+[ "$TYPE" = "auth_success" ] && exit 0
+
+MSG=$(echo "$INPUT" | jq -r ".message // empty")
+[ -z "$MSG" ] && exit 0
+
+WIN=$(tmux display-message -t "$TMUX_PANE" -p "#I" 2>/dev/null)
+
+# Skip notification if terminal is focused and the AI pane is in the active window
+IS_TERMINAL_FOCUSED=$(osascript -e 'tell application "System Events" to frontmost of application process "kitty"' 2>/dev/null)
+if [ "$IS_TERMINAL_FOCUSED" = "true" ]; then
+  AGENT_PANE_WIN=$(tmux display-message -t "$TMUX_PANE" -p "#{session_name}:#{window_index}" 2>/dev/null)
+  ACTIVE_WIN=$(tmux display-message -p "#{session_name}:#{window_index}" 2>/dev/null)
+  [ -n "$AGENT_PANE_WIN" ] && [ "$AGENT_PANE_WIN" = "$ACTIVE_WIN" ] && exit 0
+fi
+
+PROJECT=$(basename "$PWD")
+notify-macos "$AGENT_NAME - $PROJECT" "$MSG" "tmux select-window -t $WIN" "tmux-window-$WIN" &

@@ -11,7 +11,7 @@
           },
           {
             "type": "command",
-            "command": "claude-hook-notify"
+            "command": "agent-notify"
           }
         ]
       }

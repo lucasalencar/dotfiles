@@ -26,5 +26,36 @@
   "tools": {
     "autoAccept": false,
     "useRipgrep": true
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "ToolPermission",
+        "hooks": [
+          {
+            "name": "tmux-notify",
+            "type": "command",
+            "command": "bash -c 'tmux-notify-window; echo \"{}\"'"
+          },
+          {
+            "name": "agent-notify",
+            "type": "command",
+            "command": "bash -c 'agent-notify; echo \"{}\"'"
+          }
+        ]
+      }
+    ],
+    "AfterAgent": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "agent-notify",
+            "type": "command",
+            "command": "bash -c 'echo \"{\\\"notification_type\\\":\\\"done\\\",\\\"message\\\":\\\"Task finished\\\"}\" | agent-notify; echo \"{}\"'"
+          }
+        ]
+      }
+    ]
   }
 }
