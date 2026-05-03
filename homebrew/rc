@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Preference to homebrew installations
+export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
