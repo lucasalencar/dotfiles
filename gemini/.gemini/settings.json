@@ -50,6 +50,11 @@
         "matcher": "*",
         "hooks": [
           {
+            "name": "tmux-notify",
+            "type": "command",
+            "command": "bash -c 'tmux-notify-window; echo \"{}\"'"
+          },
+          {
             "name": "agent-notify",
             "type": "command",
             "command": "bash -c 'echo \"{\\\"notification_type\\\":\\\"done\\\",\\\"message\\\":\\\"Task finished\\\"}\" | agent-notify; echo \"{}\"'"
