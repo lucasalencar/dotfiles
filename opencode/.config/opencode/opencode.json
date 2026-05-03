@@ -3,66 +3,6 @@
   "theme": "monokai",
   "model": "anthropic/claude-sonnet-4-5", // Default model
 
-  "provider": { // Modify the Open AI provider to use your credentials
-    "openai": {
-      "options": {
-        "baseURL": "{env:OPENAI_BASE_URL}",
-        "apiKey": "{env:OPENAI_API_KEY}"
-      }
-    },
-    "gemini-litellm": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "gemini-litellm",
-      "options": {
-        "baseURL": "https://REDACTED-INTERNAL-ENDPOINT.example/v1",
-        "apiKey": "{env:OPENAI_API_KEY}"
-      },
-      "models": {
-        "gemini/gemini-3-pro-preview": {
-          "name": "Gemini 3 Pro"
-        },
-        "gemini/gemini-3-flash-preview": {
-          "name": "Gemini 3 Flash"
-        }
-      }
-    },
-    "anthropic-litellm": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "anthropic-litellm",
-      "options": {
-        "baseURL": "https://REDACTED-INTERNAL-ENDPOINT.example/v1",
-        "apiKey": "{env:OPENAI_API_KEY}"
-      },
-      "models": {
-        "anthropic/claude-sonnet-4-5": {
-          "name": "Claude Sonnet 4.5"
-        },
-        "anthropic/claude-opus-4-5": {
-          "name": "Claude Opus 4.5"
-        }
-      }
-    },
-    "custom-inference-models": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Custom Inference Models",
-      "options": {
-        "baseURL": "https://REDACTED-INTERNAL-INFERENCE.example/v1",
-        "apiKey": "{env:NU_X_INFERENCE_NET_API_KEY}"
-      },
-      "models": {
-        "custom-model-original": {
-          "name": "Custom Model"
-        },
-        "custom-model-swift": {
-          "name": "Custom Model Swift"
-        },
-        "custom-model-tank": {
-          "name": "Custom Model Tank"
-        }
-      }
-    }
-  },
-
   "mcp": {
     "atlassian": {
       "type": "local",
