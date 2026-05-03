@@ -3,4 +3,4 @@
 source "$DOTFILES_ROOT/print_helper"
 
 info "Installing OpenCode AI CLI"
-brew install opencode
+brew install anomalyco/tap/opencode
