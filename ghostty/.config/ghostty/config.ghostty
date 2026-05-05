@@ -1,6 +1,14 @@
+# Terminal style
 font-family = Menlo
 font-size = 14
 theme = Monokai Remastered
+
+macos-icon = retro
+macos-titlebar-style = hidden
+
+# Behavior fine tuning
+mouse-hide-while-typing = true
+confirm-close-surface = false # Using tmux, this is not a problem
 
 # Treat the macOS Option key as Alt so vim/tmux <M-...> mappings work.
 # Trade-off: lose Option-based macOS character entry (e.g. option+e for ´).
