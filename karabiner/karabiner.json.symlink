@@ -75,7 +75,7 @@
                         ]
                     },
                     {
-                        "description": "` => escape",
+                        "description": "` => lock screen + display sleep",
                         "manipulators": [
                             {
                                 "from": {
@@ -83,7 +83,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "escape"
+                                        "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"q\" using {control down, command down}' && sleep 1 && pmset displaysleepnow"
                                     }
                                 ],
                                 "type": "basic",
@@ -237,28 +237,6 @@
                                 "to": [
                                     {
                                         "shell_command": "open '/Applications/Kitty.app'"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Sleep computer",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "l",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_control",
-                                            "left_command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "pmset sleepnow"
                                     }
                                 ],
                                 "type": "basic"
