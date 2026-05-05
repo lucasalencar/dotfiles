@@ -2,3 +2,6 @@ install
 setup
 update
 rc
+cp-in-config.sh
+cp-out-config.sh
+karabiner.json.symlink
