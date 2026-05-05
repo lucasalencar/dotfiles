@@ -1,0 +1,29 @@
+font-family = Menlo
+font-size = 14
+theme = Monokai Remastered
+
+# Treat the macOS Option key as Alt so vim/tmux <M-...> mappings work.
+# Trade-off: lose Option-based macOS character entry (e.g. option+e for ´).
+macos-option-as-alt = true
+
+# Enables Ghostty's shell integration features (jump-to-prompt, cwd-aware
+# new tabs/splits, command duration, etc). Forced to zsh to skip detection.
+shell-integration = zsh
+
+# Notify on long-running command completion only when the window is unfocused.
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = notify
+
+# Produce specific symbol to map to Vim Switch tabs
+# Hacky solution in search of a better one that doesn't depend that much on terminal setup
+keybind = cmd+shift+[=text:”
+keybind = cmd+shift+]=text:’
+
+# cmd+k clears the screen. Default action only clears the host scrollback,
+# which has no effect inside tmux. Send Alt+k instead so tmux's binding fires.
+keybind = cmd+k=text:\x1bk
+
+# cmd+l clears the visible screen but preserves scrollback.
+# Send Alt+l so tmux can forward it as Ctrl-L without vim-tmux-navigator
+# intercepting (which would switch panes instead).
+keybind = cmd+l=text:\x1bl

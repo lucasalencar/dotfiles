@@ -1,0 +1,3 @@
+#!/bin/bash
+
+alias ghostty="/Applications/Ghostty.app/Contents/MacOS/ghostty"
