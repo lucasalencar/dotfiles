@@ -8,7 +8,9 @@ macos-titlebar-style = hidden
 
 # Behavior fine tuning
 mouse-hide-while-typing = true
-confirm-close-surface = false # Using tmux, this is not a problem
+
+# I use tmux, its not a problem closing the window
+confirm-close-surface = false
 
 # Treat the macOS Option key as Alt so vim/tmux <M-...> mappings work.
 # Trade-off: lose Option-based macOS character entry (e.g. option+e for ´).
