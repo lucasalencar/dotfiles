@@ -55,6 +55,13 @@ imap <M-8> <Esc>8gt
 map  <M-9> 9gt
 imap <M-9> <Esc>9gt
 
+" Switch tabs via Ghostty cmd+shift+[/] keybinds, which send these chars
+" (matching what alt+shift+[/] would produce on macOS).
+" ALT/CMD + SHIFT + [ => previous tab
+noremap ” :tabprevious<CR>
+" ALT/CMD + SHIFT + ] => next tab
+noremap ’ :tabnext<CR>
+
 " ALT + = => Increase current split size
 map <M-=> 5<C-w>>
 " ALT + - => Decrease current split size
