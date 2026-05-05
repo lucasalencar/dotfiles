@@ -32,8 +32,6 @@ cask 'font-source-code-pro-for-powerline'
 # Apps
 cask 'caffeine'
 cask 'karabiner-elements'
-cask 'kitty'
-cask 'ghostty'
 cask 'spotify'
 cask 'the-unarchiver'
 cask 'google-drive'
