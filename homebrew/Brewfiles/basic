@@ -31,15 +31,11 @@ cask 'font-source-code-pro-for-powerline'
 
 # Apps
 cask 'caffeine'
-cask 'karabiner-elements'
 cask 'spotify'
 cask 'the-unarchiver'
 cask 'google-drive'
 cask 'send-to-kindle'
 cask 'eqmac'
-cask 'logseq'
-cask 'logitech-options'
-cask 'logitune'
 cask 'aqua-voice' # Dictation
 cask 'typewhisper/tap/typewhisper' # Dictation
 cask 'stats'
