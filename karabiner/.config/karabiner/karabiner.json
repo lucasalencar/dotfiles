@@ -1,55 +1,36 @@
 {
-    "global": {
-        "check_for_updates_on_startup": true,
-        "show_in_menu_bar": false,
-        "show_profile_name_in_menu_bar": false
-    },
+    "global": { "show_in_menu_bar": false },
     "profiles": [
         {
             "complex_modifications": {
-                "parameters": {
-                    "basic.simultaneous_threshold_milliseconds": 50,
-                    "basic.to_delayed_action_delay_milliseconds": 500,
-                    "basic.to_if_alone_timeout_milliseconds": 1000,
-                    "basic.to_if_held_down_threshold_milliseconds": 500,
-                    "mouse_motion_to_scroll.speed": 100
-                },
                 "rules": [
                     {
                         "description": "escape => `",
                         "manipulators": [
                             {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "grave_accent_and_tilde"
-                                    }
-                                ],
-                                "type": "basic",
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "description": "Wired TADA 68 keyboard",
-                                                "vendor_id": 9610,
-                                                "product_id": 19
+                                                "product_id": 19,
+                                                "vendor_id": 9610
                                             },
                                             {
                                                 "description": "Bluetooth TADA 68 keyboard",
-                                                "vendor_id": 2652,
-                                                "product_id": 17666
+                                                "product_id": 17666,
+                                                "vendor_id": 2652
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
-                                ]
+                                ],
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "grave_accent_and_tilde" }],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -59,17 +40,9 @@
                             {
                                 "from": {
                                     "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "optional": [
-                                            "left_shift"
-                                        ]
-                                    }
+                                    "modifiers": { "optional": ["left_shift"] }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "escape"
-                                    }
-                                ],
+                                "to": [{ "key_code": "escape" }],
                                 "type": "basic"
                             }
                         ]
@@ -78,32 +51,26 @@
                         "description": "` => lock screen + display sleep",
                         "manipulators": [
                             {
-                                "from": {
-                                    "key_code": "grave_accent_and_tilde"
-                                },
-                                "to": [
-                                    {
-                                        "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"q\" using {control down, command down}' && sleep 1 && pmset displaysleepnow"
-                                    }
-                                ],
-                                "type": "basic",
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "description": "Wired TADA 68 keyboard",
-                                                "vendor_id": 9610,
-                                                "product_id": 19
+                                                "product_id": 19,
+                                                "vendor_id": 9610
                                             },
                                             {
                                                 "description": "Bluetooth TADA 68 keyboard",
-                                                "vendor_id": 2652,
-                                                "product_id": 17666
+                                                "product_id": 17666,
+                                                "vendor_id": 2652
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
-                                ]
+                                ],
+                                "from": { "key_code": "grave_accent_and_tilde" },
+                                "to": [{ "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"q\" using {control down, command down}' && sleep 1 && pmset displaysleepnow" }],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -111,37 +78,29 @@
                         "description": "ctrl+backspace => delete_forward",
                         "manipulators": [
                             {
-                                "from": {
-                                    "key_code": "delete_or_backspace",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_forward"
-                                    }
-                                ],
-                                "type": "basic",
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "description": "Wired TADA 68 keyboard",
-                                                "vendor_id": 9610,
-                                                "product_id": 19
+                                                "product_id": 19,
+                                                "vendor_id": 9610
                                             },
                                             {
                                                 "description": "Bluetooth TADA 68 keyboard",
-                                                "vendor_id": 2652,
-                                                "product_id": 17666
+                                                "product_id": 17666,
+                                                "vendor_id": 2652
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
-                                ]
+                                ],
+                                "from": {
+                                    "key_code": "delete_or_backspace",
+                                    "modifiers": { "mandatory": ["left_control"] }
+                                },
+                                "to": [{ "key_code": "delete_forward" }],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -149,37 +108,29 @@
                         "description": "left_alt => left_gui",
                         "manipulators": [
                             {
-                                "from": {
-                                    "key_code": "left_alt",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_gui"
-                                    }
-                                ],
-                                "type": "basic",
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "description": "Wired TADA 68 keyboard",
-                                                "vendor_id": 9610,
-                                                "product_id": 19
+                                                "product_id": 19,
+                                                "vendor_id": 9610
                                             },
                                             {
                                                 "description": "Bluetooth TADA 68 keyboard",
-                                                "vendor_id": 2652,
-                                                "product_id": 17666
+                                                "product_id": 17666,
+                                                "vendor_id": 2652
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
-                                ]
+                                ],
+                                "from": {
+                                    "key_code": "left_alt",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_gui" }],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -187,37 +138,29 @@
                         "description": "left_gui => left_alt ",
                         "manipulators": [
                             {
-                                "from": {
-                                    "key_code": "left_gui",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_alt"
-                                    }
-                                ],
-                                "type": "basic",
                                 "conditions": [
                                     {
-                                        "type": "device_if",
                                         "identifiers": [
                                             {
                                                 "description": "Wired TADA 68 keyboard",
-                                                "vendor_id": 9610,
-                                                "product_id": 19
+                                                "product_id": 19,
+                                                "vendor_id": 9610
                                             },
                                             {
                                                 "description": "Bluetooth TADA 68 keyboard",
-                                                "vendor_id": 2652,
-                                                "product_id": 17666
+                                                "product_id": 17666,
+                                                "vendor_id": 2652
                                             }
-                                        ]
+                                        ],
+                                        "type": "device_if"
                                     }
-                                ]
+                                ],
+                                "from": {
+                                    "key_code": "left_gui",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "left_alt" }],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -227,18 +170,9 @@
                             {
                                 "from": {
                                     "key_code": "t",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_control",
-                                            "left_command"
-                                        ]
-                                    }
+                                    "modifiers": { "mandatory": ["left_control", "left_command"] }
                                 },
-                                "to": [
-                                    {
-                                        "shell_command": "open '/Applications/Kitty.app'"
-                                    }
-                                ],
+                                "to": [{ "shell_command": "open '/Applications/Kitty.app'" }],
                                 "type": "basic"
                             }
                         ]
@@ -247,39 +181,20 @@
             },
             "devices": [
                 {
-                    "disable_built_in_keyboard_if_exists": false,
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": true,
                         "product_id": 17666,
                         "vendor_id": 2652
                     },
-                    "ignore": false,
-                    "manipulate_caps_lock_led": true,
-                    "simple_modifications": []
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": false,
-                        "product_id": 627,
-                        "vendor_id": 1452
-                    },
-                    "ignore": false,
-                    "manipulate_caps_lock_led": true,
-                    "simple_modifications": []
+                    "ignore": false
                 }
             ],
             "name": "Lucas Alencar Keyboard Profile",
-            "parameters": {
-                "delay_milliseconds_before_open_device": 1000
-            },
             "selected": true,
-            "simple_modifications": [],
             "virtual_hid_keyboard": {
                 "country_code": 0,
-                "mouse_key_xy_scale": 100
+                "keyboard_type_v2": "ansi"
             }
         }
     ]
