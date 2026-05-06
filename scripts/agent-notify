@@ -1,21 +1,15 @@
 #!/bin/bash
 # agent-notify: A generic notification wrapper for AI agents (Gemini, Claude, etc.)
-# Usage: <json_input> | AGENT_NAME="Gemini CLI" agent-notify
+# Usage: <json_input> | agent-notify "Agent Name"
+
+AGENT_NAME="$1"
+
+if [ -z "$AGENT_NAME" ]; then
+  echo "agent-notify: missing agent name argument" >&2
+  exit 1
+fi
 
 INPUT=$(cat)
-
-# Try to detect agent name if not provided
-if [ -z "$AGENT_NAME" ]; then
-  AGENT_NAME=$(echo "$INPUT" | jq -r '.agent_name // empty')
-  if [ -z "$AGENT_NAME" ]; then
-    EVENT=$(echo "$INPUT" | jq -r .hook_event_name)
-    if [[ "$EVENT" == *"Gemini"* ]] || [[ -n $(echo "$INPUT" | jq -r '.session_id // empty') ]]; then
-      AGENT_NAME="Gemini CLI"
-    else
-      AGENT_NAME="AI Agent"
-    fi
-  fi
-fi
 
 TYPE=$(echo "$INPUT" | jq -r .notification_type)
 

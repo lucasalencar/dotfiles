@@ -40,7 +40,7 @@
           {
             "name": "agent-notify",
             "type": "command",
-            "command": "bash -c 'agent-notify; echo \"{}\"'"
+            "command": "bash -c 'agent-notify \"Gemini CLI\"; echo \"{}\"'"
           }
         ]
       }
@@ -57,7 +57,7 @@
           {
             "name": "agent-notify",
             "type": "command",
-            "command": "bash -c 'echo \"{\\\"notification_type\\\":\\\"done\\\",\\\"message\\\":\\\"Task finished\\\"}\" | agent-notify; echo \"{}\"'"
+            "command": "bash -c 'echo \"{\\\"notification_type\\\":\\\"done\\\",\\\"message\\\":\\\"Task finished\\\"}\" | agent-notify \"Gemini CLI\"; echo \"{}\"'"
           }
         ]
       }
