@@ -11,7 +11,7 @@
           },
           {
             "type": "command",
-            "command": "agent-notify"
+            "command": "agent-notify 'Claude Code'"
           }
         ]
       }

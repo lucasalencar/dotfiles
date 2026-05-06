@@ -4,8 +4,8 @@ export const NotificationPlugin: Plugin = async ({ client, $ }) => {
   return {
     event: async ({ event }) => {
       const sendNotification = async (notificationType: string, message: string) => {
-        const jsonPayload = JSON.stringify({ notification_type: notificationType, message, agent_name: "OpenCode" })
-        await $`echo ${jsonPayload} | agent-notify`
+        const jsonPayload = JSON.stringify({ notification_type: notificationType, message })
+        await $`echo ${jsonPayload} | agent-notify "OpenCode"`
       }
 
       const notifyTmux = async () => {
