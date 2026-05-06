@@ -1,3 +1,7 @@
+# Identify this terminal to notification scripts (notify-macos / agent-notify).
+env = TERMINAL_BUNDLE_ID=com.mitchellh.ghostty
+env = TERMINAL_APP_NAME=ghostty
+
 # Terminal style
 font-family = Menlo
 font-size = 14
