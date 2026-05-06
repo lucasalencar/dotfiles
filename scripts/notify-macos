@@ -8,6 +8,7 @@ TITLE="${1:-Notification}"
 MESSAGE="${2:-}"
 ON_CLICK="${3:-}"
 GROUP="${4:-}"
+TERMINAL_BUNDLE_ID="${TERMINAL_BUNDLE_ID:-com.mitchellh.ghostty}"
 
 if [ -z "$MESSAGE" ]; then
   exit 0
@@ -20,11 +21,11 @@ fi
 
 if [ -n "$ON_CLICK" ]; then
   /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
-    -activate "net.kovidgoyal.kitty" \
+    -activate "$TERMINAL_BUNDLE_ID" \
     -execute "export PATH='/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin'; $ON_CLICK" \
     "${GROUP_FLAG[@]}"
 else
   /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
-    -activate "net.kovidgoyal.kitty" \
+    -activate "$TERMINAL_BUNDLE_ID" \
     "${GROUP_FLAG[@]}"
 fi

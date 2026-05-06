@@ -28,7 +28,8 @@ MSG=$(echo "$INPUT" | jq -r ".message // empty")
 WIN=$(tmux display-message -t "$TMUX_PANE" -p "#I" 2>/dev/null)
 
 # Skip notification if terminal is focused and the AI pane is in the active window
-IS_TERMINAL_FOCUSED=$(osascript -e 'tell application "System Events" to frontmost of application process "kitty"' 2>/dev/null)
+TERMINAL_APP_NAME="${TERMINAL_APP_NAME:-ghostty}"
+IS_TERMINAL_FOCUSED=$(osascript -e "tell application \"System Events\" to frontmost of application process \"$TERMINAL_APP_NAME\"" 2>/dev/null)
 if [ "$IS_TERMINAL_FOCUSED" = "true" ]; then
   AGENT_PANE_WIN=$(tmux display-message -t "$TMUX_PANE" -p "#{session_name}:#{window_index}" 2>/dev/null)
   ACTIVE_WIN=$(tmux display-message -p "#{session_name}:#{window_index}" 2>/dev/null)
