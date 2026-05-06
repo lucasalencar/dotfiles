@@ -42,4 +42,12 @@ if has('nvim')
   tnoremap <silent> <c-j> <Cmd>call <SID>TmuxPaneFromTerminal('j')<cr>
   tnoremap <silent> <c-k> <Cmd>call <SID>TmuxPaneFromTerminal('k')<cr>
   tnoremap <silent> <c-l> <Cmd>call <SID>TmuxPaneFromTerminal('l')<cr>
+
+  " fzf runs in a terminal buffer, so the tnoremaps above swallow ctrl-j/k
+  " before fzf sees them. Restore the raw bytes inside fzf buffers.
+  augroup fzf_restore_ctrl_jk
+    autocmd!
+    autocmd FileType fzf tnoremap <buffer> <c-j> <c-j>
+    autocmd FileType fzf tnoremap <buffer> <c-k> <c-k>
+  augroup END
 endif
