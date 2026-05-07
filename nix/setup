@@ -3,4 +3,4 @@
 source "$DOTFILES_ROOT/helpers"
 
 info "Setting up Nix package manager"
-stow nix
+run_required_step "Stowing nix package" stow nix

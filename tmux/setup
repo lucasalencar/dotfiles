@@ -4,4 +4,4 @@ source "$DOTFILES_ROOT/print_helper"
 source "$DOTFILES_ROOT/helpers"
 
 info "Setting up tmux package"
-stow tmux
+run_required_step "Stowing tmux package" stow tmux

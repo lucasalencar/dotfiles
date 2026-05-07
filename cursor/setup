@@ -25,4 +25,4 @@ cursor --install-extension ms-python.debugpy
 cursor --install-extension ms-python.python
 cursor --install-extension ms-python.vscode-pylance
 
-stow cursor
+run_required_step "Stowing cursor package" stow cursor

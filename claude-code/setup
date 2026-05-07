@@ -4,4 +4,4 @@ source "$DOTFILES_ROOT/print_helper"
 source "$DOTFILES_ROOT/helpers"
 
 info "Setting up claude-code package"
-stow claude-code
+run_required_step "Stowing claude-code package" stow claude-code

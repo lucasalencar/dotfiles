@@ -8,4 +8,4 @@ ensure_command_exists "stow"
 mkdir "$HOME/.nvm"
 
 info "Setting up JS package"
-stow npm
+run_required_step "Stowing npm package" stow npm

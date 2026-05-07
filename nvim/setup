@@ -4,4 +4,4 @@ source "$DOTFILES_ROOT/print_helper"
 source "$DOTFILES_ROOT/helpers"
 
 info "Setting up nvim"
-stow nvim
+run_required_step "Stowing nvim package" stow nvim

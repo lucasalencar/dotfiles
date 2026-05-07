@@ -7,9 +7,13 @@
 
 source "$DOTFILES_ROOT/helpers"
 
+install_homebrew() {
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
 # Check for Homebrew
 if ! command_exists brew; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  run_required_step "Installing Homebrew" install_homebrew
 fi
 
 export PATH=/opt/homebrew/bin:$PATH
