@@ -20,9 +20,9 @@ update_profile_packages() {
 
   "$DOTFILES_ROOT/bundle" "$profile"
 
-  while read -r package; do
+  while IFS= read -r -u 3 package; do
     update_package "$package"
-  done < "$DOTFILES_ROOT/profiles/$profile"
+  done 3< "$DOTFILES_ROOT/profiles/$profile"
   unset package
 
   success "$profile profile packages update completed"

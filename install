@@ -29,10 +29,10 @@ bundle_profile() {
     run_optional_step "Bundling Brewfile for $profile profile" ./bundle "$profile"
 
     info "Installing packages from \"$profile\" profile"
-    while read -r package; do
+    while IFS= read -r -u 3 package; do
       install_package "$package"
       setup_package "$package"
-    done < "$DOTFILES_ROOT/profiles/$profile"
+    done 3< "$DOTFILES_ROOT/profiles/$profile"
     unset package
   fi
 }
