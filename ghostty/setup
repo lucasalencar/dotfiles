@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
 
 info "Setting up Ghostty terminal"
-stow ghostty
+run_required_step "Stowing ghostty package" stow ghostty

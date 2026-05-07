@@ -2,4 +2,4 @@
 
 source "$DOTFILES_ROOT/helpers"
 
-stow karabiner
+run_required_step "Stowing karabiner package" stow karabiner

@@ -6,6 +6,6 @@ source "$DOTFILES_ROOT/helpers"
 ensure_command_exists git
 
 info "Setting up git config and ignore files"
-stow git
+run_required_step "Stowing git package" stow git
 
 exit 0

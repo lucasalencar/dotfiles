@@ -8,6 +8,6 @@ ensure_command_exists gem
 
 info "Setting up ruby package"
 gem install bundler
-stow ruby
+run_required_step "Stowing ruby package" stow ruby
 
 exit 0

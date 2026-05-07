@@ -5,4 +5,4 @@ source "$DOTFILES_ROOT/helpers"
 ensure_command_exists "stow"
 
 info "Setting up Clojure package"
-stow clojure
+run_required_step "Stowing clojure package" stow clojure

@@ -7,7 +7,7 @@ ensure_command_exists emacs
 ensure_command_exists doom
 
 info "Setting up Doom Emacs"
-stow emacs
+run_required_step "Stowing emacs package" stow emacs
 
 doom sync
 doom env

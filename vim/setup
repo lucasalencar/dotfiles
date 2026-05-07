@@ -20,7 +20,7 @@ if [ ! -d "$CONFIG_DIR" ]; then
   if [ "$EDITOR" = "nvim" ]; then
     link_files "$(current_dir)/.vimrc" "$CONFIG_DIR/init.vim"
   elif [ "$EDITOR" = "vim" ]; then
-    stow vim
+    run_required_step "Stowing vim package" stow vim
   fi
 fi
 
