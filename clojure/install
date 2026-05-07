@@ -3,7 +3,7 @@
 source "$DOTFILES_ROOT/print_helper"
 
 info "Installing Clojure and tooling"
-brew install clojure leiningen
+brew install clojure/tools/clojure leiningen
 brew install clojure-lsp/brew/clojure-lsp-native
 brew install borkdude/brew/clj-kondo
 brew install borkdude/brew/babashka
