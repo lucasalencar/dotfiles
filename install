@@ -10,8 +10,7 @@ install_package() {
   local package="$1"
 
   if [ -f "$DOTFILES_ROOT/$package/install" ]; then
-    info "Installing package $package"
-    "$DOTFILES_ROOT/$package/install"
+    run_optional_step "Installing package $package" "$DOTFILES_ROOT/$package/install"
   fi
 }
 
@@ -19,8 +18,7 @@ setup_package() {
   local package="$1"
 
   if [ -f "$DOTFILES_ROOT/$package/setup" ]; then
-    info "Setting up package $package"
-    "$DOTFILES_ROOT/$package/setup"
+    run_optional_step "Setting up package $package" "$DOTFILES_ROOT/$package/setup"
   fi
 }
 
@@ -28,8 +26,7 @@ bundle_profile() {
   local profile=$1
 
   if [ -f "$DOTFILES_ROOT/profiles/$profile" ]; then
-    info "Bundling Brewfile for $profile profile"
-    ./bundle "$profile"
+    run_optional_step "Bundling Brewfile for $profile profile" ./bundle "$profile"
 
     info "Installing packages from \"$profile\" profile"
     while read -r package; do

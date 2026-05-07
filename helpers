@@ -33,6 +33,21 @@ ensure_command_exists () {
   fi
 }
 
+run_optional_step () {
+  local step="$1"
+  shift
+
+  info "$step"
+
+  if "$@"; then
+    return 0
+  else
+    local status=$?
+    warning "Step failed: $step (exit code $status). Continuing..."
+    return 0
+  fi
+}
+
 bundle_current_dir() {
   brew bundle --file="$(current_dir)/Brewfile"
 }
