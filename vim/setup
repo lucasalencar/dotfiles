@@ -28,21 +28,20 @@ fi
 # Using .vim because of sensible configurations
 mkdir -p "$HOME/.vim/_backup" "$HOME/.vim/_temp" "$HOME/.vim/undodir/"
 
-info 'Installing vim-plug + plugins'
-"$EDITOR" +PlugInstall +qall
+run_optional_step "Installing vim-plug + plugins" "$EDITOR" +PlugInstall +qall
 
 
 if [ "$EDITOR" = "nvim" ]; then
   if command_exists 'pip'; then
-    pip install neovim
+    run_optional_step "Installing neovim Python provider with pip" pip install neovim
   fi
 
   if command_exists 'pip3'; then
-    pip3 install neovim
+    run_optional_step "Installing neovim Python provider with pip3" pip3 install neovim
   fi
 
   if command_exists 'npm'; then
-    npm install -g neovim
+    run_optional_step "Installing neovim Node provider with npm" npm install -g neovim
   fi
 fi
 
