@@ -48,6 +48,20 @@ run_optional_step () {
   fi
 }
 
+run_required_step () {
+  local step="$1"
+  shift
+
+  info "$step"
+
+  if "$@"; then
+    return 0
+  else
+    local status=$?
+    fail "Step failed: $step (exit code $status)."
+  fi
+}
+
 bundle_current_dir() {
   brew bundle --file="$(current_dir)/Brewfile"
 }
