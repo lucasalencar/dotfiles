@@ -7,3 +7,5 @@ ensure_command_exists git
 
 info "Setting up git config and ignore files"
 stow git
+
+exit 0
