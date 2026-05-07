@@ -119,7 +119,7 @@ Add the formula/cask to the appropriate file under `homebrew/Brewfiles/`
 ## Available packages
 
 Each item below maps to a top-level directory in this repo. Most are wired up
-through one of the profiles; a few (`homelab`, `nix`, `terminal.app`, ...) are
+through one of the profiles; a few (`homelab`, `nix`, ...) are
 optional and only used when explicitly invoked.
 
 ### Shell & terminal
@@ -130,7 +130,6 @@ optional and only used when explicitly invoked.
 | `tmux`         | Tmux config, plugins and key bindings.                         |
 | `ghostty`      | Ghostty terminal emulator config.                              |
 | `kitty`        | Kitty terminal emulator config.                                |
-| `terminal.app` | Profile/theme for the built-in macOS Terminal.app.             |
 | `scripts`      | Personal CLI helpers (`fgb`, `vf`, `notify-macos`, `agent-notify`, `speech-to-text`, ...). |
 
 ### Editors & IDEs
@@ -150,7 +149,6 @@ optional and only used when explicitly invoked.
 | `claude-code`| Claude Code settings, custom commands, hooks and prompts.    |
 | `gemini`     | Gemini CLI configuration.                                    |
 | `opencode`   | OpenCode agent configuration.                                |
-| `spec-kit`   | Spec Kit (spec-driven development) templates and config.     |
 | `prompts`    | Reusable prompt snippets shared across tools.                |
 
 ### Languages & runtimes
