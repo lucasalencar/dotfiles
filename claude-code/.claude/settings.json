@@ -1,5 +1,4 @@
 {
-  "model": "opus[1m]",
   "hooks": {
     "Notification": [
       {
@@ -56,5 +55,6 @@
     }
   },
   "effortLevel": "medium",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "auto"
 }
