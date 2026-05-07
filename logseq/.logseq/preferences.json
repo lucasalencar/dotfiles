@@ -1,0 +1,30 @@
+{
+  "theme": {
+    "name": "Bonofix Theme",
+    "url": "file:///Users/lucas.alencar/.logseq/plugins/logseq-bonofix-theme/custom.css",
+    "description": "A clean theme",
+    "pid": "logseq-bonofix-theme"
+  },
+  "themes": {
+    "mode": "dark",
+    "light": {
+      "name": "Bonofix Theme",
+      "url": "file:///Users/lucas.alencar/.logseq/plugins/logseq-bonofix-theme/custom.css",
+      "description": "A clean theme",
+      "pid": "logseq-bonofix-theme",
+      "group-first": true,
+      "group-desc": "light & dark themes",
+      "mode": "light",
+      "selected": false
+    },
+    "dark": {
+      "name": "Catppuccin Frappé",
+      "url": "file:///Users/lucas.alencar/.logseq/plugins/logseq-catppuccin/ctp-frappe.css",
+      "description": "Catppuccin Frappé",
+      "mode": "dark",
+      "pid": "logseq-catppuccin",
+      "selected": false
+    }
+  },
+  "externals": []
+}

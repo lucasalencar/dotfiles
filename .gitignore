@@ -7,3 +7,7 @@ homebrew/Brewfiles/*.lock.json
 .current_profile
 
 nvim/.config/nvim/lazy-lock.json
+
+logseq/.logseq/graphs/
+logseq/.logseq/plugins/
+
