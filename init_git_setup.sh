@@ -2,13 +2,22 @@
 
 source "$DOTFILES_ROOT/print_helper"
 
-# Script to initialize Git setup by configuring .gitconfig
-
-# Source and destination files
+# Git config template and generated files
 GITCONFIG_SYMLINK="git/.gitconfig.example"
 GITCONFIG_TARGET="git/.gitconfig"
+HOME_GITCONFIG="$HOME/.gitconfig"
 
-# 1. Copy gitconfig file
+# Confirm before continuing if a home git config already exists
+if [ -f "$HOME_GITCONFIG" ]; then
+    user "WARNING: $HOME_GITCONFIG already exists."
+    read -p "Do you want to continue with this git config setup? (y/N): " confirm_continue
+    if [[ "$confirm_continue" != "y" && "$confirm_continue" != "Y" ]]; then
+        info "gitconfig setup aborted."
+        exit 0
+    fi
+fi
+
+# Confirm before replacing the generated git config
 if [ -f "$GITCONFIG_TARGET" ]; then
     user "WARNING: $GITCONFIG_TARGET already exists."
     read -p "Do you want to overwrite it? (y/N): " confirm_overwrite
@@ -18,6 +27,7 @@ if [ -f "$GITCONFIG_TARGET" ]; then
     fi
 fi
 
+# Copy the template that will be filled with user information
 if [ -f "$GITCONFIG_SYMLINK" ]; then
     cp "$GITCONFIG_SYMLINK" "$GITCONFIG_TARGET"
     success "Copied $GITCONFIG_SYMLINK to $GITCONFIG_TARGET"
@@ -25,13 +35,11 @@ else
     fail "Error: $GITCONFIG_SYMLINK not found."
 fi
 
-# 2. Collect user information
 info "Please enter your Git user information:"
 read -p "Full Author Name: " git_user_name
 read -p "Author Email: " git_user_email
 
-# 3. Fill it with user information
-# Using a temporary file for sed to work consistently across different OS (macOS vs Linux)
+# Fill placeholders using a temporary file for macOS/Linux sed compatibility
 TMP_FILE=$(mktemp)
 
 sed -e "s/AUTHOR NAME/$git_user_name/" -e "s/AUTHOR EMAIL/$git_user_email/" "$GITCONFIG_TARGET" > "$TMP_FILE" && mv "$TMP_FILE" "$GITCONFIG_TARGET"

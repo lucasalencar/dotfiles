@@ -37,8 +37,7 @@ bundle_profile() {
   fi
 }
 
-info 'Initializing Git setup'
-"$DOTFILES_ROOT/init_git_setup.sh"
+run_optional_step "Initializing Git setup" "$DOTFILES_ROOT/init_git_setup.sh"
 
 run_required_step "Installing homebrew" "$DOTFILES_ROOT/homebrew/install"
 
