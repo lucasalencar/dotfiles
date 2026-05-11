@@ -30,6 +30,7 @@ cask 'font-powerline-symbols'
 cask 'font-source-code-pro-for-powerline'
 
 # Apps
+cask 'lastpass'
 cask 'caffeine'
 cask 'spotify'
 cask 'the-unarchiver'
