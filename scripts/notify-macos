@@ -23,9 +23,9 @@ if [ -n "$ON_CLICK" ]; then
   /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
     -activate "$TERMINAL_BUNDLE_ID" \
     -execute "export PATH='/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin'; $ON_CLICK" \
-    "${GROUP_FLAG[@]}"
+    "${GROUP_FLAG[@]}" >/dev/null 2>&1
 else
   /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
     -activate "$TERMINAL_BUNDLE_ID" \
-    "${GROUP_FLAG[@]}"
+    "${GROUP_FLAG[@]}" >/dev/null 2>&1
 fi
