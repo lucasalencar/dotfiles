@@ -192,5 +192,6 @@
     "makefile.configureOnOpen": false,
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff"
-    }
+    },
+    "window.autoDetectColorScheme": true
 }
