@@ -3,7 +3,13 @@
 source "$DOTFILES_ROOT/tmux/scripts/fzf-tmux-helpers.sh"
 
 selected_windows=$(tmux list-windows -F "#I: #{pane_current_path}" \
-  | fzf-tmux --multi)
+  | fzf-tmux --multi \
+    --preview 'win={1}; win=${win%:}; \
+      echo "── Panes ──"; \
+      tmux list-panes -t "$win" -F "#{pane_index}: #{pane_current_command}  [#{pane_width}x#{pane_height}]  #{pane_current_path}"; \
+      echo; echo "── Active pane content ──"; \
+      tmux capture-pane -ep -t "${win}." 2>/dev/null' \
+    --preview-window=right:60%)
 
 if [ -z "$selected_windows" ]; then
   exit 0
