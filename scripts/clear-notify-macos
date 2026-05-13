@@ -3,5 +3,7 @@
 # Clears the macOS notification for the current tmux window.
 # Used automatically via after-select-window hook in .tmux.conf.
 
+[ "$(uname)" != "Darwin" ] && exit 0
+
 WIN=$(tmux display-message -p "#I" 2>/dev/null)
 [ -n "$WIN" ] && /opt/homebrew/bin/terminal-notifier -remove "tmux-window-$WIN" >/dev/null 2>&1
