@@ -3,5 +3,5 @@
 # Clears notification indicators and refreshes the status line.
 
 "$DOTFILES_ROOT/tmux/scripts/tmux-clear-notify"
-"$DOTFILES_ROOT/scripts/clear-notify-macos"
+[ "$(uname)" = "Darwin" ] && "$DOTFILES_ROOT/scripts/clear-notify-macos"
 tmux refresh-client -S
