@@ -4,14 +4,25 @@ export DOTFILES_ROOT=$HOME/.dotfiles
 
 source $DOTFILES_ROOT/homebrew/rc
 
-# Attach to tmux before anything else. `exec` replaces this shell, so the outer
-# shell never pays the cost of sourcing rc / initializing pyenv/jenv/etc — the
-# inner shell (inside tmux) is the one that matters. Must be above the p10k
-# instant prompt block: tmux requires a real TTY.
+# Auto-attach tmux only when appropriate. `exec` replaces this shell, so the
+# outer shell never pays the cost of sourcing rc — the inner shell (inside
+# tmux) is the one that matters. Must be above the p10k instant prompt block:
+# tmux requires a real TTY.
+#
+# Logic:
+#   1. No "main" session → create and attach
+#   2. "main" session exists but no client attached → attach
+#   3. "main" session exists with clients attached → do nothing (plain shell)
 #
 # In case of terminal not opening, remove `exec` to see the underlying error
 if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
-  exec tmux new-session -A -s main
+  if tmux has-session -t main 2>/dev/null; then
+    if [[ -z "$(tmux list-clients -t main 2>/dev/null)" ]]; then
+      exec tmux attach-session -t main
+    fi
+  else
+    exec tmux new-session -s main
+  fi
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
