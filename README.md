@@ -63,7 +63,7 @@ Pick the profile that matches the machine:
 What `./install` does, in order:
 
 1. Initializes `~/.gitconfig` from `git/.gitconfig.example`, prompting for
-   your Git author name and email (`init_git_setup.sh`).
+   your Git author name and email (`git/pre-setup`).
 2. Installs Homebrew if missing (`homebrew/install`).
 3. Runs `brew bundle` for the `basic` profile, then installs/sets up each
    `basic` package.
