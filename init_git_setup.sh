@@ -7,6 +7,20 @@ GITCONFIG_SYMLINK="git/.gitconfig.example"
 GITCONFIG_TARGET="git/.gitconfig"
 HOME_GITCONFIG="$HOME/.gitconfig"
 
+# Detect OS and set appropriate credential helper
+OS="$(uname -s)"
+case "$OS" in
+    Darwin)
+        CREDENTIAL_HELPER="osxkeychain"
+        ;;
+    Linux)
+        CREDENTIAL_HELPER="cache"
+        ;;
+    *)
+        CREDENTIAL_HELPER="cache"
+        ;;
+esac
+
 # Confirm before continuing if a home git config already exists
 if [ -f "$HOME_GITCONFIG" ]; then
     user "WARNING: $HOME_GITCONFIG already exists."
@@ -42,7 +56,7 @@ read -p "Author Email: " git_user_email
 # Fill placeholders using a temporary file for macOS/Linux sed compatibility
 TMP_FILE=$(mktemp)
 
-sed -e "s/AUTHOR NAME/$git_user_name/" -e "s/AUTHOR EMAIL/$git_user_email/" "$GITCONFIG_TARGET" > "$TMP_FILE" && mv "$TMP_FILE" "$GITCONFIG_TARGET"
+sed -e "s/AUTHOR NAME/$git_user_name/" -e "s/AUTHOR EMAIL/$git_user_email/" -e "s/CREDENTIAL HELPER/$CREDENTIAL_HELPER/" "$GITCONFIG_TARGET" > "$TMP_FILE" && mv "$TMP_FILE" "$GITCONFIG_TARGET"
 
 if [ $? -eq 0 ]; then
     success "Successfully updated $GITCONFIG_TARGET with your information."
