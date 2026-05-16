@@ -1,10 +1,11 @@
 #!/bin/bash
 
+DOTFILES_ROOT="${DOTFILES_ROOT:-"$(cd "$(dirname "$0")/.." && pwd -P)"}"
 source "$DOTFILES_ROOT/print_helper"
 
 # Git config template and generated files
-GITCONFIG_SYMLINK="git/.gitconfig.example"
-GITCONFIG_TARGET="git/.gitconfig"
+GITCONFIG_SYMLINK="$DOTFILES_ROOT/git/.gitconfig.example"
+GITCONFIG_TARGET="$DOTFILES_ROOT/git/.gitconfig"
 HOME_GITCONFIG="$HOME/.gitconfig"
 
 # Detect OS and set appropriate credential helper
@@ -64,3 +65,17 @@ if [ $? -eq 0 ]; then
 else
     fail "Error updating $GITCONFIG_TARGET."
 fi
+
+# SSH key setup
+SSH_KEY="$HOME/.ssh/id_ed25519"
+SSH_EMAIL="${git_user_email:-"$(git config user.email 2>/dev/null)"}"
+if [ ! -f "$SSH_KEY" ]; then
+    info "No SSH key found. Generating one..."
+    mkdir -p "$HOME/.ssh"
+    ssh-keygen -t ed25519 -C "$SSH_EMAIL" -f "$SSH_KEY" -N ""
+    success "SSH key generated at $SSH_KEY"
+fi
+
+echo ""
+info "Add the following SSH key to GitHub (https://github.com/settings/keys):"
+cat "$SSH_KEY.pub"
