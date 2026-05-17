@@ -10,6 +10,8 @@ Look for:
 - Performance issues
 - Premature optimizations that makes the code more difficult to read
 - Opportunities to make the code simpler and easier to understand
+- Use Pull Request description and other comments as extra context about
+    the changes.
 
 ## Output
 
