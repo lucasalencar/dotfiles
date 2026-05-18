@@ -24,6 +24,9 @@ get_target_dir() {
     gemini)
       echo "$HOME/.gemini/prompts"
       ;;
+    opencode)
+      echo "$HOME/.config/opencode/skills"
+      ;;
   esac
 }
 
@@ -76,7 +79,7 @@ if [ -z "$1" ]; then
   info "Auto-detecting installed agents..."
 
   detected=()
-  for agent in claude cursor gemini; do
+  for agent in claude cursor gemini opencode; do
     if is_agent_installed "$agent"; then
       detected+=("$agent")
     fi
@@ -84,7 +87,7 @@ if [ -z "$1" ]; then
 
   if [ ${#detected[@]} -eq 0 ]; then
     echo "No agents detected. Install manually with: $0 <agent>"
-    echo "Available agents: claude, cursor, gemini"
+    echo "Available agents: claude, cursor, gemini, opencode"
     exit 1
   fi
 
@@ -97,18 +100,18 @@ else
   AGENT="$1"
 
   case "$AGENT" in
-    claude|cursor|gemini)
+    claude|cursor|gemini|opencode)
       install_for_agent "$AGENT"
       ;;
     all)
       info "Installing for all agents..."
-      for agent in claude cursor gemini; do
+      for agent in claude cursor gemini opencode; do
         install_for_agent "$agent"
       done
       ;;
     *)
       echo "Unknown agent: $AGENT"
-      echo "Available agents: claude, cursor, gemini, all"
+      echo "Available agents: claude, cursor, gemini, opencode, all"
       exit 1
       ;;
   esac
