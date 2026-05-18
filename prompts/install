@@ -19,7 +19,7 @@ get_target_dir() {
       echo "$HOME/.claude/skills"
       ;;
     cursor)
-      echo "$HOME/.cursor/prompts"
+      echo "$HOME/.cursor/skills"
       ;;
     gemini)
       echo "$HOME/.gemini/prompts"
@@ -28,6 +28,21 @@ get_target_dir() {
       echo "$HOME/.config/opencode/skills"
       ;;
   esac
+}
+
+# Function to install a skill for a specific agent
+install_skill() {
+  local skill="$1"
+  local target_dir="$2"
+  local agent="$3"
+  local skill_name
+  skill_name=$(basename "$skill")
+
+  if [ "$INSTALL_METHOD" = "cp" ]; then
+    cp -r "$skill" "$target_dir/$skill_name"
+  else
+    ln -sfn "$skill" "$target_dir/$skill_name"
+  fi
 }
 
 # Function to install prompts for a specific agent
@@ -42,12 +57,7 @@ install_for_agent() {
   local count=0
   for skill in "$SKILLS_SOURCE"/*; do
     if [ -d "$skill" ]; then
-      skill_name=$(basename "$skill")
-      if [ "$INSTALL_METHOD" = "cp" ]; then
-        cp -r "$skill" "$target_dir/$skill_name"
-      else
-        ln -sfn "$skill" "$target_dir/$skill_name"
-      fi
+      install_skill "$skill" "$target_dir" "$agent"
       count=$((count + 1))
     fi
   done
