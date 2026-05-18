@@ -16,6 +16,15 @@ description: Commit (if necessary) and push changes to origin branch
 
 - Avoid commiting and pushing every unstaged file. Use the chat context to decide
     which changes the user wants to commit.
+- Prefer small, focused commits over large ones. When the working tree contains
+    multiple distinct changes, split them into separate commits — one per logical
+    unit of work — instead of bundling everything into a single big commit.
+- Each commit must be atomic and self-contained: it should represent one coherent
+    change, leave the project in a working state (not broken mid-refactor), and
+    have a message that clearly explains what that specific change does and why.
+- The commit history should read as a sensible progression of atomic steps. If
+    you find yourself writing a commit message with "and" joining unrelated
+    changes, that's a signal to split it into multiple commits.
 
 ## Output instructions
 
