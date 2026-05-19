@@ -12,4 +12,7 @@
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.inlayHints.parameterTypes": false,
   "pyright.inlayHints.variableTypes": false,
+  "markdownlint.config": {
+    "MD013": false
+  },
 }
