@@ -3,136 +3,58 @@ name: assess-change-impact
 description: Analyze a code change for non-obvious ripple effects across the rest of the system. Use after AI-generated edits, before merge, to surface semantic shifts, symmetric code paths, test fixture antipatterns, and latent bugs hidden behind a change that looks local. Language- and project-agnostic. Trigger when the user asks for "impact analysis", "what else could break", "did this change anything else", "review the blast radius of these changes", or wants a pre-merge safety check on AI-generated edits.
 ---
 
-## When to use
+## Goal
 
-After a non-trivial code change has been made on the current branch (typically by AI), and before the change is merged or rolled out. Use as a pre-merge gate even when tests pass — the change may have shifted semantics in ways the tests do not cover.
+Given a code change, identify what could break or behave differently in the rest of the system as a consequence — including effects the diff does not make obvious. The intended reader is someone about to merge or deploy: they want a short, specific list of risks they should look at, not a procedural report.
 
-**Use for:** parsers/serializers, shared utilities, discriminator handling, error paths, public APIs, anything called from multiple sites, anything touching wire formats or persisted data.
+**Use for:** non-trivial changes, especially anything touching shared utilities, parsers/serializers, dispatching logic, wire formats, persisted data, or symbols called from multiple sites.
 
-**Skip for:** typo fixes in dead code, single-line config tweaks with obvious scope, changes confined to a single private function with one caller.
+**Skip for:** typo fixes in dead code, single-line config tweaks with obviously local scope, edits confined to a private function with one caller.
 
-## Inputs
+## Method
 
-- The diff to be analyzed. Default: `git diff <merge-base>..HEAD`. If the user gave a PR URL, use that PR's diff.
-- The codebase the change lives in. Use the project's search tools (`grep`/`rg`/IDE search) to verify claims — do not speculate about callsites or fixture origins.
+The agent decides what to investigate based on the actual change and codebase. There is no fixed checklist. The discipline is in **how** the investigation is done, not in covering a predefined list of items:
 
-## Methodology
+1. **Read the diff first, then form hypotheses about what could be affected.** Do not start by running a generic checklist — start by understanding what semantically changed and reasoning about who or what depends on that.
 
-Run each step explicitly. Do not skip — gaps here are how non-obvious bugs survive.
+2. **Verify, do not speculate.** Every claim about callers, dependencies, or invariants must be backed by a search, a file read, or a tool result. If something cannot be verified, say so explicitly — do not assert.
 
-### 1. Enumerate the semantic changes
+3. **Prefer specific over comprehensive.** A short list of concrete, verified risks beats a long list of possibilities. If a category turns up empty, say it turned up empty — do not pad.
 
-For each file in the diff, write down what changed in terms of **semantics**, not lines:
+4. **Think beyond the diff.** The change may have ripple effects in code the diff does not touch (callsites, sibling code paths with the same pattern, fixtures, snapshots, docs, monitoring queries, downstream consumers, persisted state, etc.). It is the agent's job to surface those.
 
-- New conditions accepted or rejected
-- New exceptions raised or swallowed
-- New side effects (logs, metrics, I/O, network)
-- Field/argument additions, removals, or type changes
-- Renamed symbols (functions, types, constants, strings used as keys/discriminators)
-- Behavior changes inside shared helpers
+5. **Distinguish blocking from informational.** Some findings should block the merge; others are follow-ups. Label them so the reader knows what to act on now.
 
-"Refactor with no behavior change" is a hypothesis. Verify it.
+## Common dimensions worth considering
 
-### 2. For every changed symbol, find every callsite
+Not a checklist — a starting menu. The agent should add, drop, or invent dimensions based on what the change actually touches. If the change involves a category not listed here, investigate it; if a listed category is irrelevant, skip it without comment.
 
-Use the project's search tools. For each callsite, ask:
+- **Semantic shifts:** what behavior changed, including refactors that claim "no behavior change" (verify the claim)
+- **Callers and consumers:** who depends on what changed, and whether their assumptions still hold
+- **Dispatching changes:** for any matching/routing/lookup that changed, what newly matches and what stopped matching, and whether real-world inputs land in those sets
+- **Symmetric code paths:** input parser vs output builder, reader vs writer, encoder vs decoder — do they still agree?
+- **Sibling code:** other handlers/adapters/modules with the same shape as the one changed — do they share the same latent bug, or the same fix opportunity?
+- **Tests and fixtures:** are fixtures derived from an authoritative source (upstream schema, captured real sample) or copied from the code under test? The latter can hide bugs on both sides.
+- **Production vs test paths:** feature flags, config gates, env-specific branches — does the test setup exercise the same path as production?
+- **Preserved invariants:** what should NOT have changed (API signatures, wire formats, error contracts, performance class, concurrency guarantees, resource lifecycle) — verify each.
+- **Cross-cutting concerns:** logging volume/level, metrics correctness, DB/migration safety, security (input validation, deserialization, authz), backward compatibility across rolling deploys, persisted data shape.
+- **Scope creep / latent bugs:** patterns the change reveals (or fixes) that may exist elsewhere in the codebase as separate, untouched instances.
 
-- Does the caller depend on the OLD behavior in a way the change breaks?
-- Does the caller now exercise a code path that did not exist before?
-
-Include: imports, string references (when the symbol is a route, event name, key), serialized representations (DB columns, API payloads, message queue formats), tests, fixtures, snapshot data, mock servers, documentation, monitoring queries.
-
-If a symbol is exported, check downstream packages/services that may consume it.
-
-### 3. Inventory "what newly matches" vs "what stopped matching"
-
-For any change that touches dispatching (pattern matches, if/elif chains, lookup tables, regexes, type unions, routing rules, switch statements):
-
-- List every input shape that was accepted before but now is NOT (loss of coverage)
-- List every input shape that is NOW accepted but was not before (new coverage)
-- For each, ask: is there real-world data that lands in that set?
-
-This catches "we fixed a typo in a case clause, but the typo was load-bearing in production data" bugs.
-
-### 4. Check symmetric and sibling code paths
-
-If the change is on one side of a data flow (e.g., parsing inbound payloads), check the matching code on the other side (e.g., constructing outbound payloads). Look for:
-
-- Input parser vs output builder for the same data shape — do they now disagree?
-- Sibling handlers/adapters with the same structure as the one changed — do they have the same latent bug the change just fixed?
-
-Asymmetries between input and output of the same data structure are often invisible until production.
-
-### 5. Check test fixtures and snapshots
-
-A test fixture built by copy-pasting from the production code under test is **load-bearing**, not authoritative. When the production code changes, the fixture moves with it and the test keeps passing without verifying anything.
-
-For every test that exercises the changed code:
-
-- Where do the fixture values come from? Upstream schema? Real captured sample? Or copied from the parser/serializer being tested?
-- If from the code under test: flag as risky — the same bug can hide on both sides.
-- For snapshot/golden files: same question. Was the snapshot re-validated against an authoritative source recently, or has it been ratcheting whatever the code outputs?
-
-### 6. Check production-vs-test code paths
-
-- Are there feature flags or config gates that change which code path runs?
-- Do tests exercise the same gate state as production? (Default-off feature being tested only as default-on is a common gap.)
-- Are there environment-specific code paths (dev/staging/prod, region, tenant) that may behave differently from the path the tests cover?
-
-### 7. Verify preserved invariants
-
-Explicitly state what should NOT have changed and verify each by reading the new code:
-
-- Public API signatures
-- Wire formats / serialized shapes
-- Error contracts (which exceptions a caller can see, error codes)
-- Performance characteristics (an O(n) operation should not have become O(n²))
-- Thread-safety / concurrency guarantees
-- Resource lifecycle (handles closed, transactions committed, locks released)
-
-### 8. Check cross-cutting concerns
-
-These are easy to forget because the diff often does not touch them directly:
-
-- **Logging**: log volume/level changes; sensitive data now logged
-- **Metrics**: any counter/histogram that now misses events or double-counts
-- **Database**: schema/migration safety, transaction boundaries, lock scope
-- **Security**: input validation, deserialization safety, authz/authn flow
-- **Performance**: new allocations, sync I/O on hot paths, N+1 patterns
-- **Backward compatibility**: rolling deploys, old clients hitting new servers and vice versa, persisted data written by old code being read by new code
-
-### 9. Identify what is out of scope but related
-
-A change often reveals a category of bugs (e.g., "this discriminator mismatch", "this missing null check", "this off-by-one") that exists in sibling code paths the diff does not touch. Note these as follow-ups — do not expand the PR to fix them, but record them so they are not lost.
+If the change touches something not in this list (e.g. a build system, a UI framework, an ML pipeline, a query optimizer), invent the relevant dimensions for that domain.
 
 ## Output
 
-Report findings in this structure. Empty sections are fine — write "none found" rather than deleting them, so the reader knows the step was performed.
+A short report. Reader should be able to act on each item in under a minute.
 
-### ✅ Confirmed clean
+- Group findings by severity. Suggested buckets: **blocking** (must address before merge), **medium** (worth a closer look, may become a follow-up), **low / hygiene** (nice to fix, not urgent), **preserved invariants** (explicit confirmation of what still holds). Adapt the buckets to the change.
+- For each finding: state the risk, cite specific files/symbols/lines, and propose an action.
+- Order by blast radius, not by where in the diff the issue surfaces.
+- End with a short list of suggested follow-ups, ranked by ROI, marking which are blocking vs which can become tickets.
+- Match the language the user used; default English.
 
-What was checked and came back safe. Be specific: "No remaining callers of the old symbol anywhere in the repo (searched: <pattern>)."
+## Anti-patterns to avoid
 
-### ⚠️ Medium-severity risks
-
-Things that warrant a closer look or a follow-up. For each: what the risk is, where it lives (file/symbol), suggested action.
-
-### 🟡 Low-severity / hygiene
-
-Not bugs, but reduce future maintainability or hide other bugs (stale names, duplicated fixtures, missing warnings, etc.).
-
-### 🟢 Preserved invariants
-
-Explicit confirmation that key invariants (API signatures, wire formats, error contracts, performance, concurrency) still hold.
-
-### Suggested follow-ups
-
-Ranked by ROI. Distinguish "block this PR" from "open a follow-up ticket".
-
-## Output rules
-
-- Cite specific files, lines, or symbols. Vague findings ("might affect callers") are noise — verify or drop.
-- Order findings by blast radius, not by where they appear in the diff.
-- If you cannot verify something by reading the code, say so explicitly — do not assert.
-- Match the language used by the user; default English.
-- Keep the report tight. A reviewer should be able to act on each finding in under a minute.
+- Padding the report with generic possibilities ("might affect performance", "could have security implications") that were not actually investigated
+- Citing dimensions that do not apply to the change just to show coverage
+- Asserting things about the codebase that were not verified by a tool call
+- Producing a long, narrative document when a tight list would serve the reader better
