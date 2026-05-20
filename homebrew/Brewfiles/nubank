@@ -1,6 +1,6 @@
 # Apps
 cask 'arc'
-cask 'google-chrome'
+#cask 'google-chrome'
 cask 'meetingbar'
 
 # Infosec tools
