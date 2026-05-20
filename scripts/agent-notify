@@ -1,8 +1,11 @@
 #!/bin/bash
 # agent-notify: A generic notification wrapper for AI agents (Gemini, Claude, etc.)
-# Usage: <json_input> | agent-notify "Agent Name"
+# Usage: <json_input> | agent-notify "Agent Name" ["fallback message"]
+# The fallback message is used when the stdin JSON has no .message field
+# (e.g. for Stop, PreToolUse hooks that don't carry a notification message).
 
 AGENT_NAME="$1"
+FALLBACK_MSG="$2"
 
 if [ -z "$AGENT_NAME" ]; then
   echo "agent-notify: missing agent name argument" >&2
@@ -11,12 +14,13 @@ fi
 
 INPUT=$(cat)
 
-TYPE=$(echo "$INPUT" | jq -r .notification_type)
+TYPE=$(echo "$INPUT" | jq -r '.notification_type // empty')
 
 # Skip auth success or other noise
 [ "$TYPE" = "auth_success" ] && exit 0
 
 MSG=$(echo "$INPUT" | jq -r ".message // empty")
+[ -z "$MSG" ] && MSG="$FALLBACK_MSG"
 [ -z "$MSG" ] && exit 0
 
 WIN=$(tmux display-message -t "$TMUX_PANE" -p "#I" 2>/dev/null)

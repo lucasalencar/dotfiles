@@ -1,8 +1,23 @@
 {
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-notify-window"
+          },
+          {
+            "type": "command",
+            "command": "agent-notify 'Claude Code' 'asked a question'"
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
-        "matcher": "",
+        "matcher": "permission_prompt",
         "hooks": [
           {
             "type": "command",
@@ -11,6 +26,33 @@
           {
             "type": "command",
             "command": "agent-notify 'Claude Code'"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-notify-window"
+          },
+          {
+            "type": "command",
+            "command": "agent-notify 'Claude Code'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-notify-window"
+          },
+          {
+            "type": "command",
+            "command": "agent-notify 'Claude Code' 'done'"
           }
         ]
       }
