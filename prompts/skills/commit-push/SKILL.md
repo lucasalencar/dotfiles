@@ -25,6 +25,13 @@ description: Commit (if necessary) and push changes to origin branch
 - The commit history should read as a sensible progression of atomic steps. If
     you find yourself writing a commit message with "and" joining unrelated
     changes, that's a signal to split it into multiple commits.
+- **A single file may contain multiple unrelated changes.** Do not assume "one
+    file = one commit". Inspect each modified file's diff (e.g. `git diff <file>`)
+    and look for distinct logical units — unrelated edits in different regions of
+    the same file must be split into separate commits, one per logical change.
+    Use `git add -p` (patch mode) to stage hunks individually when you need to
+    separate changes inside the same file. If two edits in the same file belong
+    to different iterations or different intents, they belong in different commits.
 
 ## Output instructions
 
