@@ -1,2 +1,6 @@
 git:
   fetchAll: false
+os:
+  edit: '$HOME/.dotfiles/git/lazygit-open {{filename}}'
+  editAtLine: 'LAZYGIT_LINE={{line}} $HOME/.dotfiles/git/lazygit-open {{filename}}'
+  editAtLineAndWait: 'nvim +{{line}} -- "{{filename}}"'
