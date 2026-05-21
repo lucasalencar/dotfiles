@@ -1,0 +1,25 @@
+#!/bin/bash
+# Open a file from lazygit. If running inside nvim's terminal (NVIM env set),
+# open in the parent nvim session and close the lazygit floating window.
+# Otherwise, launch nvim normally.
+#
+# lazygit splits unquoted template values on whitespace, so accept the
+# filename as all positional args joined with a single space.
+# Optional line number comes via the LAZYGIT_LINE env var.
+
+file="$*"
+line="$LAZYGIT_LINE"
+
+if [ -n "$NVIM" ]; then
+  nvim --server "$NVIM" --remote-expr \
+    "execute('close | edit '.fnameescape(\"${file//\"/\\\"}\"))" >/dev/null
+  if [ -n "$line" ]; then
+    nvim --server "$NVIM" --remote-send ":${line}<CR>"
+  fi
+else
+  if [ -n "$line" ]; then
+    exec nvim +"$line" -- "$file"
+  else
+    exec nvim -- "$file"
+  fi
+fi
