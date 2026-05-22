@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/helpers"
+
+run_required_step "Setting up docker" stow docker
