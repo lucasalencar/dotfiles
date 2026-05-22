@@ -20,6 +20,15 @@ printf " \033[0;37m%s\033[0m" "$short_dir"
 
 if [ -n "$git_branch" ]; then
   printf " \033[0;33m(%s)\033[0m" "$git_branch"
+
+  diff_stats=$(git -C "$cwd" --no-optional-locks diff HEAD --shortstat 2>/dev/null)
+  added=$(echo "$diff_stats" | grep -oE '[0-9]+ insertion' | grep -oE '[0-9]+')
+  removed=$(echo "$diff_stats" | grep -oE '[0-9]+ deletion' | grep -oE '[0-9]+')
+  added=${added:-0}
+  removed=${removed:-0}
+  if [ "$added" != "0" ] || [ "$removed" != "0" ]; then
+    printf " \033[0;32m+%s\033[0m \033[0;31m-%s\033[0m" "$added" "$removed"
+  fi
 fi
 
 if [ -n "$model" ]; then
