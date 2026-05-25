@@ -12,6 +12,9 @@
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.inlayHints.parameterTypes": false,
   "pyright.inlayHints.variableTypes": false,
+  "python.analysis.useLibraryCodeForTypes": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.autoSearchPaths": true,
   "markdownlint.config": {
     "MD013": false
   },
