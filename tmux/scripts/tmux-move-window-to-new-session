@@ -1,0 +1,31 @@
+#!/bin/bash
+# Move a window into a new (or existing) tmux session.
+#
+# Usage: tmux-move-window-to-new-session <session-name> [window-id]
+#   <session-name>: name of the target session (created if missing)
+#   [window-id]:    optional window id (e.g. @12). Defaults to current window.
+
+set -e
+
+session_name="$1"
+window_id="${2:-$(tmux display-message -p '#{window_id}')}"
+
+if [ -z "$session_name" ]; then
+  tmux display-message "move-window: session name required"
+  exit 1
+fi
+
+if tmux has-session -t="$session_name" 2>/dev/null; then
+  tmux move-window -s "$window_id" -t "$session_name:"
+  tmux switch-client -t "$session_name"
+  exit 0
+fi
+
+# Create the new session detached with a placeholder window, move the target
+# window in, then drop the placeholder. Switch the client to follow.
+pane_path=$(tmux display-message -p -t "$window_id" '#{pane_current_path}')
+tmux new-session -d -s "$session_name" -c "$pane_path"
+placeholder_id=$(tmux display-message -p -t "$session_name:" '#{window_id}')
+tmux move-window -s "$window_id" -t "$session_name:"
+tmux kill-window -t "$placeholder_id"
+tmux switch-client -t "$session_name"
