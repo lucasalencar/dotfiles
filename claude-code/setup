@@ -5,3 +5,17 @@ source "$DOTFILES_ROOT/helpers"
 
 info "Setting up claude-code package"
 run_required_step "Stowing claude-code package" stow claude-code
+
+register_tmux_mcp() {
+  if ! command_exists claude; then
+    warning "claude CLI not found, skipping tmux MCP registration"
+    return 0
+  fi
+  if claude mcp get tmux >/dev/null 2>&1; then
+    info "tmux MCP already registered, skipping"
+    return 0
+  fi
+  claude mcp add -s user tmux -- npx -y --registry=https://registry.npmjs.org/ tmux-mcp --shell-type=zsh
+}
+
+run_optional_step "Registering tmux MCP server" register_tmux_mcp
