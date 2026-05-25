@@ -146,7 +146,7 @@ optional and only used when explicitly invoked.
 
 | Package      | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| `claude-code`| Claude Code settings, custom commands, hooks and prompts.    |
+| `claude-code`| Claude Code settings, custom commands, hooks and tmux MCP.   |
 | `gemini`     | Gemini CLI configuration.                                    |
 | `opencode`   | OpenCode agent configuration.                                |
 | `prompts`    | Reusable prompt snippets shared across tools.                |
