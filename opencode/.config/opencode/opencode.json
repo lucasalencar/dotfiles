@@ -11,5 +11,13 @@
   },
 
   "autoshare": false,
-  "autoupdate": true
+  "autoupdate": true,
+
+  "mcp": {
+    "tmux": {
+      "type": "local",
+      "command": ["npx", "-y", "--registry=https://registry.npmjs.org/", "tmux-mcp", "--shell-type=zsh"],
+      "enabled": true
+    }
+  }
 }
