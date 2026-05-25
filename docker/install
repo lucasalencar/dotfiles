@@ -3,4 +3,4 @@
 source "$DOTFILES_ROOT/print_helper"
 
 info "Installing Docker and Colima"
-brew install colima docker docker-compose
+brew install colima docker docker-compose docker-buildx
