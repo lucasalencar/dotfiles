@@ -21,7 +21,7 @@ if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
       exec tmux attach-session -t main
     fi
   else
-    exec tmux new-session -s main
+    exec tmux new-session -s main -c "$HOME"
   fi
 fi
 

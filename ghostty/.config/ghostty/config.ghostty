@@ -18,6 +18,11 @@ mouse-hide-while-typing = true
 # I use tmux, its not a problem closing the window
 confirm-close-surface = false
 
+# Start new windows in $HOME instead of inheriting cwd (which can be `/` when
+# launched from Dock/Finder). Ensures the auto-created tmux `main` session
+# starts in a sane directory.
+working-directory = home
+
 # Treat the macOS Option key as Alt so vim/tmux <M-...> mappings work.
 # Trade-off: lose Option-based macOS character entry (e.g. option+e for ´).
 macos-option-as-alt = true
