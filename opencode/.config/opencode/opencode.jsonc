@@ -1,6 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "monokai",
 
   "plugin": [
     "{HOME}/.dotfiles/opencode/.config/opencode/plugins/notification.ts"
