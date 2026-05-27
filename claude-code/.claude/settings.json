@@ -81,13 +81,16 @@
     "atlassian@claude-plugins-official": true,
     "glean-mcp@nubank-ai-agents-plugins": true,
     "actions-eng-management@nubank-ai-agents-plugins": true,
-    "tmux-agent-sidebar@hiroppy": true
+    "tmux-agent-sidebar@hiroppy": true,
+    "isa@nubank-ai-agents-plugins": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "isa@nubank-ai-agents-plugins-tmp": true
   },
   "extraKnownMarketplaces": {
     "nubank-ai-agents-plugins": {
       "source": {
-        "source": "github",
-        "repo": "nubank/ai-agents-plugins"
+        "source": "git",
+        "url": "git@github.com:nubank/ai-agents-plugins.git"
       },
       "autoUpdate": true
     },
@@ -97,6 +100,12 @@
         "path": "/Users/lucas.alencar/.tmux/plugins/tmux-agent-sidebar"
       },
       "autoUpdate": true
+    },
+    "nubank-ai-agents-plugins-tmp": {
+      "source": {
+        "source": "git",
+        "url": "git@github.com:nubank/ai-agents-plugins-tmp.git"
+      }
     }
   },
   "effortLevel": "medium",
