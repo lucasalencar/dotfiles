@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# Resolves the display label for a tmux window based on:
+#   1. Manual override (@label + @label-path), discarded if pane path moved.
+#   2. Per-session strategy (@window-strategy), or default by session name:
+#        - "main"  -> path
+#        - other   -> repo-command
+#
+# Usage: tmux-window-label <window_id>
+
+set -u
+
+window_id="${1:?usage: tmux-window-label <window_id>}"
+
+# Active pane in the window
+pane_id=$(tmux list-panes -t "$window_id" -F '#{?pane_active,#{pane_id},}' 2>/dev/null | tr -d '\n')
+[ -z "$pane_id" ] && exit 0
+
+# Current path + foreground command of the active pane
+IFS='|' read -r path cmd < <(tmux display -p -t "$pane_id" '#{pane_current_path}|#{pane_current_command}' 2>/dev/null)
+[ -z "${path:-}" ] && exit 0
+
+basename="${path##*/}"
+
+# Manual override
+label=$(tmux show -wqv -t "$window_id" @label 2>/dev/null)
+if [ -n "$label" ]; then
+  label_path=$(tmux show -wqv -t "$window_id" @label-path 2>/dev/null)
+  if [ "$label_path" = "$path" ]; then
+    printf '%s' "$label"
+    exit 0
+  fi
+  # Path moved — discard override and fall through
+  tmux set -wu -t "$window_id" @label 2>/dev/null
+  tmux set -wu -t "$window_id" @label-path 2>/dev/null
+fi
+
+# Strategy: explicit @window-strategy, else default by session name
+strategy=$(tmux show -qv -t "$window_id" @window-strategy 2>/dev/null)
+if [ -z "$strategy" ]; then
+  session=$(tmux display -p -t "$window_id" '#{session_name}' 2>/dev/null)
+  if [ "$session" = "main" ]; then
+    strategy="path"
+  else
+    strategy="repo-command"
+  fi
+fi
+
+case "$strategy" in
+  path)
+    printf '%s' "$basename"
+    ;;
+  repo-command)
+    case "$cmd" in
+      zsh|bash|fish|sh|""|-zsh|-bash)
+        printf '%s' "$basename"
+        ;;
+      *)
+        printf '%s' "${basename} - ${cmd}" | cut -c1-22
+        ;;
+    esac
+    ;;
+  *)
+    printf '%s' "$basename"
+    ;;
+esac
