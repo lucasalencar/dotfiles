@@ -15,3 +15,10 @@ The dotfiles are organized into different profiles:
 
 - Maintain package list from README.md updated with the newly or removed
     packages.
+- When creating or modifying configuration files for any tool, prefer
+    placing them inside this dotfiles repo instead of directly in local
+    config folders (e.g. `~/.config/`, `~/.claude/`, `~/.local/`, etc.).
+    Files here should be symlinked to their expected locations via stow.
+    Before creating a config file, check if a package for that tool already
+    exists in this repo. If it does not, ask whether to create one before
+    proceeding.
