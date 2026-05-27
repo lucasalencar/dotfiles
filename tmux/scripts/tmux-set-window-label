@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Sets or clears the manual window-label override used by tmux-window-label.
+#
+# Usage: tmux-set-window-label <window_id> <pane_current_path> <label>
+#   - empty <label> clears the override
+#   - non-empty <label> stores it together with the current pane path so the
+#     override is auto-discarded when the path moves.
+
+set -u
+
+window_id="${1:?usage: tmux-set-window-label <window_id> <path> <label>}"
+path="${2:-}"
+label="${3:-}"
+
+if [ -z "$label" ]; then
+  tmux set -wu -t "$window_id" @label 2>/dev/null
+  tmux set -wu -t "$window_id" @label-path 2>/dev/null
+else
+  tmux set -w -t "$window_id" @label "$label"
+  tmux set -w -t "$window_id" @label-path "$path"
+fi
+
+tmux refresh-client -S
