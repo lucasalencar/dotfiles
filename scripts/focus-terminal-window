@@ -1,0 +1,24 @@
+#!/bin/bash
+# focus-terminal-window: Brings the terminal window for a given tmux session to the foreground.
+# Requires set-titles on + set-titles-string "#S" in tmux.conf so each terminal window
+# title reflects the session name, enabling reliable window identification via osascript.
+# Usage: focus-terminal-window "session-name"
+
+SESSION="$1"
+TERMINAL_PROCESS="${TERMINAL_APP_NAME:-ghostty}"
+
+[ -z "$SESSION" ] && exit 0
+
+osascript <<SCRIPT
+tell application "System Events"
+  tell process "$TERMINAL_PROCESS"
+    repeat with w in windows
+      if name of w contains "$SESSION" then
+        perform action "AXRaise" of w
+        set frontmost to true
+        exit repeat
+      end if
+    end repeat
+  end tell
+end tell
+SCRIPT
