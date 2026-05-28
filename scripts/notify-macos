@@ -1,14 +1,18 @@
 #!/bin/bash
 
 # Sends a macOS notification via terminal-notifier.
-# Usage: notify-macos "Title" "Message" ["on-click-command"] ["group-id"]
-# Example: notify-macos "Build" "Done!" "tmux select-window -t 2" "tmux-window-2"
+# Usage: notify-macos "Title" "Message" ["on-click-command"] ["group-id"] ["terminal-session"]
+# terminal-session: tmux session name — when provided, clicking the notification brings
+#                   the terminal window for that session to the foreground.
+# Example: notify-macos "Build" "Done!" "tmux select-window -t main:3" "tmux-window-main-3" "main"
 
 TITLE="${1:-Notification}"
 MESSAGE="${2:-}"
 ON_CLICK="${3:-}"
 GROUP="${4:-}"
+TERMINAL_SESSION="${5:-}"
 TERMINAL_BUNDLE_ID="${TERMINAL_BUNDLE_ID:-com.mitchellh.ghostty}"
+SCRIPTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 if [ -z "$MESSAGE" ]; then
   exit 0
@@ -19,10 +23,17 @@ if [ -n "$GROUP" ]; then
   GROUP_FLAG=(-group "$GROUP")
 fi
 
-if [ -n "$ON_CLICK" ]; then
+EXECUTE_CMD=""
+[ -n "$ON_CLICK" ] && EXECUTE_CMD="$ON_CLICK"
+if [ -n "$TERMINAL_SESSION" ]; then
+  FOCUS_CMD="$SCRIPTS_DIR/focus-terminal-window '$TERMINAL_SESSION'"
+  EXECUTE_CMD="${EXECUTE_CMD:+$EXECUTE_CMD; }$FOCUS_CMD"
+fi
+
+if [ -n "$EXECUTE_CMD" ]; then
   /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
     -activate "$TERMINAL_BUNDLE_ID" \
-    -execute "export PATH='/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin'; $ON_CLICK" \
+    -execute "export PATH='/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin'; $EXECUTE_CMD" \
     "${GROUP_FLAG[@]}" >/dev/null 2>&1
 else
   /opt/homebrew/bin/terminal-notifier -title "$TITLE" -message "$MESSAGE" \
