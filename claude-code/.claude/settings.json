@@ -88,7 +88,8 @@
     "tmux-agent-sidebar@hiroppy": true,
     "isa@nubank-ai-agents-plugins": true,
     "pyright-lsp@claude-plugins-official": true,
-    "isa@nubank-ai-agents-plugins-tmp": true
+    "isa@nubank-ai-agents-plugins-tmp": true,
+    "isa@nubank-ai-agents-plugins-eng": true
   },
   "extraKnownMarketplaces": {
     "nubank-ai-agents-plugins": {
@@ -109,6 +110,24 @@
       "source": {
         "source": "git",
         "url": "git@github.com:nubank/ai-agents-plugins-tmp.git"
+      }
+    },
+    "nubank-ai-agents-plugins-eng": {
+      "source": {
+        "source": "git",
+        "url": "git@github.com:nubank/ai-agents-plugins-eng.git"
+      }
+    },
+    "nubank-ai-agents-plugins-product": {
+      "source": {
+        "source": "git",
+        "url": "git@github.com:nubank/ai-agents-plugins-product.git"
+      }
+    },
+    "nubank-ai-agents-plugins-analytics": {
+      "source": {
+        "source": "git",
+        "url": "git@github.com:nubank/ai-agents-plugins-analytics.git"
       }
     }
   },
