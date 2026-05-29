@@ -18,4 +18,17 @@ register_tmux_mcp() {
   claude mcp add -s user tmux -- npx -y --registry=https://registry.npmjs.org/ tmux-mcp --shell-type=zsh
 }
 
+register_playwright_mcp() {
+  if ! command_exists claude; then
+    warning "claude CLI not found, skipping playwright MCP registration"
+    return 0
+  fi
+  if claude mcp get playwright >/dev/null 2>&1; then
+    info "playwright MCP already registered, skipping"
+    return 0
+  fi
+  claude mcp add -s user playwright -- npx -y @playwright/mcp@latest
+}
+
 run_optional_step "Registering tmux MCP server" register_tmux_mcp
+run_optional_step "Registering playwright MCP server" register_playwright_mcp
