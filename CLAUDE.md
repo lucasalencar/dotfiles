@@ -22,5 +22,6 @@ The dotfiles are organized into different profiles:
     Before creating a config file, check if a package for that tool already
     exists in this repo. If it does not, ask whether to create one before
     proceeding.
+- Commit and push only when asked.
 - It's fine to commit and push directly to `master` in this repo — that's
     the normal workflow here. No need to ask about creating a branch first.
