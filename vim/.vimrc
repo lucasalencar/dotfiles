@@ -55,7 +55,6 @@ Plug 'christoomey/vim-tmux-navigator'
 """ GENERAL LANG TOOLING
 Plug 'ervandew/supertab' " Complete what is being written with <tab>
 "Plug 'w0rp/ale' " Linters
-Plug 'github/copilot.vim' " Add IA copilot to replace my job
 Plug 'jiangmiao/auto-pairs' " When opening parenthesis it closes automatically
 
 if has('nvim')
