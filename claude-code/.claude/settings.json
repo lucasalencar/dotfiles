@@ -31,19 +31,6 @@
             "command": "agent-notify 'Claude Code'"
           }
         ]
-      },
-      {
-        "matcher": "idle_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-notify-window"
-          },
-          {
-            "type": "command",
-            "command": "agent-notify 'Claude Code'"
-          }
-        ]
       }
     ],
     "Stop": [
@@ -133,5 +120,6 @@
   },
   "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "auto"
+  "theme": "auto",
+  "model": "sonnet"
 }
