@@ -5,5 +5,5 @@
 
 [ "$(uname)" != "Darwin" ] && exit 0
 
-WIN=$(tmux display-message -p "#I" 2>/dev/null)
-[ -n "$WIN" ] && /opt/homebrew/bin/terminal-notifier -remove "tmux-window-$WIN" >/dev/null 2>&1
+GROUP_ID=$(tmux display-message -p "tmux-window-#{session_name}-#I" 2>/dev/null)
+[ -n "$GROUP_ID" ] && /opt/homebrew/bin/terminal-notifier -remove "$GROUP_ID" >/dev/null 2>&1
