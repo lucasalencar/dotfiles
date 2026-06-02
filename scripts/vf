@@ -1,13 +1,6 @@
 #!/bin/bash
 
-# Check if the argument is "--hidden" or "-H" to search hidden files
-if [[ "$1" == "--hidden" || "$1" == "-h" ]]; then
-  SEARCH_OPTION="-H"
-else
-  SEARCH_OPTION=""
-fi
-
-FILE=$(fd -t f -c always $SEARCH_OPTION | fzf --ansi --preview "bat --color=always --style=numbers --line-range=:500 {}")
+FILE=$(fd -t f -c always --hidden | fzf --ansi --preview "bat --color=always --style=numbers --line-range=:500 {}")
 
 if [ "$FILE" ]
 then
