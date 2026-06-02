@@ -48,6 +48,10 @@
           {
             "type": "command",
             "command": "cp ~/.claude/settings.json ~/.dotfiles/claude-code/.claude/settings.json"
+          },
+          {
+            "type": "command",
+            "command": "cp ~/.claude/.mcp.json ~/.dotfiles/claude-code/.claude/.mcp.json 2>/dev/null || true"
           }
         ]
       }
@@ -70,7 +74,7 @@
   },
   "enabledPlugins": {
     "slack@claude-plugins-official": true,
-    "atlassian@claude-plugins-official": true,
+    "atlassian@claude-plugins-official": false,
     "glean-mcp@nubank-ai-agents-plugins": true,
     "actions-eng-management@nubank-ai-agents-plugins": true,
     "tmux-agent-sidebar@hiroppy": true,
