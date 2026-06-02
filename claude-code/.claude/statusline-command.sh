@@ -2,41 +2,39 @@
 
 input=$(cat)
 
-cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd')
-model=$(echo "$input" | jq -r '.model.display_name // empty')
-used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+cwd=$(echo "$input"    | jq -r '.workspace.current_dir // .cwd')
+model=$(echo "$input"  | jq -r '.model.display_name // empty')
+pct=$(echo "$input"    | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+cost=$(echo "$input"   | jq -r '.cost.total_cost_usd // empty')
 
-user=$(whoami)
-host=$(hostname -s)
+CYAN='\033[36m'; YELLOW='\033[33m'; GREEN='\033[32m'; RED='\033[31m'
+DIM='\033[2;37m'; RESET='\033[0m'
 
-# Shorten home directory to ~
+# --- Line 1: dir + git branch + diff stats ---
 short_dir="${cwd/#$HOME/\~}"
+printf " ${RESET}%s${RESET}" "$short_dir"
 
-# Git branch (skip optional locks)
 git_branch=$(git -C "$cwd" --no-optional-locks symbolic-ref --short HEAD 2>/dev/null)
-
-# Build status parts
-printf " \033[0;37m%s\033[0m" "$short_dir"
-
 if [ -n "$git_branch" ]; then
-  printf " \033[0;33m(%s)\033[0m" "$git_branch"
-
+  printf " ${YELLOW}(%s)${RESET}" "$git_branch"
   diff_stats=$(git -C "$cwd" --no-optional-locks diff HEAD --shortstat 2>/dev/null)
-  added=$(echo "$diff_stats" | grep -oE '[0-9]+ insertion' | grep -oE '[0-9]+')
-  removed=$(echo "$diff_stats" | grep -oE '[0-9]+ deletion' | grep -oE '[0-9]+')
-  added=${added:-0}
-  removed=${removed:-0}
-  if [ "$added" != "0" ] || [ "$removed" != "0" ]; then
-    printf " \033[0;32m+%s\033[0m \033[0;31m-%s\033[0m" "$added" "$removed"
-  fi
+  added=$(echo "$diff_stats"   | grep -oE '[0-9]+ insertion' | grep -oE '[0-9]+')
+  removed=$(echo "$diff_stats" | grep -oE '[0-9]+ deletion'  | grep -oE '[0-9]+')
+  [ -n "$added" ] || [ -n "$removed" ] && \
+    printf " ${GREEN}+%s${RESET} ${RED}-%s${RESET}" "${added:-0}" "${removed:-0}"
 fi
+printf "\n"
 
-if [ -n "$model" ]; then
-  printf " \033[0;36m[%s]\033[0m" "$model"
-fi
+# --- Line 2: model | context bar | cost ---
+if   [ "$pct" -ge 80 ]; then bar_color="$RED"
+elif [ "$pct" -ge 51 ]; then bar_color="$YELLOW"
+else bar_color="$GREEN"; fi
 
-if [ -n "$used_pct" ]; then
-  printf " \033[0;35mctx:%s%%\033[0m" "$used_pct"
-fi
+filled=$((pct / 10)); empty=$((10 - filled))
+printf -v bar "%${filled}s"; printf -v pad "%${empty}s"
+bar="${bar// /█}${pad// /░}"
 
+printf " ${CYAN}✦ %s${RESET}" "$model"
+printf " ${DIM}|${RESET} ${bar_color}[%s] %s%%${RESET}" "$bar" "$pct"
+[ -n "$cost" ] && printf " ${DIM}|${RESET} ${YELLOW}\$%.4f${RESET}" "$cost"
 printf "\n"
