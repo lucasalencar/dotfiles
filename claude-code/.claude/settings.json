@@ -74,7 +74,6 @@
   },
   "enabledPlugins": {
     "slack@claude-plugins-official": true,
-    "atlassian@claude-plugins-official": false,
     "glean-mcp@nubank-ai-agents-plugins": true,
     "actions-eng-management@nubank-ai-agents-plugins": true,
     "tmux-agent-sidebar@hiroppy": true,
