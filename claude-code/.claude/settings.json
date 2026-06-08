@@ -46,11 +46,11 @@
           },
           {
             "type": "command",
-            "command": "cp ~/.claude/settings.json ~/.dotfiles/claude-code/.claude/settings.json"
+            "command": "cp -f ~/.claude/settings.json ~/.dotfiles/claude-code/.claude/settings.json"
           },
           {
             "type": "command",
-            "command": "cp ~/.claude/.mcp.json ~/.dotfiles/claude-code/.claude/.mcp.json 2>/dev/null || true"
+            "command": "cp -f ~/.claude/.mcp.json ~/.dotfiles/claude-code/.claude/.mcp.json 2>/dev/null || true"
           }
         ]
       }
