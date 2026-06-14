@@ -7,7 +7,7 @@ font-family = Menlo
 font-size = 14
 theme = Monokai Remastered
 
-macos-icon = retro
+macos-icon = microchip
 macos-titlebar-style = hidden
 window-padding-y = 10,10
 window-padding-x = 7,7
