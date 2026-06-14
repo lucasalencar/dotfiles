@@ -36,7 +36,6 @@ cask 'spotify'
 cask 'the-unarchiver'
 cask 'google-drive'
 cask 'nextcloud'
-cask 'send-to-kindle'
 cask 'eqmac'
 cask 'aqua-voice' # Dictation
 cask 'typewhisper/tap/typewhisper' # Dictation
