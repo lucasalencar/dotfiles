@@ -20,5 +20,5 @@ export PATH="$_SUDO_WRAPPER_DIR:$PATH"
 export HOMEBREW_NO_UPGRADE_QUIT_CASKS=1
 brew cu --all --yes
 brew update
-brew upgrade
+brew upgrade --yes
 brew cleanup
