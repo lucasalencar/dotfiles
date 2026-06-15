@@ -3,7 +3,7 @@ cask 'zen'
 cask 'whatsapp'
 cask 'telegram'
 cask 'stremio'
-cask 'tunnelbear'
+cask 'vlc'
 
 # Small tools without config
 brew 'heroku'
