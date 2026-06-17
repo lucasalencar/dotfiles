@@ -121,8 +121,7 @@
       }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
-  "theme": "auto",
-  "model": "sonnet[1m]"
+  "theme": "auto"
 }
