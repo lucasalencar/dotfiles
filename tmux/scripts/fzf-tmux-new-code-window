@@ -6,5 +6,5 @@ selected_dir=$(fzf_tmux_code_dir)
 
 if [ "$selected_dir" ]; then
   base_dir=$(resolve_code_home)
-  tmux new-window -a -c "$base_dir/$selected_dir"
+  tmux new-window -a -t '{end}' -c "$base_dir/$selected_dir"
 fi
