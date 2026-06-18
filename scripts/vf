@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE=$(fd -t f -c always --hidden | fzf --ansi --preview "bat --color=always --style=numbers --line-range=:500 {}")
+FILE=$(fd -t f -c always --hidden --exclude .git | fzf --ansi --preview "bat --color=always --style=numbers --line-range=:500 {}")
 
 if [ "$FILE" ]
 then
