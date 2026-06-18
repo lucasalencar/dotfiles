@@ -2,7 +2,7 @@
 cask 'arc'
 #cask 'google-chrome'
 cask 'meetingbar'
-cask 'google-cloud-sdk'
+cask 'gcloud-cli'
 
 # Infosec tools
 cask 'gpg-suite'
