@@ -21,17 +21,11 @@ IFS='|' read -r path cmd < <(tmux display -p -t "$pane_id" '#{pane_current_path}
 
 basename="${path##*/}"
 
-# Manual override
+# Manual override — persists until explicitly cleared
 label=$(tmux show -wqv -t "$window_id" @label 2>/dev/null)
 if [ -n "$label" ]; then
-  label_path=$(tmux show -wqv -t "$window_id" @label-path 2>/dev/null)
-  if [ "$label_path" = "$path" ]; then
-    printf '%s' "$label"
-    exit 0
-  fi
-  # Path moved — discard override and fall through
-  tmux set -wu -t "$window_id" @label 2>/dev/null
-  tmux set -wu -t "$window_id" @label-path 2>/dev/null
+  printf '%s' "$label"
+  exit 0
 fi
 
 # Strategy: explicit @window-strategy, else default by session name
