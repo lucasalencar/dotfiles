@@ -29,7 +29,7 @@
           },
           {
             "type": "command",
-            "command": "agent-notify 'Claude Code'"
+            "command": "jq -c '. + {message: \"waiting for your input\"}' | agent-notify 'Claude Code'"
           }
         ]
       }
