@@ -22,6 +22,21 @@ if [ -n "$git_branch" ]; then
   removed=$(echo "$diff_stats" | grep -oE '[0-9]+ deletion'  | grep -oE '[0-9]+')
   [ -n "$added" ] || [ -n "$removed" ] && \
     printf " ${GREEN}+%s${RESET} ${RED}-%s${RESET}" "${added:-0}" "${removed:-0}"
+  cache_key=$(printf "%s:%s" "$cwd" "$git_branch" | shasum | cut -c1-16)
+  cache_file="/tmp/claude-statusline-pr-${cache_key}"
+  cache_ttl=300
+  cache_valid=false
+  if [ -f "$cache_file" ]; then
+    mtime=$(stat -f %m "$cache_file" 2>/dev/null || stat -c %Y "$cache_file" 2>/dev/null)
+    [ $(( $(date +%s) - ${mtime:-0} )) -lt $cache_ttl ] && cache_valid=true
+  fi
+  if $cache_valid; then
+    pr_url=$(cat "$cache_file")
+  else
+    pr_url=$(cd "$cwd" && timeout 3 gh pr view --json url -q .url 2>/dev/null)
+    echo "$pr_url" > "$cache_file"
+  fi
+  [ -n "$pr_url" ] && printf " ${DIM}%s${RESET}" "$pr_url"
 fi
 printf "\n"
 
