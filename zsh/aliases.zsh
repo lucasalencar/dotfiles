@@ -39,4 +39,8 @@ alias vim="nvim"
 alias t="tmux"
 
 alias gs="gst"
-alias gdst="git diff --stat master HEAD" # Show number of lines changed for current branch
+
+gdls() {
+  local base=$(git rev-parse --abbrev-ref origin/HEAD 2>/dev/null | sed 's|origin/||' || echo master)
+  git diff --shortstat $(git merge-base HEAD $base)
+}
