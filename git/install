@@ -6,3 +6,4 @@ info "Installing Git and tools"
 brew install git gh
 brew tap jesseduffield/lazygit
 brew install lazygit
+brew install modem-dev/tap/hunk
