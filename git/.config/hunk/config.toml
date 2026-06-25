@@ -5,5 +5,5 @@ watch = false
 exclude_untracked = false
 line_numbers = true
 wrap_lines = false
-agent_notes = false
+agent_notes = true
 transparent_background = false
