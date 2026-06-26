@@ -2,12 +2,26 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "model": "haiku",
+  "model": "sonnet",
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-agent-state running 'Claude Code'"
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "AskUserQuestion",
         "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-agent-state waiting 'Claude Code'"
+          },
           {
             "type": "command",
             "command": "tmux-notify-window"
@@ -25,6 +39,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": "tmux-agent-state waiting 'Claude Code'"
+          },
+          {
+            "type": "command",
             "command": "tmux-notify-window"
           },
           {
@@ -34,9 +52,23 @@
         ]
       }
     ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-agent-state clear"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-agent-state idle 'Claude Code'"
+          },
           {
             "type": "command",
             "command": "tmux-notify-window"
@@ -122,7 +154,7 @@
       }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto"
 }
