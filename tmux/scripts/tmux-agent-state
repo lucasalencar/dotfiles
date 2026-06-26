@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# tmux-agent-state: writer compartilhado do status por-pane de coding agents.
+# Seta @pane_status (lido por tmux-agent-icon/tmux-agent-status) no pane do agente,
+# resolvido via $TMUX_PANE. Agente-agnóstico: chamado pelos hooks do Claude Code e
+# pelo plugin de notificação do OpenCode.
+#
+# Usage: tmux-agent-state <running|waiting|idle|error|clear> [agent_name]
+#   running -> ● ; waiting -> ◐ ; error -> ✕ ; idle -> ○ ; clear -> remove o ícone
+#
+# Para estados "vistos" (waiting/idle): se a janela do agente já é a janela ativa,
+# limpa em vez de setar (o usuário já está vendo ao vivo) — mesmo princípio do
+# tmux-notify-window.
+
+set -u
+[ -z "${TMUX:-}" ] && exit 0
+
+state="${1:?usage: tmux-agent-state <running|waiting|idle|error|clear> [agent_name]}"
+agent_name="${2:-}"
+
+# Resolve o pane onde este agente está rodando.
+pane="${TMUX_PANE:-}"
+[ -z "$pane" ] && pane=$(tmux display-message -p '#{pane_id}' 2>/dev/null)
+[ -z "$pane" ] && exit 0
+
+# A janela do agente é a que está em foco?
+win=$(tmux display-message -t "$pane" -p '#{window_id}' 2>/dev/null)
+active_win=$(tmux display-message -p '#{window_id}' 2>/dev/null)
+is_active=0
+[ -n "$win" ] && [ "$win" = "$active_win" ] && is_active=1
+
+case "$state" in
+  running|idle|error)
+    tmux set -p -t "$pane" @pane_status "$state"
+    ;;
+  waiting)
+    # Estado "visto": se você já está na janela, não mostra ícone.
+    # Grava "" (em vez de -u) para forçar o escopo de pane e não reexpor
+    # valores herdados de sessão/janela; -u também emite "invalid option"
+    # do servidor ao cliente, que 2>/dev/null não suprime.
+    if [ "$is_active" = 1 ]; then
+      tmux set -p -t "$pane" @pane_status ""
+    else
+      tmux set -p -t "$pane" @pane_status "$state"
+    fi
+    ;;
+  clear)
+    tmux set -p -t "$pane" @pane_status ""
+    ;;
+  *)
+    exit 0
+    ;;
+esac
+
+# Metadados para a listagem agregada (tmux-agent-status): barato e à prova de futuro.
+[ -n "$agent_name" ] && tmux set -p -t "$pane" @pane_name "$agent_name"
+cwd=$(tmux display-message -t "$pane" -p '#{pane_current_path}' 2>/dev/null)
+[ -n "$cwd" ] && tmux set -p -t "$pane" @pane_cwd "$cwd"
+
+tmux refresh-client -S 2>/dev/null || true
