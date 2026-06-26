@@ -76,7 +76,7 @@
     "slack@claude-plugins-official": true,
     "glean-mcp@nubank-ai-agents-plugins": true,
     "actions-eng-management@nubank-ai-agents-plugins": true,
-    "tmux-agent-sidebar@hiroppy": true,
+    "tmux-agent-sidebar@hiroppy": false,
     "isa@nubank-ai-agents-plugins": true,
     "pyright-lsp@claude-plugins-official": true,
     "isa@nubank-ai-agents-plugins-tmp": true,
@@ -122,7 +122,7 @@
       }
     }
   },
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto"
 }
