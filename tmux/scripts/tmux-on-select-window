@@ -4,14 +4,4 @@
 
 "$DOTFILES_ROOT/tmux/scripts/tmux-clear-notify"
 [ "$(uname)" = "Darwin" ] && "$DOTFILES_ROOT/scripts/clear-notify-macos"
-
-# Clear "seen" agent statuses (waiting/idle/error) on panes of the now-active
-# window; leave running panes (still working) untouched.
-active_win=$(tmux display-message -p '#{window_id}')
-while IFS=' ' read -r pane_id st; do
-  case "$st" in
-    waiting|error) tmux set -p -t "$pane_id" @pane_status "" ;;
-  esac
-done < <(tmux list-panes -t "$active_win" -F '#{pane_id} #{@pane_status}')
-
-tmux refresh-client -S
+"$DOTFILES_ROOT/tmux/scripts/tmux-clear-stale-status"

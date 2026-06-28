@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Clears agent status on panes where the agent process is no longer running.
+# Called by after-select-window and after-select-pane hooks.
+
+active_win=$(tmux display-message -p '#{window_id}')
+while IFS=' ' read -r pane_id st; do
+  [ -z "$st" ] && continue
+  cmd=$(tmux display-message -t "$pane_id" -p '#{pane_current_command}' 2>/dev/null)
+  [ "$cmd" != "opencode" ] && tmux set -p -t "$pane_id" @pane_status ""
+done < <(tmux list-panes -t "$active_win" -F '#{pane_id} #{@pane_status}')
+
+tmux refresh-client -S
