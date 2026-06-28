@@ -25,3 +25,4 @@ The dotfiles are organized into different profiles:
 - Commit and push only when asked.
 - It's fine to commit and push directly to `master` in this repo — that's
     the normal workflow here. No need to ask about creating a branch first.
+- All code, comments, and documentation must be written in English.
