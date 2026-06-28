@@ -68,6 +68,10 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
           if (event.properties?.status?.type === "busy") {
             await setState("running")
             await notifyTmux()
+          } else if (event.properties?.status?.type === "idle") {
+            await setState("idle")
+            await notifyTmux()
+            await sendNotification("done", "Session completed")
           }
           break
       }

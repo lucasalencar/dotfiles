@@ -39,6 +39,11 @@ case "$state" in
     ;;
 esac
 
+# Records the current pane command so the stale cleaner can detect when the
+# agent process has exited (command changed → agent gone → clear status).
+cmd=$(tmux display-message -t "$pane" -p '#{pane_current_command}' 2>/dev/null)
+[ -n "$cmd" ] && tmux set -p -t "$pane" @pane_command "$cmd"
+
 # Metadados para a listagem agregada (tmux-agent-status): barato e à prova de futuro.
 [ -n "$agent_name" ] && tmux set -p -t "$pane" @pane_name "$agent_name"
 cwd=$(tmux display-message -t "$pane" -p '#{pane_current_path}' 2>/dev/null)

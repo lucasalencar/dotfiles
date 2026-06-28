@@ -17,15 +17,22 @@ How it works:
   `tmux-notify-window`.
 - `scripts/tmux-agent-icon` reads `@pane_status` and renders the icons in the
   window name (wired into `@catppuccin_window_text` in `.tmux.conf`).
-- `scripts/tmux-on-select-window` clears "seen" states (`waiting`/`idle`/`error`)
-  when you focus a window, keeping `running` ones — so `○` stays until you look.
+- `scripts/tmux-clear-stale-status` runs on `after-select-window` and
+  `after-select-pane`. It compares the recorded command (`@pane_command`, stored
+  by `tmux-agent-state`) against the pane's current command — if they differ,
+  the agent process has exited and the stale status is cleared. Works for any
+  coding agent without a hardcoded allowlist. Legacy panes (no `@pane_command`)
+  fall back to checking if the current command is a known shell.
+- `scripts/tmux-on-select-window` orchestrates stale cleanup and notification
+  clearing when you focus a window.
 
 Integration points (both call `tmux-agent-state`):
 
 - Claude Code: hooks in `~/.claude/settings.json` (`UserPromptSubmit` → running,
   `AskUserQuestion`/`permission_prompt` → waiting, `Stop` → idle,
   `SessionEnd` → clear).
-- OpenCode: `opencode/.config/opencode/plugins/notification.ts` event handler.
+- OpenCode: `opencode/.config/opencode/plugins/tmux-agent-status.ts` event
+  handler.
 
 ## TODO
 
