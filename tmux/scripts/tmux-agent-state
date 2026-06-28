@@ -7,9 +7,8 @@
 # Usage: tmux-agent-state <running|waiting|idle|error|clear> [agent_name]
 #   running -> ● ; waiting -> ◐ ; error -> ✕ ; idle -> ○ ; clear -> remove o ícone
 #
-# Para estados "vistos" (waiting/idle): se a janela do agente já é a janela ativa,
-# limpa em vez de setar (o usuário já está vendo ao vivo) — mesmo princípio do
-# tmux-notify-window.
+# O status permanece até ser explicitamente alterado ou limpo.
+# Apenas a notificação (@notify) é limpa quando a janela está ativa.
 
 set -u
 [ -z "${TMUX:-}" ] && exit 0
@@ -29,19 +28,8 @@ is_active=0
 [ -n "$win" ] && [ "$win" = "$active_win" ] && is_active=1
 
 case "$state" in
-  running|idle|error)
+  running|waiting|idle|error)
     tmux set -p -t "$pane" @pane_status "$state"
-    ;;
-  waiting)
-    # Estado "visto": se você já está na janela, não mostra ícone.
-    # Grava "" (em vez de -u) para forçar o escopo de pane e não reexpor
-    # valores herdados de sessão/janela; -u também emite "invalid option"
-    # do servidor ao cliente, que 2>/dev/null não suprime.
-    if [ "$is_active" = 1 ]; then
-      tmux set -p -t "$pane" @pane_status ""
-    else
-      tmux set -p -t "$pane" @pane_status "$state"
-    fi
     ;;
   clear)
     tmux set -p -t "$pane" @pane_status ""
