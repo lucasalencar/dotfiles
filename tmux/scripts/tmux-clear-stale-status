@@ -1,12 +1,32 @@
 #!/usr/bin/env bash
 # Clears agent status on panes where the agent process is no longer running.
 # Called by after-select-window and after-select-pane hooks.
+#
+# Compares the recorded command (@pane_command, set by tmux-agent-state)
+# with the pane's current command. If they differ, the agent process has
+# exited and the status should be cleared.
+# Works for any coding agent without needing a hardcoded allowlist.
+#
+# For legacy panes (no @pane_command), falls back to checking if the
+# current command is a known shell → clears.
 
 active_win=$(tmux display-message -p '#{window_id}')
 while IFS=' ' read -r pane_id st; do
   [ -z "$st" ] && continue
-  cmd=$(tmux display-message -t "$pane_id" -p '#{pane_current_command}' 2>/dev/null)
-  [ "$cmd" != "opencode" ] && tmux set -p -t "$pane_id" @pane_status ""
+  current_cmd=$(tmux display-message -t "$pane_id" -p '#{pane_current_command}' 2>/dev/null)
+
+  stored_cmd=$(tmux show -p -t "$pane_id" -v @pane_command 2>/dev/null)
+  if [ -n "$stored_cmd" ]; then
+    # Compare recorded command against current — process changed → agent is gone
+    [ "$stored_cmd" != "$current_cmd" ] && tmux set -p -t "$pane_id" @pane_status ""
+  else
+    # Legacy panes: clear if current command is a known shell
+    case "$current_cmd" in
+      zsh|bash|sh|fish|dash|tcsh|csh|ksh|mksh|oksh|elvish|nu|xonsh|pwsh)
+        tmux set -p -t "$pane_id" @pane_status ""
+        ;;
+    esac
+  fi
 done < <(tmux list-panes -t "$active_win" -F '#{pane_id} #{@pane_status}')
 
 tmux refresh-client -S
