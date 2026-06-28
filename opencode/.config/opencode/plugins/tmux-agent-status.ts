@@ -1,6 +1,16 @@
 import type { Plugin } from "@opencode-ai/plugin"
 
-export const NotificationPlugin: Plugin = async ({ client, $ }) => {
+export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
+  const DEBUG = process.env.TMUX_AGENT_STATUS_DEBUG === "true"
+  const logFile = "/tmp/tmux-agent-status.log"
+
+  const log = async (msg: string) => {
+    if (!DEBUG) return
+    try {
+      await $`echo "${msg}" >> ${logFile}`
+    } catch {}
+  }
+
   return {
     event: async ({ event }) => {
       const sendNotification = async (notificationType: string, message: string) => {
@@ -26,11 +36,13 @@ export const NotificationPlugin: Plugin = async ({ client, $ }) => {
         }
       }
 
+      await log(`${event.type} ${JSON.stringify(event.properties)}`)
+
       switch (event.type) {
         case "session.error":
           await setState("error")
           await notifyTmux()
-          await sendNotification("error", event.data?.message || "Session error occurred")
+          await sendNotification("error", event.properties?.message || "Session error occurred")
           break
 
         case "session.idle":
@@ -47,8 +59,13 @@ export const NotificationPlugin: Plugin = async ({ client, $ }) => {
           await sendNotification("waiting", "OpenCode is waiting for your input")
           break
 
+        case "permission.replied":
+          await setState("running")
+          await notifyTmux()
+          break
+
         case "session.status":
-          if (event.data?.status === "busy") {
+          if (event.properties?.status?.type === "busy") {
             await setState("running")
             await notifyTmux()
           }
