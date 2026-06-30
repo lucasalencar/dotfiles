@@ -14,8 +14,12 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
   return {
     event: async ({ event }) => {
       const sendNotification = async (notificationType: string, message: string) => {
-        const jsonPayload = JSON.stringify({ notification_type: notificationType, message })
-        await $`echo ${jsonPayload} | agent-notify "OpenCode"`
+        try {
+          const jsonPayload = JSON.stringify({ notification_type: notificationType, message })
+          await $`echo ${jsonPayload} | agent-notify "OpenCode"`
+        } catch (err) {
+          console.error("sendNotification failed:", err)
+        }
       }
 
       const notifyTmux = async () => {
