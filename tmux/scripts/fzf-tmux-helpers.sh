@@ -3,7 +3,11 @@
 source "$DOTFILES_ROOT/scripts/helpers.sh"
 
 fzf_tmux_window_index () {
-  selected_window=$(tmux list-windows -F "#I: #{pane_current_path}" | fzf-tmux)
+  window_list=$(tmux list-windows -F "#I|#{window_id}|#{pane_current_path}" | while IFS='|' read -r index window_id path; do
+    label=$("$DOTFILES_ROOT/tmux/scripts/tmux-window-label" "$window_id")
+    printf '%s: %s - %s\n' "$index" "$label" "$path"
+  done)
+  selected_window=$(echo "$window_list" | fzf-tmux)
   WINDOW_INDEX=$(echo "$selected_window" | cut -d ":" -f 1)
   echo "$WINDOW_INDEX"
 }
