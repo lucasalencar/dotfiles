@@ -26,3 +26,4 @@ The dotfiles are organized into different profiles:
 - It's fine to commit and push directly to `master` in this repo — that's
     the normal workflow here. No need to ask about creating a branch first.
 - All code, comments, and documentation must be written in English.
+- During commits, ignore Claude's `settings.json` configuration file (e.g., `claude-code/.claude/settings.json`). Only commit it when explicitly asked to do so.
