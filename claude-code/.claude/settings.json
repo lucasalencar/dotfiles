@@ -2,7 +2,7 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "model": "haiku",
+  "model": "sonnet[1m]",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -95,6 +95,15 @@
           {
             "type": "command",
             "command": "bash -c 'lein lint-fix 2>&1 | lein lint 2>&1 | tail -20'"
+          }
+        ]
+      },
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-agent-state running 'Claude Code'"
           }
         ]
       }
