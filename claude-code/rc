@@ -1,1 +1,5 @@
+#!/bin/bash
+
 alias cclaude="claude --dangerously-skip-permissions --allowedTools \"Read,Edit,Grep,Glob\" \"Prompt\""
+alias cc="claude"
+alias ccc="cclaude"
