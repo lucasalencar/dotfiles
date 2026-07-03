@@ -7,6 +7,9 @@ incremented=$((current_window + 1))
 
 selected_window=$(fzf_tmux_window_index)
 
+# Abort without swapping if fzf was cancelled (e.g. via ESC)
+[ -z "$selected_window" ] && exit 0
+
 tmux swap-window -s "$selected_window" -t "$incremented"
 tmux move-window -r # Renumbers all windows according to order
 tmux select-window -t "$incremented"
