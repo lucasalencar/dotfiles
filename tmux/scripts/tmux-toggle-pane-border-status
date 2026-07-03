@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Shows pane-border-status for a window only while at least one of its panes
+# has a manually set title (@manual_title), keeping the border hidden
+# otherwise. Note this deliberately ignores tmux's native pane_title, which
+# is already populated automatically by the shell and other programs.
+
+window_id="${1:?usage: tmux-toggle-pane-border-status <window_id>}"
+
+has_title=$(tmux list-panes -t "$window_id" -F "#{@manual_title}" | grep -qv '^$' && echo yes)
+
+if [ "$has_title" = "yes" ]; then
+  tmux set-window-option -t "$window_id" pane-border-status top
+else
+  tmux set-window-option -t "$window_id" pane-border-status off
+fi
