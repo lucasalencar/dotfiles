@@ -4,6 +4,14 @@ input=$(cat)
 
 cwd=$(echo "$input"    | jq -r '.workspace.current_dir // .cwd')
 model=$(echo "$input"  | jq -r '.model.display_name // empty')
+
+# Tenta ler effortLevel do settings.json do projeto ou global
+project_settings="$cwd/.claude/settings.json"
+if [ -f "$project_settings" ]; then
+  effort=$(jq -r '.effortLevel // empty' "$project_settings" 2>/dev/null)
+else
+  effort=$(jq -r '.effortLevel // empty' ~/.claude/settings.json 2>/dev/null)
+fi
 pct=$(echo "$input"    | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 cost=$(echo "$input"   | jq -r '.cost.total_cost_usd // empty')
 
@@ -49,7 +57,9 @@ filled=$((pct / 10)); empty=$((10 - filled))
 printf -v bar "%${filled}s"; printf -v pad "%${empty}s"
 bar="${bar// /█}${pad// /░}"
 
-printf " ${CYAN}✦ %s${RESET}" "$model"
+model_display="$model"
+[ -n "$effort" ] && model_display="$model_display ($effort)"
+printf " ${CYAN}✦ %s${RESET}" "$model_display"
 printf " ${DIM}|${RESET} ${bar_color}[%s] %s%%${RESET}" "$bar" "$pct"
 [ -n "$cost" ] && printf " ${DIM}|${RESET} ${YELLOW}\$%.4f${RESET}" "$cost"
 printf "\n"
