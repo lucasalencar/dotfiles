@@ -28,6 +28,8 @@ The dotfiles are organized into different profiles:
 - All code, comments, and documentation must be written in English.
 - During commits, ignore changes to Claude's `settings.json` configuration
     file (e.g., `claude-code/.claude/settings.json`) when they only touch the
-    `effortLevel` or `model` fields — these are routine day-to-day tweaks that
-    don't need to be committed. Other changes to that file (hooks, permissions,
-    etc.) should still be committed normally.
+    `effortLevel` or `model` fields, or to Codex's configuration file
+    (`codex/.codex/config.toml`) when they only touch the `model` or
+    `model_reasoning_effort` fields — these are routine day-to-day tweaks that
+    don't need to be committed. Other changes to those files (hooks,
+    permissions, etc.) should still be committed normally.
