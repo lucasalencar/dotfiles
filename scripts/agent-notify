@@ -19,6 +19,11 @@ TYPE=$(echo "$INPUT" | jq -r '.notification_type // empty')
 # Skip auth success or other noise
 [ "$TYPE" = "auth_success" ] && exit 0
 
+# Skip notifications originating from inside a subagent (Task tool) call —
+# only the main session's Stop/Notification events should notify.
+AGENT_ID=$(echo "$INPUT" | jq -r '.agent_id // empty')
+[ -n "$AGENT_ID" ] && exit 0
+
 MSG=$(echo "$INPUT" | jq -r ".message // empty")
 [ -z "$MSG" ] && MSG="$FALLBACK_MSG"
 [ -z "$MSG" ] && exit 0
