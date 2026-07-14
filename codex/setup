@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+info "Setting up codex package"
+run_required_step "Stowing codex package" stow codex

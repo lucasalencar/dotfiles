@@ -1,0 +1,41 @@
+model = "gpt-5.6-terra"
+model_reasoning_effort = "medium"
+
+model_provider = "custom-provider"
+
+[projects."/Users/lucas.alencar/.dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/lucas.alencar/code/skills"]
+trust_level = "trusted"
+
+[projects."/Users/lucas.alencar/dev/nu/smith"]
+trust_level = "trusted"
+
+[projects."/Users/lucas.alencar/dev/nu/nucli"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+"gpt-5.6-sol" = 4
+
+[tui.keymap.composer]
+shift-enter = "insert_newline"
+
+[model_providers.custom-provider]
+name = "Custom Provider"
+base_url = "https://REDACTED-INTERNAL-ENDPOINT.example/v1"
+wire_api = "responses"
+env_key = "OPENAI_API_KEY"
+
+[marketplaces.nubank-ai-agents-plugins]
+last_updated = "2026-07-14T15:06:44Z"
+source_type = "git"
+source = "https://github.com/nubank/ai-agents-plugins.git"
+sparse_paths = [".agents/plugins"]
+
+[marketplaces.nubank-ai-agents-plugins-tmp]
+last_updated = "2026-07-14T15:06:44Z"
+source_type = "git"
+source = "https://github.com/nubank/ai-agents-plugins-tmp.git"
+sparse_paths = [".agents/plugins"]
