@@ -48,3 +48,7 @@ keybind = cmd+k=text:\x1bk
 # Send Alt+l so tmux can forward it as Ctrl-L without vim-tmux-navigator
 # intercepting (which would switch panes instead).
 keybind = cmd+l=text:\x1bl
+
+# Send Shift+Enter as Alt+Enter so Codex inserts a newline without tmux's
+# Ctrl+J pane-navigation binding intercepting it.
+keybind = shift+enter=text:\x1b\r

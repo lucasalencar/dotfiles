@@ -19,8 +19,8 @@ trust_level = "trusted"
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
 
-[tui.keymap.composer]
-shift-enter = "insert_newline"
+[tui.keymap.editor]
+insert_newline = ["ctrl-j", "shift-enter", "alt-enter"]
 
 [model_providers.custom-provider]
 name = "Custom Provider"
