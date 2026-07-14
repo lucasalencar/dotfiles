@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -u
+
+action="${1:-}"
+payload=$(cat)
+
+set_agent_state() {
+  command -v tmux-agent-state >/dev/null 2>&1 || return 0
+  tmux-agent-state "$1" "Codex" >/dev/null 2>&1 || true
+}
+
+mark_window() {
+  command -v tmux-notify-window >/dev/null 2>&1 || return 0
+  tmux-notify-window >/dev/null 2>&1 || true
+}
+
+notify_agent() {
+  command -v agent-notify >/dev/null 2>&1 || return 0
+  printf '%s' "$payload" | agent-notify "Codex" "$1" >/dev/null 2>&1 || true
+}
+
+case "$action" in
+  running)
+    set_agent_state running
+    ;;
+  waiting-question)
+    set_agent_state waiting
+    mark_window
+    notify_agent "asked a question"
+    ;;
+  waiting-permission)
+    set_agent_state waiting
+    mark_window
+    notify_agent "waiting for your input"
+    ;;
+  idle)
+    set_agent_state idle
+    mark_window
+    notify_agent "done"
+    ;;
+  *)
+    printf 'agent-lifecycle: unknown action: %s\n' "$action" >&2
+    exit 2
+    ;;
+esac

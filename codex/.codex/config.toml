@@ -15,6 +15,11 @@ trust_level = "trusted"
 [projects."/Users/lucas.alencar/dev/nu/nucli"]
 trust_level = "trusted"
 
+[tui]
+notifications = false
+status_line = ["model-with-reasoning", "context-remaining", "total-input-tokens", "total-output-tokens", "current-dir", "git-branch", "pull-request-number", "branch-changes"]
+status_line_use_colors = true
+
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
@@ -28,6 +33,17 @@ base_url = "https://REDACTED-INTERNAL-ENDPOINT.example/v1"
 wire_api = "responses"
 env_key = "OPENAI_API_KEY"
 
+[mcp_servers.atlassian]
+url = "https://mcp.atlassian.com/v1/mcp"
+
+[mcp_servers.tmux]
+command = "npx"
+args = ["-y", "--registry=https://registry.npmjs.org/", "tmux-mcp", "--shell-type=zsh"]
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]
+
 [marketplaces.nubank-ai-agents-plugins]
 last_updated = "2026-07-14T15:06:44Z"
 source_type = "git"
@@ -39,3 +55,23 @@ last_updated = "2026-07-14T15:06:44Z"
 source_type = "git"
 source = "https://github.com/nubank/ai-agents-plugins-tmp.git"
 sparse_paths = [".agents/plugins"]
+
+[hooks.state]
+
+[hooks.state."/Users/lucas.alencar/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:9c951b43324a23dcb39b9a8280f84b76fb7fcdc08bf214fca6fa77028e318a37"
+
+[hooks.state."/Users/lucas.alencar/.codex/hooks.json:permission_request:0:0"]
+trusted_hash = "sha256:6a82deb9c6d0746710dbb47aa993469d172432d6076ae0e37d5896a6540ad953"
+
+[hooks.state."/Users/lucas.alencar/.codex/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:5c644059e6d3815835091c086b9921f6160dcb3c64a9075e414eb2d495f33e0d"
+
+[hooks.state."/Users/lucas.alencar/.codex/hooks.json:post_tool_use:1:0"]
+trusted_hash = "sha256:2a484418165542524916b7e113911c8caff2a8b9143ba453147eb6820ed37a19"
+
+[hooks.state."/Users/lucas.alencar/.codex/hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:16477ef3b440f2eacac1c1edb3f73e61afa1b07c5260f798837077f65708d65c"
+
+[hooks.state."/Users/lucas.alencar/.codex/hooks.json:stop:0:0"]
+trusted_hash = "sha256:8f18728b9122e57875278d2bc1b4bc0ecf5834e05b52a3706baf88cb909c4dfe"

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+codex() {
+  command codex "$@"
+  local exit_status=$?
+
+  if command -v tmux-agent-state >/dev/null 2>&1; then
+    tmux-agent-state clear >/dev/null 2>&1 || true
+  fi
+
+  return "$exit_status"
+}

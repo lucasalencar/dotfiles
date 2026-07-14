@@ -2,7 +2,7 @@
 
 ## Coding agent status
 
-Status icons of coding agents (Claude Code, OpenCode) are shown in each tmux
+Status icons of coding agents (Claude Code, Codex, OpenCode) are shown in each tmux
 window name: `●` running, `◐` waiting for input, `✕` error, `○` done/idle.
 This replaces the `hiroppy/tmux-agent-sidebar` plugin without an external binary.
 
@@ -31,5 +31,7 @@ Integration points (both call `tmux-agent-state`):
 - Claude Code: hooks in `~/.claude/settings.json` (`UserPromptSubmit` → running,
   `AskUserQuestion`/`permission_prompt` → waiting, `Stop` → idle,
   `SessionEnd` → clear).
+- Codex: hooks in `~/.codex/hooks.json` manage running, waiting, and idle states;
+  the package `rc` clears the state when the CLI exits.
 - OpenCode: `opencode/.config/opencode/plugins/tmux-agent-status.ts` event
   handler.

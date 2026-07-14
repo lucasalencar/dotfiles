@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+set -u
+
+payload=$(cat)
+
+command -v jq >/dev/null 2>&1 || {
+  printf 'clojure-lint: jq is required to inspect the hook payload\n' >&2
+  exit 1
+}
+
+edited_values=$(printf '%s' "$payload" | jq -r '.tool_input // empty | .. | strings' 2>/dev/null) || {
+  printf 'clojure-lint: invalid hook payload\n' >&2
+  exit 1
+}
+
+printf '%s\n' "$edited_values" | grep -Eq '\.clj([^[:alnum:]_]|$)' || exit 0
+
+cwd=$(printf '%s' "$payload" | jq -r '.cwd // empty')
+[ -n "$cwd" ] || cwd=$PWD
+
+project_dir=$(cd "$cwd" 2>/dev/null && pwd -P) || exit 0
+while [ "$project_dir" != "/" ] && [ ! -f "$project_dir/project.clj" ]; do
+  project_dir=${project_dir%/*}
+  [ -n "$project_dir" ] || project_dir=/
+done
+
+[ -f "$project_dir/project.clj" ] || exit 0
+
+command -v lein >/dev/null 2>&1 || {
+  printf 'clojure-lint: lein is required for this Clojure project\n' >&2
+  exit 1
+}
+
+output_file=$(mktemp "${TMPDIR:-/tmp}/codex-clojure-lint.XXXXXX") || exit 1
+trap 'rm -f "$output_file"' EXIT
+
+fix_status=0
+lint_status=0
+
+(cd "$project_dir" && lein lint-fix) >>"$output_file" 2>&1 || fix_status=$?
+(cd "$project_dir" && lein lint) >>"$output_file" 2>&1 || lint_status=$?
+
+tail -20 "$output_file" >&2
+
+[ "$fix_status" -eq 0 ] && [ "$lint_status" -eq 0 ]
