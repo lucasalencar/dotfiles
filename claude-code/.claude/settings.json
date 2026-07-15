@@ -120,7 +120,8 @@
     "isa@nubank-ai-agents-plugins": true,
     "pyright-lsp@claude-plugins-official": true,
     "isa@nubank-ai-agents-plugins-tmp": true,
-    "isa@nubank-ai-agents-plugins-eng": true
+    "isa@nubank-ai-agents-plugins-eng": true,
+    "atlassian-mcp@nubank-ai-agents-plugins": true
   },
   "extraKnownMarketplaces": {
     "nubank-ai-agents-plugins": {
