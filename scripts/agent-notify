@@ -29,6 +29,8 @@ MSG=$(echo "$INPUT" | jq -r ".message // empty")
 [ -z "$MSG" ] && exit 0
 
 WIN=$(tmux display-message -t "$TMUX_PANE" -p "#{session_name}:#{window_index}" 2>/dev/null)
+WINDOW_ID=$(tmux display-message -t "$TMUX_PANE" -p "#{window_id}" 2>/dev/null)
+WINDOW_NAME=$("$DOTFILES_ROOT/tmux/scripts/tmux-window-label" "$WINDOW_ID" 2>/dev/null)
 
 # Skip notification if terminal is focused and the AI pane is in the active window
 TERMINAL_APP_NAME="${TERMINAL_APP_NAME:-ghostty}"
@@ -42,4 +44,6 @@ fi
 PROJECT=$(basename "$PWD")
 SESSION=$(echo "$WIN" | cut -d: -f1)
 GROUP_ID="tmux-window-$(echo "$WIN" | tr ':' '-')"
-notify-macos "$AGENT_NAME - $PROJECT" "$MSG" "tmux select-window -t '$WIN'" "$GROUP_ID" "$SESSION" &
+TITLE="$AGENT_NAME - $PROJECT"
+[ -n "$WINDOW_NAME" ] && TITLE="$TITLE ($WINDOW_NAME)"
+notify-macos "$TITLE" "$MSG" "tmux select-window -t '$WIN'" "$GROUP_ID" "$SESSION" &
