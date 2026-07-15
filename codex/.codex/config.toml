@@ -5,6 +5,7 @@ model_provider = "custom-provider"
 
 approval_policy = "on-request"
 sandbox_mode    = "workspace-write"
+approvals_reviewer = "auto_review"
 
 [projects."/Users/lucas.alencar/.dotfiles"]
 trust_level = "trusted"
@@ -48,15 +49,15 @@ command = "npx"
 args = ["-y", "@playwright/mcp@latest"]
 
 [marketplaces.nubank-ai-agents-plugins]
-last_updated = "2026-07-14T17:38:25Z"
-last_revision = "f1cc6279d157cc684f968a0e8ea40209976f166d"
+last_updated = "2026-07-15T13:39:33Z"
+last_revision = "0f4390b8d16dfc7d5d032bdbfafa39d489607861"
 source_type = "git"
 source = "https://github.com/nubank/ai-agents-plugins.git"
 sparse_paths = [".agents/plugins"]
 
 [marketplaces.nubank-ai-agents-plugins-tmp]
-last_updated = "2026-07-14T17:35:30Z"
-last_revision = "b50d7ac127ce55cd311e05215c0e96ce39ac60ed"
+last_updated = "2026-07-15T13:39:42Z"
+last_revision = "5ff2f402a8bb4d1e9b82967fa236e918eba5da34"
 source_type = "git"
 source = "https://github.com/nubank/ai-agents-plugins-tmp.git"
 sparse_paths = [".agents/plugins"]
