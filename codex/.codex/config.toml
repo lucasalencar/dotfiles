@@ -1,11 +1,12 @@
-model = "gpt-5.6-terra"
-model_reasoning_effort = "medium"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "low"
 
 model_provider = "custom-provider"
 
 approval_policy = "on-request"
 sandbox_mode    = "workspace-write"
 approvals_reviewer = "auto_review"
+plan_mode_reasoning_effort = "high"
 
 [projects."/Users/lucas.alencar/.dotfiles"]
 trust_level = "trusted"
@@ -49,15 +50,15 @@ command = "npx"
 args = ["-y", "@playwright/mcp@latest"]
 
 [marketplaces.nubank-ai-agents-plugins]
-last_updated = "2026-07-15T13:39:33Z"
-last_revision = "0f4390b8d16dfc7d5d032bdbfafa39d489607861"
+last_updated = "2026-07-15T20:03:16Z"
+last_revision = "6360cbb21077053205f2050fc073c35debf617fd"
 source_type = "git"
 source = "https://github.com/nubank/ai-agents-plugins.git"
 sparse_paths = [".agents/plugins"]
 
 [marketplaces.nubank-ai-agents-plugins-tmp]
-last_updated = "2026-07-15T13:39:42Z"
-last_revision = "5ff2f402a8bb4d1e9b82967fa236e918eba5da34"
+last_updated = "2026-07-15T20:00:32Z"
+last_revision = "f001dc225ac0a874a12a5ba58bfe2e714e5963de"
 source_type = "git"
 source = "https://github.com/nubank/ai-agents-plugins-tmp.git"
 sparse_paths = [".agents/plugins"]
