@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+branch=${1:?"Expected a branch name"}
+base_ref=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)
+
+if ! git rev-parse --verify --quiet "${base_ref}^{commit}" >/dev/null; then
+  if git show-ref --verify --quiet refs/heads/main; then
+    base_ref=main
+  elif git show-ref --verify --quiet refs/heads/master; then
+    base_ref=master
+  else
+    echo "Unable to determine the repository's base branch." >&2
+    exit 1
+  fi
+fi
+
+if [[ $branch == "$(git branch --show-current)" ]]; then
+  exec hunk diff "$base_ref"
+fi
+
+git diff --no-ext-diff "$(git merge-base "$branch" "$base_ref")" "$branch" | hunk patch

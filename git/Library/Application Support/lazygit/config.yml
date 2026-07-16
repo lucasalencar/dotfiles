@@ -13,5 +13,5 @@ customCommands:
   - key: '<c-t>'
     context: 'localBranches'
     description: 'View selected branch diff in Hunk'
-    command: 'branch={{.SelectedLocalBranch.Name | quote}}; base_ref="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null)"; if ! git rev-parse --verify --quiet "${base_ref}^{commit}" >/dev/null; then if git show-ref --verify --quiet refs/heads/main; then base_ref=main; else base_ref=master; fi; fi; if [ "$branch" = "$(git branch --show-current)" ]; then hunk diff "$base_ref"; else git diff --no-ext-diff "$(git merge-base "$branch" "$base_ref")" "$branch" | hunk patch; fi'
+    command: '$HOME/.dotfiles/git/lazygit-hunk-branch-diff {{.SelectedLocalBranch.Name | quote}}'
     output: 'terminal'
