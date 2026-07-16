@@ -4,12 +4,22 @@
 
 [core]
   excludesfile = ~/.gitignore
+  pager = hunk pager
 
 [color]
   ui = true
   diff = auto
   status = auto
   branch = auto
+
+[diff]
+  tool = hunk
+
+[difftool]
+  prompt = false
+
+[difftool "hunk"]
+  cmd = hunk difftool "$LOCAL" "$REMOTE" "$MERGED"
 
 [alias]
   st = status
