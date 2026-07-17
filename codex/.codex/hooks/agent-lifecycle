@@ -5,6 +5,16 @@ set -u
 action="${1:-}"
 payload=$(cat)
 
+is_subagent() {
+  command -v jq >/dev/null 2>&1 || return 1
+  printf '%s' "$payload" | jq -e '.agent_id? != null and .agent_id != ""' >/dev/null 2>&1
+}
+
+# Lifecycle hooks also run for reviewer and delegated agents. They inherit the
+# terminal's TMUX_PANE, so letting them update it makes their completion look
+# like the main Codex session has completed.
+is_subagent && exit 0
+
 set_agent_state() {
   command -v tmux-agent-state >/dev/null 2>&1 || return 0
   tmux-agent-state "$1" "Codex" >/dev/null 2>&1 || true
