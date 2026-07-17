@@ -20,6 +20,25 @@ notify_agent() {
   printf '%s' "$payload" | agent-notify "Codex" "$1" >/dev/null 2>&1 || true
 }
 
+auto_review_enabled() {
+  local config_file="${CODEX_HOME:-$HOME/.codex}/config.toml"
+
+  [ -r "$config_file" ] || return 1
+
+  awk '
+    /^[[:space:]]*\[/ { exit }
+    /^[[:space:]]*approvals_reviewer[[:space:]]*=/ {
+      value = $0
+      sub(/^[^=]*=[[:space:]]*/, "", value)
+      sub(/[[:space:]]*(#.*)?$/, "", value)
+      if (value == "\"auto_review\"" || value == sprintf("%cauto_review%c", 39, 39)) {
+        enabled = 1
+      }
+    }
+    END { exit enabled ? 0 : 1 }
+  ' "$config_file"
+}
+
 case "$action" in
   running)
     set_agent_state running
@@ -32,7 +51,9 @@ case "$action" in
   waiting-permission)
     set_agent_state waiting
     mark_window
-    notify_agent "waiting for your input"
+    if ! auto_review_enabled; then
+      notify_agent "waiting for your input"
+    fi
     ;;
   idle)
     set_agent_state idle
