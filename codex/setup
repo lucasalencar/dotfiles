@@ -5,3 +5,12 @@ source "$DOTFILES_ROOT/helpers"
 
 info "Setting up codex package"
 run_required_step "Stowing codex package" stow codex
+
+LOCAL_CONFIG="$HOME/.codex/config.toml"
+BASE_CONFIG="$(current_dir)/.codex/config.base.toml"
+
+if [ ! -e "$LOCAL_CONFIG" ]; then
+  mkdir -p "$HOME/.codex"
+  cp "$BASE_CONFIG" "$LOCAL_CONFIG"
+  success "Seeded $LOCAL_CONFIG from config.base.toml"
+fi

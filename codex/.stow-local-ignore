@@ -2,3 +2,6 @@ install
 setup
 update
 rc
+sync-config
+^config\.base\.toml$
+^config\.toml$

@@ -1,0 +1,71 @@
+#!/bin/bash
+#
+# Syncs the essential attributes from the local Codex config
+# ($HOME/.codex/config.toml) into the versioned base config
+# (.codex/config.base.toml) tracked in this repo.
+#
+# Attributes synced:
+#   - approval_policy, sandbox_mode, approvals_reviewer, plan_mode_reasoning_effort
+#   - [tui] (excluding the generated [tui.model_availability_nux] table)
+#   - [mcp_servers.*]
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+LOCAL_CONFIG="$HOME/.codex/config.toml"
+BASE_CONFIG="$(current_dir)/.codex/config.base.toml"
+
+if [ ! -f "$LOCAL_CONFIG" ]; then
+  fail "Local config not found at $LOCAL_CONFIG"
+fi
+
+awk -v want_root="approval_policy sandbox_mode approvals_reviewer plan_mode_reasoning_effort" '
+BEGIN {
+  n = split(want_root, arr, " ")
+  for (i = 1; i <= n; i++) rootkeys[arr[i]] = 1
+  section = ""
+  include_section = 0
+  have_output = 0
+  last_blank = 1
+}
+/^\[/ {
+  sec = $0
+  gsub(/^\[+/, "", sec)
+  gsub(/\]+$/, "", sec)
+  section = sec
+  include_section = (section == "tui" || section ~ /^tui\./) && section != "tui.model_availability_nux"
+  include_section = include_section || (section ~ /^mcp_servers\./)
+  if (include_section) {
+    if (have_output && !last_blank) print ""
+    print $0
+    have_output = 1
+    last_blank = 0
+  }
+  next
+}
+{
+  if (section == "") {
+    split($0, kv, "=")
+    key = kv[1]
+    gsub(/[ \t]+$/, "", key)
+    gsub(/^[ \t]+/, "", key)
+    if (key in rootkeys) { print $0; have_output = 1; last_blank = 0 }
+  } else if (include_section) {
+    if ($0 == "") {
+      if (!last_blank) { print ""; last_blank = 1 }
+    } else {
+      print $0
+      last_blank = 0
+    }
+  }
+}
+' "$LOCAL_CONFIG" > "$BASE_CONFIG.tmp"
+
+if diff -q "$BASE_CONFIG" "$BASE_CONFIG.tmp" >/dev/null 2>&1; then
+  rm "$BASE_CONFIG.tmp"
+  success "config.base.toml already up to date"
+else
+  mv "$BASE_CONFIG.tmp" "$BASE_CONFIG"
+  success "Synced local Codex config into $BASE_CONFIG"
+  info "Review the diff and commit codex/.codex/config.base.toml if it looks right"
+fi
