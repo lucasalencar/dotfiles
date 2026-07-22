@@ -36,9 +36,6 @@ if [ $# -gt 0 ]; then
   done
   success "Update completed"
 else
-  # No arguments: update everything (default behavior)
-  sudo -v # Ask for sudo password once
-
   # Handle Ctrl+C: show message and exit (cleanup runs automatically via EXIT trap)
   trap 'echo ""; warning "Update interrupted by user"; exit 130' INT TERM
 
