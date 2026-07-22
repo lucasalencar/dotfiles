@@ -11,8 +11,6 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
     } catch {}
   }
 
-  let lastAssistantFinish: string | null = null
-
   return {
     event: async ({ event }) => {
       const sendNotification = async (notificationType: string, message: string) => {
@@ -46,9 +44,6 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
 
       switch (event.type) {
         case "message.updated":
-          if (event.properties?.info?.role === "assistant" && event.properties?.info?.finish) {
-            lastAssistantFinish = event.properties.info.finish
-          }
           break
 
         case "session.error":
@@ -59,6 +54,8 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
 
         case "session.idle":
           await setState("idle")
+          await notifyTmux()
+          await sendNotification("done", "Session completed")
           break
 
         case "tui.prompt.append":
@@ -81,10 +78,6 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
           } else if (event.properties?.status?.type === "idle") {
             await setState("idle")
             await notifyTmux()
-            if (lastAssistantFinish === "stop") {
-              await sendNotification("done", "Session completed")
-              lastAssistantFinish = null
-            }
           }
           break
       }
