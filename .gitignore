@@ -13,3 +13,5 @@ logseq/.logseq/plugins/
 
 clojure/.lein/profiles.d/auth.clj
 clojure/.lein/repl-port
+
+git/.config/hunk/state.json
