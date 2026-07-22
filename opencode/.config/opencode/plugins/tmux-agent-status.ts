@@ -11,6 +11,23 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
     } catch {}
   }
 
+  let doneTimer: ReturnType<typeof setTimeout> | null = null
+
+  const scheduleDoneNotification = () => {
+    if (doneTimer) clearTimeout(doneTimer)
+    doneTimer = setTimeout(async () => {
+      await notifyTmux()
+      await sendNotification("done", "Session completed")
+    }, 10000)
+  }
+
+  const cancelDoneNotification = () => {
+    if (doneTimer) {
+      clearTimeout(doneTimer)
+      doneTimer = null
+    }
+  }
+
   return {
     event: async ({ event }) => {
       const sendNotification = async (notificationType: string, message: string) => {
@@ -30,8 +47,6 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
         }
       }
 
-      // Updates the per-pane agent status icon in the tmux window name
-      // (running/waiting/idle/error), via the shared tmux-agent-state writer.
       const setState = async (state: string) => {
         try {
           await $`tmux-agent-state ${state} OpenCode`
@@ -43,41 +58,37 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
       await log(`${event.type} ${JSON.stringify(event.properties)}`)
 
       switch (event.type) {
-        case "message.updated":
-          break
-
         case "session.error":
+          cancelDoneNotification()
           await setState("error")
           await notifyTmux()
           await sendNotification("error", event.properties?.message || "Session error occurred")
           break
 
-        case "session.idle":
-          await setState("idle")
-          await notifyTmux()
-          await sendNotification("done", "Session completed")
-          break
-
         case "tui.prompt.append":
         case "permission.asked":
         case "permission.updated":
+          cancelDoneNotification()
           await setState("waiting")
           await notifyTmux()
           await sendNotification("waiting", "OpenCode is waiting for your input")
           break
 
         case "permission.replied":
+          cancelDoneNotification()
           await setState("running")
           await notifyTmux()
           break
 
         case "session.status":
           if (event.properties?.status?.type === "busy") {
+            cancelDoneNotification()
             await setState("running")
             await notifyTmux()
           } else if (event.properties?.status?.type === "idle") {
             await setState("idle")
             await notifyTmux()
+            scheduleDoneNotification()
           }
           break
       }
