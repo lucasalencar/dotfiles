@@ -28,7 +28,7 @@
           },
           {
             "type": "command",
-            "command": "agent-notify 'Claude Code' 'asked a question'"
+            "command": "agent-notify 'Claude Code' 'asked a question' --allow-agent-id"
           }
         ]
       }

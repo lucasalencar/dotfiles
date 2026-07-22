@@ -6,6 +6,7 @@
 
 AGENT_NAME="$1"
 FALLBACK_MSG="$2"
+ALLOW_AGENT_ID="${3:-}"
 
 if [ -z "$AGENT_NAME" ]; then
   echo "agent-notify: missing agent name argument" >&2
@@ -19,10 +20,11 @@ TYPE=$(echo "$INPUT" | jq -r '.notification_type // empty')
 # Skip auth success or other noise
 [ "$TYPE" = "auth_success" ] && exit 0
 
-# Skip notifications originating from inside a subagent (Task tool) call —
-# only the main session's Stop/Notification events should notify.
+# Skip notifications originating from inside a subagent (Task tool) call.
+# AskUserQuestion hooks opt in because Claude Code now includes agent_id on
+# interactive input requests from the main session as well.
 AGENT_ID=$(echo "$INPUT" | jq -r '.agent_id // empty')
-[ -n "$AGENT_ID" ] && exit 0
+[ -n "$AGENT_ID" ] && [ "$ALLOW_AGENT_ID" != "--allow-agent-id" ] && exit 0
 
 MSG=$(echo "$INPUT" | jq -r ".message // empty")
 [ -z "$MSG" ] && MSG="$FALLBACK_MSG"
