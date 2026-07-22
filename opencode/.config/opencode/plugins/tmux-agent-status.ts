@@ -12,6 +12,7 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
   }
 
   let doneTimer: ReturnType<typeof setTimeout> | null = null
+  let messageCompleted = false
 
   const scheduleDoneNotification = () => {
     if (doneTimer) clearTimeout(doneTimer)
@@ -59,9 +60,15 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
 
       switch (event.type) {
         case "message.updated":
-          if (event.properties?.info?.role === "assistant" && event.properties?.info?.finish) {
-            await setState("idle")
-            scheduleDoneNotification()
+          if (event.properties?.info?.role === "assistant") {
+            if (event.properties?.info?.finish) {
+              messageCompleted = true
+              await setState("idle")
+              scheduleDoneNotification()
+            } else {
+              messageCompleted = false
+              await setState("running")
+            }
           }
           break
 
@@ -75,6 +82,7 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
         case "tui.prompt.append":
         case "permission.asked":
         case "permission.updated":
+          messageCompleted = false
           cancelDoneNotification()
           await setState("waiting")
           await notifyTmux()
@@ -82,14 +90,17 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
           break
 
         case "permission.replied":
+          messageCompleted = false
           cancelDoneNotification()
           await setState("running")
           break
 
         case "session.status":
           if (event.properties?.status?.type === "busy") {
+            if (!messageCompleted) {
+              await setState("running")
+            }
             cancelDoneNotification()
-            await setState("running")
           } else if (event.properties?.status?.type === "idle") {
             await setState("idle")
             scheduleDoneNotification()
