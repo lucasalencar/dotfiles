@@ -1,0 +1,15 @@
+#!/bin/bash
+source "$DOTFILES_ROOT/print_helper"
+
+SKILLS_DIR="$HOME/code/skills"
+SKILLS_REPO="git@github.com:lucasalencar/skills.git"
+
+if [ -d "$SKILLS_DIR" ]; then
+  info "Skills directory already exists at $SKILLS_DIR"
+else
+  info "Cloning skills repo to $SKILLS_DIR"
+  git clone "$SKILLS_REPO" "$SKILLS_DIR"
+fi
+
+info "Installing skills for detected agents"
+"$SKILLS_DIR/scripts/install"

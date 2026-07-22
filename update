@@ -45,11 +45,6 @@ else
   info "Updating dotfiles project"
   git -C "$HOME/.dotfiles" pull --rebase
 
-  if [ -d "$HOME/code/skills" ]; then
-    info "Updating code skills project"
-    git -C "$HOME/code/skills" pull --rebase
-  fi
-
   update_package "homebrew"
   update_profile_packages "basic"
 

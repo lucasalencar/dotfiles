@@ -1,0 +1,16 @@
+#!/bin/bash
+source "$DOTFILES_ROOT/print_helper"
+
+SKILLS_DIR="$HOME/code/skills"
+
+if [ ! -d "$SKILLS_DIR" ]; then
+  info "Skills directory not found. Running install instead."
+  "$DOTFILES_ROOT/skills/install"
+  exit 0
+fi
+
+info "Updating skills repo"
+git -C "$SKILLS_DIR" pull --rebase
+
+info "Reinstalling skills for detected agents"
+"$SKILLS_DIR/scripts/install"

@@ -151,6 +151,7 @@ optional and only used when explicitly invoked.
 | `gemini`     | Gemini CLI configuration.                                    |
 | `opencode`   | OpenCode agent configuration.                                |
 | `prompts`    | Reusable prompt snippets shared across tools.                |
+| `skills`     | AI coding agent skills (cloned from `~/code/skills`).        |
 
 ### Languages & runtimes
 
@@ -208,7 +209,7 @@ optional and only used when explicitly invoked.
 
 Configurations included: Git, ZSH, Vim/Neovim, Tmux, Homebrew, Ruby, Python,
 Go, Java, Clojure, Haskell, Elixir, Docker, PostgreSQL, Karabiner, Ghostty,
-Kitty, Emacs, Logseq, Claude Code, Cursor, Gemini, OpenCode, and more.
+Kitty, Emacs, Logseq, Claude Code, Cursor, Gemini, OpenCode, Skills, and more.
 
 ## Inspirations
 
