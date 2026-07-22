@@ -58,6 +58,14 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
       await log(`${event.type} ${JSON.stringify(event.properties)}`)
 
       switch (event.type) {
+        case "message.updated":
+          if (event.properties?.info?.role === "assistant" && event.properties?.info?.finish) {
+            await setState("idle")
+            await notifyTmux()
+            scheduleDoneNotification()
+          }
+          break
+
         case "session.error":
           cancelDoneNotification()
           await setState("error")
