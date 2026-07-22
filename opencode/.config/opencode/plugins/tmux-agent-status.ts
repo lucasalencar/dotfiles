@@ -61,7 +61,6 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
         case "message.updated":
           if (event.properties?.info?.role === "assistant" && event.properties?.info?.finish) {
             await setState("idle")
-            await notifyTmux()
             scheduleDoneNotification()
           }
           break
@@ -85,17 +84,14 @@ export const TmuxAgentStatusPlugin: Plugin = async ({ client, $ }) => {
         case "permission.replied":
           cancelDoneNotification()
           await setState("running")
-          await notifyTmux()
           break
 
         case "session.status":
           if (event.properties?.status?.type === "busy") {
             cancelDoneNotification()
             await setState("running")
-            await notifyTmux()
           } else if (event.properties?.status?.type === "idle") {
             await setState("idle")
-            await notifyTmux()
             scheduleDoneNotification()
           }
           break
