@@ -3,4 +3,4 @@
 source "$DOTFILES_ROOT/print_helper"
 
 info "Installing Logseq"
-brew install --cask logseq
+brew install --cask logseq-og
