@@ -33,18 +33,28 @@ MSG=$(echo "$INPUT" | jq -r ".message // empty")
 WIN=$(tmux display-message -t "$TMUX_PANE" -p "#{session_name}:#{window_index}" 2>/dev/null)
 WINDOW_ID=$(tmux display-message -t "$TMUX_PANE" -p "#{window_id}" 2>/dev/null)
 WINDOW_NAME=$("$DOTFILES_ROOT/tmux/scripts/tmux-window-label" "$WINDOW_ID" 2>/dev/null)
+SESSION=$(echo "$WIN" | cut -d: -f1)
 
-# Skip notification if terminal is focused and the AI pane is in the active window
+# Skip notification if the terminal window actually showing this agent's tmux
+# session is frontmost and its active window is the one the agent runs in.
+# Terminal window titles are set to the tmux session name (set-titles-string
+# "#S" in tmux.conf), so we match on that instead of relying on this script's
+# own inherited $TMUX context, which only reflects the agent's own session
+# and says nothing about which session/window is actually on screen — this
+# matters once multiple tmux sessions are in play, including ones with no
+# attached client at all.
 TERMINAL_APP_NAME="${TERMINAL_APP_NAME:-ghostty}"
 IS_TERMINAL_FOCUSED=$(osascript -e "tell application \"System Events\" to frontmost of application process \"$TERMINAL_APP_NAME\"" 2>/dev/null)
 if [ "$IS_TERMINAL_FOCUSED" = "true" ]; then
-  AGENT_PANE_WIN=$(tmux display-message -t "$TMUX_PANE" -p "#{session_name}:#{window_index}" 2>/dev/null)
-  ACTIVE_WIN=$(tmux display-message -p "#{session_name}:#{window_index}" 2>/dev/null)
-  [ -n "$AGENT_PANE_WIN" ] && [ "$AGENT_PANE_WIN" = "$ACTIVE_WIN" ] && exit 0
+  FRONT_WINDOW_TITLE=$(osascript -e "tell application \"System Events\" to tell process \"$TERMINAL_APP_NAME\" to get name of front window" 2>/dev/null)
+  if [ "$FRONT_WINDOW_TITLE" = "$SESSION" ]; then
+    AGENT_PANE_WIN=$(tmux display-message -t "$TMUX_PANE" -p "#{window_id}" 2>/dev/null)
+    ACTIVE_WIN=$(tmux display-message -t "$SESSION" -p "#{window_id}" 2>/dev/null)
+    [ -n "$AGENT_PANE_WIN" ] && [ "$AGENT_PANE_WIN" = "$ACTIVE_WIN" ] && exit 0
+  fi
 fi
 
 PROJECT=$(basename "$PWD")
-SESSION=$(echo "$WIN" | cut -d: -f1)
 GROUP_ID="tmux-window-$(echo "$WIN" | tr ':' '-')"
 TITLE="$AGENT_NAME - $PROJECT"
 [ -n "$WINDOW_NAME" ] && TITLE="$TITLE ($WINDOW_NAME)"
