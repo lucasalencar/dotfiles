@@ -5,13 +5,7 @@ input=$(cat)
 cwd=$(echo "$input"    | jq -r '.workspace.current_dir // .cwd')
 model=$(echo "$input"  | jq -r '.model.display_name // empty')
 
-# Tenta ler effortLevel do settings.json do projeto ou global
-project_settings="$cwd/.claude/settings.json"
-if [ -f "$project_settings" ]; then
-  effort=$(jq -r '.effortLevel // empty' "$project_settings" 2>/dev/null)
-else
-  effort=$(jq -r '.effortLevel // empty' ~/.claude/settings.json 2>/dev/null)
-fi
+effort=$(echo "$input" | jq -r '.effort.level // empty')
 pct=$(echo "$input"    | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 cost=$(echo "$input"   | jq -r '.cost.total_cost_usd // empty')
 
