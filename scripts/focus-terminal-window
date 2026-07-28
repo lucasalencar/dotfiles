@@ -1,5 +1,10 @@
 #!/bin/bash
-# focus-terminal-window: Brings the terminal window for a given tmux session to the foreground.
+# focus-terminal-window: Brings the terminal window for a given tmux session to the
+# foreground. If no window currently shows the session (e.g. it's running detached
+# in the background), repurpose an existing non-"main" ghostty window by switching
+# its tmux client to that session instead. "main" is never repurposed — if it's the
+# only window open (or no window is open at all), a brand-new window is opened and
+# attached to the session instead.
 # Requires set-titles on + set-titles-string "#S" in tmux.conf so each terminal window
 # title reflects the session name, enabling reliable window identification via osascript.
 # Usage: focus-terminal-window "session-name"
@@ -9,16 +14,68 @@ TERMINAL_PROCESS="${TERMINAL_APP_NAME:-ghostty}"
 
 [ -z "$SESSION" ] && exit 0
 
-osascript <<SCRIPT
+raise_window_for_session() {
+  local target="$1"
+  osascript <<SCRIPT
 tell application "System Events"
   tell process "$TERMINAL_PROCESS"
     repeat with w in windows
-      if name of w contains "$SESSION" then
+      if name of w contains "$target" then
         perform action "AXRaise" of w
         set frontmost to true
-        exit repeat
+        return "1"
       end if
     end repeat
   end tell
 end tell
+return "0"
 SCRIPT
+}
+
+[ "$(raise_window_for_session "$SESSION")" = "1" ] && exit 0
+
+# Not attached anywhere yet — try to repurpose a non-"main" window's client.
+TARGET_TTY=$(tmux list-clients -F "#{client_tty} #{session_name}" 2>/dev/null | awk '$2 != "main" { print $1; exit }')
+
+if [ -n "$TARGET_TTY" ]; then
+  tmux switch-client -c "$TARGET_TTY" -t "$SESSION"
+  sleep 0.2
+  raise_window_for_session "$SESSION" >/dev/null
+  exit 0
+fi
+
+# No non-"main" window available (only "main" is open, or nothing is open at all) —
+# never repurpose "main". Open a new window via Cmd+N instead of `open -na`: the
+# latter spawns a whole new OS-level process, showing up as a separate app/dock
+# icon, since ghostty isn't built to hand new-window CLI args to its running
+# instance. Cmd+N opens a window inside the existing instance; we then paste the
+# attach command into it once it's ready to accept input.
+#
+# This is split into separate osascript processes (not one script with multiple
+# `tell` blocks) so the command-key-down from Cmd+N is fully released — process
+# exit flushes modifier state — before the next step runs. Otherwise the final
+# Enter can intermittently be delivered as Cmd+Return (which ghostty interprets
+# as "toggle fullscreen" instead of submitting the line), causing the typed
+# command to sit there unexecuted.
+BEFORE_COUNT=$(osascript -e "tell application \"System Events\" to count windows of process \"$TERMINAL_PROCESS\"" 2>/dev/null)
+osascript -e "tell application \"System Events\" to tell process \"$TERMINAL_PROCESS\" to set frontmost to true" \
+          -e "tell application \"System Events\" to tell process \"$TERMINAL_PROCESS\" to keystroke \"n\" using command down"
+
+# Poll for the new window to actually appear instead of a fixed delay.
+for _ in $(seq 1 20); do
+  sleep 0.1
+  AFTER_COUNT=$(osascript -e "tell application \"System Events\" to count windows of process \"$TERMINAL_PROCESS\"" 2>/dev/null)
+  [ -n "$AFTER_COUNT" ] && [ "$AFTER_COUNT" -gt "${BEFORE_COUNT:-0}" ] && break
+done
+sleep 0.3
+
+# Paste the command atomically via clipboard (avoids per-character synthetic
+# keystrokes, which some terminals' fast-paste heuristics can mangle), then
+# submit with a separate, explicit key code for Enter.
+OLD_CLIPBOARD=$(osascript -e 'the clipboard as text' 2>/dev/null)
+printf "%s" "tmux attach -t '$SESSION' || tmux new-session -s '$SESSION'" | pbcopy
+osascript -e "tell application \"System Events\" to tell process \"$TERMINAL_PROCESS\" to set frontmost to true" \
+          -e "tell application \"System Events\" to tell process \"$TERMINAL_PROCESS\" to keystroke \"v\" using command down"
+sleep 0.3
+osascript -e "tell application \"System Events\" to tell process \"$TERMINAL_PROCESS\" to key code 36"
+[ -n "$OLD_CLIPBOARD" ] && printf "%s" "$OLD_CLIPBOARD" | pbcopy
