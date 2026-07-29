@@ -2,7 +2,7 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "model": "opus[1m]",
+  "model": "claude-opus-5",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -128,13 +128,6 @@
       "source": {
         "source": "git",
         "url": "git@github.com:nubank/ai-agents-plugins.git"
-      },
-      "autoUpdate": true
-    },
-    "hiroppy": {
-      "source": {
-        "source": "directory",
-        "path": "/Users/lucas.alencar/.tmux/plugins/tmux-agent-sidebar"
       },
       "autoUpdate": true
     },
