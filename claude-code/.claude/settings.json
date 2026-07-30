@@ -110,11 +110,11 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "*.clj",
+        "matcher": "^(Edit|Write|NotebookEdit)$",
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'lein lint-fix 2>&1 | lein lint 2>&1 | tail -20'"
+            "command": "clojure-lint-hook"
           }
         ]
       },
