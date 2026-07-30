@@ -5,7 +5,12 @@
 # pelo plugin de notificação do OpenCode.
 #
 # Usage: tmux-agent-state <running|waiting|idle|error|clear> [agent_name]
+#        tmux-agent-state <subagent-start|subagent-stop>   (lê JSON do hook via stdin)
 #   running -> ● ; waiting -> ◐ ; error -> ✕ ; idle -> ○ ; clear -> remove o ícone
+#
+# @pane_status é derivado de @pane_status_main (último estado explícito do turno
+# principal) + @pane_agent_ids (ids de sub-agentes em background ainda ativos):
+# enquanto houver algum sub-agente ativo, um main "idle" ainda aparece como running.
 #
 # O status permanece até ser explicitamente alterado ou limpo.
 # Apenas a notificação (@notify) é limpa quando a janela está ativa.
@@ -13,7 +18,7 @@
 set -u
 [ -z "${TMUX:-}" ] && exit 0
 
-state="${1:?usage: tmux-agent-state <running|waiting|idle|error|clear> [agent_name]}"
+state="${1:?usage: tmux-agent-state <running|waiting|idle|error|clear|subagent-start|subagent-stop> [agent_name]}"
 agent_name="${2:-}"
 
 # Resolve o pane onde este agente está rodando.
@@ -21,18 +26,72 @@ pane="${TMUX_PANE:-}"
 [ -z "$pane" ] && pane=$(tmux display-message -p '#{pane_id}' 2>/dev/null)
 [ -z "$pane" ] && exit 0
 
-# A janela do agente é a que está em foco?
-win=$(tmux display-message -t "$pane" -p '#{window_id}' 2>/dev/null)
-active_win=$(tmux display-message -p '#{window_id}' 2>/dev/null)
-is_active=0
-[ -n "$win" ] && [ "$win" = "$active_win" ] && is_active=1
+# Insere/remove um id em @pane_agent_ids com um loop otimista (lê, calcula,
+# escreve, relê pra confirmar) já que tmux não tem read-modify-write atômico.
+mutate_agent_ids() {
+  local op="$1" id="$2" attempt cur new found
+  [ -z "$id" ] && return 0
+  for attempt in 1 2 3 4 5; do
+    cur=$(tmux show -p -t "$pane" -v @pane_agent_ids 2>/dev/null)
+    if [ "$op" = add ]; then
+      case " $cur " in *" $id "*) return 0 ;; esac
+      new="${cur:+$cur }$id"
+    else
+      found=0
+      new=""
+      for existing in $cur; do
+        if [ "$existing" = "$id" ]; then
+          found=1
+        else
+          new="${new:+$new }$existing"
+        fi
+      done
+      [ "$found" = 0 ] && return 0
+    fi
+    tmux set -p -t "$pane" @pane_agent_ids "$new"
+    [ "$(tmux show -p -t "$pane" -v @pane_agent_ids 2>/dev/null)" = "$new" ] && return 0
+    sleep 0.05
+  done
+}
+
+# Recalcula @pane_status a partir de @pane_status_main + contagem de
+# @pane_agent_ids. Só o estado "idle" é reinterpretado (vira "running" se
+# ainda houver sub-agentes ativos); waiting/error/running passam direto.
+recompute() {
+  local main agent_ids count display
+  main=$(tmux show -p -t "$pane" -v @pane_status_main 2>/dev/null)
+  agent_ids=$(tmux show -p -t "$pane" -v @pane_agent_ids 2>/dev/null)
+  count=0
+  for _ in $agent_ids; do count=$((count + 1)); done
+
+  display="$main"
+  if [ "$main" = idle ] && [ "$count" -gt 0 ]; then
+    display=running
+  fi
+  tmux set -p -t "$pane" @pane_status "$display"
+}
 
 case "$state" in
   running|waiting|idle|error)
-    tmux set -p -t "$pane" @pane_status "$state"
+    tmux set -p -t "$pane" @pane_status_main "$state"
+    recompute
     ;;
   clear)
+    tmux set -p -t "$pane" @pane_status_main ""
     tmux set -p -t "$pane" @pane_status ""
+    tmux set -p -t "$pane" @pane_agent_ids ""
+    ;;
+  subagent-start)
+    input=$(cat)
+    id=$(printf '%s' "$input" | jq -r '.agent_id // .session_id // empty' 2>/dev/null)
+    mutate_agent_ids add "$id"
+    recompute
+    ;;
+  subagent-stop)
+    input=$(cat)
+    id=$(printf '%s' "$input" | jq -r '.agent_id // .session_id // empty' 2>/dev/null)
+    mutate_agent_ids remove "$id"
+    recompute
     ;;
   *)
     exit 0

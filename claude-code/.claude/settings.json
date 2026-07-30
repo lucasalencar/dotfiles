@@ -52,6 +52,26 @@
         ]
       }
     ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-agent-state subagent-start"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "tmux-agent-state subagent-stop"
+          }
+        ]
+      }
+    ],
     "SessionEnd": [
       {
         "hooks": [

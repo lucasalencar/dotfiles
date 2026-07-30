@@ -18,12 +18,18 @@ while IFS=' ' read -r pane_id st; do
   stored_cmd=$(tmux show -p -t "$pane_id" -v @pane_command 2>/dev/null)
   if [ -n "$stored_cmd" ]; then
     # Compare recorded command against current — process changed → agent is gone
-    [ "$stored_cmd" != "$current_cmd" ] && tmux set -p -t "$pane_id" @pane_status ""
+    if [ "$stored_cmd" != "$current_cmd" ]; then
+      tmux set -p -t "$pane_id" @pane_status ""
+      tmux set -p -t "$pane_id" @pane_status_main ""
+      tmux set -p -t "$pane_id" @pane_agent_ids ""
+    fi
   else
     # Legacy panes: clear if current command is a known shell
     case "$current_cmd" in
       zsh|bash|sh|fish|dash|tcsh|csh|ksh|mksh|oksh|elvish|nu|xonsh|pwsh)
         tmux set -p -t "$pane_id" @pane_status ""
+        tmux set -p -t "$pane_id" @pane_status_main ""
+        tmux set -p -t "$pane_id" @pane_agent_ids ""
         ;;
     esac
   fi
