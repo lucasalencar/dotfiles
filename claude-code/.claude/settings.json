@@ -142,7 +142,8 @@
     "isa@nubank-ai-agents-plugins-tmp": true,
     "isa@nubank-ai-agents-plugins-eng": true,
     "atlassian-mcp@nubank-ai-agents-plugins": true,
-    "skill-creator@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true,
+    "worktrunk@worktrunk": true
   },
   "extraKnownMarketplaces": {
     "nubank-ai-agents-plugins": {
@@ -174,6 +175,12 @@
       "source": {
         "source": "git",
         "url": "git@github.com:nubank/ai-agents-plugins-analytics.git"
+      }
+    },
+    "worktrunk": {
+      "source": {
+        "source": "github",
+        "repo": "max-sixty/worktrunk"
       }
     }
   },
