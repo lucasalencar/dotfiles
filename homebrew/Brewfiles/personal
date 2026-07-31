@@ -4,6 +4,7 @@ cask 'whatsapp'
 cask 'telegram'
 cask 'stremio'
 cask 'vlc'
+cask 'nextcloud'
 
 # Small tools without config
 brew 'heroku'
