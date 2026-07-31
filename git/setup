@@ -8,4 +8,18 @@ ensure_command_exists git
 info "Setting up git config and ignore files"
 run_required_step "Stowing git package" stow git
 
+if command_exists wt; then
+  for agent in claude codex opencode; do
+    if command_exists "$agent"; then
+      run_optional_step "Installing worktrunk plugin for $agent" wt config plugins "$agent" install --yes
+    fi
+  done
+
+  if command_exists gemini; then
+    run_optional_step "Installing worktrunk extension for gemini" gemini extensions install https://github.com/max-sixty/worktrunk
+  fi
+else
+  warning "wt not found, skipping worktrunk plugin setup"
+fi
+
 exit 0
