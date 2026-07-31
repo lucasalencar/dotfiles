@@ -6,7 +6,6 @@ brew 'stow'
 brew 'fd'
 brew 'jq' # JSON
 brew 'bat'
-brew 'worktrunk' # better git worktrees
 
 # Command line utils
 brew 'coreutils'
