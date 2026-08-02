@@ -1,0 +1,16 @@
+{
+  "name": "opencode-tmux-agent-status-tests",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=23.6"
+  },
+  "scripts": {
+    "test": "node --test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}
