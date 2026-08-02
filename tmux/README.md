@@ -29,9 +29,16 @@ How it works:
 Integration points (both call `tmux-agent-state`):
 
 - Claude Code: hooks in `~/.claude/settings.json` (`UserPromptSubmit` → running,
-  `AskUserQuestion`/`permission_prompt` → waiting, `Stop` → idle,
-  `SessionEnd` → clear).
+  `AskUserQuestion`/`permission_prompt` → waiting, `SubagentStart`/`SubagentStop`
+  → subagent tracking, `Stop` → idle, `SessionEnd` → clear).
 - Codex: hooks in `~/.codex/hooks.json` manage running, waiting, and idle states;
   the package `rc` clears the state when the CLI exits.
 - OpenCode: `opencode/.config/opencode/plugins/tmux-agent-status.ts` event
-  handler.
+  handler. Subagent sessions (child sessions created by the `task` tool) are
+  tracked via their own `session.status` events, so the pane stays `running`
+  while subagents work even after the main session goes idle.
+  - Unit tests for the OpenCode plugin live in
+    `opencode/.config/opencode/tests/` (pure state machine in
+    `opencode/.config/opencode/lib/tmux-agent-status-core.ts` + thin adapter).
+    Run with `npm test` there (requires Node >= 23.6 for native TypeScript;
+    typecheck with `npm run typecheck`).
