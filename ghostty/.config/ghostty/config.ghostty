@@ -48,9 +48,3 @@ keybind = cmd+k=text:\x1bk
 # Send Alt+l so tmux can forward it as Ctrl-L without vim-tmux-navigator
 # intercepting (which would switch panes instead).
 keybind = cmd+l=text:\x1bl
-
-# Send Shift+Enter as the CSI-u sequence `ESC [ 13 ; 2 u` so apps that
-# support it (opencode, Codex, tmux) recognize a real Shift+Enter instead of
-# a plain Enter. This is the encoding opencode documents for terminals that
-# don't send modifiers with Enter by default.
-keybind = shift+enter=text:\x1b[13;2u
