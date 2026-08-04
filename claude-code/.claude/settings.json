@@ -142,7 +142,8 @@
     "isa@nubank-ai-agents-plugins-eng": true,
     "atlassian-mcp@nubank-ai-agents-plugins": true,
     "skill-creator@claude-plugins-official": true,
-    "worktrunk@worktrunk": true
+    "worktrunk@worktrunk": true,
+    "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
     "nubank-ai-agents-plugins": {
@@ -180,6 +181,12 @@
       "source": {
         "source": "github",
         "repo": "max-sixty/worktrunk"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
       }
     }
   },

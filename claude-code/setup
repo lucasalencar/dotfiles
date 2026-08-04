@@ -30,5 +30,31 @@ register_playwright_mcp() {
   claude mcp add -s user playwright -- npx -y @playwright/mcp@latest
 }
 
+register_codex_plugin_marketplace() {
+  if ! command_exists claude; then
+    warning "claude CLI not found, skipping codex plugin marketplace registration"
+    return 0
+  fi
+  if claude plugin marketplace list 2>/dev/null | grep -q "openai/codex-plugin-cc"; then
+    info "codex plugin marketplace already registered, skipping"
+    return 0
+  fi
+  claude plugin marketplace add openai/codex-plugin-cc
+}
+
+install_codex_plugin() {
+  if ! command_exists claude; then
+    warning "claude CLI not found, skipping codex plugin installation"
+    return 0
+  fi
+  if claude plugin list 2>/dev/null | grep -q "^codex@openai-codex"; then
+    info "codex plugin already installed, skipping"
+    return 0
+  fi
+  claude plugin install codex@openai-codex
+}
+
 run_optional_step "Registering tmux MCP server" register_tmux_mcp
 run_optional_step "Registering playwright MCP server" register_playwright_mcp
+run_optional_step "Registering codex plugin marketplace" register_codex_plugin_marketplace
+run_optional_step "Installing codex plugin" install_codex_plugin
