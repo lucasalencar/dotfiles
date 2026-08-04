@@ -6,7 +6,7 @@
   ],
 
   "keybinds": {
-    "input_newline": "Shift+Enter"
+    "input_newline": "ctrl+j,shift+enter"
   },
 
   "autoshare": false,
