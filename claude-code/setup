@@ -54,7 +54,20 @@ install_codex_plugin() {
   claude plugin install codex@openai-codex
 }
 
+install_mattpocock_skills_plugin() {
+  if ! command_exists claude; then
+    warning "claude CLI not found, skipping mattpocock-skills plugin installation"
+    return 0
+  fi
+  if claude plugin list 2>/dev/null | grep -q "^mattpocock-skills@"; then
+    info "mattpocock-skills plugin already installed, skipping"
+    return 0
+  fi
+  claude plugin install mattpocock-skills
+}
+
 run_optional_step "Registering tmux MCP server" register_tmux_mcp
 run_optional_step "Registering playwright MCP server" register_playwright_mcp
 run_optional_step "Registering codex plugin marketplace" register_codex_plugin_marketplace
 run_optional_step "Installing codex plugin" install_codex_plugin
+run_optional_step "Installing mattpocock-skills plugin" install_mattpocock_skills_plugin

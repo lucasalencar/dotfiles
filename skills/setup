@@ -1,0 +1,14 @@
+#!/bin/bash
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+install_mattpocock_skills() {
+  if ! command_exists npx; then
+    warning "npx not found, skipping mattpocock/skills installation"
+    return 0
+  fi
+  info "Pick the skills to install and which agents to install them on (Claude Code, Codex, Cursor); make sure setup-matt-pocock-skills is included"
+  npx skills@latest add mattpocock/skills
+}
+
+run_optional_step "Installing mattpocock/skills" install_mattpocock_skills
