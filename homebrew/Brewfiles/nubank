@@ -10,3 +10,7 @@ brew 'ykman'
 
 # Kubernetes
 brew 'k9s'
+
+# Attlassian
+tap "atlassian/homebrew-acli"
+brew "acli"
