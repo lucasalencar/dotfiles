@@ -39,8 +39,8 @@ else
   # Handle Ctrl+C: show message and exit (cleanup runs automatically via EXIT trap)
   trap 'echo ""; warning "Update interrupted by user"; exit 130' INT TERM
 
-  info "Updating dotfiles project"
-  git -C "$HOME/.dotfiles" pull --rebase
+  info "Syncing dotfiles project"
+  git -C "$HOME/.dotfiles" pull --rebase && git -C "$HOME/.dotfiles" push
 
   update_package "homebrew"
   update_profile_packages "basic"
