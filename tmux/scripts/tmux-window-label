@@ -41,7 +41,7 @@ fi
 
 case "$strategy" in
   path)
-    printf '%s' "$basename"
+    printf '%s' "$basename" | cut -c1-30
     ;;
   repo-command)
     case "$cmd" in
