@@ -5,12 +5,12 @@
   "model": "sonnet[1m]",
   "hooks": {
     "SessionStart": [
-      { "hooks": [ { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code SessionStart" } ] }
+      { "hooks": [ { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SessionStart >/dev/null 2>&1 || :" } ] }
     ],
     "UserPromptSubmit": [
       {
         "hooks": [
-          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code UserPromptSubmit" },
+          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code UserPromptSubmit >/dev/null 2>&1 || :" },
           { "type": "command", "command": "tmux-agent-state running 'Claude Code'" }
         ]
       }
@@ -34,21 +34,21 @@
       },
       {
         "hooks": [
-          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code PostToolUse" },
+          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PostToolUse >/dev/null 2>&1 || :" },
           { "type": "command", "command": "tmux-agent-state running 'Claude Code'" }
         ]
       }
     ],
     "PostToolUseFailure": [
-      { "hooks": [ { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code PostToolUseFailure" } ] }
+      { "hooks": [ { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PostToolUseFailure >/dev/null 2>&1 || :" } ] }
     ],
     "PermissionRequest": [
-      { "hooks": [ { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code PermissionRequest" } ] }
+      { "hooks": [ { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PermissionRequest >/dev/null 2>&1 || :" } ] }
     ],
     "Notification": [
       {
         "hooks": [
-          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code Notification" }
+          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code Notification >/dev/null 2>&1 || :" }
         ]
       },
       {
@@ -63,7 +63,7 @@
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code Stop" },
+          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code Stop >/dev/null 2>&1 || :" },
           { "type": "command", "command": "tmux-agent-state idle 'Claude Code'" },
           { "type": "command", "command": "tmux-notify-window" },
           { "type": "command", "command": "agent-notify 'Claude Code' 'done'" },
@@ -73,12 +73,12 @@
       }
     ],
     "StopFailure": [
-      { "hooks": [ { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code StopFailure" } ] }
+      { "hooks": [ { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code StopFailure >/dev/null 2>&1 || :" } ] }
     ],
     "SubagentStart": [
       {
         "hooks": [
-          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code SubagentStart" },
+          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SubagentStart >/dev/null 2>&1 || :" },
           { "type": "command", "command": "tmux-agent-state subagent-start" }
         ]
       }
@@ -86,7 +86,7 @@
     "SubagentStop": [
       {
         "hooks": [
-          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code SubagentStop" },
+          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SubagentStop >/dev/null 2>&1 || :" },
           { "type": "command", "command": "tmux-agent-state subagent-stop" }
         ]
       }
@@ -94,7 +94,7 @@
     "SessionEnd": [
       {
         "hooks": [
-          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code SessionEnd" },
+          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SessionEnd >/dev/null 2>&1 || :" },
           { "type": "command", "command": "tmux-agent-state clear" }
         ]
       }
