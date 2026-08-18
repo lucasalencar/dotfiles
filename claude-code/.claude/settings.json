@@ -2,15 +2,16 @@
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-  "model": "claude-opus-5",
+  "model": "sonnet[1m]",
   "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code SessionStart" } ] }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state running 'Claude Code'"
-          }
+          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code UserPromptSubmit" },
+          { "type": "command", "command": "tmux-agent-state running 'Claude Code'" }
         ]
       }
     ],
@@ -18,93 +19,9 @@
       {
         "matcher": "AskUserQuestion",
         "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state waiting 'Claude Code'"
-          },
-          {
-            "type": "command",
-            "command": "tmux-notify-window"
-          },
-          {
-            "type": "command",
-            "command": "agent-notify 'Claude Code' 'asked a question' --allow-agent-id"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "permission_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state waiting 'Claude Code'"
-          },
-          {
-            "type": "command",
-            "command": "tmux-notify-window"
-          },
-          {
-            "type": "command",
-            "command": "jq -c '. + {message: \"waiting for your input\"}' | agent-notify 'Claude Code'"
-          }
-        ]
-      }
-    ],
-    "SubagentStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state subagent-start"
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state subagent-stop"
-          }
-        ]
-      }
-    ],
-    "SessionEnd": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state clear"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state idle 'Claude Code'"
-          },
-          {
-            "type": "command",
-            "command": "tmux-notify-window"
-          },
-          {
-            "type": "command",
-            "command": "agent-notify 'Claude Code' 'done'"
-          },
-          {
-            "type": "command",
-            "command": "cp -f ~/.claude/settings.json ~/.dotfiles/claude-code/.claude/settings.json"
-          },
-          {
-            "type": "command",
-            "command": "cp -f ~/.claude/.mcp.json ~/.dotfiles/claude-code/.claude/.mcp.json 2>/dev/null || true"
-          }
+          { "type": "command", "command": "tmux-agent-state waiting 'Claude Code'" },
+          { "type": "command", "command": "tmux-notify-window" },
+          { "type": "command", "command": "agent-notify 'Claude Code' 'asked a question' --allow-agent-id" }
         ]
       }
     ],
@@ -112,18 +29,73 @@
       {
         "matcher": "^(Edit|Write|NotebookEdit)$",
         "hooks": [
-          {
-            "type": "command",
-            "command": "clojure-lint-hook"
-          }
+          { "type": "command", "command": "clojure-lint-hook" }
         ]
       },
       {
         "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state running 'Claude Code'"
-          }
+          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code PostToolUse" },
+          { "type": "command", "command": "tmux-agent-state running 'Claude Code'" }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      { "hooks": [ { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code PostToolUseFailure" } ] }
+    ],
+    "PermissionRequest": [
+      { "hooks": [ { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code PermissionRequest" } ] }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code Notification" }
+        ]
+      },
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          { "type": "command", "command": "tmux-agent-state waiting 'Claude Code'" },
+          { "type": "command", "command": "tmux-notify-window" },
+          { "type": "command", "command": "jq -c '. + {message: \"waiting for your input\"}' | agent-notify 'Claude Code'" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code Stop" },
+          { "type": "command", "command": "tmux-agent-state idle 'Claude Code'" },
+          { "type": "command", "command": "tmux-notify-window" },
+          { "type": "command", "command": "agent-notify 'Claude Code' 'done'" },
+          { "type": "command", "command": "cp -f ~/.claude/settings.json ~/.dotfiles/claude-code/.claude/settings.json" },
+          { "type": "command", "command": "cp -f ~/.claude/.mcp.json ~/.dotfiles/claude-code/.claude/.mcp.json 2>/dev/null || true" }
+        ]
+      }
+    ],
+    "StopFailure": [
+      { "hooks": [ { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code StopFailure" } ] }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code SubagentStart" },
+          { "type": "command", "command": "tmux-agent-state subagent-start" }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code SubagentStop" },
+          { "type": "command", "command": "tmux-agent-state subagent-stop" }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          { "type": "command", "command": "[ -n \"$TMUX\" ] || exit 0; tama=$(tmux show -gqv @tama_bin); [ -x \"$tama\" ] || exit 0; exec \"$tama\" hook claude-code SessionEnd" },
+          { "type": "command", "command": "tmux-agent-state clear" }
         ]
       }
     ]
@@ -190,7 +162,7 @@
       }
     }
   },
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto"
 }
