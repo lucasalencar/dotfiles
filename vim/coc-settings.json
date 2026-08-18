@@ -18,4 +18,7 @@
   "markdownlint.config": {
     "MD013": false
   },
+  "json.schemaDownload.trustedDomains": {
+    "https://www.schemastore.org": true
+  },
 }
