@@ -5,13 +5,26 @@
   "model": "sonnet[1m]",
   "hooks": {
     "SessionStart": [
-      { "hooks": [ { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SessionStart >/dev/null 2>&1 || :" } ] }
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SessionStart >/dev/null 2>&1 || :"
+          }
+        ]
+      }
     ],
     "UserPromptSubmit": [
       {
         "hooks": [
-          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code UserPromptSubmit >/dev/null 2>&1 || :" },
-          { "type": "command", "command": "tmux-agent-state running 'Claude Code'" }
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code UserPromptSubmit >/dev/null 2>&1 || :"
+          },
+          {
+            "type": "command",
+            "command": "tmux-agent-state running 'Claude Code'"
+          }
         ]
       }
     ],
@@ -19,9 +32,18 @@
       {
         "matcher": "AskUserQuestion",
         "hooks": [
-          { "type": "command", "command": "tmux-agent-state waiting 'Claude Code'" },
-          { "type": "command", "command": "tmux-notify-window" },
-          { "type": "command", "command": "agent-notify 'Claude Code' 'asked a question' --allow-agent-id" }
+          {
+            "type": "command",
+            "command": "tmux-agent-state waiting 'Claude Code'"
+          },
+          {
+            "type": "command",
+            "command": "tmux-notify-window"
+          },
+          {
+            "type": "command",
+            "command": "agent-notify 'Claude Code' 'asked a question' --allow-agent-id"
+          }
         ]
       }
     ],
@@ -29,73 +51,151 @@
       {
         "matcher": "^(Edit|Write|NotebookEdit)$",
         "hooks": [
-          { "type": "command", "command": "clojure-lint-hook" }
+          {
+            "type": "command",
+            "command": "clojure-lint-hook"
+          }
         ]
       },
       {
         "hooks": [
-          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PostToolUse >/dev/null 2>&1 || :" },
-          { "type": "command", "command": "tmux-agent-state running 'Claude Code'" }
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PostToolUse >/dev/null 2>&1 || :"
+          },
+          {
+            "type": "command",
+            "command": "tmux-agent-state running 'Claude Code'"
+          }
         ]
       }
     ],
     "PostToolUseFailure": [
-      { "hooks": [ { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PostToolUseFailure >/dev/null 2>&1 || :" } ] }
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PostToolUseFailure >/dev/null 2>&1 || :"
+          }
+        ]
+      }
     ],
     "PermissionRequest": [
-      { "hooks": [ { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PermissionRequest >/dev/null 2>&1 || :" } ] }
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PermissionRequest >/dev/null 2>&1 || :"
+          }
+        ]
+      }
     ],
     "Notification": [
       {
         "hooks": [
-          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code Notification >/dev/null 2>&1 || :" }
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code Notification >/dev/null 2>&1 || :"
+          }
         ]
       },
       {
         "matcher": "permission_prompt",
         "hooks": [
-          { "type": "command", "command": "tmux-agent-state waiting 'Claude Code'" },
-          { "type": "command", "command": "tmux-notify-window" },
-          { "type": "command", "command": "jq -c '. + {message: \"waiting for your input\"}' | agent-notify 'Claude Code'" }
+          {
+            "type": "command",
+            "command": "tmux-agent-state waiting 'Claude Code'"
+          },
+          {
+            "type": "command",
+            "command": "tmux-notify-window"
+          },
+          {
+            "type": "command",
+            "command": "jq -c '. + {message: \"waiting for your input\"}' | agent-notify 'Claude Code'"
+          }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code Stop >/dev/null 2>&1 || :" },
-          { "type": "command", "command": "tmux-agent-state idle 'Claude Code'" },
-          { "type": "command", "command": "tmux-notify-window" },
-          { "type": "command", "command": "agent-notify 'Claude Code' 'done'" },
-          { "type": "command", "command": "cp -f ~/.claude/settings.json ~/.dotfiles/claude-code/.claude/settings.json" },
-          { "type": "command", "command": "cp -f ~/.claude/.mcp.json ~/.dotfiles/claude-code/.claude/.mcp.json 2>/dev/null || true" }
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code Stop >/dev/null 2>&1 || :"
+          },
+          {
+            "type": "command",
+            "command": "tmux-agent-state idle 'Claude Code'"
+          },
+          {
+            "type": "command",
+            "command": "tmux-notify-window"
+          },
+          {
+            "type": "command",
+            "command": "agent-notify 'Claude Code' 'done'"
+          },
+          {
+            "type": "command",
+            "command": "cp -f ~/.claude/settings.json ~/.dotfiles/claude-code/.claude/settings.json"
+          },
+          {
+            "type": "command",
+            "command": "cp -f ~/.claude/.mcp.json ~/.dotfiles/claude-code/.claude/.mcp.json 2>/dev/null || true"
+          }
         ]
       }
     ],
     "StopFailure": [
-      { "hooks": [ { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code StopFailure >/dev/null 2>&1 || :" } ] }
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code StopFailure >/dev/null 2>&1 || :"
+          }
+        ]
+      }
     ],
     "SubagentStart": [
       {
         "hooks": [
-          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SubagentStart >/dev/null 2>&1 || :" },
-          { "type": "command", "command": "tmux-agent-state subagent-start" }
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SubagentStart >/dev/null 2>&1 || :"
+          },
+          {
+            "type": "command",
+            "command": "tmux-agent-state subagent-start"
+          }
         ]
       }
     ],
     "SubagentStop": [
       {
         "hooks": [
-          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SubagentStop >/dev/null 2>&1 || :" },
-          { "type": "command", "command": "tmux-agent-state subagent-stop" }
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SubagentStop >/dev/null 2>&1 || :"
+          },
+          {
+            "type": "command",
+            "command": "tmux-agent-state subagent-stop"
+          }
         ]
       }
     ],
     "SessionEnd": [
       {
         "hooks": [
-          { "type": "command", "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SessionEnd >/dev/null 2>&1 || :" },
-          { "type": "command", "command": "tmux-agent-state clear" }
+          {
+            "type": "command",
+            "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SessionEnd >/dev/null 2>&1 || :"
+          },
+          {
+            "type": "command",
+            "command": "tmux-agent-state clear"
+          }
         ]
       }
     ]
