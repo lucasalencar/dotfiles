@@ -2,6 +2,9 @@
 # Outputs one status icon per agent pane in a window.
 # Usage: tmux-agent-icon <window_id>
 
+# Skip when the tamagotchi plugin is handling icons itself.
+[ "$(tmux show -gv @tama_use_plugin 2>/dev/null)" = "on" ] && exit 0
+
 icons=""
 while IFS= read -r pane_id; do
   status=$(tmux show -t "$pane_id" -pv @pane_status 2>/dev/null)

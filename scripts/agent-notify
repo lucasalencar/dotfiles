@@ -15,6 +15,10 @@ fi
 
 INPUT=$(cat)
 
+# Skip desktop notifications when the tamagotchi plugin is enabled — it
+# surfaces agent state directly in the tmux status bar instead.
+[ "$(tmux show -gv @tama_use_plugin 2>/dev/null)" = "on" ] && exit 0
+
 TYPE=$(echo "$INPUT" | jq -r '.notification_type // empty')
 
 # Skip auth success or other noise
