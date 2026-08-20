@@ -19,6 +19,8 @@
     "MD013": false
   },
   "json.schemaDownload.trustedDomains": {
-    "https://www.schemastore.org": true
+    "https://www.schemastore.org": true,
+    "https://opencode.ai": true,
+    "https://models.dev": true
   },
 }
