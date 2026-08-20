@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -u
+
+# `rename-window` disables automatic-rename on that specific window. Restore
+# it for already-open windows whenever the tmux configuration is reloaded.
+while IFS= read -r window_id; do
+  tmux set-window-option -t "$window_id" automatic-rename on
+done < <(tmux list-windows -a -F '#{window_id}')
+
+tmux refresh-client -S 2>/dev/null || true
