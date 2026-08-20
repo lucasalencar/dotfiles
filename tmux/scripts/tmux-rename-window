@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Opens command-prompt pre-filled with the current displayed label.
+# Opens command-prompt pre-filled with the canonical tmux window name.
 
 window_id="${1:?usage: tmux-rename-window <window_id>}"
 script_dir="$(cd "$(dirname "$0")" && pwd)"
 
-current=$("$script_dir/tmux-window-label" "$window_id")
+current=$(tmux display-message -p -t "$window_id" '#{window_name}')
 
-tmux command-prompt -I "$current" -p "Window label (empty to clear):" \
-  "run-shell -b \"$script_dir/tmux-set-window-label '$window_id' '#{pane_current_path}' '%%'\""
+tmux command-prompt -I "$current" -p "Window name (empty resets to directory):" \
+  "run-shell -b \"$script_dir/tmux-set-window-name '$window_id' '#{pane_current_path}' '%%'\""

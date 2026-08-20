@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+set -u
+
+initialize_window() {
+  local window_id="$1"
+  local automatic path name
+
+  IFS='|' read -r automatic path < <(
+    tmux display-message -p -t "$window_id" '#{automatic-rename}|#{pane_current_path}' 2>/dev/null
+  )
+  [ "$automatic" = "1" ] || return 0
+
+  # Preserve labels created by the previous configuration during migration.
+  name=$(tmux show-option -wqv -t "$window_id" @label 2>/dev/null)
+  [ -z "$name" ] && name="${path##*/}"
+  [ -z "$name" ] && return 0
+
+  tmux rename-window -t "$window_id" "$name"
+}
+
+legacy_name() {
+  local window_id="$1"
+  local path command session strategy name
+
+  IFS='|' read -r path command session < <(
+    tmux display-message -p -t "$window_id" \
+      '#{pane_current_path}|#{pane_current_command}|#{session_name}' 2>/dev/null
+  )
+
+  name=$(tmux show-option -wqv -t "$window_id" @label 2>/dev/null)
+  if [ -n "$name" ]; then
+    printf '%s' "$name"
+    return
+  fi
+
+  strategy=$(tmux show-option -qv -t "$window_id" @window-strategy 2>/dev/null)
+  [ -z "$strategy" ] && [ "$session" = "main" ] && strategy="path"
+  [ -z "$strategy" ] && strategy="repo-command"
+
+  name="${path##*/}"
+  if [ "$strategy" = "repo-command" ]; then
+    case "$command" in
+      zsh|bash|fish|sh|""|-zsh|-bash) ;;
+      *) name="$name - $command" ;;
+    esac
+  fi
+
+  if [ "$strategy" = "path" ]; then
+    printf '%.30s' "$name"
+  else
+    printf '%.22s' "$name"
+  fi
+}
+
+if [ "${1:-}" = "--migrate" ]; then
+  [ "$(tmux show-option -gqv @canonical_window_names_migrated)" = "1" ] && exit 0
+
+  while IFS= read -r window_id; do
+    name=$(legacy_name "$window_id")
+    [ -n "$name" ] && tmux rename-window -t "$window_id" "$name"
+  done < <(tmux list-windows -a -F '#{window_id}')
+
+  tmux set-option -g @canonical_window_names_migrated 1
+  tmux refresh-client -S
+  exit 0
+fi
+
+if [ -n "${1:-}" ]; then
+  initialize_window "$1"
+  exit 0
+fi

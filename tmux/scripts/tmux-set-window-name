@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -u
+
+window_id="${1:?usage: tmux-set-window-name <window_id> <path> <name>}"
+path="${2:-}"
+name="${3:-}"
+
+[ -z "$name" ] && name="${path##*/}"
+[ -z "$name" ] && exit 0
+
+tmux rename-window -t "$window_id" "$name"
+tmux refresh-client -S
