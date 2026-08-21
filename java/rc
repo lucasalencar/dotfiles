@@ -6,7 +6,13 @@ export PATH="$HOME/.jenv/bin:$PATH"
 
 # Lazy-load `jenv init -` after the prompt is visible (saves ~50-100ms on startup).
 # Trade-off: until this fires, `java` resolves to the system binary, not jenv shims.
+#
+# --no-rehash skips jenv's own `jenv rehash` call, which forks a subprocess per
+# shim on every single shell startup even though shims only change when a Java
+# version is added/removed. That synchronous fork storm ran right as the prompt
+# appeared and could eat keystrokes typed at that exact moment. Run
+# `jenv rehash` by hand after installing/removing a JDK.
 zinit wait lucid light-mode \
   id-as'jenv-init' \
-  atload'eval "$(jenv init -)"' \
+  atload'eval "$(jenv init - --no-rehash)"' \
   for zdharma-continuum/null
