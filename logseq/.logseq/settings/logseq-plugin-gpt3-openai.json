@@ -7,6 +7,9 @@
   "openAIMaxTokens": 1000,
   "injectPrefix": "",
   "dalleImageSize": 1024,
+  "dalleModel": "dall-e-3",
+  "dalleStyle": "vivid",
+  "dalleQuality": "standard",
   "shortcutBlock": "mod+j",
   "popupShortcut": "mod+g",
   "disabled": false
