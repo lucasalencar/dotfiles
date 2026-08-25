@@ -8,6 +8,12 @@ name="${3:-}"
 
 if [ -n "$name" ]; then
   tmux rename-window -t "$window_id" "$name"
+  # Remember the path at rename time so automatic-rename-format (below)
+  # keeps this manual name until the pane's directory actually changes,
+  # instead of recomputing the basename on the very next status refresh.
+  tmux set-option -w -t "$window_id" @renamed_path "$path"
+else
+  tmux set-option -wu -t "$window_id" @renamed_path
 fi
 
 # `rename-window` disables automatic renaming. Turn it back on so the name
