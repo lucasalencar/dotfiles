@@ -46,3 +46,7 @@ tap 'buo/cask-upgrade' # Enables cask updates through brew
 brew 'markdown'
 brew 'plantuml' # Plant UML diagram generator
 brew 'mermaid-cli' # Mermaid diagram and chart generator
+
+# Markdown export
+brew 'pandoc' # Markdown to PDF/other formats converter
+brew 'weasyprint' # PDF engine for pandoc (no LaTeX needed)

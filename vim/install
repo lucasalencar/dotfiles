@@ -4,3 +4,8 @@ source "$DOTFILES_ROOT/print_helper"
 
 info "Installing Vim"
 brew install vim nvim
+
+if command -v npm &> /dev/null; then
+  info "Installing mermaid-filter (renders Mermaid diagrams in Markdown PDF export)"
+  npm install -g mermaid-filter
+fi
