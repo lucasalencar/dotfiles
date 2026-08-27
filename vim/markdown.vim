@@ -13,3 +13,6 @@ function OpenMarkdownPreviewGoogleChrome (url)
 endfunction
 
 let g:mkdp_browserfunc = 'OpenMarkdownPreviewArc'
+
+" Custom CSS to widen the preview area (defaults to a narrow, centered column)
+let g:mkdp_markdown_css = expand('$DOTFILES_ROOT') . '/vim/markdown-preview.css'
