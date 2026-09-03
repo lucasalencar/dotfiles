@@ -9,3 +9,6 @@ cask 'google-chrome'
 
 # Small tools without config
 brew 'heroku'
+
+# Gitea commad line
+brew 'tea'
