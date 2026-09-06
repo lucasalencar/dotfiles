@@ -2,9 +2,11 @@
 # Truncates a window name to fit the status line (presentation-only).
 # Usage: tmux-truncate-window-name <window_id> <client_width> <session_windows>
 #
-# Budget = (client_width - reserved) / session_windows - overhead, clamped to
-# [@window_name_min_length, @window_name_max_length]. Prints the window name,
-# truncated with a "..." suffix when it exceeds the budget. The canonical
+# Budget = (client_width - reserved) / session_windows - overhead, shrunk to
+# fit but never below @window_name_min_length and never above the preferred
+# budget (@window_name_preferred_length, falling back to
+# @window_name_max_length, default 30). Prints the window name, truncated
+# with a "..." suffix when it exceeds the budget. The canonical
 # window_name is left untouched; only this display output is shortened.
 
 set -u
@@ -14,25 +16,28 @@ client_width="${2:-}"
 session_windows="${3:-}"
 
 min_len="$(tmux show -gv @window_name_min_length 2>/dev/null)"
+pref_len="$(tmux show -gv @window_name_preferred_length 2>/dev/null)"
 max_len="$(tmux show -gv @window_name_max_length 2>/dev/null)"
 name="$(tmux display-message -t "$window_id" -p '#{window_name}' 2>/dev/null)"
 
-# Defaults when options or arguments are missing or non-numeric.
+# Defaults when options or arguments are missing or non-numeric. The
+# preferred budget is the ceiling; it falls back to the legacy max option.
 case "$min_len" in ''|*[!0-9]*) min_len=10 ;; esac
-case "$max_len" in ''|*[!0-9]*) max_len=30 ;; esac
+case "$pref_len" in ''|*[!0-9]*) pref_len="$max_len" ;; esac
+case "$pref_len" in ''|*[!0-9]*) pref_len=30 ;; esac
 case "$client_width" in ''|*[!0-9]*) client_width="" ;; esac
 case "$session_windows" in ''|*[!0-9]*|'0') session_windows="" ;; esac
 
 if [ -z "$client_width" ] || [ -z "$session_windows" ]; then
-  budget="$max_len"
+  budget="$pref_len"
 else
-  # Reserved space for the status-right modules, plus per-window chrome
-  # (index, separators, padding, agent icons).
-  reserved=60
-  overhead=8
+  # Reserved space for the status-right modules (measured ~26 cells, plus
+  # margin), plus per-window chrome (index, separators, padding, icons).
+  reserved=30
+  overhead=6
   budget=$(( (client_width - reserved) / session_windows - overhead ))
+  [ "$budget" -gt "$pref_len" ] && budget="$pref_len"
   [ "$budget" -lt "$min_len" ] && budget="$min_len"
-  [ "$budget" -gt "$max_len" ] && budget="$max_len"
 fi
 
 if [ "${#name}" -gt "$budget" ]; then
