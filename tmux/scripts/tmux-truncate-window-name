@@ -1,0 +1,42 @@
+#!/bin/bash
+# Truncates a window name to fit the status line (presentation-only).
+# Usage: tmux-truncate-window-name <window_id> <client_width> <session_windows>
+#
+# Budget = (client_width - reserved) / session_windows - overhead, clamped to
+# [@window_name_min_length, @window_name_max_length]. Prints the window name,
+# truncated with a "..." suffix when it exceeds the budget. The canonical
+# window_name is left untouched; only this display output is shortened.
+
+set -u
+
+window_id="${1:?usage: tmux-truncate-window-name <window_id> <client_width> <session_windows>}"
+client_width="${2:-}"
+session_windows="${3:-}"
+
+min_len="$(tmux show -gv @window_name_min_length 2>/dev/null)"
+max_len="$(tmux show -gv @window_name_max_length 2>/dev/null)"
+name="$(tmux display-message -t "$window_id" -p '#{window_name}' 2>/dev/null)"
+
+# Defaults when options or arguments are missing or non-numeric.
+case "$min_len" in ''|*[!0-9]*) min_len=10 ;; esac
+case "$max_len" in ''|*[!0-9]*) max_len=30 ;; esac
+case "$client_width" in ''|*[!0-9]*) client_width="" ;; esac
+case "$session_windows" in ''|*[!0-9]*|'0') session_windows="" ;; esac
+
+if [ -z "$client_width" ] || [ -z "$session_windows" ]; then
+  budget="$max_len"
+else
+  # Reserved space for the status-right modules, plus per-window chrome
+  # (index, separators, padding, agent icons).
+  reserved=60
+  overhead=8
+  budget=$(( (client_width - reserved) / session_windows - overhead ))
+  [ "$budget" -lt "$min_len" ] && budget="$min_len"
+  [ "$budget" -gt "$max_len" ] && budget="$max_len"
+fi
+
+if [ "${#name}" -gt "$budget" ]; then
+  echo "${name:0:$budget}..."
+else
+  echo "$name"
+fi
