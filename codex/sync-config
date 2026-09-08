@@ -6,6 +6,7 @@
 #
 # Attributes synced:
 #   - approval_policy, sandbox_mode, approvals_reviewer, plan_mode_reasoning_effort
+#   - [agents]
 #   - [tui] (excluding the generated [tui.model_availability_nux] table)
 #   - [mcp_servers.*]
 
@@ -33,7 +34,8 @@ BEGIN {
   gsub(/^\[+/, "", sec)
   gsub(/\]+$/, "", sec)
   section = sec
-  include_section = (section == "tui" || section ~ /^tui\./) && section != "tui.model_availability_nux"
+  include_section = section == "agents"
+  include_section = include_section || ((section == "tui" || section ~ /^tui\./) && section != "tui.model_availability_nux")
   include_section = include_section || (section ~ /^mcp_servers\./)
   if (include_section) {
     if (have_output && !last_blank) print ""
