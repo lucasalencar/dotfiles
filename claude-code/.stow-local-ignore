@@ -2,3 +2,6 @@ install
 setup
 update
 rc
+build-config
+^\.mcp\.json$
+^settings\.json$

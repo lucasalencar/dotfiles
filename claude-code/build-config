@@ -1,0 +1,69 @@
+#!/bin/bash
+
+set -euo pipefail
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+CLAUDE_CONFIG_DIR="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
+LOCAL_SETTINGS="$CLAUDE_CONFIG_DIR/settings.json"
+BASE_SETTINGS="$(current_dir)/.claude/settings.json"
+LOCAL_MCP="$CLAUDE_CONFIG_DIR/.mcp.json"
+BASE_MCP="$(current_dir)/.claude/.mcp.json"
+
+mkdir -p "$CLAUDE_CONFIG_DIR"
+
+seed_local_config() {
+  local local_config="$1"
+  local base_config="$2"
+  local config_name="$3"
+
+  if [ ! -f "$base_config" ]; then
+    fail "Base $config_name not found at $base_config"
+  fi
+
+  # Replace an old stow-created symlink with an independent local copy while
+  # preserving its current contents when the target still exists.
+  if [ -L "$local_config" ]; then
+    if [ -e "$local_config" ]; then
+      temporary_config="$(mktemp "$CLAUDE_CONFIG_DIR/claude-config.XXXXXX")"
+      cp -L "$local_config" "$temporary_config"
+      chmod 600 "$temporary_config"
+      mv "$temporary_config" "$local_config"
+      success "Replaced symlink at $local_config with a local copy"
+    else
+      rm "$local_config"
+    fi
+  fi
+
+  if [ -e "$local_config" ]; then
+    info "Local $config_name already exists at $local_config, skipping"
+    return 0
+  fi
+
+  cp "$base_config" "$local_config"
+  chmod 600 "$local_config"
+  success "Seeded $local_config from the versioned base config"
+}
+
+seed_local_config "$LOCAL_SETTINGS" "$BASE_SETTINGS" "Claude Code settings"
+seed_local_config "$LOCAL_MCP" "$BASE_MCP" "Claude MCP configuration"
+
+remove_legacy_repo_sync_hooks() {
+  if [ ! -f "$LOCAL_SETTINGS" ] || ! jq -e \
+    'any(.hooks.Stop[]?.hooks[]?; ((.command? // "") | startswith("cp -f ~/.claude/")))' \
+    "$LOCAL_SETTINGS" >/dev/null 2>&1; then
+    return 0
+  fi
+
+  local temporary_settings
+  temporary_settings="$(mktemp "$CLAUDE_CONFIG_DIR/claude-settings.XXXXXX")"
+  jq \
+    'del(.hooks.Stop[]?.hooks[]? | select((.command? // "") | startswith("cp -f ~/.claude/")))' \
+    "$LOCAL_SETTINGS" > "$temporary_settings"
+  chmod 600 "$temporary_settings"
+  mv "$temporary_settings" "$LOCAL_SETTINGS"
+  success "Removed legacy Claude Code hooks that wrote local config into the repo"
+}
+
+remove_legacy_repo_sync_hooks

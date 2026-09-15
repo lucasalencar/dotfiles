@@ -75,6 +75,15 @@ What `./install` does, in order:
 
 Open a new terminal (or `source ~/.zshrc`) so the new dotfiles take effect.
 
+### Claude Code settings
+
+The versioned `claude-code/.claude/settings.json` is a sanitized base template,
+not a symlink target. The Claude Code setup copies it to
+`~/.claude/settings.json` only when that local file does not already exist.
+Machine-specific authentication, endpoints, models, work plugins and MCP
+servers should be configured only in the local files so they are not written
+back to the repo.
+
 ## Updating
 
 ```bash
@@ -146,7 +155,7 @@ optional and only used when explicitly invoked.
 
 | Package      | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| `claude-code`| Claude Code settings, custom commands, hooks and tmux MCP.   |
+| `claude-code`| Claude Code base settings, custom commands, hooks and tmux MCP. |
 | `codex`      | Codex CLI configuration, hooks, notifications, and MCPs.     |
 | `gemini`     | Gemini CLI configuration.                                    |
 | `opencode`   | OpenCode agent configuration.                                |
