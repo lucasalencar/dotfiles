@@ -12,6 +12,17 @@
   "autoshare": false,
   "autoupdate": true,
 
+  "permission": {
+    "external_directory": {
+      "/tmp": "allow",
+      "/tmp/*": "allow",
+      "/private/tmp": "allow",
+      "/private/tmp/*": "allow",
+      "/var/folders/*": "allow",
+      "/private/var/folders/*": "allow"
+    }
+  },
+
   "mcp": {
     "tmux": {
       "type": "local",
