@@ -11,7 +11,10 @@
 
 ## Atlassian
 
-- If the Atlassian MCP is unavailable or not working, use the installed and authenticated Atlassian CLI (`acli`) to perform the same operation.
+- For Atlassian tasks, always try the Atlassian MCP first.
+- Use the installed and authenticated Atlassian CLI (`acli`) only as a fallback
+  when the Atlassian MCP is unavailable, cannot be reached, or an attempted MCP
+  operation fails. Perform the same operation through `acli` when falling back.
 
 ## Worktrees
 
