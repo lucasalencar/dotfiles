@@ -20,29 +20,6 @@
           {
             "type": "command",
             "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code UserPromptSubmit >/dev/null 2>&1 || :"
-          },
-          {
-            "type": "command",
-            "command": "tmux-agent-state running 'Claude Code'"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "AskUserQuestion",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state waiting 'Claude Code'"
-          },
-          {
-            "type": "command",
-            "command": "tmux-notify-window"
-          },
-          {
-            "type": "command",
-            "command": "agent-notify 'Claude Code' 'asked a question' --allow-agent-id"
           }
         ]
       }
@@ -62,10 +39,6 @@
           {
             "type": "command",
             "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code PostToolUse >/dev/null 2>&1 || :"
-          },
-          {
-            "type": "command",
-            "command": "tmux-agent-state running 'Claude Code'"
           }
         ]
       }
@@ -98,23 +71,6 @@
             "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code Notification >/dev/null 2>&1 || :"
           }
         ]
-      },
-      {
-        "matcher": "permission_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux-agent-state waiting 'Claude Code'"
-          },
-          {
-            "type": "command",
-            "command": "tmux-notify-window"
-          },
-          {
-            "type": "command",
-            "command": "jq -c '. + {message: \"waiting for your input\"}' | agent-notify 'Claude Code'"
-          }
-        ]
       }
     ],
     "Stop": [
@@ -123,18 +79,6 @@
           {
             "type": "command",
             "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code Stop >/dev/null 2>&1 || :"
-          },
-          {
-            "type": "command",
-            "command": "tmux-agent-state idle 'Claude Code'"
-          },
-          {
-            "type": "command",
-            "command": "tmux-notify-window"
-          },
-          {
-            "type": "command",
-            "command": "agent-notify 'Claude Code' 'done'"
           }
         ]
       }
@@ -155,10 +99,6 @@
           {
             "type": "command",
             "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SubagentStart >/dev/null 2>&1 || :"
-          },
-          {
-            "type": "command",
-            "command": "tmux-agent-state subagent-start"
           }
         ]
       }
@@ -169,10 +109,6 @@
           {
             "type": "command",
             "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SubagentStop >/dev/null 2>&1 || :"
-          },
-          {
-            "type": "command",
-            "command": "tmux-agent-state subagent-stop"
           }
         ]
       }
@@ -183,10 +119,6 @@
           {
             "type": "command",
             "command": "\"$(tmux show -gqv @tama_bin 2>/dev/null)\" hook claude-code SessionEnd >/dev/null 2>&1 || :"
-          },
-          {
-            "type": "command",
-            "command": "tmux-agent-state clear"
           }
         ]
       }
