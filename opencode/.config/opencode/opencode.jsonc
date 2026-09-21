@@ -5,6 +5,10 @@
     "/Users/lucas.alencar/.tmux/plugins/tmux-agent-tamagotchi/integrations/opencode/index.ts"
   ],
 
+  "plugins": [
+    "/Users/lucas.alencar/.tmux/plugins/tmux-agent-tamagotchi/integrations/opencode"
+  ],
+
   "keybinds": {
     "input_newline": "ctrl+j,shift+enter"
   },
