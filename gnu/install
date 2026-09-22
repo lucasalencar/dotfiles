@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+# GNU userland is native on Linux — these formulae only fill the gaps on macOS.
+if ! is_macos; then
+  info "Skipping GNU tools (native on this OS)"
+  exit 0
+fi
+
+info "Installing GNU command line tools"
+brew install coreutils binutils diffutils findutils

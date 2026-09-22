@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROFILE=$1 # Accepts profile (e.g. personal, work)
+PROFILE=$1 # Requires a profile (e.g. mac-personal, mac-work, homelab)
 export DOTFILES_ROOT=$(pwd -P)
 
 source "$DOTFILES_ROOT/print_helper"
@@ -22,32 +22,52 @@ setup_package() {
   fi
 }
 
-bundle_profile() {
+install_profile() {
   local profile=$1
 
-  if [ -f "$DOTFILES_ROOT/profiles/$profile" ]; then
-    run_optional_step "Bundling Brewfile for $profile profile" ./bundle "$profile"
-
-    info "Installing packages from \"$profile\" profile"
-    while IFS= read -r -u 3 package; do
-      install_package "$package"
-      setup_package "$package"
-    done 3< "$DOTFILES_ROOT/profiles/$profile"
-    unset package
+  if [ ! -f "$DOTFILES_ROOT/profiles/$profile" ]; then
+    fail "Profile \"$profile\" not found. Available: $(ls "$DOTFILES_ROOT/profiles" | tr '\n' ' ')"
   fi
+
+  # Exposed to per-package install scripts (e.g. mac-apps/Brewfile guards)
+  export DOTFILES_PROFILE="$profile"
+
+  info "Installing packages from \"$profile\" profile"
+  while IFS= read -r -u 3 package || [ -n "$package" ]; do
+    # Skip blank lines and comments
+    case "$package" in
+      ''|'#'*) continue ;;
+    esac
+    install_package "$package"
+    setup_package "$package"
+  done 3< "$DOTFILES_ROOT/profiles/$profile"
+  unset package
+
+  # Save installation profile to load rc files
+  echo "$profile" > "$DOTFILES_ROOT/.current_profile"
 }
+
+install_base_tools() {
+  sudo apt-get update
+  sudo apt-get install -y git curl stow zsh
+}
+
+if [ -z "$PROFILE" ]; then
+  fail "Usage: ./install <profile>. Available: $(ls "$DOTFILES_ROOT/profiles" | tr '\n' ' ')"
+fi
+
+# git, curl, stow and zsh must exist before Homebrew, stow symlinks and zinit
+if is_linux; then
+  run_required_step "Installing base tools (git, curl, stow, zsh)" install_base_tools
+fi
 
 run_optional_step "Initializing Git setup" "$DOTFILES_ROOT/git/pre-setup"
 
 run_required_step "Installing homebrew" "$DOTFILES_ROOT/homebrew/install"
 
-bundle_profile "basic"
+# homebrew/install runs in a subshell — load brew into THIS shell too
+ensure_brew_env
 
-if [ -n "$PROFILE" ]; then
-  bundle_profile "$PROFILE"
-
-  # Save installation profile to load rc files
-  echo "$PROFILE" > "$DOTFILES_ROOT/.current_profile"
-fi
+install_profile "$PROFILE"
 
 success 'All done! :D'

@@ -1,6 +1,12 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+if ! is_macos; then
+  info "Skipping Ghostty terminal (macOS-only)"
+  exit 0
+fi
 
 info "Installing Ghostty terminal"
 brew install --cask ghostty

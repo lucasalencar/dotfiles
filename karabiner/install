@@ -1,6 +1,12 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+if ! is_macos; then
+  info "Skipping Karabiner Elements (macOS-only)"
+  exit 0
+fi
 
 info "Installing Karabiner Elements"
 brew install --cask karabiner-elements

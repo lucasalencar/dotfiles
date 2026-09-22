@@ -2,6 +2,11 @@
 
 source "$DOTFILES_ROOT/helpers"
 
+if ! is_macos; then
+  info "Skipping macOS system settings (macOS-only)"
+  exit 0
+fi
+
 info "Installing Rosetta to support Intel apps"
 softwareupdate --install-rosetta --agree-to-license
 

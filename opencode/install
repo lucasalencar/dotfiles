@@ -1,6 +1,12 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
 
 info "Installing OpenCode AI CLI"
-brew install anomalyco/tap/opencode-v2
+if is_macos; then
+  brew install anomalyco/tap/opencode-v2
+else
+  # Official installer — works on Linux without Homebrew taps
+  curl -fsSL https://opencode.ai/install | bash
+fi

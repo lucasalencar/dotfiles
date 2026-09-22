@@ -1,0 +1,64 @@
+# macOS desktop apps and work tooling, managed via `brew bundle`.
+# Evaluated as Ruby by Homebrew — OS and profile guards below keep it safe.
+# DOTFILES_PROFILE is exported by the top-level ./install (mac-personal/mac-work).
+
+tap 'buo/cask-upgrade' # Enables cask updates through brew
+
+if OS.mac?
+  # Fonts
+  cask 'font-hack'
+  cask 'font-meslo-lg-nerd-font'
+  cask 'font-droid-sans-mono-for-powerline'
+  cask 'font-roboto-mono-for-powerline'
+  cask 'font-menlo-for-powerline'
+  cask 'font-dejavu-sans-mono-for-powerline'
+  cask 'font-powerline-symbols'
+  cask 'font-source-code-pro-for-powerline'
+
+  # Shared desktop apps
+  cask 'lastpass'
+  cask 'caffeine'
+  cask 'spotify'
+  cask 'the-unarchiver'
+  cask 'google-drive'
+  cask 'eqmac'
+  cask 'aqua-voice' # Dictation
+  cask 'typewhisper/tap/typewhisper' # Dictation
+  cask 'stats'
+  cask 'xykong/tap/flux-markdown' # Render Markdown quick look MacOS
+
+  if ENV['DOTFILES_PROFILE'] == 'mac-personal'
+    # Personal apps
+    cask 'zen'
+    cask 'whatsapp'
+    cask 'telegram'
+    cask 'stremio'
+    cask 'vlc'
+    cask 'nextcloud'
+    cask 'google-chrome'
+
+    # Small tools without config
+    brew 'heroku'
+
+    # Gitea command line
+    brew 'tea'
+  end
+
+  if ENV['DOTFILES_PROFILE'] == 'mac-work'
+    # Work apps
+    cask 'arc'
+    cask 'meetingbar'
+    cask 'gcloud-cli'
+
+    # Infosec tools
+    cask 'gpg-suite'
+    brew 'ykman'
+
+    # Kubernetes
+    brew 'k9s'
+
+    # Atlassian
+    tap 'atlassian/homebrew-acli'
+    brew 'acli'
+  end
+end

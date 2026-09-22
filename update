@@ -18,9 +18,11 @@ update_profile_packages() {
 
   info "Updating packages for $profile profile"
 
-  "$DOTFILES_ROOT/bundle" "$profile"
-
-  while IFS= read -r -u 3 package; do
+  while IFS= read -r -u 3 package || [ -n "$package" ]; do
+    # Skip blank lines and comments
+    case "$package" in
+      ''|'#'*) continue ;;
+    esac
     update_package "$package"
   done 3< "$DOTFILES_ROOT/profiles/$profile"
   unset package
@@ -43,9 +45,12 @@ else
   git -C "$HOME/.dotfiles" pull --rebase && git -C "$HOME/.dotfiles" push
 
   update_package "homebrew"
-  update_profile_packages "basic"
 
-  [ -n "$(current_profile)" ] && update_profile_packages "$(current_profile)"
+  if [ -n "$(current_profile)" ]; then
+    update_profile_packages "$(current_profile)"
+  else
+    warning "No active profile (.current_profile missing). Run ./install <profile> first."
+  fi
 
   success "Update completed"
 fi

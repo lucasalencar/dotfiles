@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+
+info "Installing document and diagram tools"
+brew install markdown
+brew install plantuml # PlantUML diagram generator
+brew install mermaid-cli # Mermaid diagram and chart generator
+brew install pandoc # Markdown to PDF/other formats converter
+brew install weasyprint # PDF engine for pandoc (no LaTeX needed)

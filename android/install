@@ -1,6 +1,12 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+if ! is_macos; then
+  info "Skipping Android Studio (macOS-only cask)"
+  exit 0
+fi
 
 info "Installing Android development tools"
 brew install --cask android-studio

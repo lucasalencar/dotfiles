@@ -5,12 +5,25 @@ source "$DOTFILES_ROOT/helpers"
 load_rc_for_profile() {
   local profile="$1"
 
+  if [ ! -f "$DOTFILES_ROOT/profiles/$profile" ]; then
+    return 0
+  fi
+
   # Source all rc files found inside packages that are being used
   while read -r package; do
+    # Skip blank lines and comments
+    case "$package" in
+      ''|'#'*) continue ;;
+    esac
     [ -f "$DOTFILES_ROOT/$package/rc" ] && source "$DOTFILES_ROOT/$package/rc"
   done < "$DOTFILES_ROOT/profiles/$profile"
   unset package
 }
 
-load_rc_for_profile "basic"
-[ -n "$(current_profile)" ] && load_rc_for_profile "$(current_profile)"
+if [ -n "$(current_profile)" ]; then
+  if [ -f "$DOTFILES_ROOT/profiles/$(current_profile)" ]; then
+    load_rc_for_profile "$(current_profile)"
+  else
+    echo "dotfiles: profile \"$(current_profile)\" not found (old basic/personal setup?). Re-run ./install <profile>." >&2
+  fi
+fi

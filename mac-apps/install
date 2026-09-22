@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+# Desktop apps are only managed via Homebrew casks on macOS.
+if ! is_macos; then
+  info "Skipping desktop apps (macOS-only casks)"
+  exit 0
+fi
+
+info "Installing desktop apps for profile ${DOTFILES_PROFILE:-unknown}"
+DOTFILES_PROFILE="${DOTFILES_PROFILE:-$(current_profile)}" brew bundle --file="$(current_dir)/Brewfile"
