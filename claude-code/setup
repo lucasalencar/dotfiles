@@ -31,6 +31,18 @@ register_playwright_mcp() {
   claude mcp add -s user playwright -- npx -y @playwright/mcp@latest
 }
 
+register_sentry_mcp() {
+  if ! command_exists claude; then
+    warning "claude CLI not found, skipping Sentry MCP registration"
+    return 0
+  fi
+  if claude mcp get sentry >/dev/null 2>&1; then
+    info "Sentry MCP already registered, skipping"
+    return 0
+  fi
+  claude mcp add -s user --transport http sentry https://mcp.sentry.dev/mcp
+}
+
 register_codex_plugin_marketplace() {
   if ! command_exists claude; then
     warning "claude CLI not found, skipping codex plugin marketplace registration"
@@ -69,6 +81,7 @@ install_mattpocock_skills_plugin() {
 
 run_optional_step "Registering tmux MCP server" register_tmux_mcp
 run_optional_step "Registering playwright MCP server" register_playwright_mcp
+run_optional_step "Registering Sentry MCP server" register_sentry_mcp
 run_optional_step "Registering codex plugin marketplace" register_codex_plugin_marketplace
 run_optional_step "Installing codex plugin" install_codex_plugin
 run_optional_step "Installing mattpocock-skills plugin" install_mattpocock_skills_plugin

@@ -14,3 +14,17 @@ if [ ! -e "$LOCAL_CONFIG" ]; then
   cp "$BASE_CONFIG" "$LOCAL_CONFIG"
   success "Seeded $LOCAL_CONFIG from config.base.toml"
 fi
+
+register_sentry_mcp() {
+  if ! command_exists codex; then
+    warning "codex CLI not found, skipping Sentry MCP registration"
+    return 0
+  fi
+  if codex mcp get sentry >/dev/null 2>&1; then
+    info "Sentry MCP already registered, skipping"
+    return 0
+  fi
+  codex mcp add sentry --url https://mcp.sentry.dev/mcp
+}
+
+register_sentry_mcp

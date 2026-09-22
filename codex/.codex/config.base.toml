@@ -17,6 +17,9 @@ insert_newline = ["ctrl-j", "shift-enter", "alt-enter"]
 [mcp_servers.atlassian]
 url = "https://mcp.atlassian.com/v1/mcp"
 
+[mcp_servers.sentry]
+url = "https://mcp.sentry.dev/mcp"
+
 [mcp_servers.tmux]
 command = "npx"
 args = ["-y", "--registry=https://registry.npmjs.org/", "tmux-mcp", "--shell-type=zsh"]
