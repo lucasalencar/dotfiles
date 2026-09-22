@@ -28,3 +28,8 @@ register_sentry_mcp() {
 }
 
 register_sentry_mcp
+
+codex plugin marketplace add gleanwork/codex-plugins
+codex plugin add glean@glean-codex-plugins
+
+# Run `$glean_run` in Codex to complete the Glean MCP setup.
