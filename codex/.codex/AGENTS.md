@@ -7,6 +7,10 @@
 - When interacting with tmux panes, prefer the window where this Codex instance
   is running. Only inspect other windows when explicitly requested.
 
+## Computer Use
+
+- Avoid using computer-use tools unless the user explicitly requests it.
+
 ## Atlassian
 
 - For Atlassian tasks, always try the Atlassian MCP first.
