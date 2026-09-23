@@ -22,17 +22,14 @@ if OS.mac?
   cask 'the-unarchiver'
   cask 'google-drive'
   cask 'eqmac'
-  cask 'aqua-voice' # Dictation
   cask 'typewhisper/tap/typewhisper' # Dictation
   cask 'stats'
-  cask 'xykong/tap/flux-markdown' # Render Markdown quick look MacOS
 
   if ENV['DOTFILES_PROFILE'] == 'mac-personal'
     # Personal apps
     cask 'zen'
     cask 'whatsapp'
     cask 'telegram'
-    cask 'stremio'
     cask 'vlc'
     cask 'nextcloud'
     cask 'google-chrome'
