@@ -52,10 +52,10 @@ if [ -z "$PROFILE" ]; then
 fi
 
 # On Linux, base tools must exist before Homebrew does. The initial
-# packages (git, zsh, cli) apt-provide their own binaries when brew is
+# packages (git, zsh) apt-provide their own binaries when brew is
 # missing; their full brew install runs again in the profile loop below.
 if is_linux; then
-  for bootstrap_package in git zsh cli; do
+  for bootstrap_package in git zsh; do
     install_package "$bootstrap_package"
   done
   unset bootstrap_package
@@ -67,6 +67,12 @@ run_required_step "Installing homebrew" "$DOTFILES_ROOT/homebrew/install"
 
 # homebrew/install runs in a subshell — load brew into THIS shell too
 ensure_brew_env
+
+# stow is a dependency of the install mechanism itself (every setup uses
+# it), not of any single package. Brew exists on both OSes at this point.
+if ! command_exists stow; then
+  run_required_step "Installing stow" brew install stow
+fi
 
 install_profile "$PROFILE"
 

@@ -1,20 +1,6 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/print_helper"
-source "$DOTFILES_ROOT/helpers"
 
-# Bootstrap (Linux without Homebrew yet): stow is needed by every setup
-# step, so provide it via apt here. Scoped to this initial package —
-# not a pattern for other packages.
-if is_linux && ! command_exists brew; then
-  info "Bootstrapping stow via apt (Homebrew not present yet)"
-  sudo apt-get update
-  sudo apt-get install -y stow
-fi
-
-if command_exists brew; then
-  info "Installing essential CLI tools"
-  brew install fzf ripgrep fd jq bat htop tree colordiff shellcheck stow
-else
-  warning "Homebrew not found, skipping brew CLI tools for now"
-fi
+info "Installing essential CLI tools"
+brew install fzf ripgrep fd jq bat htop tree colordiff shellcheck
