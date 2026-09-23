@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+
+info "Installing essential CLI tools"
+brew install fzf ripgrep fd jq bat htop tree colordiff shellcheck

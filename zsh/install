@@ -4,7 +4,19 @@ source "$DOTFILES_ROOT/print_helper"
 source "$DOTFILES_ROOT/helpers"
 
 info "Installing ZSH"
-brew install zsh
+
+# Bootstrap (Linux without Homebrew yet): zsh must exist before any
+# login shell needs it, so provide it via apt here. Scoped to this
+# initial package — not a pattern for other packages.
+if is_linux && ! command_exists brew; then
+  info "Bootstrapping zsh via apt (Homebrew not present yet)"
+  sudo apt-get update
+  sudo apt-get install -y zsh
+fi
+
+if command_exists brew; then
+  brew install zsh
+fi
 
 # Install zinit package manager
 if [ ! -d "$HOME/.local/share/zinit" ]; then

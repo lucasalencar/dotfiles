@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/helpers"
+
+require_macos "desktop apps"
+
+info "Installing desktop apps for profile ${DOTFILES_PROFILE:-unknown}"
+DOTFILES_PROFILE="${DOTFILES_PROFILE:-$(current_profile)}" brew bundle --file="$(current_dir)/Brewfile"

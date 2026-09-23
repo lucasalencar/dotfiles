@@ -1,14 +1,21 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
 
 # reattach-to-user-namespace: Makes copying and pasting in Terminal.app work again on MacOS Sierra
 # https://github.com/tmux/tmux/issues/543#issuecomment-248980734
 # https://github.com/tmux/tmux/issues/543
-brew install tmux reattach-to-user-namespace
+if is_macos; then
+  brew install tmux reattach-to-user-namespace
+else
+  brew install tmux
+fi
 
-info "Installing tmux plugin manager"
-git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  info "Installing tmux plugin manager"
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+fi
 
 info "Installing tmux plugins"
 "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"

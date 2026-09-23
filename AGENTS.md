@@ -2,14 +2,36 @@
 
 ## Profiles
 
-The dotfiles are organized into different profiles:
+Flat profiles, one per machine, with no dependencies between them:
 
-- `basic`: Essential packages and configurations that I use on all
-    machines.
-- `personal`: Personal development environment with additional tools for
-    my personal machine.
-- `nubank`: My work environment setup with specific tools and
-    configurations for my job at Nubank.
+- `mac-personal`: Personal MacBook (full desktop environment).
+- `mac-work`: Work MacBook (Nubank).
+- `homelab`: Headless Ubuntu Linux server (shell + tmux + vim).
+
+## Preferred Package Manager
+
+Homebrew, on both macOS and Linux (Linuxbrew). Declare dependencies with
+`brew install` in the owning package's `install` script — one declaration
+covers both OSes. The only `Brewfile` is `mac-apps/Brewfile` (desktop
+casks). Use `apt` only for pre-brew bootstrap or when a formula has no
+Linux bottle (then use the upstream installer on Linux). If no package
+owns a new dependency, create one and list it in the profiles that need it.
+
+## Cross-platform rules (macOS + Ubuntu Linux)
+
+- Every package script (`install`, `setup`, `update`) must run on both
+    macOS and Linux. Never hardcode OS-specific paths (`/opt/homebrew`,
+    `/Users/...`); resolve them at runtime (`ensure_brew_env`, `$HOME`).
+- OS-specific work belongs behind a guard. `require_macos "<label>"`
+    (from `helpers`) exits the script successfully on other OSes — safe
+    because package scripts run as child processes of `./install`. Use
+    `is_macos` / `is_linux` for inline branches (e.g. different install
+    commands per OS).
+- Casks and `defaults write` are macOS-only — never bare
+    `brew install --cask` in a shared script without `require_macos`.
+- Desktop notifications and GUI helpers must degrade gracefully: they
+    exit 0 on headless Linux so agent hooks and tmux integrations keep
+    working without a desktop.
 
 ## Rules
 

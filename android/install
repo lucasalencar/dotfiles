@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+require_macos "Android Studio"
 
 info "Installing Android development tools"
 brew install --cask android-studio

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+require_macos "Logitech Options"
 
 info "Installing Logitech Options + LogiTune"
 brew install --cask logi-options+

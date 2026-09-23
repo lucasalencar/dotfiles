@@ -1,43 +1,45 @@
 # Dotfiles
 
 Personal machine setup. Centralized configuration for shell, editors, version
-managers and CLI tooling, organized by **profile** so the same repository can
-bootstrap a basic, a personal or a work machine.
+managers and CLI tooling, organized by **profile** (one per machine) so the
+same repository can bootstrap a MacBook or a headless Linux server.
 
 ## How it works
 
 The repository is organized as a collection of **packages** (one per top-level
 directory: `git/`, `zsh/`, `vim/`, `homebrew/`, ...) and **profiles**
-(`profiles/basic`, `profiles/personal`, `profiles/nubank`).
+(`profiles/mac-personal`, `profiles/mac-work`, `profiles/homelab`).
 
-A profile is just a plain-text list of package names. Running `./install
-<profile>` will, for each package in that profile:
+A profile is just a plain-text list of package names — one per machine, with
+no dependencies between profiles. Running `./install <profile>` will, for
+each package in that profile:
 
 1. Run its `install` script (if present) — installs binaries / clones plugins.
 2. Run its `setup` script (if present) — symlinks dotfiles into `$HOME`.
 3. Source its `rc` file (if present) on every new shell, via the top-level
    `rc` loader.
 
-Each profile also has a matching `homebrew/Brewfiles/<profile>` that is applied
-through `brew bundle` before the per-package installers run.
+Each package owns its own dependencies in its `install` script (Homebrew
+formulae on macOS and Linux, `apt` for Linux-only bootstrap, official
+installers where Homebrew has no bottle). The only exception is `mac-apps/`,
+which keeps a per-package `Brewfile` for its long list of desktop casks.
 
 ## Available profiles
 
-| Profile    | Use case                                          |
-| ---------- | ------------------------------------------------- |
-| `basic`    | Essential packages, applied to every machine.     |
-| `personal` | Personal development environment (extra tooling). |
-| `nubank`   | Work environment for my job at Nubank.            |
-
-`basic` is always installed. Selecting `personal` or `nubank` installs that
-profile **on top of** `basic`.
+| Profile        | Use case                                              |
+| -------------- | ----------------------------------------------------- |
+| `mac-personal` | Personal MacBook (full desktop environment).          |
+| `mac-work`     | Work MacBook (Nubank).                                |
+| `homelab`      | Headless Linux server (Ubuntu): shell + tmux + vim.   |
 
 ## Setup
 
 ### Prerequisites
 
-- macOS (the scripts assume `brew` and macOS conventions).
+- macOS or Ubuntu Linux.
 - Git installed and available on `PATH`.
+- On Ubuntu: `sudo` access (to install base tools and Homebrew build deps).
+- Homebrew is installed automatically if missing (Linuxbrew on Linux).
 
 ### 1. Clone
 
@@ -55,19 +57,20 @@ cd ~/.dotfiles
 Pick the profile that matches the machine:
 
 ```bash
-./install              # basic only
-./install personal     # basic + personal
-./install nubank       # basic + nubank (work)
+./install mac-personal  # personal MacBook
+./install mac-work      # work MacBook
+./install homelab       # headless Linux server
 ```
 
 What `./install` does, in order:
 
-1. Initializes `~/.gitconfig` from `git/.gitconfig.example`, prompting for
+1. On Linux, bootstraps base tools first: the initial packages (`git`,
+   `zsh`) apt-provide their own binaries when Homebrew is not
+   present yet.
+2. Initializes `~/.gitconfig` from `git/.gitconfig.example`, prompting for
    your Git author name and email (`git/pre-setup`).
-2. Installs Homebrew if missing (`homebrew/install`).
-3. Runs `brew bundle` for the `basic` profile, then installs/sets up each
-   `basic` package.
-4. If a profile was passed, repeats step 3 for that profile and stores its
+3. Installs Homebrew if missing (`homebrew/install`).
+4. Installs/sets up each package listed in the profile, and stores its
    name in `.current_profile` so `rc` knows which profile to load on shell
    startup.
 
@@ -94,9 +97,10 @@ back to the repo.
 With no arguments, `./update` will:
 
 1. `git pull --rebase` the dotfiles repo.
-2. Update Homebrew packages.
-3. Re-run `brew bundle` and per-package `update` scripts for `basic` and the
-   profile recorded in `.current_profile`.
+2. Update Homebrew packages (`brew update/upgrade/cleanup`, plus cask
+   upgrades on macOS).
+3. Re-run per-package `update` scripts for the profile recorded in
+   `.current_profile`.
 
 ## Installing or updating a single package
 
@@ -115,21 +119,20 @@ without going through the top-level `install`:
 Most packages also expose a matching `setup` (symlinks) and/or `update` script
 that follows the same convention.
 
-## Adding new Homebrew packages
+## Adding new packages
 
-Add the formula/cask to the appropriate file under `homebrew/Brewfiles/`
-(`basic`, `personal`, or `nubank`) and re-run:
-
-```bash
-./bundle <profile>     # apply a single profile's Brewfile
-./install <profile>    # full install (also runs bundle)
-```
+Add the install logic to the owning package's `install` script (a
+`brew install` line, or a guarded block for OS-specific tools). If no
+existing package is a natural owner, create a new one (like `doc-tools/`)
+with its own `install` script and list it in the profiles
+that need it. The only per-package `Brewfile` is `mac-apps/Brewfile`,
+which uses Ruby `if OS.mac?` / `ENV['DOTFILES_PROFILE']` guards.
 
 ## Available packages
 
 Each item below maps to a top-level directory in this repo. Most are wired up
-through one of the profiles; a few (`homelab`, `nix`, ...) are
-optional and only used when explicitly invoked.
+through one of the profiles; `nix` is optional and only used when explicitly
+invoked.
 
 ### Shell & terminal
 
@@ -137,6 +140,10 @@ optional and only used when explicitly invoked.
 | -------------- | -------------------------------------------------------------- |
 | `zsh`          | ZSH shell config, plugins and prompt.                          |
 | `tmux`         | Tmux config, plugins and key bindings.                         |
+| `cli`          | Essential CLI tools (fzf, ripgrep, fd, jq, bat, ...).          |
+| `gnu`          | GNU userland for macOS (native on Linux, skipped there).       |
+| `doc-tools`    | Markdown/diagram toolchain (pandoc, plantuml, mermaid).        |
+| `mac-apps`     | Desktop apps and fonts via per-package Brewfile (macOS only). |
 | `ghostty`      | Ghostty terminal emulator config.                              |
 | `kitty`        | Kitty terminal emulator config.                                |
 | `scripts`      | Personal CLI helpers (`fgb`, `vf`, `notify-macos`, `agent-notify`, `speech-to-text`, ...). |
@@ -182,7 +189,6 @@ optional and only used when explicitly invoked.
 | ---------- | ------------------------------------------------------ |
 | `postgres` | PostgreSQL client config and helpers.                  |
 | `docker`   | Docker / Docker Compose config.                        |
-| `homelab`  | Personal homelab tooling (optional, not in profiles).  |
 | `nix`      | Nix package manager setup (optional, not in profiles). |
 
 ### Version control & tooling
@@ -190,7 +196,7 @@ optional and only used when explicitly invoked.
 | Package    | Description                                                  |
 | ---------- | ------------------------------------------------------------ |
 | `git`      | `.gitconfig`, global ignore, hooks and aliases.              |
-| `homebrew` | Homebrew bootstrapper and per-profile `Brewfile`s.           |
+| `homebrew` | Homebrew bootstrapper (macOS and Linux).                     |
 
 ### macOS system
 
@@ -208,11 +214,10 @@ optional and only used when explicitly invoked.
 .
 ├── install              # entry point — runs git setup + homebrew + profile
 ├── update               # pulls repo and updates packages for active profile
-├── bundle               # runs `brew bundle` for one or more profiles
 ├── rc                   # sourced from ~/.zshrc to load per-package rc files
-├── helpers              # shared shell helpers (link_files, run_*_step, ...)
-├── profiles/            # one file per profile, listing the packages to install
-├── homebrew/Brewfiles/  # one Brewfile per profile
+├── helpers              # shared shell helpers (link_files, run_*_step, is_macos, ...)
+├── profiles/            # one file per machine (mac-personal, mac-work, homelab)
+├── mac-apps/Brewfile    # desktop casks for macOS profiles (per-package Brewfile)
 └── <package>/           # one directory per tool: install, setup, rc, update
 ```
 

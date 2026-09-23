@@ -2,20 +2,38 @@
 #
 # Homebrew
 #
-# This installs some of the common dependencies needed (or at least desired)
-# using Homebrew.
+# Installs Homebrew itself. Works on macOS and Linux (Linuxbrew).
+# On Linux, the build tools required by the Homebrew installer are
+# installed via apt first.
+#
+# Per-package dependencies are NOT handled here — each package owns its
+# own formulae in its `install` script (or a per-package Brewfile, e.g.
+# mac-apps/Brewfile).
 
 source "$DOTFILES_ROOT/helpers"
 
+install_linux_prereqs() {
+  sudo apt-get update
+  sudo apt-get install -y build-essential procps curl file git
+}
+
 install_homebrew() {
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  if is_linux; then
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  else
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
 }
 
 # Check for Homebrew
 if ! command_exists brew; then
+  if is_linux; then
+    run_required_step "Installing Linux build tools for Homebrew" install_linux_prereqs
+  fi
+
   run_required_step "Installing Homebrew" install_homebrew
 fi
 
-export PATH=/opt/homebrew/bin:$PATH
+ensure_brew_env
 
 exit 0

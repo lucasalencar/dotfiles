@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/helpers"
+
+require_macos "terminal-notifier"
+
+info "Installing terminal-notifier (desktop notifications for scripts)"
+brew install terminal-notifier

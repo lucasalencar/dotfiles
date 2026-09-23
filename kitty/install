@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+require_macos "Kitty terminal"
 
 info "Installing Kitty terminal"
 brew install --cask kitty

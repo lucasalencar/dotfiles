@@ -1,10 +1,24 @@
 #!/bin/bash
 
 source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
 
-info "Installing Git and tools"
-brew install git gh
-brew tap jesseduffield/lazygit
-brew install lazygit
-brew install worktrunk # better git worktrees
-brew install modem-dev/tap/hunk
+# Bootstrap (Linux without Homebrew yet): git and curl must exist before
+# the Homebrew installer runs, so provide them via apt here. The brew
+# section below runs on the profile-loop pass, once brew exists.
+if is_linux && ! command_exists brew; then
+  info "Bootstrapping git and curl via apt (Homebrew not present yet)"
+  sudo apt-get update
+  sudo apt-get install -y git curl
+fi
+
+if command_exists brew; then
+  info "Installing Git and tools"
+  brew install git gh
+  brew tap jesseduffield/lazygit
+  brew install lazygit
+  brew install worktrunk # better git worktrees
+  brew install modem-dev/tap/hunk
+else
+  warning "Homebrew not found, skipping brew Git tools for now"
+fi

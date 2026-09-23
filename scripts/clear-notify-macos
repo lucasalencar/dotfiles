@@ -6,4 +6,4 @@
 [ "$(uname)" != "Darwin" ] && exit 0
 
 GROUP_ID=$(tmux display-message -p "tmux-window-#{session_name}-#I" 2>/dev/null)
-[ -n "$GROUP_ID" ] && /opt/homebrew/bin/terminal-notifier -remove "$GROUP_ID" >/dev/null 2>&1
+[ -n "$GROUP_ID" ] && terminal-notifier -remove "$GROUP_ID" >/dev/null 2>&1
