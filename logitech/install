@@ -1,12 +1,8 @@
 #!/bin/bash
 
-source "$DOTFILES_ROOT/print_helper"
 source "$DOTFILES_ROOT/helpers"
 
-if ! is_macos; then
-  info "Skipping Logitech Options (macOS-only)"
-  exit 0
-fi
+require_macos "Logitech Options"
 
 info "Installing Logitech Options + LogiTune"
 brew install --cask logi-options+

@@ -38,6 +38,18 @@ is_linux () {
   [ "$(os_name)" = "Linux" ]
 }
 
+# Exit the calling script successfully when not on macOS. Works from a
+# function because exit terminates the whole shell, not just the function
+# (return would be the one that only leaves the function). Safe in package
+# install scripts since they run as child processes of ./install.
+require_macos () {
+  local name="${1:-this package}"
+  if ! is_macos; then
+    info "Skipping $name (macOS-only)"
+    exit 0
+  fi
+}
+
 # Load Homebrew into the current shell, regardless of install prefix
 # (/opt/homebrew on Apple Silicon, /usr/local on Intel Macs,
 # /home/linuxbrew/.linuxbrew on Linux).
