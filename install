@@ -47,18 +47,18 @@ install_profile() {
   echo "$profile" > "$DOTFILES_ROOT/.current_profile"
 }
 
-install_base_tools() {
-  sudo apt-get update
-  sudo apt-get install -y git curl stow zsh
-}
-
 if [ -z "$PROFILE" ]; then
   fail "Usage: ./install <profile>. Available: $(ls "$DOTFILES_ROOT/profiles" | tr '\n' ' ')"
 fi
 
-# git, curl, stow and zsh must exist before Homebrew, stow symlinks and zinit
+# On Linux, base tools must exist before Homebrew does. The initial
+# packages (git, zsh, cli) apt-provide their own binaries when brew is
+# missing; their full brew install runs again in the profile loop below.
 if is_linux; then
-  run_required_step "Installing base tools (git, curl, stow, zsh)" install_base_tools
+  for bootstrap_package in git zsh cli; do
+    install_package "$bootstrap_package"
+  done
+  unset bootstrap_package
 fi
 
 run_optional_step "Initializing Git setup" "$DOTFILES_ROOT/git/pre-setup"

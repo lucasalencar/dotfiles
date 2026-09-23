@@ -64,7 +64,9 @@ Pick the profile that matches the machine:
 
 What `./install` does, in order:
 
-1. On Linux, installs base tools via `apt` (`git`, `curl`, `stow`, `zsh`).
+1. On Linux, bootstraps base tools first: the initial packages (`git`,
+   `zsh`, `cli`) apt-provide their own binaries when Homebrew is not
+   present yet.
 2. Initializes `~/.gitconfig` from `git/.gitconfig.example`, prompting for
    your Git author name and email (`git/pre-setup`).
 3. Installs Homebrew if missing (`homebrew/install`).
