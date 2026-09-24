@@ -15,8 +15,11 @@ fi
 if command_exists brew; then
   info "Installing Git and tools"
   brew install git gh
+
   brew tap jesseduffield/lazygit
+  brew trust jesseduffield/lazygit
   brew install lazygit
+
   brew install worktrunk # better git worktrees
   brew install modem-dev/tap/hunk
 else
