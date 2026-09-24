@@ -4,3 +4,6 @@ update
 rc
 Brewfile
 Brewfile.lock.json
+aliases.zsh
+exports.zsh
+fzf.zsh

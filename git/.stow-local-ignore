@@ -3,3 +3,6 @@ setup
 update
 rc
 \.gitconfig\.example
+pre-setup
+lazygit-hunk-branch-diff
+lazygit-open
