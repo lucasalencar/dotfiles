@@ -4,6 +4,13 @@ export DOTFILES_ROOT=$HOME/.dotfiles
 
 source $DOTFILES_ROOT/homebrew/rc
 
+# Fall back to a widely-supported TERM when the current one has no
+# terminfo entry on this machine (e.g. xterm-ghostty over SSH without
+# ghostty terminfo installed). tmux and other curses apps fail otherwise.
+if command -v infocmp >/dev/null 2>&1 && [ -n "${TERM:-}" ]; then
+  infocmp "$TERM" >/dev/null 2>&1 || export TERM=xterm-256color
+fi
+
 # Default tmux session follows the machine profile: "homelab" on the
 # homelab server, "main" everywhere else. Set TMUX_DEFAULT_SESSION to
 # override.
