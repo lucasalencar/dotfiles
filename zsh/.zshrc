@@ -4,24 +4,24 @@ export DOTFILES_ROOT=$HOME/.dotfiles
 
 source $DOTFILES_ROOT/homebrew/rc
 
-# Auto-attach tmux only when appropriate. `exec` replaces this shell, so the
-# outer shell never pays the cost of sourcing rc — the inner shell (inside
-# tmux) is the one that matters. Must be above the p10k instant prompt block:
-# tmux requires a real TTY.
+# Auto-attach tmux only when appropriate. On success the outer shell exits
+# right after attach/detach, so it never pays the cost of sourcing rc — the
+# inner shell (inside tmux) is the one that matters. On failure (missing or
+# broken tmux, unreadable terminal, ...) it falls through to a plain shell
+# instead of killing the session. Must be above the p10k instant prompt
+# block: tmux requires a real TTY.
 #
 # Logic:
 #   1. No "main" session → create and attach
 #   2. "main" session exists but no client attached → attach
 #   3. "main" session exists with clients attached → do nothing (plain shell)
-#
-# In case of terminal not opening, remove `exec` to see the underlying error
-if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" != "vscode" ]]; then
+if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" != "vscode" ]] && command -v tmux >/dev/null 2>&1; then
   if tmux has-session -t main 2>/dev/null; then
     if [[ -z "$(tmux list-clients -t main 2>/dev/null)" ]]; then
-      exec tmux attach-session -t main
+      tmux attach-session -t main && exit
     fi
   else
-    exec tmux new-session -s main -c "$HOME"
+    tmux new-session -s main -c "$HOME" && exit
   fi
 fi
 
