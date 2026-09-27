@@ -5,3 +5,22 @@ source "$DOTFILES_ROOT/helpers"
 
 info "Setting up opencode package"
 run_required_step "Stowing opencode package" stow opencode
+
+configure_tamagotchi_opencode() {
+  local tama_bin
+  tama_bin="$(tmux show -gqv @tama_bin 2>/dev/null)" || true
+  if [ -z "${tama_bin:-}" ]; then
+    tama_bin="$HOME/.tmux/plugins/tmux-agent-tamagotchi/bin/tama"
+  fi
+  if [ ! -x "$tama_bin" ]; then
+    warning "tama not found at $tama_bin, skipping Tamagotchi OpenCode integration (run opencode/setup after installing tmux plugins)"
+    return 0
+  fi
+  if ! command_exists jq; then
+    warning "jq not found, skipping Tamagotchi OpenCode integration (required by tama setup opencode)"
+    return 0
+  fi
+  "$tama_bin" setup opencode "$HOME/.config/opencode/opencode.json"
+}
+
+run_optional_step "Configuring tmux-agent-tamagotchi OpenCode integration" configure_tamagotchi_opencode

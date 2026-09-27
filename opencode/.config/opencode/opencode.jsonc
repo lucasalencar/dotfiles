@@ -1,13 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
-  "plugin": [
-    "/Users/lucas.alencar/.tmux/plugins/tmux-agent-tamagotchi/integrations/opencode/index.ts"
-  ],
-
-  "plugins": [
-    "/Users/lucas.alencar/.tmux/plugins/tmux-agent-tamagotchi/integrations/opencode"
-  ],
+  // Tamagotchi OpenCode integration (tmux-agent-tamagotchi) is configured
+  // per-machine by opencode/setup via `tama setup opencode`, which writes
+  // the host's absolute plugin paths to ~/.config/opencode/opencode.json.
+  // Keep absolute paths out of this versioned file so the same repo works
+  // on macOS and Linux.
 
   "keybinds": {
     "input_newline": "ctrl+j,shift+enter"
