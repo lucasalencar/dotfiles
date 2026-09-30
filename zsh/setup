@@ -15,7 +15,14 @@ if is_linux; then
   ZSH_PATH="$(command -v zsh)"
   if [ -n "$ZSH_PATH" ] && [ "$SHELL" != "$ZSH_PATH" ]; then
     info "Setting $ZSH_PATH as default shell"
-    grep -qx "$ZSH_PATH" /etc/shells || echo "$ZSH_PATH" | sudo tee -a /etc/shells > /dev/null
-    chsh -s "$ZSH_PATH"
+    grep -qxF "$ZSH_PATH" /etc/shells || echo "$ZSH_PATH" | sudo tee -a /etc/shells > /dev/null
+    if ! chsh -s "$ZSH_PATH"; then
+      warning "Could not change login shell with 'chsh' (chsh authenticates via PAM, not via sudo, so it fails with 'PAM: Authentication failure' on accounts with no login password: 'passwd -S' shows L, common on cloud-init VMs with passwordless sudo)."
+      warning "To fix manually, run:"
+      warning "  grep -qxF $ZSH_PATH /etc/shells || echo $ZSH_PATH | sudo tee -a /etc/shells"
+      warning "  sudo chsh -s $ZSH_PATH \"\$USER\""
+      warning "  getent passwd \"\$USER\""
+      warning "Then log out and back in to use the new shell."
+    fi
   fi
 fi
