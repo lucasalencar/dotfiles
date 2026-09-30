@@ -14,7 +14,7 @@ fi
 
 if command_exists brew; then
   info "Installing Git and tools"
-  brew install git gh
+  brew install git gh tea
 
   brew tap jesseduffield/lazygit
   brew trust jesseduffield/lazygit
