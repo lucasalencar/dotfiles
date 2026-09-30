@@ -5,3 +5,14 @@ source "$DOTFILES_ROOT/helpers"
 
 info "Setting up tmux package"
 run_required_step "Stowing tmux package" stow tmux
+
+# Install plugins after stow: install_plugins.sh resolves the plugin dir
+# via `tmux show-environment -g TMUX_PLUGIN_MANAGER_PATH`, which is only
+# set once the tmux server has sourced ~/.tmux.conf (or we set it here).
+# Running it from install (before stow / without a server) fails with
+# "unknown variable: TMUX_PLUGIN_MANAGER_PATH / not configured in tmux.conf".
+if [ -d "$HOME/.tmux/plugins/tpm" ]; then
+  tmux start-server 2>/dev/null || true
+  tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/plugins/" 2>/dev/null || true
+  run_optional_step "Installing tmux plugins" "$HOME/.tmux/plugins/tpm/bin/install_plugins"
+fi

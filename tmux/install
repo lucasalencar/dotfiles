@@ -17,5 +17,5 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 
-info "Installing tmux plugins"
-"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
+# Plugin installation happens in setup (after stow), when ~/.tmux.conf
+# exists and the tmux server can resolve TMUX_PLUGIN_MANAGER_PATH.
