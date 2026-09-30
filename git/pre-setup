@@ -66,14 +66,54 @@ else
     fail "Error updating $GITCONFIG_TARGET."
 fi
 
-# SSH key setup
+# SSH key + config setup
 SSH_KEY="$HOME/.ssh/id_ed25519"
+SSH_CONFIG="$HOME/.ssh/config"
 SSH_EMAIL="${git_user_email:-"$(git config user.email 2>/dev/null)"}"
+mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
 if [ ! -f "$SSH_KEY" ]; then
     info "No SSH key found. Generating one..."
-    mkdir -p "$HOME/.ssh"
     ssh-keygen -t ed25519 -C "$SSH_EMAIL" -f "$SSH_KEY" -N ""
     success "SSH key generated at $SSH_KEY"
+fi
+chmod 600 "$SSH_KEY"
+chmod 644 "$SSH_KEY.pub"
+
+# Ensure ~/.ssh/config has a GitHub entry (idempotent)
+touch "$SSH_CONFIG"
+chmod 600 "$SSH_CONFIG"
+if ! grep -q "^Host github.com" "$SSH_CONFIG"; then
+    info "Adding github.com entry to $SSH_CONFIG..."
+    if [ "$OS" = "Darwin" ]; then
+        cat >> "$SSH_CONFIG" <<EOF
+
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+EOF
+    else
+        cat >> "$SSH_CONFIG" <<EOF
+
+Host github.com
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ed25519
+EOF
+    fi
+    success "Added github.com entry to $SSH_CONFIG"
+else
+    info "github.com entry already exists in $SSH_CONFIG, skipping."
+fi
+
+# Add key to the agent (best effort, never fails setup)
+if [ "$OS" = "Darwin" ]; then
+    ssh-add --apple-use-keychain "$SSH_KEY" 2>/dev/null || ssh-add "$SSH_KEY" 2>/dev/null || true
+else
+    if [ -z "${SSH_AUTH_SOCK:-}" ]; then
+        eval "$(ssh-agent -s)" >/dev/null
+    fi
+    ssh-add "$SSH_KEY" 2>/dev/null || true
 fi
 
 echo ""
