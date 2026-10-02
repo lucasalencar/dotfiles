@@ -1,3 +1,20 @@
 #!/bin/bash
 
-export PATH="$PATH:/opt/homebrew/opt/postgresql@15/bin"
+# libpq (and the legacy postgresql@15) are keg-only, so Homebrew doesn't
+# symlink their binaries into PATH. Resolve the prefix dynamically so this
+# works on Apple Silicon, Intel Macs, and Linuxbrew.
+# libpq first: its psql is the newest client; postgresql@15 bins (including
+# the server tools) remain available right after.
+# Start the local server when needed with: brew services start postgresql@15
+if command -v brew >/dev/null 2>&1; then
+  for _pg_formula in libpq postgresql@15; do
+    _pg_prefix="$(brew --prefix "$_pg_formula" 2>/dev/null)"
+    if [ -n "$_pg_prefix" ] && [ -d "$_pg_prefix/bin" ]; then
+      case ":$PATH:" in
+        *"$_pg_prefix/bin"*) ;;
+        *) export PATH="$PATH:$_pg_prefix/bin" ;;
+      esac
+    fi
+  done
+  unset _pg_formula _pg_prefix
+fi

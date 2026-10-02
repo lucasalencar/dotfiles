@@ -1,3 +1,11 @@
 #!/bin/bash
 
-brew install postgresql@15
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+if command_exists brew; then
+  info "Installing PostgreSQL client (libpq) and server (postgresql@15)"
+  brew install libpq postgresql@15
+else
+  warning "Homebrew not found, skipping brew PostgreSQL for now"
+fi
