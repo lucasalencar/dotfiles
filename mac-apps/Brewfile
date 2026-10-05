@@ -36,9 +36,6 @@ if OS.mac?
 
     # Small tools without config
     brew 'heroku'
-
-    # Gitea command line
-    brew 'tea'
   end
 
   if ENV['DOTFILES_PROFILE'] == 'mac-work'
