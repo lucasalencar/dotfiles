@@ -33,7 +33,7 @@ if OS.mac?
     cask 'vlc'
     cask 'nextcloud'
     cask 'google-chrome'
-    cask 'windows-app'
+    cask 'royal-tsx'
 
     # Small tools without config
     brew 'heroku'
