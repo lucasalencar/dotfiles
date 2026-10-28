@@ -4,24 +4,38 @@ source "$DOTFILES_ROOT/helpers"
 
 EDITOR=${1:-"nvim"} # Receive editor as argument but uses nvim by default
 
-# Set CONFIG_DIR according to editor
-if [ "$EDITOR" = "vim" ]; then
-  CONFIG_DIR="$HOME/.vim"
-elif [ "$EDITOR" = "nvim" ]; then
-  CONFIG_DIR="$HOME/.config/nvim"
-else
+if [ "$EDITOR" != "vim" ] && [ "$EDITOR" != "nvim" ]; then
   fail "Editor not recognized. Please use 'vim' or 'nvim'."
 fi
 
-if [ ! -d "$CONFIG_DIR" ]; then
-  info "Setting up config directory $CONFIG_DIR"
-  mkdir "$CONFIG_DIR"
+# The ~/.vimrc symlink (via stow) is needed by plain vim regardless of which
+# editor is used here, and nvim reuses the same .vimrc as init.vim.
+# Both steps must run on every invocation (idempotent) so a deleted symlink
+# is repaired instead of silently skipped.
+run_required_step "Stowing vim package" stow vim
 
-  if [ "$EDITOR" = "nvim" ]; then
-    link_files "$(current_dir)/.vimrc" "$CONFIG_DIR/init.vim"
-  elif [ "$EDITOR" = "vim" ]; then
-    run_required_step "Stowing vim package" stow vim
+if [ "$EDITOR" = "nvim" ]; then
+  CONFIG_DIR="$HOME/.config/nvim"
+  if [ ! -d "$CONFIG_DIR" ]; then
+    info "Setting up config directory $CONFIG_DIR"
+    mkdir -p "$CONFIG_DIR"
   fi
+  # CONFIG_DIR is usually stowed from this repo (the git package owns
+  # ~/.config/nvim), so link relatively to keep the checkout portable
+  # across machines instead of baking in an absolute $HOME path.
+  config_real="$(cd "$CONFIG_DIR" && pwd -P)"
+  case "$config_real" in
+    "$DOTFILES_ROOT"/*)
+      rel="${config_real#"$DOTFILES_ROOT"/}"
+      depth=$(awk -F/ '{print NF}' <<< "$rel")
+      target=""
+      for ((i = 0; i < depth; i++)); do target="../$target"; done
+      link_files "${target}vim/.vimrc" "$CONFIG_DIR/init.vim"
+      ;;
+    *)
+      link_files "$(current_dir)/.vimrc" "$CONFIG_DIR/init.vim"
+      ;;
+  esac
 fi
 
 # Create backup, temp files and persistent undo folder
