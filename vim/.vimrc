@@ -1,3 +1,8 @@
+" Vim needs nocompatible BEFORE any line-continuation (\) dictionaries
+" (e.g. appearance.vim) are sourced. vim-sensible sets this too, but it is
+" sourced later, which is too late.
+set nocompatible
+
 " Install vim-plug in case it is not present
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -138,6 +143,14 @@ source $DOTFILES_ROOT/vim/nerdtree.vim
 source $DOTFILES_ROOT/vim/vim-tmux-navigator.vim
 source $DOTFILES_ROOT/vim/clojure.vim
 source $DOTFILES_ROOT/vim/vim-sexp.vim
-source $DOTFILES_ROOT/vim/coc.vim
 
-source $DOTFILES_ROOT/vim/oil.vim
+" coc.nvim is only installed for nvim (see Plug section above)
+if has('nvim')
+  source $DOTFILES_ROOT/vim/coc.vim
+endif
+
+" oil.nvim is nvim-only: plain vim has no built-in lua (E370 liblua) and no
+" oil.nvim plugin
+if has('nvim')
+  source $DOTFILES_ROOT/vim/oil.vim
+endif
