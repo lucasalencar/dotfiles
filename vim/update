@@ -1,4 +1,10 @@
 #!/bin/bash
 
 # Set stdin as /dev/null to avoid inputting standard input from other scripts into vim
-nvim +PlugUpgrade +PlugUpdate +PlugClean! +qall < /dev/null
+# Prefer nvim (coc.nvim/oil.nvim live there) but fall back to vim so
+# vim-only machines still get their plugins updated instead of failing.
+if command -v nvim &> /dev/null; then
+  nvim +PlugUpgrade +PlugUpdate +PlugClean! +qall < /dev/null
+elif command -v vim &> /dev/null; then
+  vim +PlugUpgrade +PlugUpdate +PlugClean! +qall < /dev/null
+fi
