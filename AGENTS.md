@@ -32,6 +32,15 @@ owns a new dependency, create one and list it in the profiles that need it.
 - Desktop notifications and GUI helpers must degrade gracefully: they
     exit 0 on headless Linux so agent hooks and tmux integrations keep
     working without a desktop.
+- Never assume a single-variant environment. Feature-detect instead of
+    hardcoding one binary: use `command_exists` / `command -v` with a
+    fallback (e.g. prefer `nvim`, fall back to `vim`), and guard
+    editor/tool-specific config (e.g. `if has('nvim')`) to match the
+    corresponding install guard.
+- Package scripts must be idempotent: re-running `install`, `setup`, or
+    `update` repairs missing symlinks and links instead of skipping them.
+    Never gate a repair step (e.g. `stow <pkg>`, `ln -sf`) behind a
+    directory-exists check that is false on re-runs.
 
 ## Rules
 
