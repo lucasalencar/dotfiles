@@ -15,16 +15,10 @@ TERMINAL_PROCESS="${TERMINAL_APP_NAME:-ghostty}"
 
 [ -z "$SESSION" ] && exit 0
 
-# Default session mirrors zsh/.zshrc: active profile name, "main" fallback.
-# TMUX_DEFAULT_SESSION may not survive the terminal-notifier -execute context,
-# so derive it from .current_profile when unset.
-if [ -n "${TMUX_DEFAULT_SESSION:-}" ]; then
-  DEFAULT_SESSION="$TMUX_DEFAULT_SESSION"
-else
-  SCRIPTS_DIR_DEFAULT="$(cd "$(dirname "$0")" && pwd)"
-  DEFAULT_SESSION=$(head -n 1 "$SCRIPTS_DIR_DEFAULT/../.current_profile" 2>/dev/null | tr -d '[:space:]' | tr '.:' '__')
-  DEFAULT_SESSION="${DEFAULT_SESSION:-main}"
-fi
+# Default session is always "main" (see zsh/.zshrc). TMUX_DEFAULT_SESSION may
+# not survive the terminal-notifier -execute context, so fall back to "main"
+# when unset.
+DEFAULT_SESSION="${TMUX_DEFAULT_SESSION:-main}"
 
 raise_window_for_session() {
   local target="$1"
@@ -47,8 +41,7 @@ SCRIPT
 [ "$(raise_window_for_session "$SESSION")" = "1" ] && exit 0
 
 # Not attached anywhere yet — try to repurpose a non-default window's client.
-# Legacy "main" sessions are also never repurposed.
-TARGET_TTY=$(tmux list-clients -F "#{client_tty} #{session_name}" 2>/dev/null | awk -v def="$DEFAULT_SESSION" '$2 != def && $2 != "main" { print $1; exit }')
+TARGET_TTY=$(tmux list-clients -F "#{client_tty} #{session_name}" 2>/dev/null | awk -v def="$DEFAULT_SESSION" '$2 != def { print $1; exit }')
 
 if [ -n "$TARGET_TTY" ]; then
   tmux switch-client -c "$TARGET_TTY" -t "$SESSION"

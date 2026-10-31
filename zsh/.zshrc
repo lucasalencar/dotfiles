@@ -11,13 +11,11 @@ if command -v infocmp >/dev/null 2>&1 && [ -n "${TERM:-}" ]; then
   infocmp "$TERM" >/dev/null 2>&1 || export TERM=xterm-256color
 fi
 
-# Default tmux session follows the active machine profile (e.g. "mac-personal",
-# "mac-work", "homelab"), so the session name identifies the machine.
-# Set TMUX_DEFAULT_SESSION to override.
+# Default tmux session is always "main" — the machine is shown separately in
+# the status bar (profile module), so the session name is free for real
+# sessions. Set TMUX_DEFAULT_SESSION to override.
 if [ -z "${TMUX_DEFAULT_SESSION:-}" ]; then
-  _dotfiles_profile=$(head -n 1 "$DOTFILES_ROOT/.current_profile" 2>/dev/null | tr -d '[:space:]' | tr '.:' '__')
-  TMUX_DEFAULT_SESSION="${_dotfiles_profile:-main}"
-  unset _dotfiles_profile
+  TMUX_DEFAULT_SESSION="main"
 fi
 
 # Auto-attach tmux only when appropriate. On success the outer shell exits

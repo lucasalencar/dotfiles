@@ -1,0 +1,19 @@
+#!/bin/bash
+# Prints the dotfiles machine profile (e.g. mac-personal) for the tmux
+# status bar. Falls back to the short hostname when .current_profile is
+# missing, so the machine module never renders empty.
+set -u
+
+profile=""
+if [ -n "${DOTFILES_ROOT:-}" ] && [ -f "$DOTFILES_ROOT/.current_profile" ]; then
+  profile=$(head -n 1 "$DOTFILES_ROOT/.current_profile" 2>/dev/null)
+elif [ -f "$HOME/.dotfiles/.current_profile" ]; then
+  profile=$(head -n 1 "$HOME/.dotfiles/.current_profile" 2>/dev/null)
+fi
+profile=$(printf '%s' "$profile" | tr -d '[:space:]')
+
+if [ -z "$profile" ]; then
+  profile=$(hostname -s 2>/dev/null || hostname 2>/dev/null || echo unknown)
+fi
+
+printf '%s' "$profile"
