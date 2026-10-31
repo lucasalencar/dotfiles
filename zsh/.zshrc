@@ -55,3 +55,10 @@ source $DOTFILES_ROOT/rc
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# bun completions
+[ -s "/home/lucas/.bun/_bun" ] && source "/home/lucas/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
