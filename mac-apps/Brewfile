@@ -34,6 +34,7 @@ if OS.mac?
     cask 'google-chrome'
     cask 'typewhisper/tap/typewhisper' # Dictation
     cask 'royal-tsx'
+    cask 'tailscale-app'
 
     # Small tools without config
     brew 'heroku'
