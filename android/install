@@ -82,14 +82,6 @@ check_kvm() {
   fi
 }
 
-install_maestro() {
-  if command_exists maestro; then
-    info "Maestro already installed, skipping"
-    return 0
-  fi
-  curl -Ls "https://get.maestro.mobile.dev" | bash
-}
-
 # Android Studio is a cask — macOS only.
 if is_macos; then
   run_required_step "Installing Android Studio" brew install --cask android-studio
@@ -103,5 +95,3 @@ run_required_step "Bootstrapping Android SDK" install_android_sdk
 if is_linux; then
   check_kvm
 fi
-
-run_required_step "Installing Maestro" install_maestro
