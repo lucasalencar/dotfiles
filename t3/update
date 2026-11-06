@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# --yes: non-interactive (./update context). Restarts the service, which
+# interrupts running agent turns, terminals, and remote clients.
+t3 update --yes

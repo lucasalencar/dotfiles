@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# t3 install.sh defaults to ~/.local/bin, ensure it stays on PATH
+export PATH="$HOME/.local/bin:$PATH"

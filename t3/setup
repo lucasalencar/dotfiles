@@ -1,0 +1,62 @@
+#!/bin/bash
+#
+# Setup for the t3 package (non-interactive, idempotent).
+#
+# Executes:
+#   1. Verifies the t3 CLI is installed.
+#   2. Checks provider CLIs (codex, claude, opencode). Their *login* stays
+#      manual (browser OAuth / approval on another device can't be scripted).
+#   3. Installs/starts the per-user background service (t3 service install).
+#   4. Configures remote access via `t3 up` (default: LAN/tailnet, no account
+#      needed). Override with T3_SETUP_MODE=connect (T3 Connect account +
+#      approval on another device) or T3_SETUP_MODE=none (skip step 4).
+#   5. Prints `t3 status` so you can see how devices reach this host.
+#
+# Pairing a new device always stays manual: run `t3 pair` on the host.
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+info "Setting up t3 package"
+
+if ! command_exists t3; then
+  warning "t3 CLI not found, skipping T3 Code setup (run t3/install first)"
+  exit 0
+fi
+
+info "t3 version: $(t3 --version 2>/dev/null || echo unknown)"
+
+check_provider() {
+  local name="$1"
+  local login_hint="$2"
+  if command_exists "$name"; then
+    success "Provider CLI found: $name"
+  else
+    warning "Provider CLI '$name' not found — install it and run '$login_hint' by hand before starting threads"
+  fi
+}
+
+check_provider codex "codex login"
+check_provider claude "claude auth login"
+check_provider opencode "opencode auth login"
+
+run_required_step "Installing T3 Code background service" t3 service install
+
+T3_SETUP_MODE="${T3_SETUP_MODE:-lan}"
+case "$T3_SETUP_MODE" in
+  lan)
+    run_required_step "Enabling local-network access" t3 up --lan --yes
+    ;;
+  connect)
+    run_required_step "Enabling T3 Connect access" t3 up --connect --yes
+    ;;
+  none)
+    info "Skipping remote-access configuration (T3_SETUP_MODE=none)"
+    ;;
+  *)
+    fail "Unknown T3_SETUP_MODE='$T3_SETUP_MODE' (expected lan, connect, or none)"
+    ;;
+esac
+
+run_optional_step "Showing T3 Code status" t3 status
+info "Pair a new device with: t3 pair"

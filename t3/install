@@ -1,0 +1,19 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+info "Installing T3 Code CLI"
+
+if is_macos; then
+  ensure_brew_env
+  if [ "$(uname -m)" = "x86_64" ]; then
+    # No t3 CLI release for Intel Macs — use the desktop app cask instead.
+    brew install --cask t3-code
+  else
+    curl -fsSL https://t3.codes/install.sh | sh
+  fi
+else
+  # Official installer — works on Linux without Homebrew, installs to ~/.local/bin
+  curl -fsSL https://t3.codes/install.sh | sh
+fi

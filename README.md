@@ -166,6 +166,7 @@ invoked.
 | `codex`      | Codex CLI configuration, hooks, notifications, and MCPs.     |
 | `gemini`     | Gemini CLI configuration.                                    |
 | `opencode`   | OpenCode agent configuration.                                |
+| `t3`         | T3 Code harness (remote access to Claude/Codex/OpenCode agents). |
 | `prompts`    | Reusable prompt snippets shared across tools.                |
 | `skills`     | AI coding agent skills (cloned from `~/code/skills`).        |
 
@@ -223,7 +224,7 @@ invoked.
 
 Configurations included: Git, ZSH, Vim/Neovim, Tmux, Homebrew, Ruby, Python,
 Go, Java, Clojure, Haskell, Elixir, Docker, PostgreSQL, Karabiner, Ghostty,
-Kitty, Emacs, Logseq, Claude Code, Cursor, Gemini, OpenCode, Skills, and more.
+Kitty, Emacs, Logseq, Claude Code, Cursor, Gemini, OpenCode, T3 Code, Skills, and more.
 
 ## Inspirations
 
