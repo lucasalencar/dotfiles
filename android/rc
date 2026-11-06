@@ -1,9 +1,27 @@
 
-# Android SDK
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+# NOTE: rc files are sourced after "$DOTFILES_ROOT/helpers" is already loaded
+# by the top-level rc, so helpers (command_exists, ...) are available here
+# without sourcing them again.
+
+# Android SDK — detect by directory: a Studio install on macOS uses
+# ~/Library/Android/sdk, otherwise fall back to the Linux default.
+if [ -z "$ANDROID_HOME" ]; then
+  if [ -d "$HOME/Library/Android/sdk" ]; then
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+  else
+    export ANDROID_HOME="$HOME/Android/Sdk"
+  fi
+fi
+export PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin"
+
+# Prefer the brewed JDK 17 when present (keg-only, never linked into PATH).
+if command_exists brew; then
+  _android_brew_prefix="$(brew --prefix openjdk@17 2>/dev/null)"
+  if [ -n "$_android_brew_prefix" ] && [ -d "$_android_brew_prefix/libexec/openjdk.jdk/Contents/Home" ]; then
+    export JAVA_HOME="$_android_brew_prefix/libexec/openjdk.jdk/Contents/Home"
+  fi
+  unset _android_brew_prefix
+fi
 
 # Maestro
-export PATH=$PATH:$HOME/.maestro/bin
+export PATH="$PATH:$HOME/.maestro/bin"

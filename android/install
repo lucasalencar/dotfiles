@@ -2,12 +2,106 @@
 
 source "$DOTFILES_ROOT/helpers"
 
-require_macos "Android Studio"
+ensure_brew_env
 
-info "Installing Android development tools"
-brew install --cask android-studio
-brew install scrcpy # Show Android screen through Window
+# Pinned versions (validated 06/11/2026)
+CMDLINE_TOOLS_BUILD="11076708"
+SYSTEM_IMAGE="system-images;android-35;google_apis;x86_64"
+ANDROID_PACKAGES=(
+  "platform-tools"
+  "emulator"
+  "platforms;android-35"
+  "build-tools;35.0.0"
+  "$SYSTEM_IMAGE"
+)
 
-# Install Maestro (E2E Testing Framework)
-info "Installing Maestro"
-curl -Ls "https://get.maestro.mobile.dev" | bash
+# ANDROID_HOME resolution by directory detection (not by OS): honors an
+# already-exported ANDROID_HOME, then an existing Studio SDK on macOS,
+# otherwise the Linux default.
+resolve_android_home() {
+  if [ -n "$ANDROID_HOME" ]; then
+    echo "$ANDROID_HOME"
+  elif [ -d "$HOME/Library/Android/sdk" ]; then
+    echo "$HOME/Library/Android/sdk"
+  else
+    echo "$HOME/Android/Sdk"
+  fi
+}
+
+install_android_sdk() {
+  local android_home
+  android_home="$(resolve_android_home)"
+  local sdkmanager="$android_home/cmdline-tools/latest/bin/sdkmanager"
+
+  if [ -x "$sdkmanager" ]; then
+    info "Android SDK already present at $android_home, skipping download"
+    export ANDROID_HOME="$android_home"
+    return 0
+  fi
+
+  if ! command_exists unzip && is_linux; then
+    info "Installing unzip (needed to unpack cmdline-tools)"
+    sudo apt-get install -y unzip
+  fi
+
+  local platform="linux"
+  if is_macos; then
+    platform="mac"
+  fi
+
+  info "Bootstrapping Android SDK into $android_home"
+  mkdir -p "$android_home/cmdline-tools"
+  curl -sS -o /tmp/cmdtools.zip \
+    "https://dl.google.com/android/repository/commandlinetools-${platform}-${CMDLINE_TOOLS_BUILD}_latest.zip"
+  unzip -q -o /tmp/cmdtools.zip -d "$android_home/cmdline-tools"
+  rm -f /tmp/cmdtools.zip
+  rm -rf "$android_home/cmdline-tools/latest"
+  mv "$android_home/cmdline-tools/cmdline-tools" "$android_home/cmdline-tools/latest"
+
+  export ANDROID_HOME="$android_home"
+  export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
+
+  # sdkmanager needs Java; the brewed JDK 17 is keg-only, so put it on
+  # PATH for this script when present (the java package owns the install).
+  local brew_openjdk_bin
+  brew_openjdk_bin="$(brew --prefix openjdk@17 2>/dev/null)/bin"
+  if [ -x "$brew_openjdk_bin/java" ]; then
+    export PATH="$brew_openjdk_bin:$PATH"
+  fi
+
+  yes | "$sdkmanager" --licenses > /dev/null
+  # sdkmanager ignores already-installed packages: safe to re-run.
+  "$sdkmanager" "${ANDROID_PACKAGES[@]}"
+}
+
+check_kvm() {
+  if [ -c /dev/kvm ]; then
+    info "KVM available (/dev/kvm)"
+  else
+    warning "KVM not found (/dev/kvm missing) — the x86_64 emulator will be impractically slow without it"
+  fi
+}
+
+install_maestro() {
+  if command_exists maestro; then
+    info "Maestro already installed, skipping"
+    return 0
+  fi
+  curl -Ls "https://get.maestro.mobile.dev" | bash
+}
+
+# Android Studio is a cask — macOS only.
+if is_macos; then
+  run_required_step "Installing Android Studio" brew install --cask android-studio
+fi
+
+run_required_step "Installing scrcpy" brew install scrcpy
+
+run_required_step "Bootstrapping Android SDK" install_android_sdk
+
+# KVM only exists on Linux; without it the x86_64 emulator is impractical.
+if is_linux; then
+  check_kvm
+fi
+
+run_required_step "Installing Maestro" install_maestro

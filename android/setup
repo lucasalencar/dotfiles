@@ -1,17 +1,65 @@
 #!/bin/bash
 
-# Opens Android Studio the first time to download and setup environment
-# Follow up the setup through the interface
-# Here is a guide to setup emulators through the interface
+# First-run bootstrap for the Android emulator.
+# On macOS, opens Android Studio once so its GUI setup can finish. On both
+# OSes, creates the pinned AVD via avdmanager (the SDK itself is installed
+# by android/install). See also:
 # https://docs.expo.dev/workflow/android-studio-emulator/
-#
-# Remember to install (under Settings>Languages & Frameworks>Android SDK):
-#   - Command-line Tools
-#   - Platform Tools
-#   - Build Tools
-#   - Android Emulator
-#
-# After installed Command-line tools:
-#   `sdkmanager --licenses`
-open /Applications/Android Studio.app
 
+source "$DOTFILES_ROOT/helpers"
+
+ensure_brew_env
+
+AVD_NAME="pixel-api35"
+SYSTEM_IMAGE="system-images;android-35;google_apis;x86_64"
+AVD_DEVICE="pixel_7"
+
+# Same directory-detection resolution as android/install (not by OS).
+resolve_android_home() {
+  if [ -n "$ANDROID_HOME" ]; then
+    echo "$ANDROID_HOME"
+  elif [ -d "$HOME/Library/Android/sdk" ]; then
+    echo "$HOME/Library/Android/sdk"
+  else
+    echo "$HOME/Android/Sdk"
+  fi
+}
+
+create_avd() {
+  export ANDROID_HOME
+  ANDROID_HOME="$(resolve_android_home)"
+  export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
+
+  if ! command_exists avdmanager; then
+    warning "avdmanager not found — run android/install first, then re-run this setup"
+    return 0
+  fi
+
+  if avdmanager list avd 2>/dev/null | grep -q "$AVD_NAME"; then
+    info "AVD $AVD_NAME already exists, skipping creation"
+  else
+    # Pipe "no" to decline the custom-hardware-profile prompt non-interactively.
+    echo no | avdmanager create avd -n "$AVD_NAME" -k "$SYSTEM_IMAGE" -d "$AVD_DEVICE"
+  fi
+
+  local config="$HOME/.android/avd/$AVD_NAME.avd/config.ini"
+  if [ -f "$config" ]; then
+    grep -v "^hw.ramSize=" "$config" > "$config.tmp" || true
+    echo "hw.ramSize=4096" >> "$config.tmp"
+    mv "$config.tmp" "$config"
+    info "Set hw.ramSize=4096 in $config"
+  else
+    warning "AVD config not found at $config — skipping RAM tweak"
+  fi
+}
+
+# Studio GUI bootstrap — macOS only (cask install).
+if is_macos; then
+  info "Opening Android Studio to finish first-run setup (install SDKs, accept licenses)"
+  open "/Applications/Android Studio.app"
+fi
+
+run_required_step "Creating Android emulator ($AVD_NAME)" create_avd
+
+info "Start the emulator with: emulator -avd $AVD_NAME -no-window -no-audio -gpu swiftshader_indirect"
+warning "Local app builds need the real google-services.json (secret, never versioned) — fetch it from the team / EAS secrets"

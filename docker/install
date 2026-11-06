@@ -1,6 +1,19 @@
 #!/bin/bash
 
-source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
 
-info "Installing Docker and Colima"
-brew install colima docker docker-compose docker-buildx
+ensure_brew_env
+
+install_linux_engine() {
+  sudo apt-get update
+  sudo apt-get install -y docker.io docker-compose-v2
+}
+
+# The Docker daemon doesn't ship via brew: macOS uses Colima, Linux uses
+# the distro package. Clients stay unified on brew where it reaches.
+if is_macos; then
+  run_required_step "Installing Docker and Colima" brew install colima docker docker-compose docker-buildx
+else
+  run_required_step "Installing Docker engine (apt)" install_linux_engine
+  run_required_step "Installing Docker clients (brew)" brew install docker docker-compose docker-buildx
+fi

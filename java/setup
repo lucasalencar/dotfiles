@@ -2,7 +2,12 @@
 
 source "$DOTFILES_ROOT/helpers"
 
-if command_exists jenv; then
-  jenv add /opt/homebrew/opt/openjdk@11/
-  jenv add /opt/homebrew/opt/openjdk@17/
+if command_exists jenv && command_exists brew; then
+  BREW_PREFIX="$(brew --prefix)"
+  if [ -d "$BREW_PREFIX/opt/openjdk@11" ]; then
+    jenv add "$BREW_PREFIX/opt/openjdk@11/"
+  fi
+  if [ -d "$BREW_PREFIX/opt/openjdk@17" ]; then
+    jenv add "$BREW_PREFIX/opt/openjdk@17/"
+  fi
 fi
