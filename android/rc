@@ -22,3 +22,10 @@ if command_exists brew; then
   fi
   unset _android_brew_prefix
 fi
+
+# Emulator video streaming (device harness): needs ffmpeg with libx264.
+# Honors a pre-existing SERVE_EMU_FFMPEG; otherwise points at PATH ffmpeg.
+if [ -z "$SERVE_EMU_FFMPEG" ] && command_exists ffmpeg; then
+  SERVE_EMU_FFMPEG="$(command -v ffmpeg)"
+  export SERVE_EMU_FFMPEG
+fi

@@ -82,6 +82,21 @@ check_kvm() {
   fi
 }
 
+# Emulator video streaming needs ffmpeg with the libx264 encoder (either on
+# PATH or via SERVE_EMU_FFMPEG). Brew's ffmpeg always bundles x264; this
+# only warns when another ffmpeg shadows it without the encoder.
+check_ffmpeg() {
+  if ! command_exists ffmpeg; then
+    warning "ffmpeg not found on PATH — emulator video streaming needs it (or set SERVE_EMU_FFMPEG)"
+    return 0
+  fi
+  if ffmpeg -hide_banner -encoders 2>/dev/null | grep -q libx264; then
+    info "ffmpeg with libx264 available ($(command -v ffmpeg))"
+  else
+    warning "ffmpeg at $(command -v ffmpeg) lacks the libx264 encoder — emulator video needs it (or set SERVE_EMU_FFMPEG)"
+  fi
+}
+
 # Android Studio is a cask — macOS only.
 if is_macos; then
   run_required_step "Installing Android Studio" brew install --cask android-studio
@@ -89,9 +104,13 @@ fi
 
 run_required_step "Installing scrcpy" brew install scrcpy
 
+run_required_step "Installing ffmpeg (emulator video needs libx264)" brew install ffmpeg
+
 run_required_step "Bootstrapping Android SDK" install_android_sdk
 
 # KVM only exists on Linux; without it the x86_64 emulator is impractical.
 if is_linux; then
   check_kvm
 fi
+
+check_ffmpeg
