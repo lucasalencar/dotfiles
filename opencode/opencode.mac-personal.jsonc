@@ -43,12 +43,15 @@
       },
       // Gmail via taylorwilsdon/google_workspace_mcp (workspace-mcp on PyPI).
       // Full access (read/label/move/delete/send) through a local server using
-      // your own OAuth client. Needs: uv, GOOGLE_OAUTH_CLIENT_ID/SECRET in env
-      // (~/.zshrc.local), Gmail API enabled. First run authenticates in browser.
+      // your own OAuth client. Needs: uvx on PATH (pyenv shims prepended below;
+      // interactive shells get them via `pyenv init`, other contexts don't),
+      // GOOGLE_OAUTH_CLIENT_ID/SECRET in env (~/.zshrc.local), Gmail API enabled.
+      // First run authenticates in browser.
       "gmail-taylorwilsdon": {
         "type": "local",
         "command": ["uvx", "workspace-mcp", "--tools", "gmail", "--tool-tier", "core"],
         "environment": {
+          "PATH": "{env:HOME}/.pyenv/shims:{env:PATH}",
           "GOOGLE_OAUTH_CLIENT_ID": "{env:GOOGLE_OAUTH_CLIENT_ID}",
           "GOOGLE_OAUTH_CLIENT_SECRET": "{env:GOOGLE_OAUTH_CLIENT_SECRET}"
         }

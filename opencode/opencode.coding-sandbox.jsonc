@@ -39,11 +39,13 @@
         "url": "{file:~/.secrets/home-assistant-mcp-url}"
       },
       // Gmail via taylorwilsdon/google_workspace_mcp (workspace-mcp on PyPI).
-      // Disabled over SSH by default; needs uv + GOOGLE_OAUTH_CLIENT_ID/SECRET in env.
+      // Disabled over SSH by default; needs uvx on PATH (pyenv shims prepended
+      // below) + GOOGLE_OAUTH_CLIENT_ID/SECRET in env.
       "gmail-taylorwilsdon": {
         "type": "local",
         "command": ["uvx", "workspace-mcp", "--tools", "gmail", "--tool-tier", "core"],
         "environment": {
+          "PATH": "{env:HOME}/.pyenv/shims:{env:PATH}",
           "GOOGLE_OAUTH_CLIENT_ID": "{env:GOOGLE_OAUTH_CLIENT_ID}",
           "GOOGLE_OAUTH_CLIENT_SECRET": "{env:GOOGLE_OAUTH_CLIENT_SECRET}"
         },
