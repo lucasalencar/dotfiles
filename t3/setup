@@ -6,11 +6,14 @@
 #   1. Verifies the t3 CLI is installed.
 #   2. Checks provider CLIs (codex, claude, opencode). Their *login* stays
 #      manual (browser OAuth / approval on another device can't be scripted).
-#   3. Installs/starts the per-user background service (t3 service install).
-#   4. Configures remote access via `t3 up` (default: LAN/tailnet, no account
+#   3. Ensures user lingering is enabled on Linux with systemd (keeps the
+#      per-user background service alive after logout and enables start at
+#      boot). Attempts `sudo loginctl enable-linger` automatically.
+#   4. Installs/starts the per-user background service (t3 service install).
+#   5. Configures remote access via `t3 up` (default: LAN/tailnet, no account
 #      needed). Override with T3_SETUP_MODE=connect (T3 Connect account +
-#      approval on another device) or T3_SETUP_MODE=none (skip step 4).
-#   5. Prints `t3 status` so you can see how devices reach this host.
+#      approval on another device) or T3_SETUP_MODE=none (skip step 5).
+#   6. Prints `t3 status` so you can see how devices reach this host.
 #
 # Pairing a new device always stays manual: run `t3 pair` on the host.
 
@@ -39,6 +42,35 @@ check_provider() {
 check_provider codex "codex login"
 check_provider claude "claude auth login"
 check_provider opencode "opencode auth login"
+
+ensure_lingering() {
+  if ! is_linux; then
+    return 0
+  fi
+  if ! command_exists loginctl; then
+    info "Skipping lingering check (loginctl not found)"
+    return 0
+  fi
+  local user
+  user="$(id -un)"
+  local linger
+  if ! linger="$(loginctl show-user "$user" -p Linger --value 2>/dev/null)"; then
+    warning "Could not query lingering state (no systemd user manager?), skipping"
+    return 0
+  fi
+  if [ "$linger" = "yes" ]; then
+    success "User lingering already enabled"
+    return 0
+  fi
+  info "Enabling user lingering (keeps background service alive after logout)"
+  if sudo loginctl enable-linger "$user"; then
+    success "User lingering enabled"
+  else
+    fail "Failed to enable lingering. Run by hand: sudo loginctl enable-linger \"$user\""
+  fi
+}
+
+ensure_lingering
 
 run_required_step "Installing T3 Code background service" t3 service install
 
