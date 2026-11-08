@@ -2,7 +2,7 @@
   "$schema": "https://opencode.ai/config.json",
 
   // coding-sandbox: tmux + playwright — no context7 (OAuth needs a local browser, unavailable over SSH).
-  // gmail + gmail-full included but disabled by default (same OAuth-over-SSH reason).
+  // gmail (taylorwilsdon) included but disabled by default (same OAuth-over-SSH reason).
   // Machine paths stay in ~/.config/opencode/opencode.json (written by `tama setup opencode`).
 
   "keybinds": {
@@ -38,17 +38,9 @@
         "type": "remote",
         "url": "{file:~/.secrets/home-assistant-mcp-url}"
       },
-      // Official Gmail MCP (read + draft + label/unlabel, no send/delete).
-      // Disabled over SSH by default (OAuth needs browser); enable via /mcps when needed.
-      // Auth: paste the callback URL into the sign-in prompt.
-      "gmail": {
-        "type": "remote",
-        "url": "https://gmailmcp.googleapis.com/mcp/v1",
-        "disabled": true
-      },
-      // Full Gmail access (move/label/delete/send) via local server.
+      // Gmail via taylorwilsdon/google_workspace_mcp (workspace-mcp on PyPI).
       // Disabled over SSH by default; needs uv + GOOGLE_OAUTH_CLIENT_ID/SECRET in env.
-      "gmail-full": {
+      "gmail-taylorwilsdon": {
         "type": "local",
         "command": ["uvx", "workspace-mcp", "--tools", "gmail", "--tool-tier", "core"],
         "environment": {
