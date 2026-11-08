@@ -23,10 +23,16 @@
   },
 
   "mcp": {
-    "tmux": {
-      "type": "local",
-      "command": ["npx", "-y", "--registry=https://registry.npmjs.org/", "tmux-mcp", "--shell-type=zsh"],
-      "enabled": true
+    "servers": {
+      "tmux": {
+        "type": "local",
+        "command": ["npx", "-y", "--registry=https://registry.npmjs.org/", "tmux-mcp", "--shell-type=zsh"]
+      },
+      // Machine-local secret: set HOME_ASSISTANT_MCP_URL on each machine, never commit it.
+      "home-assistant": {
+        "type": "remote",
+        "url": "{env:HOME_ASSISTANT_MCP_URL}"
+      }
     }
   }
 }

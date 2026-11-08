@@ -23,20 +23,24 @@
   },
 
   "mcp": {
-    "tmux": {
-      "type": "local",
-      "command": ["npx", "-y", "--registry=https://registry.npmjs.org/", "tmux-mcp", "--shell-type=zsh"],
-      "enabled": true
-    },
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp/oauth",
-      "enabled": true
-    },
-    "playwright": {
-      "type": "local",
-      "command": ["npx", "-y", "@playwright/mcp@latest"],
-      "enabled": true
+    "servers": {
+      "tmux": {
+        "type": "local",
+        "command": ["npx", "-y", "--registry=https://registry.npmjs.org/", "tmux-mcp", "--shell-type=zsh"]
+      },
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp/oauth"
+      },
+      "playwright": {
+        "type": "local",
+        "command": ["npx", "-y", "@playwright/mcp@latest"]
+      },
+      // Machine-local secret: set HOME_ASSISTANT_MCP_URL on each machine, never commit it.
+      "home-assistant": {
+        "type": "remote",
+        "url": "{env:HOME_ASSISTANT_MCP_URL}"
+      }
     }
   }
 }
