@@ -5,6 +5,7 @@ source "$DOTFILES_ROOT/helpers"
 
 info "Setting up opencode package"
 run_required_step "Stowing opencode package" stow opencode
+run_required_step "Linking profile OpenCode config" "$(current_dir)/link-config"
 
 configure_tamagotchi_opencode() {
   local tama_bin

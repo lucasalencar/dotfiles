@@ -1,0 +1,37 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // coding-sandbox: tmux + playwright — no context7 (OAuth needs a local browser, unavailable over SSH).
+  // Machine paths stay in ~/.config/opencode/opencode.json (written by `tama setup opencode`).
+
+  "keybinds": {
+    "input_newline": "ctrl+j,shift+enter"
+  },
+
+  "autoshare": false,
+  "autoupdate": true,
+
+  "permission": {
+    "external_directory": {
+      "/tmp": "allow",
+      "/tmp/*": "allow",
+      "/private/tmp": "allow",
+      "/private/tmp/*": "allow",
+      "/var/folders/*": "allow",
+      "/private/var/folders/*": "allow"
+    }
+  },
+
+  "mcp": {
+    "tmux": {
+      "type": "local",
+      "command": ["npx", "-y", "--registry=https://registry.npmjs.org/", "tmux-mcp", "--shell-type=zsh"],
+      "enabled": true
+    },
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp@latest"],
+      "enabled": true
+    }
+  }
+}
