@@ -1,16 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
-  // Full OpenCode config for the coding-sandbox profile (coding VM: runs
-  // browsers fine, so playwright stays — but no context7, since its OAuth
-  // login needs a local browser and cannot be completed over SSH).
-  // Symlinked to ~/.config/opencode/opencode.jsonc by opencode/setup.
-  //
-  // Tamagotchi OpenCode integration (tmux-agent-tamagotchi) is configured
-  // per-machine by opencode/setup via `tama setup opencode`, which writes
-  // the host's absolute plugin paths to ~/.config/opencode/opencode.json.
-  // Keep absolute paths out of this versioned file so the same repo works
-  // on macOS and Linux.
+  // coding-sandbox: tmux + playwright — no context7 (OAuth needs a local browser, unavailable over SSH).
+  // Machine paths stay in ~/.config/opencode/opencode.json (written by `tama setup opencode`).
 
   "keybinds": {
     "input_newline": "ctrl+j,shift+enter"

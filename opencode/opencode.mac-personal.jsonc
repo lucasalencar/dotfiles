@@ -1,14 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
-  // Full OpenCode config for the mac-personal profile.
-  // Symlinked to ~/.config/opencode/opencode.jsonc by opencode/setup.
-  //
-  // Tamagotchi OpenCode integration (tmux-agent-tamagotchi) is configured
-  // per-machine by opencode/setup via `tama setup opencode`, which writes
-  // the host's absolute plugin paths to ~/.config/opencode/opencode.json.
-  // Keep absolute paths out of this versioned file so the same repo works
-  // on macOS and Linux.
+  // mac-personal: full config (tmux + context7 + playwright).
+  // Machine paths stay in ~/.config/opencode/opencode.json (written by `tama setup opencode`).
 
   "keybinds": {
     "input_newline": "ctrl+j,shift+enter"
