@@ -1,0 +1,54 @@
+#!/bin/bash
+#
+# Symlinks the per-profile OpenCode config into place:
+#   opencode/opencode.<profile>.jsonc -> ~/.config/opencode/opencode.jsonc
+#
+# The profile resolves from $DOTFILES_PROFILE (exported by ./install) with
+# fallback to .current_profile, then to mac-personal (the historical config
+# every machine used before per-profile configs existed).
+
+set -euo pipefail
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+CONFIG_DIR="$HOME/.config/opencode"
+DEST_CONFIG="$CONFIG_DIR/opencode.jsonc"
+
+PROFILE="${DOTFILES_PROFILE:-$(current_profile)}"
+if [ -z "$PROFILE" ] || [ ! -f "$(current_dir)/opencode.${PROFILE}.jsonc" ]; then
+  info "No config for profile '${PROFILE:-<none>}', falling back to mac-personal"
+  PROFILE="mac-personal"
+fi
+SRC_CONFIG="$(current_dir)/opencode.${PROFILE}.jsonc"
+
+# If a previous stow folded $CONFIG_DIR into a single symlink, unfold it into
+# a real directory with per-file links. Otherwise the symlink below would be
+# created inside the repo itself.
+if [ -L "$CONFIG_DIR" ]; then
+  case "$(readlink "$CONFIG_DIR")" in
+    *opencode/.config/opencode)
+      rm "$CONFIG_DIR"
+      mkdir -p "$CONFIG_DIR"
+      for f in "$(current_dir)/.config/opencode"/*; do
+        [ -e "$f" ] || continue
+        ln -s "$f" "$CONFIG_DIR/$(basename "$f")"
+      done
+      info "Unfolded stowed OpenCode config directory into per-file links"
+      ;;
+  esac
+fi
+
+mkdir -p "$CONFIG_DIR"
+
+# Preserve a hand-made config instead of silently overwriting it.
+if [ -e "$DEST_CONFIG" ] && [ ! -L "$DEST_CONFIG" ]; then
+  if ! cmp -s "$DEST_CONFIG" "$SRC_CONFIG"; then
+    cp "$DEST_CONFIG" "$DEST_CONFIG.bak"
+    warning "Backed up customized $DEST_CONFIG to $DEST_CONFIG.bak"
+  fi
+fi
+
+info "Linking OpenCode config for profile $PROFILE"
+ln -sf "$SRC_CONFIG" "$DEST_CONFIG"
+success "Linked $DEST_CONFIG -> opencode.${PROFILE}.jsonc"

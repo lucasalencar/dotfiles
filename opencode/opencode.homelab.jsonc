@@ -1,0 +1,40 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // Full OpenCode config for the homelab profile (Proxmox: no browsers here,
+  // so no playwright — and no context7 either, since its OAuth login needs a
+  // local browser and cannot be completed over SSH).
+  // Symlinked to ~/.config/opencode/opencode.jsonc by opencode/setup.
+  //
+  // Tamagotchi OpenCode integration (tmux-agent-tamagotchi) is configured
+  // per-machine by opencode/setup via `tama setup opencode`, which writes
+  // the host's absolute plugin paths to ~/.config/opencode/opencode.json.
+  // Keep absolute paths out of this versioned file so the same repo works
+  // on macOS and Linux.
+
+  "keybinds": {
+    "input_newline": "ctrl+j,shift+enter"
+  },
+
+  "autoshare": false,
+  "autoupdate": true,
+
+  "permission": {
+    "external_directory": {
+      "/tmp": "allow",
+      "/tmp/*": "allow",
+      "/private/tmp": "allow",
+      "/private/tmp/*": "allow",
+      "/var/folders/*": "allow",
+      "/private/var/folders/*": "allow"
+    }
+  },
+
+  "mcp": {
+    "tmux": {
+      "type": "local",
+      "command": ["npx", "-y", "--registry=https://registry.npmjs.org/", "tmux-mcp", "--shell-type=zsh"],
+      "enabled": true
+    }
+  }
+}

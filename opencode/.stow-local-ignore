@@ -2,4 +2,6 @@ install
 setup
 update
 rc
+link-config
+^opencode\..*\.jsonc$
 node_modules

@@ -87,6 +87,17 @@ Machine-specific authentication, endpoints, models, work plugins and MCP
 servers should be configured only in the local files so they are not written
 back to the repo.
 
+### OpenCode settings
+
+Each profile that includes opencode has its own full config
+(`opencode/opencode.<profile>.jsonc` — `mac-personal` has everything,
+`coding-sandbox` drops `context7` (OAuth needs a local browser, unavailable
+over SSH), and `homelab` keeps only `tmux`). `opencode/setup` (and
+`./update opencode`) symlinks the matching file to
+`~/.config/opencode/opencode.jsonc`, so switching profiles is just re-running
+setup. Machine-specific plugin paths stay in the separate
+`~/.config/opencode/opencode.json` written by `tama setup opencode`.
+
 ## Updating
 
 ```bash
