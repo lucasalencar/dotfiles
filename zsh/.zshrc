@@ -62,3 +62,7 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Machine-local overrides and credentials (not versioned).
+# Guarded so a missing file never breaks the shell.
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
