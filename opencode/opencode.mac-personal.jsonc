@@ -1,7 +1,7 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
-  // mac-personal: full config (tmux + context7 + playwright).
+  // mac-personal: full config (tmux + context7 + playwright + gmail + gmail-full).
   // Machine paths stay in ~/.config/opencode/opencode.json (written by `tama setup opencode`).
 
   "keybinds": {
@@ -40,6 +40,23 @@
       "home-assistant": {
         "type": "remote",
         "url": "{file:~/.secrets/home-assistant-mcp-url}"
+      },
+      // Official Gmail MCP (read + draft + label/unlabel, no send/delete).
+      // Auth: /mcps -> gmail -> sign in (OAuth, needs Developer Preview + agent client).
+      "gmail": {
+        "type": "remote",
+        "url": "https://gmailmcp.googleapis.com/mcp/v1"
+      },
+      // Full Gmail access (move/label/delete/send) via local server, your own OAuth client.
+      // Needs: uv (python package), GOOGLE_OAUTH_CLIENT_ID/SECRET in env,
+      // Gmail API enabled. First run authenticates in browser.
+      "gmail-full": {
+        "type": "local",
+        "command": ["uvx", "workspace-mcp", "--tools", "gmail", "--tool-tier", "core"],
+        "environment": {
+          "GOOGLE_OAUTH_CLIENT_ID": "{env:GOOGLE_OAUTH_CLIENT_ID}",
+          "GOOGLE_OAUTH_CLIENT_SECRET": "{env:GOOGLE_OAUTH_CLIENT_SECRET}"
+        }
       }
     }
   }

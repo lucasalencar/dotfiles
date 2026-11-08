@@ -90,9 +90,11 @@ back to the repo.
 ### OpenCode settings
 
 Each profile that includes opencode has its own full config
-(`opencode/opencode.<profile>.jsonc` — `mac-personal` has everything,
+(`opencode/opencode.<profile>.jsonc` — `mac-personal` has everything
+(tmux + context7 + playwright + gmail + gmail-full),
 `coding-sandbox` drops `context7` (OAuth needs a local browser, unavailable
-over SSH), and `homelab` keeps only `tmux`). `opencode/setup` (and
+over SSH) and ships `gmail`/`gmail-full` disabled by default for the same
+reason, and `homelab` keeps only `tmux`). `opencode/setup` (and
 `./update opencode`) symlinks the matching file to
 `~/.config/opencode/opencode.jsonc`, so switching profiles is just re-running
 setup. Machine-specific plugin paths stay in the separate
