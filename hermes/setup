@@ -1,0 +1,71 @@
+#!/bin/bash
+#
+# Setup for the hermes package (non-interactive, idempotent).
+#
+# Executes:
+#   1. Verifies the hermes CLI is installed.
+#   2. Ensures user lingering on Linux with systemd (keeps the
+#      per-user gateway service alive after logout and enables start at
+#      boot). Attempts `sudo loginctl enable-linger` automatically.
+#   3. Applies defaults non-interactively (safe to re-run).
+#   4. Installs the gateway background service (systemd/launchd).
+#   5. Runs diagnostics so missing keys/platforms are visible.
+#
+# Provider login (`hermes model`, `hermes setup --portal`), messaging setup
+# (`hermes gateway setup`) and imports from other agents
+# (`hermes migrate openclaw --migrate-secrets`) always stay manual: they need
+# OAuth in a browser, bot tokens, or a confirmation preview that cannot be
+# scripted.
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+info "Setting up hermes package"
+
+if ! command_exists hermes; then
+  warning "hermes CLI not found, skipping Hermes setup (run hermes/install first)"
+  exit 0
+fi
+
+info "hermes version: $(hermes --version 2>/dev/null || echo unknown)"
+
+ensure_lingering() {
+  if ! is_linux; then
+    return 0
+  fi
+  if ! command_exists loginctl; then
+    info "Skipping lingering check (loginctl not found)"
+    return 0
+  fi
+  local user
+  user="$(id -un)"
+  local linger
+  if ! linger="$(loginctl show-user "$user" -p Linger --value 2>/dev/null)"; then
+    warning "Could not query lingering state (no systemd user manager?), skipping"
+    return 0
+  fi
+  if [ "$linger" = "yes" ]; then
+    success "User lingering already enabled"
+    return 0
+  fi
+  info "Enabling user lingering (keeps gateway service alive after logout)"
+  if sudo loginctl enable-linger "$user"; then
+    success "User lingering enabled"
+  else
+    fail "Failed to enable lingering. Run by hand: sudo loginctl enable-linger \"$user\""
+  fi
+}
+
+ensure_lingering
+
+run_optional_step "Applying Hermes defaults (non-interactive)" hermes setup --non-interactive
+
+run_optional_step "Installing Hermes gateway background service" hermes gateway install
+
+run_optional_step "Running Hermes diagnostics" hermes doctor
+
+info "Next (manual): hermes setup --portal | hermes model | hermes gateway setup"
+info "For local browsing/computer-use extras: hermes pm install chromium"
+if [ -d "$HOME/.openclaw" ]; then
+  info "OpenClaw setup detected, optionally import it: hermes migrate openclaw --migrate-secrets"
+fi
