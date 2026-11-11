@@ -14,7 +14,12 @@ Homebrew, on both macOS and Linux (Linuxbrew). Declare dependencies with
 `brew install` in the owning package's `install` script — one declaration
 covers both OSes. The only `Brewfile` is `mac-apps/Brewfile` (desktop
 casks). Use `apt` only for pre-brew bootstrap or when a formula has no
-Linux bottle (then use the upstream installer on Linux). If no package
+Linux bottle (then use the upstream installer on Linux). Prefer Homebrew
+only when it does not complicate the scripts or degrade the tool: if the
+formula lags upstream releases, drops features, or takes over the update
+flow in a way that makes `install`/`update` harder, use the upstream
+installer or the tool's own self-update instead (e.g. `claude-code` and
+`codex` use their upstream installers for faster updates). If no package
 owns a new dependency, create one and list it in the profiles that need it.
 
 ## Cross-platform rules (macOS + Ubuntu Linux)
