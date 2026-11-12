@@ -1,0 +1,61 @@
+# Hermes config (single machine, default profile).
+# Stowed to ~/.hermes via `stow hermes` (run from hermes/setup or by hand).
+# On first stow ~/.hermes does not exist yet, so the whole directory links
+# here and Hermes writes its live state alongside this file — everything
+# except config.yaml is git-ignored (see .gitignore). Secrets stay in
+# ~/.hermes/.env — never commit them.
+#
+# After linking: `hermes model` once to confirm the model, then
+# `hermes gateway restart`.
+
+# LLM provider: OpenCode Go ($10/mo subscription, curated open models).
+# Key: OPENCODE_GO_API_KEY in ~/.hermes/.env (from the OpenCode console).
+# Run `hermes model` once to pick the model — it writes model.default
+# through the symlink. Swap to pay-as-you-go with provider: opencode-zen
+# and OPENCODE_ZEN_API_KEY instead.
+model:
+  provider: opencode-go
+  default: ''
+  base_url: ''
+  api_mode: chat_completions
+
+# Isolated sandbox: agent commands (terminal, execute_code, file tools) run
+# in a disposable Docker container, never on this host. The host filesystem
+# is invisible unless explicitly mounted below.
+# With a container backend, dangerous-command checks are SKIPPED — the
+# container is the boundary, so the mount list IS the policy.
+terminal:
+  backend: docker
+  docker_image: "nousresearch/hermes-sandbox:desktop"
+  docker_mount_cwd_to_workspace: false
+  container_persistent: false
+  docker_network: false
+  container_cpu: 1
+  container_memory: 5120
+  docker_forward_env: []
+  docker_volumes: []
+  timeout: 180
+
+# Human-in-the-loop stays on as a second layer for host-side prompts.
+approvals:
+  mode: smart
+
+# MCP servers. Stdio servers spawn as HOST subprocesses and HTTP servers are
+# dialed from the host — every entry here bypasses container isolation. Only
+# add servers you trust, and prune their tools with include/exclude.
+mcp_servers: {}
+
+# Examples (uncomment, fill secrets in ~/.hermes/.env, /reload-mcp to apply):
+# mcp_servers:
+#   home-assistant:
+#     url: "${HASS_MCP_URL}"
+#     headers:
+#       Authorization: "Bearer ${HASS_TOKEN}"
+#     tools:
+#       exclude: ["*delete*", "*remove*"]
+#   gmail:
+#     command: "uvx"
+#     args: ["workspace-mcp", "--tools", "gmail", "--tool-tier", "core"]
+#     env:
+#       GOOGLE_OAUTH_CLIENT_ID: "${GOOGLE_OAUTH_CLIENT_ID}"
+#       GOOGLE_OAUTH_CLIENT_SECRET: "${GOOGLE_OAUTH_CLIENT_SECRET}"

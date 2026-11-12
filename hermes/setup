@@ -1,15 +1,18 @@
 #!/bin/bash
 #
 # Setup for the hermes package (non-interactive, idempotent).
+# Covers the DEFAULT profile only. Additional people get their own profile
+# via hermes/new-profile (same sandbox lockdown, separate accounts).
 #
 # Executes:
 #   1. Verifies the hermes CLI is installed.
-#   2. Ensures user lingering on Linux with systemd (keeps the
+#   2. Stows the package (links .hermes/config.yaml into ~/.hermes).
+#   3. Ensures user lingering on Linux with systemd (keeps the
 #      per-user gateway service alive after logout and enables start at
 #      boot). Attempts `sudo loginctl enable-linger` automatically.
-#   3. Applies defaults non-interactively (safe to re-run).
-#   4. Installs the gateway background service (systemd/launchd).
-#   5. Runs diagnostics so missing keys/platforms are visible.
+#   4. Applies defaults non-interactively (safe to re-run).
+#   5. Installs the gateway background service (systemd/launchd).
+#   6. Runs diagnostics so missing keys/platforms are visible.
 #
 # Provider login (`hermes model`, `hermes setup --portal`), messaging setup
 # (`hermes gateway setup`) and imports from other agents
@@ -28,6 +31,8 @@ if ! command_exists hermes; then
 fi
 
 info "hermes version: $(hermes --version 2>/dev/null || echo unknown)"
+
+run_required_step "Stowing hermes package" stow hermes
 
 ensure_lingering() {
   if ! is_linux; then
