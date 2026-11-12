@@ -193,5 +193,6 @@
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff"
     },
-    "window.autoDetectColorScheme": true
+    "window.autoDetectColorScheme": true,
+    "cursor.general.disableHttp2": true
 }
