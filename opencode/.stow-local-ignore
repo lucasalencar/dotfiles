@@ -4,4 +4,5 @@ update
 rc
 link-config
 ^opencode\..*\.jsonc$
+^\.env\.example$
 node_modules
