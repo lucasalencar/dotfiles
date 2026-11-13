@@ -5,20 +5,120 @@
 # except config.yaml is git-ignored (see .gitignore). Secrets stay in
 # ~/.hermes/.env — never commit them.
 #
-# After linking: `hermes model` once to confirm the model, then
-# `hermes gateway restart`.
+# Layout: Hermes-generated defaults first (config v51 — do not hand-edit
+# above the HAND-MANAGED marker unless Hermes itself migrated them), then
+# our policy blocks (terminal sandbox, approvals, MCPs). Never run
+# `hermes setup` against this file: it rewrites it with bare defaults and
+# drops the blocks below. Prefer `hermes config set` / `hermes model`.
+gateway:
+  service_install_choice: install
+_config_version: 51
 
-# LLM provider: OpenCode Go ($10/mo subscription, curated open models).
-# Key: OPENCODE_GO_API_KEY in ~/.hermes/.env (from the OpenCode console).
-# Run `hermes model` once to pick the model — it writes model.default
-# through the symlink. Swap to pay-as-you-go with provider: opencode-zen
-# and OPENCODE_ZEN_API_KEY instead.
+# ── Security ──────────────────────────────────────────────────────────
+# Secret redaction is ON by default — strings that look like API keys,
+# tokens, and passwords are masked in tool output, logs, and chat
+# responses before the model or user ever sees them. Set redact_secrets
+# to false to disable (e.g. when developing the redactor itself).
+#
+# security:
+#   redact_secrets: true
+
+# ── Fallback Model ────────────────────────────────────────────────────
+# Automatic provider failover when primary is unavailable.
+# Uncomment and configure to enable. Triggers on rate limits (429),
+# overload (529), service errors (503), or connection failures.
+#
+# Supported providers:
+#   openrouter   (OPENROUTER_API_KEY)  — routes to any model
+#   openai-codex (OAuth — hermes auth) — OpenAI Codex
+#   nous         (OAuth — hermes auth) — Nous Portal
+#   zai          (ZAI_API_KEY)         — Z.AI / GLM
+#   kimi-coding  (KIMI_API_KEY)        — Kimi / Moonshot
+#   kimi-coding-cn (KIMI_CN_API_KEY)   — Kimi / Moonshot (China)
+#   minimax      (MINIMAX_API_KEY)     — MiniMax
+#   minimax-cn   (MINIMAX_CN_API_KEY)  — MiniMax (China)
+#   bedrock      (AWS IAM / boto3)     — AWS Bedrock (Converse API)
+#
+# For custom OpenAI-compatible endpoints, add base_url and key_env.
+#
+# fallback_model:
+#   provider: openrouter
+#   model: anthropic/claude-sonnet-4
+agent:
+  max_turns: 150
+  reasoning_effort: high
 model:
+  default: muse-spark-1.3-contributor
   provider: opencode-go
-  default: ''
-  base_url: ''
-  api_mode: chat_completions
+  base_url: https://opencode.ai/zen/go/v1
+  api_mode: codex_responses
+web:
+  backend: ddgs
+browser:
+  cloud_provider: local
+computer_use:
+  backend: cua
+platform_toolsets:
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - connections
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - vision
+    - web
+known_plugin_toolsets:
+  cli:
+    - a2a
+known_builtin_toolsets:
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - connections
+    - context_engine
+    - cronjob
+    - delegation
+    - discord
+    - discord_admin
+    - file
+    - image_gen
+    - kanban
+    - memory
+    - session_search
+    - skills
+    - stt
+    - terminal
+    - todo
+    - tts
+    - video
+    - video_gen
+    - vision
+    - web
+    - x_search
+    - yuanbao
+telemetry:
+  shared_metrics:
+    enabled: false
+    send: false
+    offer_version: 2
+onboarding:
+  seen:
+    profile_build_offered: true
+    busy_input_prompt: true
 
+# ── HAND-MANAGED (dotfiles) ───────────────────────────────────────────
 # Isolated sandbox: agent commands (terminal, execute_code, file tools) run
 # in a disposable Docker container, never on this host. The host filesystem
 # is invisible unless explicitly mounted below.
@@ -34,6 +134,10 @@ terminal:
   container_memory: 5120
   docker_forward_env: []
   docker_volumes: []
+  # To let the agent send you files (Telegram MEDIA attachments must resolve
+  # on the host, not just in the container), mount a host-visible dir:
+  # docker_volumes:
+  #   - "/home/user/.hermes/cache/documents:/output"
   timeout: 180
 
 # Human-in-the-loop stays on as a second layer for host-side prompts.
