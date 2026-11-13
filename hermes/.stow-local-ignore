@@ -1,0 +1,5 @@
+install
+setup
+update
+new-profile
+^\.env\.example$

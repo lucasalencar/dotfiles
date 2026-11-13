@@ -1,0 +1,101 @@
+#!/bin/bash
+#
+# Setup for the hermes package (non-interactive, idempotent).
+# Covers the DEFAULT profile only. Additional people get their own profile
+# via hermes/new-profile (same sandbox lockdown, separate accounts).
+#
+# Executes:
+#   1. Verifies the hermes CLI is installed.
+#   2. Stows the package (links .hermes/config.yaml into ~/.hermes).
+#   3. Ensures user lingering on Linux with systemd (keeps the
+#      per-user gateway service alive after logout and enables start at
+#      boot). Attempts `sudo loginctl enable-linger` automatically.
+#   4. Installs the gateway background service (systemd/launchd).
+#   5. Runs diagnostics so missing keys/platforms are visible.
+#
+# No `hermes setup` step on purpose: it rewrites config.yaml with bare
+# defaults and would drop the hand-managed blocks (terminal sandbox,
+# approvals, MCPs). Configure via `hermes model` / `hermes config set`.
+#
+# Provider login (`hermes model`, `hermes setup --portal`), messaging setup
+# (`hermes gateway setup`) and imports from other agents
+# (`hermes migrate openclaw --migrate-secrets`) always stay manual: they need
+# OAuth in a browser, bot tokens, or a confirmation preview that cannot be
+# scripted.
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+# Works whether invoked via ./install (DOTFILES_ROOT set) or by hand
+# (./hermes/setup from anywhere): repo root derived from this script.
+REPO_ROOT="${DOTFILES_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
+
+info "Setting up hermes package"
+
+if ! command_exists hermes; then
+  warning "hermes CLI not found, skipping Hermes setup (run hermes/install first)"
+  exit 0
+fi
+
+info "hermes version: $(hermes --version 2>/dev/null || echo unknown)"
+
+stow_hermes() {
+  # stow refuses to overwrite files it does not own. A previous
+  # `hermes setup` (or hermes itself) creates a live ~/.hermes/config.yaml —
+  # back it up so stow can link the versioned one. Skip when ~/.hermes is
+  # already our stow fold (a symlink): there is nothing to back up.
+  if [ ! -L "$HOME/.hermes" ] && [ -e "$HOME/.hermes/config.yaml" ] && [ ! -L "$HOME/.hermes/config.yaml" ]; then
+    local backup="$HOME/.hermes/config.yaml.bak"
+    if [ -e "$backup" ]; then
+      backup="$HOME/.hermes/config.yaml.bak.$(date +%Y%m%d%H%M%S)"
+    fi
+    cp "$HOME/.hermes/config.yaml" "$backup"
+    rm "$HOME/.hermes/config.yaml"
+    warning "Backed up live config to $backup (diff it against the stowed one if needed)"
+  fi
+  # Explicit --dir/--target: bare `stow hermes` links into the parent of the
+  # current directory, which is $HOME only for a ~/.dotfiles checkout. This
+  # works from any cwd and any checkout location (incl. worktrees).
+  stow --dir="$REPO_ROOT" --target="$HOME" hermes
+}
+
+run_required_step "Stowing hermes package" stow_hermes
+
+ensure_lingering() {
+  if ! is_linux; then
+    return 0
+  fi
+  if ! command_exists loginctl; then
+    info "Skipping lingering check (loginctl not found)"
+    return 0
+  fi
+  local user
+  user="$(id -un)"
+  local linger
+  if ! linger="$(loginctl show-user "$user" -p Linger --value 2>/dev/null)"; then
+    warning "Could not query lingering state (no systemd user manager?), skipping"
+    return 0
+  fi
+  if [ "$linger" = "yes" ]; then
+    success "User lingering already enabled"
+    return 0
+  fi
+  info "Enabling user lingering (keeps gateway service alive after logout)"
+  if sudo loginctl enable-linger "$user"; then
+    success "User lingering enabled"
+  else
+    fail "Failed to enable lingering. Run by hand: sudo loginctl enable-linger \"$user\""
+  fi
+}
+
+ensure_lingering
+
+run_optional_step "Installing Hermes gateway background service" hermes gateway install
+
+run_optional_step "Running Hermes diagnostics" hermes doctor
+
+info "Next (manual): hermes model | hermes gateway setup | hermes config migrate (if doctor flags it)"
+info "For local browsing/computer-use extras: hermes pm install chromium"
+if [ -d "$HOME/.openclaw" ]; then
+  info "OpenClaw setup detected, optionally import it: hermes migrate openclaw --migrate-secrets"
+fi

@@ -1,0 +1,83 @@
+#!/bin/bash
+#
+# Creates a new Hermes profile for another person, locked to the same
+# isolated Docker sandbox as the default profile.
+#
+# Usage:
+#   ./hermes/new-profile <name> [--share-keys]
+#
+# What it does:
+#   1. Creates a blank profile (no memory, no channels, no bot tokens).
+#   2. Unless --share-keys, strips copied LLM API keys from the new
+#      profile's .env so the person brings their own accounts.
+#   3. Applies the sandbox lockdown (docker backend, no mounts, no net,
+#      fresh container per session) plus smart approvals.
+#
+# Still manual afterwards (needs their accounts, browser or bot tokens):
+#   - add their key to ~/.hermes/profiles/<name>/.env
+#   - hermes -p <name> model            # pick their model
+#   - hermes -p <name> gateway setup    # their Telegram bot + pairing
+# The multiplexing host gateway picks the profile up on its own; no
+# per-profile gateway install needed.
+
+set -euo pipefail
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+usage() {
+  echo "Usage: $(basename "$0") <profile-name> [--share-keys]" >&2
+  exit 2
+}
+
+NAME="${1:-}"
+SHARE_KEYS=0
+if [ "${2:-}" = "--share-keys" ]; then
+  SHARE_KEYS=1
+elif [ -n "${2:-}" ]; then
+  usage
+fi
+if [ -z "$NAME" ]; then
+  usage
+fi
+
+if ! command_exists hermes; then
+  fail "hermes CLI not found (run hermes/install first)"
+fi
+
+HH="${HERMES_HOME:-$HOME/.hermes}"
+if [ -e "$HH/profiles/$NAME" ]; then
+  fail "Profile '$NAME' already exists ($HH/profiles/$NAME)"
+fi
+
+run_required_step "Creating Hermes profile '$NAME'" hermes profile create "$NAME"
+
+if [ "$SHARE_KEYS" -eq 0 ]; then
+  NEW_ENV="$HH/profiles/$NAME/.env"
+  if [ -f "$NEW_ENV" ]; then
+    if grep -qE '^[A-Z0-9_]*API_KEY=' "$NEW_ENV"; then
+      sed -i -E '/^[A-Z0-9_]*API_KEY=/d' "$NEW_ENV"
+      success "Stripped copied LLM API keys from $NEW_ENV (bring your own)"
+    else
+      info "No LLM API keys to strip in $NEW_ENV"
+    fi
+  fi
+else
+  info "Keeping copied LLM API keys (--share-keys)"
+fi
+
+run_required_step "Locking '$NAME' to the isolated sandbox" \
+  hermes -p "$NAME" config set terminal.backend docker
+hermes -p "$NAME" config set terminal.docker_image "nousresearch/hermes-sandbox:desktop"
+hermes -p "$NAME" config set terminal.docker_mount_cwd_to_workspace false
+hermes -p "$NAME" config set terminal.container_persistent false
+hermes -p "$NAME" config set terminal.docker_network false
+hermes -p "$NAME" config set terminal.container_cpu 1
+hermes -p "$NAME" config set terminal.container_memory 5120
+hermes -p "$NAME" config set terminal.docker_forward_env '[]'
+hermes -p "$NAME" config set terminal.docker_volumes '[]'
+hermes -p "$NAME" config set approvals.mode smart
+
+success "Profile '$NAME' ready for first login"
+info "Next (manual, their accounts): add key to $HH/profiles/$NAME/.env, then"
+info "  hermes -p $NAME model && hermes -p $NAME gateway setup"

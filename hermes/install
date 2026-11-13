@@ -1,0 +1,22 @@
+#!/bin/bash
+
+source "$DOTFILES_ROOT/print_helper"
+source "$DOTFILES_ROOT/helpers"
+
+ensure_brew_env
+
+brew install hermes-agent ffmpeg ripgrep
+
+# Populate Hermes' PM tool store with its pinned builds. Doctor reports the
+# install out of sync without these, even with the brew copies on PATH.
+hermes pm install ffmpeg node npm ripgrep
+
+# The Telegram adapter needs python-telegram-bot, but
+# `hermes pm install --extra telegram` requires a source checkout (uv.lock)
+# and fails on brew installs. Install it with the Hermes interpreter's pip
+# instead: it lands in Homebrew python's site-packages, visible to the
+# gateway even in isolated (-I) mode, and outside the keg so `brew upgrade`
+# keeps it.
+HERMES_PY="$(grep -o 'HERMES_PYTHON="[^"]*"' "$(command -v hermes)" | cut -d'"' -f2)"
+[ -n "$HERMES_PY" ] || fail "Could not locate the Hermes python from $(command -v hermes)"
+"$HERMES_PY" -m pip install --quiet python-telegram-bot

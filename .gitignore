@@ -24,3 +24,8 @@ opencode/.config/opencode/skills/
 opencode/.config/opencode/opencode.json
 # Runtime secret written by opencode — never commit
 opencode/.config/opencode/service.json
+
+# Hermes live state under the stowed ~/.hermes dir — only config.yaml is
+# versioned, everything else (state, sessions, secrets, caches) stays local
+hermes/.hermes/*
+!hermes/.hermes/config.yaml
