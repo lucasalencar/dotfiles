@@ -7,7 +7,7 @@
 #
 # Layout: Hermes-generated defaults first (config v51 — do not hand-edit
 # above the HAND-MANAGED marker unless Hermes itself migrated them), then
-# our policy blocks (terminal sandbox, approvals, MCPs). Never run
+# our policy blocks (terminal backend, approvals, MCPs). Never run
 # `hermes setup` against this file: it rewrites it with bare defaults and
 # drops the blocks below. Prefer `hermes config set` / `hermes model`.
 gateway:
@@ -119,34 +119,22 @@ onboarding:
     busy_input_prompt: true
 
 # ── HAND-MANAGED (dotfiles) ───────────────────────────────────────────
-# Isolated sandbox: agent commands (terminal, execute_code, file tools) run
-# in a disposable Docker container, never on this host. The host filesystem
-# is invisible unless explicitly mounted below.
-# With a container backend, dangerous-command checks are SKIPPED — the
-# container is the boundary, so the mount list IS the policy.
+# Local execution: agent commands (terminal, execute_code, file tools) run
+# directly on this host as your user — no Docker container involved.
+# Dangerous-command checks stay ACTIVE (smart approvals below are the
+# boundary), unlike the container backend where they are skipped.
 terminal:
-  backend: docker
-  docker_image: "nousresearch/hermes-sandbox:desktop"
-  docker_mount_cwd_to_workspace: false
-  container_persistent: false
-  docker_network: false
-  container_cpu: 1
-  container_memory: 5120
-  docker_forward_env: []
-  docker_volumes: []
-  # To let the agent send you files (Telegram MEDIA attachments must resolve
-  # on the host, not just in the container), mount a host-visible dir:
-  # docker_volumes:
-  #   - "/home/user/.hermes/cache/documents:/output"
+  backend: local
   timeout: 180
 
-# Human-in-the-loop stays on as a second layer for host-side prompts.
+# Human-in-the-loop stays on: with local execution it is the safety
+# boundary for destructive commands.
 approvals:
   mode: smart
 
-# MCP servers. Stdio servers spawn as HOST subprocesses and HTTP servers are
-# dialed from the host — every entry here bypasses container isolation. Only
-# add servers you trust, and prune their tools with include/exclude.
+# MCP servers. Stdio servers spawn as HOST subprocesses — every entry here
+# runs with your user privileges. Only add servers you trust, and prune
+# their tools with include/exclude.
 mcp_servers: {}
 
 # Examples (uncomment, fill secrets in ~/.hermes/.env, /reload-mcp to apply):
