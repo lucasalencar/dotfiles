@@ -135,7 +135,9 @@ approvals:
 # MCP servers. Stdio servers spawn as HOST subprocesses — every entry here
 # runs with your user privileges. Only add servers you trust, and prune
 # their tools with include/exclude.
-mcp_servers: {}
+mcp_servers:
+  home-assistant:
+    url: ${HASS_MCP_URL}
 
 # Examples (uncomment, fill secrets in ~/.hermes/.env, /reload-mcp to apply):
 # mcp_servers:
