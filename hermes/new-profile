@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Creates a new Hermes profile for another person, locked to the same
-# isolated Docker sandbox as the default profile.
+# Creates a new Hermes profile for another person, running on the host
+# (local backend, no Docker) like the default profile.
 #
 # Usage:
 #   ./hermes/new-profile <name> [--share-keys]
@@ -10,8 +10,8 @@
 #   1. Creates a blank profile (no memory, no channels, no bot tokens).
 #   2. Unless --share-keys, strips copied LLM API keys from the new
 #      profile's .env so the person brings their own accounts.
-#   3. Applies the sandbox lockdown (docker backend, no mounts, no net,
-#      fresh container per session) plus smart approvals.
+#   3. Applies the local-execution policy (host backend plus smart
+#      approvals as the safety boundary).
 #
 # Still manual afterwards (needs their accounts, browser or bot tokens):
 #   - add their key to ~/.hermes/profiles/<name>/.env
@@ -66,16 +66,13 @@ else
   info "Keeping copied LLM API keys (--share-keys)"
 fi
 
-run_required_step "Locking '$NAME' to the isolated sandbox" \
-  hermes -p "$NAME" config set terminal.backend docker
-hermes -p "$NAME" config set terminal.docker_image "nousresearch/hermes-sandbox:desktop"
-hermes -p "$NAME" config set terminal.docker_mount_cwd_to_workspace false
-hermes -p "$NAME" config set terminal.container_persistent false
-hermes -p "$NAME" config set terminal.docker_network false
-hermes -p "$NAME" config set terminal.container_cpu 1
-hermes -p "$NAME" config set terminal.container_memory 5120
-hermes -p "$NAME" config set terminal.docker_forward_env '[]'
-hermes -p "$NAME" config set terminal.docker_volumes '[]'
+run_required_step "Setting '$NAME' to local execution" \
+  hermes -p "$NAME" config set terminal.backend local
+for key in terminal.docker_image terminal.docker_mount_cwd_to_workspace \
+  terminal.container_persistent terminal.docker_network terminal.container_cpu \
+  terminal.container_memory terminal.docker_forward_env terminal.docker_volumes; do
+  hermes -p "$NAME" config unset "$key" >/dev/null 2>&1 || true
+done
 hermes -p "$NAME" config set approvals.mode smart
 
 success "Profile '$NAME' ready for first login"

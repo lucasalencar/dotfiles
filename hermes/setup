@@ -2,7 +2,7 @@
 #
 # Setup for the hermes package (non-interactive, idempotent).
 # Covers the DEFAULT profile only. Additional people get their own profile
-# via hermes/new-profile (same sandbox lockdown, separate accounts).
+# via hermes/new-profile (same local execution, separate accounts).
 #
 # Executes:
 #   1. Verifies the hermes CLI is installed.
@@ -14,7 +14,7 @@
 #   5. Runs diagnostics so missing keys/platforms are visible.
 #
 # No `hermes setup` step on purpose: it rewrites config.yaml with bare
-# defaults and would drop the hand-managed blocks (terminal sandbox,
+# defaults and would drop the hand-managed blocks (terminal backend,
 # approvals, MCPs). Configure via `hermes model` / `hermes config set`.
 #
 # Provider login (`hermes model`, `hermes setup --portal`), messaging setup
